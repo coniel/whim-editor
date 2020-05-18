@@ -31,6 +31,7 @@ module.exports = {
     'react/prop-types': 'off',
     'no-console': ['warn'],
     'import/no-extraneous-dependencies': ['error'],
+    'import/newline-after-import': ['error', { count: 1 }],
   },
   overrides: [
     {
