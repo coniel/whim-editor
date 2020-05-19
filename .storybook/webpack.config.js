@@ -17,7 +17,7 @@ module.exports = async ({ config }) => {
     ...packages.reduce(
       (acc, name) => ({
         ...acc,
-        [`@taxi/${name}`]: path.join(basePath, name, 'src'),
+        [`@slash/${name}`]: path.join(basePath, name, 'src'),
       }),
       {},
     ),

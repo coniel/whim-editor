@@ -1005,7 +1005,7 @@ Let's init first simple package which will be just Input with optional label for
 $ mkdir packages/input && cd packages/input
 $ yarn init
 yarn init v1.7.0
-question name (input): @taxi/input
+question name (input): @slash/input
 question version (1.0.0): 0.0.0
 question description: Input component
 question entry point (index.js): /dist/index.ts
@@ -1020,7 +1020,7 @@ Done in 85.84s.
 and add `react` and `styled-components` as peerDependencies:
 
 ```bash
-yarn workspace @taxi/input add -P react styled-components
+yarn workspace @slash/input add -P react styled-components
 ```
 
 ### Development
@@ -1208,15 +1208,15 @@ lerna info Verifying npm credentials
 lerna info Looking for changed packages since initial commit.
 
 Changes:
- - @taxi/input: 0.0.0 => 0.1.0
+ - @slash/input: 0.0.0 => 0.1.0
 
 ? Are you sure you want to publish these packages? Yes
 lerna info git Pushing tags...
 lerna info publish Publishing packages to npm...
 lerna WARN EREGISTRY Registry "http://localhost:4873" does not support `npm access ls-packages`, skipping permission checks...
-lerna WARN ENOLICENSE Packages @taxi/input, @taxi/login-form are missing a license
+lerna WARN ENOLICENSE Packages @slash/input, @slash/login-form are missing a license
 lerna notice
-lerna notice 📦  @taxi/input@0.1.0
+lerna notice 📦  @slash/input@0.1.0
 lerna notice === Tarball Contents ===
 lerna notice 640B  package.json
 lerna notice 358B  CHANGELOG.md
@@ -1225,7 +1225,7 @@ lerna notice 176B  dist/index.js.map
 lerna notice 1.8kB dist/Input.js
 lerna notice 1.9kB dist/Input.js.map
 lerna notice === Tarball Details ===
-lerna notice name:          @taxi/input
+lerna notice name:          @slash/input
 lerna notice version:       0.1.0
 lerna notice filename:      taxi-input-0.1.0.tgz
 lerna notice package size:  2.3 kB
@@ -1233,18 +1233,18 @@ lerna notice unpacked size: 5.3 kB
 lerna notice shasum:        8685cb61ee263c3af0b73d1daa2295f35eaa04d8
 lerna notice integrity:     sha512-y5o/D+DevV5oS[...]P2S2XqeRi89jA==
 lerna notice total files:   6
-lerna info published @taxi/input 0.1.0
+lerna info published @slash/input 0.1.0
 Successfully published:
- - @taxi/input@0.1.0
+ - @slash/input@0.1.0
 lerna success published 1 package
 ```
 
 `Lerna` says that package was published successfully. Now we could check it with `yarn info` or through web interface for our local npm registry (`http://localhost:4873`):
 
 ```bash
-$ yarn info @taxi/input
+$ yarn info @slash/input
 yarn info v1.10.1
-{ name: '@taxi/input',
+{ name: '@slash/input',
   versions:
    [ '0.1.0' ],
   'dist-tags':
@@ -1260,7 +1260,7 @@ Moreover, `lerna` should create proper tags in our repository associated with re
 
 ```bash
 $ git tag
-@taxi/input@0.1.0
+@slash/input@0.1.0
 ```
 
 Last, but not least, let's check that proper `Changelog` was created for our package:
@@ -1281,7 +1281,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * **Input:** add default labelWidth ([8302608](https://github.com/serhii-havrylenko/monorepo-babel-ts-lerna-starter/commit/8302608))
 ```
 
-Now we have first package successfully released, what's left? Second package which is dependant on our `@taxi/input` package is left. Integration with `lerna` would stay the same, simple as it is, however, it would requires some magic for making `storybook`, `jest` and `tslint` works with dependent packages and proper modules resolutions without rebuilding them all the time. Plus, as a bonus we'll generate types declarations for our packages and include them as a part of final build.
+Now we have first package successfully released, what's left? Second package which is dependant on our `@slash/input` package is left. Integration with `lerna` would stay the same, simple as it is, however, it would requires some magic for making `storybook`, `jest` and `tslint` works with dependent packages and proper modules resolutions without rebuilding them all the time. Plus, as a bonus we'll generate types declarations for our packages and include them as a part of final build.
 
 More details will be in the next article.
 
@@ -1289,14 +1289,14 @@ More details will be in the next article.
 
 As everyone knows, the main goal of the monorepo is to have multiple packages inside one repository for easily solving dependencies between them and simple release process.
 
-Let's create second package which is dependant on our `@taxi/input` and check how our tools works with it.
+Let's create second package which is dependant on our `@slash/input` and check how our tools works with it.
 
 ### Development
 
-Just create second package in the same way as the first one. In our example it would be `@taxi/login-form` with next content:
+Just create second package in the same way as the first one. In our example it would be `@slash/login-form` with next content:
 
 ```typescript
-import { Input } from '@taxi/input';
+import { Input } from '@slash/input';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -1326,10 +1326,10 @@ export const LoginForm: React.SFC<LoginFormProps> = ({ onClick }) => (
 );
 ```
 
-Now we could add `@taxi/input` to the list of dependencies. This could be achieved easily with next command:
+Now we could add `@slash/input` to the list of dependencies. This could be achieved easily with next command:
 
 ```bash
-yarn lerna add @taxi/input --scope=@taxi/login-form
+yarn lerna add @slash/input --scope=@slash/login-form
 ```
 
 As soon as we have it, it's time to run `tsc` and check what `typescript` thinks about our code:
@@ -1338,23 +1338,23 @@ As soon as we have it, it's time to run `tsc` and check what `typescript` thinks
 $ yarn tsc
 yarn run v1.10.1
 $ tsc
-packages/login-form/src/LoginForm.tsx:1:23 - error TS2307: Cannot find module '@taxi/input'.
+packages/login-form/src/LoginForm.tsx:1:23 - error TS2307: Cannot find module '@slash/input'.
 
-1 import { Input } from '@taxi/input';
+1 import { Input } from '@slash/input';
                         ~~~~~~~~~~~~~
 error Command failed with exit code 1.
 ```
 
-It happens because in the `package.json` file for `@taxi/input` package we have `"main": "dist/index.js"` which is pointing to the build version of the package and we have not run `build` command. So, let's build our packages and check `tsc` again:
+It happens because in the `package.json` file for `@slash/input` package we have `"main": "dist/index.js"` which is pointing to the build version of the package and we have not run `build` command. So, let's build our packages and check `tsc` again:
 
 ```bash
 $ yarn tsc
 yarn run v1.10.1
 $ tsc
-packages/login-form/src/LoginForm.tsx:1:23 - error TS7016: Could not find a declaration file for module '@taxi/input'. 'monorepo-babel-ts/packages/input/dist/index.js' implicitly has an 'any' type.
-  Try `npm install @types/taxi__input` if it exists or add a new declaration (.d.ts) file containing `declare module '@taxi/input';`
+packages/login-form/src/LoginForm.tsx:1:23 - error TS7016: Could not find a declaration file for module '@slash/input'. 'monorepo-babel-ts/packages/input/dist/index.js' implicitly has an 'any' type.
+  Try `npm install @types/taxi__input` if it exists or add a new declaration (.d.ts) file containing `declare module '@slash/input';`
 
-1 import { Input } from '@taxi/input';
+1 import { Input } from '@slash/input';
                         ~~~~~~~~~~~~~
 error Command failed with exit code 1.
 ```
@@ -1431,7 +1431,7 @@ packages/input/dist/Input.d.ts
 packages/input/dist/index.d.ts
 ```
 
-Now we could check that `@taxi/login-form` works as well, just return it back to the `packages` directory and check that `tsc` works now.
+Now we could check that `@slash/login-form` works as well, just return it back to the `packages` directory and check that `tsc` works now.
 
 ```bash
 $ yarn tsc
@@ -1504,7 +1504,7 @@ ERROR: packages/input/dist/Input.d.ts[16, 1]: Delete `··`
 
 #### Drawbacks
 
-We are able to generate declarations for all packages, run `storybook` and `tests`, however, as soon as we change `@taxi/input` we would not see any changes in the `storybook` for `@taxi/login-form` because we still would use previously built version. To see these changes we would need to rebuild packages one more time. The same applies to the `jest` runs.
+We are able to generate declarations for all packages, run `storybook` and `tests`, however, as soon as we change `@slash/input` we would not see any changes in the `storybook` for `@slash/login-form` because we still would use previously built version. To see these changes we would need to rebuild packages one more time. The same applies to the `jest` runs.
 
 This approach looks not so cool if each change in one of the packages would require constant rebuild. Lucky we have better option how to fix this issues. More details in the next paragraphs.
 
@@ -1516,14 +1516,14 @@ Firstly, let's remove all `dist` folders inside our packages to have clean code 
 {
   "compilerOptions": {
     "paths": {
-      "@taxi/*": ["packages/*/src"],
+      "@slash/*": ["packages/*/src"],
       "*": ["node_modules", "packages"]
     }
   }
 }
 ```
 
-`"@taxi/*": ["packages/*/src"]` tells to `tsc` where to search for `@taxi/` packages. In our case we would like to search them in `packages/*/src` folders as there we have our source code.
+`"@slash/*": ["packages/*/src"]` tells to `tsc` where to search for `@slash/` packages. In our case we would like to search them in `packages/*/src` folders as there we have our source code.
 
 Now we could run `tsc` and it would finish successfully without any errors like we had earlier.
 
@@ -1533,11 +1533,11 @@ As `storybook` is using `webpack` with `awesome-typescript-loader` and `babel` i
 
 ```bash
 ERROR in ./packages/login-form/src/LoginForm.tsx
-Module not found: Error: Can't resolve '@taxi/input' in 'monorepo-babel-ts/packages/login-form/src'
+Module not found: Error: Can't resolve '@slash/input' in 'monorepo-babel-ts/packages/login-form/src'
 @ ./packages/login-form/src/LoginForm.tsx 8:13-35
 ```
 
-It happens even when `tsc` could find those modules. The reason of this is simple: `tsc` checks files, `babel` transforms them and tries to execute, and it doesn't know anything about `@taxi/input` as `main` still points to the `dist` folder.
+It happens even when `tsc` could find those modules. The reason of this is simple: `tsc` checks files, `babel` transforms them and tries to execute, and it doesn't know anything about `@slash/input` as `main` still points to the `dist` folder.
 
 However, we could override it with aliases for `webpack`. It could be done in two ways:
 
@@ -1563,7 +1563,7 @@ module.exports = (baseConfig, env, config) => {
     ...packages.reduce(
       (acc, name) => ({
         ...acc,
-        [`@taxi/${name}`]: path.join(basePath, name, 'src'),
+        [`@slash/${name}`]: path.join(basePath, name, 'src'),
       }),
       {},
     ),
@@ -1579,7 +1579,7 @@ This code is rather simple and self explanatory. The most important part is in r
 packages.reduce(
   (acc, name) => ({
     ...acc,
-    [`@taxi/${name}`]: path.join(basePath, name, 'src'),
+    [`@slash/${name}`]: path.join(basePath, name, 'src'),
   }),
   {},
 );
@@ -1587,7 +1587,7 @@ packages.reduce(
 
 With this reducer we would have automatically generated list of our packages from `packages` directory.
 
-Now we could start storybook and check that it works, moreover, if we change `@taxi/input` and check stories for `@taxi/login-form` they would have changes immediately without even building packages.
+Now we could start storybook and check that it works, moreover, if we change `@slash/input` and check stories for `@slash/login-form` they would have changes immediately without even building packages.
 
 ### Jest
 
@@ -1597,7 +1597,7 @@ We have `tsc` and `storybook` working, however, if we run `jest` it would fail w
  FAIL  packages/login-form/src/LoginForm.test.tsx
   ● Test suite failed to run
 
-    Cannot find module '@taxi/input' from 'LoginForm.test.tsx'
+    Cannot find module '@slash/input' from 'LoginForm.test.tsx'
 ```
 
 It happens because `jest` doesn't tolerate `tsconfig.json`, `webpack` aliases or even `babel-webpack-aliases`. However, this problem could be solved with simple line in `jest.config.js`:
@@ -1605,12 +1605,12 @@ It happens because `jest` doesn't tolerate `tsconfig.json`, `webpack` aliases or
 ```javascript
 {
   moduleNameMapper: {
-    '@taxi/(.+)$': '<rootDir>packages/$1/src',
+    '@slash/(.+)$': '<rootDir>packages/$1/src',
   },
 }
 ```
 
-`'@taxi/(.+)$': '<rootDir>packages/$1/src` will tell jest where to find source code for `@taxi/` packages and again it points to the `src` instead of `dist`.
+`'@slash/(.+)$': '<rootDir>packages/$1/src` will tell jest where to find source code for `@slash/` packages and again it points to the `src` instead of `dist`.
 
 Now we could run `yarn test` and it will work as expected without even building packages.
 
