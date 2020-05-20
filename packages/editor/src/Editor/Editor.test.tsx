@@ -26,4 +26,14 @@ describe('Editor', () => {
 
     getByText('Hello Slash');
   });
+
+  it('should render its children', () => {
+    const { getByText } = render(
+      <Editor value={value} onChange={onChange}>
+        Children
+      </Editor>,
+    );
+
+    getByText('Children');
+  });
 });

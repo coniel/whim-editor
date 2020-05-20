@@ -3,16 +3,17 @@ import { Slate, Editable, withReact } from 'slate-react';
 import { createEditor, Node } from 'slate';
 import { withHistory } from 'slate-history';
 import withPlugins from '../withPlugins';
-import { SlashPlugin } from '../withPlugins/withPlugins';
+import { SlashPluginFactory } from '../withPlugins/withPlugins';
 
 export interface EditorProps {
   placeholder?: string;
   onChange: (value: Node[]) => void;
   value: Node[];
-  plugins?: SlashPlugin[];
+  plugins?: SlashPluginFactory[];
 }
 
 const Editor: React.FC<EditorProps> = ({
+  children,
   placeholder,
   value,
   onChange,
@@ -25,6 +26,7 @@ const Editor: React.FC<EditorProps> = ({
 
   return (
     <Slate editor={editor} value={value} onChange={onChange}>
+      {children}
       <Editable
         renderElement={editor.renderElement}
         onKeyDown={editor.onKeyDown}

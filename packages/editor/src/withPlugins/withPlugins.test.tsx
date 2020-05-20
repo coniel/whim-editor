@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { withReact } from 'slate-react';
 import { createEditor, Node, Range } from 'slate';
-import withPlugins, { SlashEditor } from './withPlugins';
+import withPlugins, { SlashEditor, SlashPluginFactory } from './withPlugins';
 
 const baseEditor = withReact(createEditor());
 const onKeyDownFn1 = jest.fn();
@@ -10,12 +10,12 @@ const onKeyDownFn2 = jest.fn();
 const range1 = {} as Range;
 const range2 = {} as Range;
 
-const testPlugin1 = (editor: SlashEditor): SlashEditor => {
-  const { renderElement, renderLeaf, onKeyDown, decorate } = editor;
-
-  editor.renderElement = (props): JSX.Element => {
-    const { element, children, attributes } = props;
-
+const testPlugin1: SlashPluginFactory = () => ({
+  renderElement: ({
+    element,
+    attributes,
+    children,
+  }): JSX.Element | undefined => {
     if (element.type === 'test-element-1') {
       return (
         <div {...attributes}>
@@ -23,46 +23,32 @@ const testPlugin1 = (editor: SlashEditor): SlashEditor => {
         </div>
       );
     }
-
-    return renderElement({ element, children, attributes });
-  };
-
-  editor.renderLeaf = (props): JSX.Element => {
-    const { leaf, children, attributes } = props;
-
+  },
+  renderLeaf: ({ leaf, children }): JSX.Element => {
     if (leaf.bold) {
       return (
-        <span {...attributes}>
+        <span>
           TEST_LEAF_BOLD<span>{children}</span>
         </span>
       );
     }
 
-    return renderLeaf(props);
-  };
-
-  editor.onKeyDown = (): void => {
-    onKeyDownFn1();
-    onKeyDown({} as React.KeyboardEvent<HTMLDivElement>);
-  };
-
-  editor.decorate = ([node, path]): Range[] => {
+    return children;
+  },
+  onKeyDown: onKeyDownFn1,
+  decorate: ([, path]): Range[] | undefined => {
     if (path[0] === 1) {
       return [range1];
     }
+  },
+});
 
-    return decorate([node, path]);
-  };
-
-  return editor;
-};
-
-const testPlugin2 = (editor: SlashEditor): SlashEditor => {
-  const { renderElement, renderLeaf, onKeyDown, decorate } = editor;
-
-  editor.renderElement = (props): JSX.Element => {
-    const { element, children, attributes } = props;
-
+const testPlugin2: SlashPluginFactory = () => ({
+  renderElement: ({
+    element,
+    attributes,
+    children,
+  }): JSX.Element | undefined => {
     if (element.type === 'test-element-2') {
       return (
         <div {...attributes}>
@@ -70,45 +56,36 @@ const testPlugin2 = (editor: SlashEditor): SlashEditor => {
         </div>
       );
     }
-
-    return renderElement({ element, children, attributes });
-  };
-
-  editor.renderLeaf = (props): JSX.Element => {
-    const { leaf, children, attributes } = props;
-
+  },
+  renderLeaf: ({ leaf, children }): JSX.Element => {
     if (leaf.italic) {
       return (
-        <span {...attributes}>
+        <span>
           TEST_LEAF_ITALIC<span>{children}</span>
         </span>
       );
     }
 
-    return renderLeaf(props);
-  };
-
-  editor.onKeyDown = (): void => {
-    onKeyDownFn2();
-    onKeyDown({} as React.KeyboardEvent<HTMLDivElement>);
-  };
-
-  editor.decorate = ([node, path]): Range[] => {
+    return children;
+  },
+  onKeyDown: onKeyDownFn2,
+  decorate: ([, path]): Range[] | undefined => {
     if (path[0] === 2) {
       return [range2];
     }
+  },
+});
 
-    return decorate([node, path]);
-  };
-
-  return editor;
-};
+// A plugin which does nothing in order to
+// test the alternate code branches for when
+// a plugin does not define a certain callback
+const testPlugin3: SlashPluginFactory = () => ({});
 
 describe('Editor', () => {
   let editor: SlashEditor;
 
   beforeAll(() => {
-    editor = withPlugins(baseEditor, [testPlugin1, testPlugin2]);
+    editor = withPlugins(baseEditor, [testPlugin1, testPlugin2, testPlugin3]);
   });
 
   describe('renderElement', () => {

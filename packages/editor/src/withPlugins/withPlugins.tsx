@@ -9,7 +9,14 @@ export interface SlashEditor extends ReactEditor {
   onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void | undefined;
 }
 
-export type SlashPlugin = (editor: SlashEditor) => SlashEditor;
+export interface SlashPlugin {
+  renderElement?: (props: RenderElementProps) => JSX.Element | undefined;
+  renderLeaf?: (props: RenderLeafProps) => JSX.Element | undefined;
+  decorate?: (entry: NodeEntry<Node>) => Range[] | undefined;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void | undefined;
+}
+
+export type SlashPluginFactory = (editor: SlashEditor) => SlashPlugin;
 
 export const Element: React.FC<RenderElementProps> = ({
   attributes,
@@ -30,7 +37,7 @@ function renderLeaf(props: RenderLeafProps): JSX.Element {
 
 const withPlugins = (
   editor: ReactEditor,
-  plugins: SlashPlugin[],
+  plugins: SlashPluginFactory[],
 ): SlashEditor => {
   editor.onKeyDown = (): void => undefined;
   editor.renderElement = (props: RenderElementProps): JSX.Element =>
@@ -39,8 +46,46 @@ const withPlugins = (
     renderLeaf(props);
   editor.decorate = (): Range[] => [];
 
-  return plugins.reduce((slashEditor, plugin) => {
-    return plugin(slashEditor);
+  return plugins.reduce((slashEditor: SlashEditor, pluginFn): SlashEditor => {
+    const { renderElement, renderLeaf, onKeyDown, decorate } = slashEditor;
+    const plugin = pluginFn(slashEditor);
+
+    slashEditor.renderElement = (props): JSX.Element => {
+      if (plugin.renderElement) {
+        return plugin.renderElement(props) || renderElement(props);
+      }
+
+      return renderElement(props);
+    };
+
+    slashEditor.renderLeaf = (props): JSX.Element => {
+      if (plugin.renderLeaf) {
+        const children = plugin.renderLeaf(props);
+
+        if (children) {
+          return renderLeaf({ ...props, children });
+        }
+      }
+
+      return renderLeaf(props);
+    };
+
+    slashEditor.onKeyDown = (event): void => {
+      if (plugin.onKeyDown) {
+        plugin.onKeyDown(event);
+      }
+      onKeyDown(event);
+    };
+
+    slashEditor.decorate = (props): Range[] => {
+      if (plugin.decorate) {
+        return plugin.decorate(props) || decorate(props);
+      }
+
+      return decorate(props);
+    };
+
+    return slashEditor;
   }, editor as SlashEditor);
 };
 

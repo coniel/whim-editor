@@ -3,13 +3,13 @@ import { text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Node } from 'slate';
 import Editor from './Editor';
-import { SlashEditor } from '../withPlugins/withPlugins';
+import { SlashEditor, SlashPlugin } from '../withPlugins/withPlugins';
 
 export default { title: 'Editor', component: Editor };
 
 const initialValue = [{ type: 'text', children: [{ text: 'Hello Slash' }] }];
 
-const plugin = (editor: SlashEditor): SlashEditor => {
+const plugin = (editor: SlashEditor): SlashPlugin => {
   // eslint-disable-next-line react/display-name
   editor.renderElement = ({ attributes, children }): JSX.Element => (
     <div

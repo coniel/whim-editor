@@ -1,1 +1,2 @@
-export { default, EditorProps } from './Editor';
+export { default } from './Editor';
+export * from './Editor';
