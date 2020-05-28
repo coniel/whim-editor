@@ -1,0 +1,19 @@
+{
+  "name": "@slash/test-utils",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@slash/editor": "^0.1.0",
+    "is-plain-object": "^3.0.0",
+    "slate": "^0.58.1",
+    "slate-hyperscript": "^0.58.1"
+  },
+  "scripts": {
+    "build:declaration": "tsc --project tsconfig.build.json",
+    "build:es": "BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .ts,.tsx --delete-dir-on-start --no-comments"
+  },
+  "files": [
+    "dist"
+  ]
+}
