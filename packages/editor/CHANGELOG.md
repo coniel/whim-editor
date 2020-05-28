@@ -8,18 +8,14 @@ This is a list of changes to Slash with each new release. Until 1.0.0 is release
 
 feat: create basic editor which accepts plugins
 
-## 0.1.0
-
-### `0.0.1` — May 20, 2020
+### `0.1.0` — May 20, 2020
 
 ##### BREAKING
 
 - Remodel plugins API to return SlashPlugin object instead of editor
 - Render children above editor (inside Slate provider)
 
-## 0.2.0
-
-### `0.0.1` — May 28, 2020
+### `0.2.0` — May 28, 2020
 
 ###### NEW
 
