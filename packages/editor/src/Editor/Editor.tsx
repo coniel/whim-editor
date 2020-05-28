@@ -32,6 +32,7 @@ const Editor: React.FC<EditorProps> = ({
         onKeyDown={editor.onKeyDown}
         renderLeaf={editor.renderLeaf}
         decorate={editor.decorate}
+        onDOMBeforeInput={editor.onDOMBeforeInput}
         placeholder={placeholder}
         spellCheck
         autoFocus

@@ -1,12 +1,19 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { withReact } from 'slate-react';
-import { createEditor, Node, Range } from 'slate';
+import { withReact, RenderElementProps, RenderLeafProps } from 'slate-react';
+import { createEditor, Node, Range, Element } from 'slate';
 import withPlugins, { SlashEditor, SlashPluginFactory } from './withPlugins';
+
+const createElement = (type: string): Element => ({
+  type,
+  children: [{ text: '' }],
+});
 
 const baseEditor = withReact(createEditor());
 const onKeyDownFn1 = jest.fn();
 const onKeyDownFn2 = jest.fn();
+const onDOMBeforeInputFn1 = jest.fn();
+const onDOMBeforeInputFn2 = jest.fn();
 const range1 = {} as Range;
 const range2 = {} as Range;
 
@@ -16,10 +23,16 @@ const testPlugin1: SlashPluginFactory = () => ({
     attributes,
     children,
   }): JSX.Element | undefined => {
-    if (element.type === 'test-element-1') {
+    if (element.type === 'plug-1-elem-1') {
       return (
         <div {...attributes}>
-          TEST_ELEMENT_1<span>{children}</span>
+          PLUG_1_ELEM_1<span>{children}</span>
+        </div>
+      );
+    } else if (element.type === 'plug-1-elem-2') {
+      return (
+        <div {...attributes}>
+          PLUG_1_ELEM_2<span>{children}</span>
         </div>
       );
     }
@@ -28,14 +41,32 @@ const testPlugin1: SlashPluginFactory = () => ({
     if (leaf.bold) {
       return (
         <span>
-          TEST_LEAF_BOLD<span>{children}</span>
+          LEAF_BOLD<span>{children}</span>
         </span>
       );
     }
 
     return children;
   },
+  elements: [
+    {
+      component: ({
+        children,
+        attributes,
+      }: RenderElementProps): JSX.Element => (
+        <div {...attributes}>
+          PLUG_1_ELEM_3<span>{children}</span>
+        </div>
+      ),
+      type: 'plug-1-elem-3',
+      isVoid: true,
+      isInline: true,
+    },
+  ],
+  isVoid: (element): boolean => element.type === 'plug-1-elem-2',
+  isInline: (element): boolean => element.type === 'plug-1-elem-2',
   onKeyDown: onKeyDownFn1,
+  onDOMBeforeInput: onDOMBeforeInputFn1,
   decorate: ([, path]): Range[] | undefined => {
     if (path[0] === 1) {
       return [range1];
@@ -44,31 +75,70 @@ const testPlugin1: SlashPluginFactory = () => ({
 });
 
 const testPlugin2: SlashPluginFactory = () => ({
-  renderElement: ({
-    element,
-    attributes,
-    children,
-  }): JSX.Element | undefined => {
-    if (element.type === 'test-element-2') {
-      return (
+  elements: [
+    {
+      component: ({
+        children,
+        attributes,
+      }: RenderElementProps): JSX.Element => (
         <div {...attributes}>
-          TEST_ELEMENT_2<span>{children}</span>
+          PLUG_2_ELEM_1<span>{children}</span>
         </div>
-      );
-    }
-  },
-  renderLeaf: ({ leaf, children }): JSX.Element => {
-    if (leaf.italic) {
-      return (
+      ),
+      type: 'plug-2-elem-1',
+    },
+    {
+      component: ({
+        children,
+        attributes,
+      }: RenderElementProps): JSX.Element => (
+        <div {...attributes}>
+          PLUG_2_ELEM_2<span>{children}</span>
+        </div>
+      ),
+      isVoid: true,
+      isInline: true,
+      type: 'plug-2-elem-2',
+    },
+    {
+      component: ({
+        children,
+        attributes,
+      }: RenderElementProps): JSX.Element => (
+        <div {...attributes}>
+          PLUG_2_ELEM_3<span>{children}</span>
+        </div>
+      ),
+      isVoid: true,
+      isInline: true,
+      type: 'plug-2-elem-3',
+    },
+    {
+      component: ({
+        children,
+        attributes,
+      }: RenderElementProps): JSX.Element => (
+        <div {...attributes}>
+          PLUG_2_ELEM_4<span>{children}</span>
+        </div>
+      ),
+      type: 'plug-2-elem-4',
+    },
+  ],
+  leaves: [
+    {
+      component: ({ children }: RenderLeafProps): JSX.Element => (
         <span>
-          TEST_LEAF_ITALIC<span>{children}</span>
+          LEAF_ITALIC<span>{children}</span>
         </span>
-      );
-    }
-
-    return children;
-  },
+      ),
+      mark: 'italic',
+    },
+  ],
+  isVoid: (element): boolean => element.type === 'plug-2-elem-4',
+  isInline: (element): boolean => element.type === 'plug-2-elem-4',
   onKeyDown: onKeyDownFn2,
+  onDOMBeforeInput: onDOMBeforeInputFn2,
   decorate: ([, path]): Range[] | undefined => {
     if (path[0] === 2) {
       return [range2];
@@ -94,7 +164,7 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: { 'data-slate-node': 'element', ref: React.createRef() },
           children: 'Element',
-          element: { type: 'text', children: [{ text: '' }] },
+          element: createElement('text'),
         }),
       );
 
@@ -110,14 +180,14 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: { 'data-slate-node': 'element', ref: React.createRef() },
           children: 'CHILDREN_1',
-          element: { type: 'test-element-1', children: [{ text: '' }] },
+          element: createElement('plug-1-elem-1'),
         }),
       );
 
       const element = container.querySelector('[data-slate-node="element"]');
 
       expect(element).not.toBeNull();
-      getByText('TEST_ELEMENT_1');
+      getByText('PLUG_1_ELEM_1');
       getByText('CHILDREN_1');
 
       // testPlugin2
@@ -125,12 +195,12 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: { 'data-slate-node': 'element', ref: React.createRef() },
           children: 'CHILDREN_2',
-          element: { type: 'test-element-2', children: [{ text: '' }] },
+          element: createElement('plug-2-elem-1'),
         }),
       );
 
       expect(element).not.toBeNull();
-      getByText('TEST_ELEMENT_2');
+      getByText('PLUG_2_ELEM_1');
       getByText('CHILDREN_2');
     });
   });
@@ -166,7 +236,7 @@ describe('Editor', () => {
       const element = container.querySelector('[data-slate-leaf="true"]');
 
       expect(element).not.toBeNull();
-      getByText('TEST_LEAF_BOLD');
+      getByText('LEAF_BOLD');
       getByText('CHILDREN_1');
 
       // testPlugin2
@@ -180,7 +250,7 @@ describe('Editor', () => {
       );
 
       expect(element).not.toBeNull();
-      getByText('TEST_LEAF_ITALIC');
+      getByText('LEAF_ITALIC');
       getByText('CHILDREN_2');
     });
   });
@@ -207,6 +277,44 @@ describe('Editor', () => {
       editor.onKeyDown({} as React.KeyboardEvent<HTMLDivElement>);
       expect(onKeyDownFn1).toHaveBeenCalled();
       expect(onKeyDownFn2).toHaveBeenCalled();
+    });
+  });
+
+  describe('onDOMBeforeInput', () => {
+    it('should be defined but do nothing', () => {
+      expect(() => editor.onDOMBeforeInput({} as Event)).not.toThrow();
+    });
+
+    it("should call plugins' onDOMBeforeInput", () => {
+      editor.onDOMBeforeInput({} as Event);
+      expect(onDOMBeforeInputFn1).toHaveBeenCalled();
+      expect(onDOMBeforeInputFn2).toHaveBeenCalled();
+    });
+  });
+
+  describe('isVoid', () => {
+    it("should call plugin's isVoid", () => {
+      expect(editor.isVoid(createElement('plug-1-elem-2'))).toBe(true);
+      expect(editor.isVoid(createElement('plug-2-elem-4'))).toBe(true);
+    });
+
+    it("should check plugin element's isVoid", () => {
+      expect(editor.isVoid(createElement('plug-1-elem-3'))).toBe(true);
+      expect(editor.isVoid(createElement('plug-2-elem-2'))).toBe(true);
+      expect(editor.isVoid(createElement('plug-2-elem-3'))).toBe(true);
+    });
+  });
+
+  describe('isInline', () => {
+    it("should call plugin's isInline", () => {
+      expect(editor.isInline(createElement('plug-1-elem-2'))).toBe(true);
+      expect(editor.isInline(createElement('plug-2-elem-4'))).toBe(true);
+    });
+
+    it("should check plugin element's isInline", () => {
+      expect(editor.isInline(createElement('plug-1-elem-3'))).toBe(true);
+      expect(editor.isInline(createElement('plug-2-elem-2'))).toBe(true);
+      expect(editor.isInline(createElement('plug-2-elem-3'))).toBe(true);
     });
   });
 });

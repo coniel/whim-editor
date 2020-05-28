@@ -3,25 +3,22 @@ import { text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Node } from 'slate';
 import Editor from './Editor';
-import { SlashEditor, SlashPlugin } from '../withPlugins/withPlugins';
+import { SlashPlugin } from '../withPlugins/withPlugins';
 
 export default { title: 'Editor', component: Editor };
 
 const initialValue = [{ type: 'text', children: [{ text: 'Hello Slash' }] }];
 
-const plugin = (editor: SlashEditor): SlashPlugin => {
-  // eslint-disable-next-line react/display-name
-  editor.renderElement = ({ attributes, children }): JSX.Element => (
+const plugin = (): SlashPlugin => ({
+  renderElement: ({ attributes, children }): JSX.Element => (
     <div
       {...attributes}
       style={{ border: '2px solid #03A9F4', padding: 8, marginBottom: 8 }}
     >
       {children}
     </div>
-  );
-
-  return editor;
-};
+  ),
+});
 
 export const Default: React.FC = () => {
   const [value, setValue] = useState<Node[]>(initialValue);

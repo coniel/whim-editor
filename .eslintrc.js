@@ -3,6 +3,7 @@ module.exports = {
     node: true,
     browser: true,
     jest: true,
+    es6: true,
   },
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   extends: [
@@ -29,6 +30,7 @@ module.exports = {
   },
   rules: {
     'react/prop-types': 'off',
+    'react/display-name': 'off',
     'no-console': ['warn'],
     'import/no-extraneous-dependencies': ['error'],
     'import/newline-after-import': ['error', { count: 1 }],
