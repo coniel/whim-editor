@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`deserializeHtml should deserialize marks and elements together 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "bold": true,
+        "text": "Bold text",
+      },
+      Object {
+        "text": ", ",
+      },
+      Object {
+        "italic": true,
+        "text": "Italic text",
+      },
+    ],
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "strikethrough": true,
+        "text": "Strikethorugh text",
+      },
+      Object {
+        "text": ", ",
+      },
+      Object {
+        "bold": true,
+        "italic": true,
+        "text": "Combined bold and italic text",
+      },
+    ],
+    "type": "paragraph",
+  },
+]
+`;

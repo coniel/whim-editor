@@ -9,31 +9,26 @@ import {
   Editor,
 } from 'slate';
 import { ReactEditor, RenderElementProps, RenderLeafProps } from 'slate-react';
+import deserializeHtml from '../deserializeHtml';
 import withMarkShortcuts from './withMarkShortcuts';
 import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
 
-export type DeserializeElement = Record<
+export interface DeserializeElementValue {
+  type: string;
+  [key: string]: unknown;
+}
+
+export type ElementDeserializers = Record<
   string,
-  (
-    el: HTMLElement,
-  ) =>
-    | {
-        type: string;
-        [key: string]: unknown;
-      }
-    | undefined
+  (el: HTMLElement) => DeserializeElementValue | undefined
 >;
 
-export type DeserializeLeafValue = (
-  el: HTMLElement,
-) => Record<string, unknown> | undefined | false;
+export type DeserializeMarkValue = Record<string, unknown> | undefined | false;
 
-type DeserializeLeaf = Record<string, DeserializeLeafValue>;
+export type MarkDeserializer = (el: HTMLElement) => DeserializeMarkValue;
 
-export interface DeserializeHtml {
-  element?: DeserializeElement;
-  leaf?: DeserializeLeaf;
-}
+export type MarkDeserializers = Record<string, MarkDeserializer>;
+export type CombinedMarkDeserializers = Record<string, MarkDeserializer[]>;
 
 export interface MarkShortcut {
   start: string;
@@ -68,6 +63,8 @@ export interface SlashPluginLeafDescriptor {
 
 export interface SlashPlugin {
   decorate?: (entry: NodeEntry<Node>) => Range[] | undefined;
+  elementDeserializers?: ElementDeserializers;
+  markDeserializers?: MarkDeserializers;
   renderElement?: (props: RenderElementProps) => JSX.Element | undefined;
   renderLeaf?: (props: RenderLeafProps) => JSX.Element;
   onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void | undefined;
@@ -157,6 +154,8 @@ const withPlugins = (
   const hotkeyActions: HotkeyActions = {};
   const markShortcuts: MarkShortcutActions = {};
   const blockShortcuts: BlockShortcut[] = [];
+  let elementDeserializers: ElementDeserializers = {};
+  const markDeserializers: CombinedMarkDeserializers = {};
 
   let slashEditor = plugins.reduce(
     (slashEditor: SlashEditor, pluginFn): SlashEditor => {
@@ -219,6 +218,27 @@ const withPlugins = (
                 },
               ];
             });
+          }
+        });
+      }
+
+      if (plugin.elementDeserializers) {
+        elementDeserializers = {
+          ...elementDeserializers,
+          ...plugin.elementDeserializers,
+        };
+      }
+
+      if (plugin.markDeserializers) {
+        Object.keys(plugin.markDeserializers).forEach((tag) => {
+          if (plugin.markDeserializers && plugin.markDeserializers[tag]) {
+            if (!markDeserializers[tag]) {
+              markDeserializers[tag] = [
+                plugin.markDeserializers[tag] as MarkDeserializer,
+              ];
+            } else {
+              markDeserializers[tag].push(plugin.markDeserializers[tag]);
+            }
           }
         });
       }
@@ -326,6 +346,32 @@ const withPlugins = (
     }
 
     onKeyDown(event);
+  };
+
+  const { insertData } = editor;
+  editor.insertData = (data): void => {
+    const html = data.getData('text/html');
+
+    if (html) {
+      const { body } = new DOMParser().parseFromString(html, 'text/html');
+      const fragment: Node[] = deserializeHtml(
+        body,
+        elementDeserializers,
+        markDeserializers,
+      );
+
+      if (!fragment.length) return;
+
+      // replace the selected node type by the first node type
+      if (fragment[0].type) {
+        Transforms.setNodes(editor, { type: fragment[0].type });
+      }
+
+      Transforms.insertFragment(editor, fragment);
+      return;
+    }
+
+    insertData(data);
   };
 
   slashEditor = withMarkShortcuts(slashEditor, markShortcuts);

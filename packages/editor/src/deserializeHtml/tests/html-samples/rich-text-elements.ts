@@ -1,0 +1,1 @@
+export default `<p><strong>Bold text</strong>, <em>Italic text</em></p><p><span style="text-decoration: line-through;">Strikethorugh text</span>, <strong><em>Combined bold and italic text</em></strong></em></strong></p>`;
