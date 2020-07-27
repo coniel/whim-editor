@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichTextLeaf should render as expected 1`] = `
+<DocumentFragment>
+  <span
+    style="text-decoration: line-through;"
+  >
+    Strike through text
+  </span>
+</DocumentFragment>
+`;
