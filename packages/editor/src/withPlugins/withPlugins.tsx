@@ -170,7 +170,15 @@ const withPlugins = (
 
       if (plugin.elements) {
         plugin.elements.forEach(
-          ({ hotkeys, shortcuts, insert, type, isVoid, isInline }) => {
+          ({
+            hotkeys,
+            shortcuts,
+            insert,
+            turnInto,
+            type,
+            isVoid,
+            isInline,
+          }) => {
             if (hotkeys) {
               hotkeys.forEach((hotkey) => {
                 hotkeyActions[hotkey] =
@@ -180,7 +188,7 @@ const withPlugins = (
 
             if (shortcuts) {
               shortcuts.forEach((shortcut) => {
-                blockShortcuts.push({ trigger: shortcut, type, insert });
+                blockShortcuts.push({ trigger: shortcut, type, turnInto });
               });
             }
 

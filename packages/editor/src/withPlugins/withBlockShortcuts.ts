@@ -1,14 +1,14 @@
 import { SlashEditor, SlashPluginElementDescriptor } from './withPlugins';
-import { Range, Transforms, Editor } from 'slate';
+import { Range, Transforms, Editor, Element } from 'slate';
 
 export interface BlockShortcut {
   trigger: string;
   type: string;
-  insert?: SlashPluginElementDescriptor['insert'];
+  turnInto?: SlashPluginElementDescriptor['turnInto'];
 }
 
 export interface BlockShortcutMap {
-  [key: string]: Pick<BlockShortcut, 'type' | 'insert'>;
+  [key: string]: Pick<BlockShortcut, 'type' | 'turnInto'>;
 }
 
 const withBlockShortcuts = (
@@ -30,7 +30,7 @@ const withBlockShortcuts = (
       ...map,
       [key]: {
         type: shortcut.type,
-        insert: shortcut.insert,
+        turnInto: shortcut.turnInto,
       },
     };
   }, {} as BlockShortcutMap);
@@ -53,9 +53,8 @@ const withBlockShortcuts = (
       if (shortcut && type !== shortcut.type) {
         Transforms.select(editor, range);
         Transforms.delete(editor);
-
-        if (shortcut.insert) {
-          shortcut.insert(editor);
+        if (shortcut.turnInto && block) {
+          shortcut.turnInto(editor, block[0] as Element);
         } else {
           Transforms.setNodes(
             editor,

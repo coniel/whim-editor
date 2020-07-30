@@ -2,8 +2,9 @@ import React from 'react';
 import assert from 'assert';
 import { fixtures, withTest } from '@slash/test-utils';
 import { SlashPluginFactory } from '../withPlugins';
+import { Transforms } from 'slate';
 
-const Plugin: SlashPluginFactory = () => ({
+const Plugin: SlashPluginFactory = (editor) => ({
   leaves: [
     {
       mark: 'b',
@@ -25,11 +26,14 @@ const Plugin: SlashPluginFactory = () => ({
       shortcuts: ['[]'],
     },
     {
-      type: 'toggle-list',
+      type: 'unordered-list',
       component: ({ children, attributes }): React.ReactElement => (
         <div {...attributes}>{children}</div>
       ),
-      shortcuts: ['> '],
+      turnInto: (): void => {
+        Transforms.setNodes(editor, { type: 'unordered-list' });
+      },
+      shortcuts: ['- '],
     },
   ],
 });
