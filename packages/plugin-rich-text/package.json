@@ -23,7 +23,6 @@
     "dist"
   ],
   "devDependencies": {
-    "@slash/material-ui": "^0.1.0",
-    "@slash/test-utils": "^0.1.0"
+    "@slash/material-ui": "^0.1.0"
   }
 }

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@slash/test-utils';
+import { jsx } from '../../test-utils';
 import { SlashEditor } from '../../withPlugins';
 
 export const run = (editor: SlashEditor): void => {

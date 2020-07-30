@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { basename, extname, resolve } from 'path';
-import { SlashEditor } from '@slash/editor';
+import { SlashEditor } from '../withPlugins';
 
 interface TestModule {
   input: SlashEditor;

@@ -1,4 +1,3 @@
-import { jsx } from '@slash/test-utils';
 import deserializeTextNode from './utils/deserializeTextNode';
 import deserializeBreak from './utils/deserializeBreak';
 import deserializeFragment from './utils/deserializeFragment';
@@ -25,7 +24,6 @@ const deserializeHtml = (
   const breakLine = deserializeBreak(node);
   if (breakLine) return breakLine;
 
-  const { nodeName } = node;
   const parent = node;
 
   const children = Array.from(parent.childNodes)

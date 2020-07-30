@@ -5,10 +5,6 @@ import 'katex/dist/contrib/mhchem.js';
 import InlineEquationPlaceholder from './ElementEquationInline';
 import BlockEquation from './ElementEquationBlock';
 
-export interface EquationPluginOptions {
-  foo?: string;
-}
-
 export interface SlashEditorWithEquation extends SlashEditor {
   insertInlineEquation: () => void;
   insertBlockEquation: () => void;
@@ -16,9 +12,9 @@ export interface SlashEditorWithEquation extends SlashEditor {
   turnIntoBlockEquation: (element: Element) => void;
 }
 
-const EquationPlugin = (
-  options: EquationPluginOptions = {},
-): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
+const EquationPlugin = (): SlashPluginFactory => (
+  editor: SlashEditor,
+): SlashPlugin => {
   const equationEditor = editor as SlashEditorWithEquation;
 
   const insertInlineEquation = (): void => {
@@ -29,7 +25,7 @@ const EquationPlugin = (
     });
   };
 
-  const turnIntoInlineEquation = (element: Element): void => {
+  const turnIntoInlineEquation = (): void => {
     let tex = '';
     if (editor.selection) {
       const selection = window.getSelection();

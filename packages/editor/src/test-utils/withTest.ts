@@ -1,4 +1,4 @@
-import { SlashEditor, withPlugins, SlashPluginFactory } from '@slash/editor';
+import withPlugins, { SlashEditor, SlashPluginFactory } from '../withPlugins';
 
 const withTest = (
   basicEditor: SlashEditor,
