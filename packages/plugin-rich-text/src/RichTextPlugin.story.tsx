@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Node } from 'slate';
 import RichTextPlugin, { SlashEditorWithRichText } from './RichTextPlugin';
 import { Editor } from '@slash/editor';
+import * as components from '@slash/material-ui';
 import { useEditor } from 'slate-react';
 
 export default { title: 'Plugins|RichText' };
@@ -124,6 +125,7 @@ export const Default: React.FC = () => {
 
   return (
     <Editor
+      components={components}
       value={value}
       plugins={[withRichText]}
       onChange={(newValue): void => {
@@ -198,6 +200,7 @@ export const Custom: React.FC = () => {
 
   return (
     <Editor
+      components={components}
       value={value}
       plugins={[withCustomRichText]}
       onChange={(newValue): void => {
@@ -246,6 +249,7 @@ export const Partial: React.FC = () => {
 
   return (
     <Editor
+      components={components}
       value={value}
       plugins={[withPartialRichText]}
       onChange={(newValue): void => {
