@@ -27,8 +27,8 @@
   ],
   "devDependencies": {
     "@slash/material-ui": "^0.1.0",
-    "@slash/test-utils": "^0.1.0",
     "assert": "^2.0.0",
-    "slate-hyperscript": "^0.58.1"
+    "slate-hyperscript": "^0.58.1",
+    "is-plain-object": "^3.0.0"
   }
 }

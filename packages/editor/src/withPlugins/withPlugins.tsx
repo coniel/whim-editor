@@ -13,6 +13,10 @@ import deserializeHtml from '../deserializeHtml';
 import withMarkShortcuts from './withMarkShortcuts';
 import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
 
+export interface Mark {
+  [key: string]: boolean;
+}
+
 export interface DeserializeElementValue {
   type: string;
   [key: string]: unknown;

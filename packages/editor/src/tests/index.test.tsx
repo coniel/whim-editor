@@ -1,6 +1,6 @@
 import React from 'react';
 import assert from 'assert';
-import { fixtures, withTest } from '@slash/test-utils';
+import { fixtures, withTest } from '../test-utils';
 import { SlashPluginFactory } from '../withPlugins';
 import { Transforms } from 'slate';
 

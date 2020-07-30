@@ -2,6 +2,7 @@ import deserialize from '../createHtmlDeserializer';
 import richText from './html-samples/rich-text';
 import elements from './html-samples/elements';
 import richTextElements from './html-samples/rich-text-elements';
+import { Mark } from '../../withPlugins';
 
 Object.defineProperty(Array.prototype, 'flat', {
   value: function (depth = 1) {
@@ -59,13 +60,15 @@ describe('deserializeHtml', () => {
       parsed.body,
       {},
       {
-        STRONG: [() => ({ bold: true })],
-        EM: [() => ({ italic: true })],
+        STRONG: [(): Mark => ({ bold: true })],
+        EM: [(): Mark => ({ italic: true })],
         SPAN: [
-          (el) =>
-            el.style.textDecoration === 'line-through' && {
-              strikethrough: true,
-            },
+          (el): Mark =>
+            el.style.textDecoration === 'line-through'
+              ? {
+                  strikethrough: true,
+                }
+              : {},
         ],
       },
     );
@@ -89,13 +92,15 @@ describe('deserializeHtml', () => {
         P: () => ({ type: 'paragraph' }),
       },
       {
-        STRONG: [() => ({ bold: true })],
-        EM: [() => ({ italic: true })],
+        STRONG: [(): Mark => ({ bold: true })],
+        EM: [(): Mark => ({ italic: true })],
         SPAN: [
-          (el) =>
-            el.style.textDecoration === 'line-through' && {
-              strikethrough: true,
-            },
+          (el): Mark =>
+            el.style.textDecoration === 'line-through'
+              ? {
+                  strikethrough: true,
+                }
+              : {},
         ],
       },
     );
