@@ -24,7 +24,7 @@
     "test": "jest",
     "tsc": "tsc",
     "build:declarations": "lerna run --parallel 'build:declaration'",
-    "generate:plguin": "hygen package new plugin-bold"
+    "generate:plugin": "hygen package new plugin"
   },
   "repository": {
     "type": "git",
