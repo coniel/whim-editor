@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Node } from 'slate';
 import Editor from './Editor';
 import { SlashPlugin } from '../withPlugins/withPlugins';
+import components from '@slash/material-ui';
 
 export default { title: 'Editor', component: Editor };
 
@@ -25,6 +26,7 @@ export const Default: React.FC = () => {
 
   return (
     <Editor
+      components={components}
       placeholder={text('placeholder', 'Type some text')}
       value={value}
       onChange={(newValue): void => {
@@ -49,6 +51,7 @@ export const WithPlugin: React.FC = () => {
 
   return (
     <Editor
+      components={components}
       placeholder={text('placeholder', 'Type some text')}
       value={value}
       plugins={[plugin]}

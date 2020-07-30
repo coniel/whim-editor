@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import * as components from '@slash/material-ui';
 import Editor from './Editor';
 
 const value = [{ type: 'text', children: [{ text: 'Hello Slash' }] }];
@@ -8,7 +9,7 @@ const onChange = jest.fn();
 describe('Editor', () => {
   it('should render successfully', () => {
     const { baseElement, getByText } = render(
-      <Editor value={value} onChange={onChange} />,
+      <Editor components={components} value={value} onChange={onChange} />,
     );
 
     expect(baseElement).toBeTruthy();
@@ -21,7 +22,12 @@ describe('Editor', () => {
 
   it('should render the placeholder', () => {
     const { getByText } = render(
-      <Editor value={value} onChange={onChange} placeholder="Hello Slash" />,
+      <Editor
+        components={components}
+        value={value}
+        onChange={onChange}
+        placeholder="Hello Slash"
+      />,
     );
 
     getByText('Hello Slash');
@@ -29,7 +35,7 @@ describe('Editor', () => {
 
   it('should render its children', () => {
     const { getByText } = render(
-      <Editor value={value} onChange={onChange}>
+      <Editor components={components} value={value} onChange={onChange}>
         Children
       </Editor>,
     );
