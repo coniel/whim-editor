@@ -21,5 +21,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "devDependencies": {
+    "@slash/material-ui": "^0.1.0"
+  }
 }
