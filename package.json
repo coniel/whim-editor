@@ -24,7 +24,8 @@
     "test": "jest",
     "tsc": "tsc",
     "build:declarations": "lerna run --parallel 'build:declaration'",
-    "generate:plugin": "hygen package new plugin"
+    "generate:plugin": "hygen package new plugin",
+    "generate:package": "hygen package new package"
   },
   "repository": {
     "type": "git",

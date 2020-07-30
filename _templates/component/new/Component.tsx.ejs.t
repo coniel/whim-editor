@@ -3,7 +3,7 @@ to: packages/<%= package %>/src/<%= name %>/<%= name %>.tsx
 ---
 import React from 'react';
 <% if(locals.styled){ -%>
-import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
+import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 <% } -%>
 
 <% if(locals.styled){ -%>
@@ -25,15 +25,16 @@ export interface <%= name %>Props<% if(locals.styled){ %> extends WithStyles<typ
 }
 
 const <%= name %>: React.FC<<%= name %>Props> = ({
-  onClick,
+  children,
   <% if(locals.styled){ -%>
   classes,
   <% } -%>
+  onClick,
 }) => {
   return (
-    <div>
-      My component
-    </div>
+    <button onClick={onClick}<% if(locals.styled){ -%> className={classes.root}<% } -%>>
+      {children}
+    </button>
   );
 };
 
