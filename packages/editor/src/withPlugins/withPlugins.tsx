@@ -64,6 +64,7 @@ export interface MarkShortcut {
 }
 
 export interface SlashEditor extends ReactEditor {
+  renderEditable: (props: EditableProps) => JSX.Element;
   renderElement: (props: RenderElementProps) => JSX.Element;
   renderLeaf: (props: RenderLeafProps) => JSX.Element;
   decorate: (entry: NodeEntry<Node>) => Range[];
@@ -179,6 +180,9 @@ const withPlugins = (
   editor.renderLeaf = (props: RenderLeafProps): JSX.Element =>
     renderLeaf(props);
   editor.decorate = (): Range[] => [];
+  editor.renderEditable = (props: EditableProps): React.ReactNode => (
+    <Editable {...props} />
+  );
 
   // Add ID to new nodes
   editor.apply = (operation): void => {
