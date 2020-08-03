@@ -1,5 +1,12 @@
 import React from 'react';
 import isHotkey from 'is-hotkey';
+import { v4 } from 'uuid';
+import {
+  Editable,
+  ReactEditor,
+  RenderElementProps as SlateReactRenderElementProps,
+  RenderLeafProps,
+} from 'slate-react';
 import {
   Range,
   NodeEntry,
@@ -8,10 +15,27 @@ import {
   Transforms,
   Editor,
 } from 'slate';
-import { ReactEditor, RenderElementProps, RenderLeafProps } from 'slate-react';
+
 import deserializeHtml from '../deserializeHtml';
 import withMarkShortcuts from './withMarkShortcuts';
 import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
+import { EditableProps } from 'slate-react/dist/components/editable';
+
+export interface Element extends SlateElement {
+  id: string;
+}
+
+export interface RenderElementProps extends SlateReactRenderElementProps {
+  attributes: {
+    'data-slate-node': 'element';
+    'data-block-id': string;
+    'data-slate-inline'?: true;
+    'data-slate-void'?: true;
+    dir?: 'rtl';
+    ref: any;
+  };
+  element: Element;
+}
 
 export interface Mark {
   [key: string]: boolean;
@@ -148,12 +172,40 @@ const withPlugins = (
   editor: ReactEditor,
   plugins: SlashPluginFactory[],
 ): SlashEditor => {
+  const { apply } = editor;
   editor.onKeyDown = (): void => undefined;
   editor.renderElement = (props: RenderElementProps): JSX.Element =>
     renderElement(props);
   editor.renderLeaf = (props: RenderLeafProps): JSX.Element =>
     renderLeaf(props);
   editor.decorate = (): Range[] => [];
+
+  // Add ID to new nodes
+  editor.apply = (operation): void => {
+    if (operation.type === 'split_node' && operation.properties.type) {
+      return apply({
+        ...operation,
+        properties: {
+          ...operation.properties,
+          id: v4(),
+        },
+      });
+    }
+    if (operation.type === 'insert_node') {
+      const { node } = operation;
+      if (SlateElement.isElement(node)) {
+        return apply({
+          ...operation,
+          node: {
+            ...node,
+            id: v4(),
+          },
+        });
+      }
+    }
+
+    apply(operation);
+  };
 
   const hotkeyActions: HotkeyActions = {};
   const markShortcuts: MarkShortcutActions = {};
@@ -259,7 +311,13 @@ const withPlugins = (
         let element: JSX.Element | undefined;
 
         if (plugin.renderElement) {
-          element = plugin.renderElement(props);
+          element = plugin.renderElement({
+            ...props,
+            attributes: {
+              ...props.attributes,
+              'data-block-id': props.element.id,
+            },
+          });
         }
 
         if (!element && plugin.elements) {

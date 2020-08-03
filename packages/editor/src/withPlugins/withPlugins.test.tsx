@@ -1,11 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { withReact, RenderElementProps, RenderLeafProps } from 'slate-react';
-import { createEditor, Node, Range, Element } from 'slate';
-import withPlugins, { SlashEditor, SlashPluginFactory } from './withPlugins';
+import { withReact, RenderLeafProps } from 'slate-react';
+import { createEditor, Node, Range } from 'slate';
+import withPlugins, {
+  Element,
+  SlashEditor,
+  SlashPluginFactory,
+  RenderElementProps,
+} from './withPlugins';
 
 const createElement = (type: string): Element => ({
   type,
+  id: 'block-id',
   children: [{ text: '' }],
 });
 
@@ -162,7 +168,11 @@ describe('Editor', () => {
     it('should render base Element by default', () => {
       const { getByText, container } = render(
         editor.renderElement({
-          attributes: { 'data-slate-node': 'element', ref: React.createRef() },
+          attributes: {
+            'data-slate-node': 'element',
+            'data-block-id': 'block-1',
+            ref: React.createRef(),
+          },
           children: 'Element',
           element: createElement('text'),
         }),
@@ -178,7 +188,11 @@ describe('Editor', () => {
       // testPlugin1
       const { getByText, container, rerender } = render(
         editor.renderElement({
-          attributes: { 'data-slate-node': 'element', ref: React.createRef() },
+          attributes: {
+            'data-slate-node': 'element',
+            ref: React.createRef(),
+            'data-block-id': 'block-1',
+          },
           children: 'CHILDREN_1',
           element: createElement('plug-1-elem-1'),
         }),
@@ -193,7 +207,11 @@ describe('Editor', () => {
       // testPlugin2
       rerender(
         editor.renderElement({
-          attributes: { 'data-slate-node': 'element', ref: React.createRef() },
+          attributes: {
+            'data-slate-node': 'element',
+            'data-block-id': 'block-2',
+            ref: React.createRef(),
+          },
           children: 'CHILDREN_2',
           element: createElement('plug-2-elem-1'),
         }),
