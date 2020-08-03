@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps } from 'slate-react';
+import { RenderElementProps } from '@slash/editor';
 
 export interface ElementHeadingTwoProps extends RenderElementProps {
   foo?: string;

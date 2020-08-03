@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { RenderElementProps, useEditor, ReactEditor } from 'slate-react';
+import { useEditor, ReactEditor } from 'slate-react';
 import { Transforms } from 'slate';
-import { useUI, useHardReturn } from '@slash/editor';
+import { useUI, useHardReturn, RenderElementProps } from '@slash/editor';
 import EquationError from '../EquationError';
 import useTex from '../utils/useTex';
 import { EnterIcon, TexIcon } from '../icons';

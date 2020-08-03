@@ -1,10 +1,10 @@
-import { RenderElementProps } from 'slate-react';
 import {
   SlashPluginFactory,
   SlashPlugin,
   SlashEditor,
   DeserializeElementValue,
   SlashPluginElementDescriptor,
+  RenderElementProps,
 } from '@slash/editor';
 import ElementHeadingOne from './ElementHeadingOne';
 import ElementHeadingTwo from './ElementHeadingTwo';
