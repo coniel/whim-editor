@@ -1,8 +1,6 @@
 import React from 'react';
-import { Element, Text } from 'slate';
+import { Range, Element, Text } from 'slate';
 import { useBlockPlugin } from '../BlockPluginProvider';
-
-// export interface BlockPluginUIProps {}
 
 const BlockPluginUI: React.FC = () => {
   const {
@@ -10,10 +8,12 @@ const BlockPluginUI: React.FC = () => {
     draggedBlock,
     mouse,
     ref,
-    blockPositions,
+    blocks,
     handleMouseDown,
     hoverBlock,
     handleClickInsertBlock,
+    blockSelection,
+    selectedBlocks,
   } = useBlockPlugin();
 
   return (
@@ -28,21 +28,32 @@ const BlockPluginUI: React.FC = () => {
             width: ref.current ? ref.current.clientWidth - 280 : 200,
           }}
         >
-          {((draggedBlock as Element).children[0] as Text).text}
+          {!selectedBlocks.length &&
+            ((draggedBlock as Element).children[0] as Text).text}
+          {selectedBlocks.length &&
+            selectedBlocks.map((block) => (
+              <div key={block.id as string}>
+                {((block as Element).children[0] as Text).text}
+              </div>
+            ))}
         </div>
       )}
-      {isDragging && hoverBlock && (
-        <div
-          style={{
-            position: 'fixed',
-            left: hoverBlock.rect.left,
-            width: hoverBlock.rect.width,
-            top: hoverBlock.rect.top + hoverBlock.rect.height - 4,
-            borderBottom: '4px solid rgba(46, 170, 220, 0.5)',
-          }}
-        />
-      )}
-      {blockPositions.map((block) => {
+      {isDragging &&
+        hoverBlock &&
+        draggedBlock !== hoverBlock &&
+        (!blockSelection ||
+          !Range.includes(blockSelection, hoverBlock.path)) && (
+          <div
+            style={{
+              position: 'fixed',
+              left: hoverBlock.rect.left,
+              width: hoverBlock.rect.width,
+              top: hoverBlock.rect.top + hoverBlock.rect.height - 4,
+              borderBottom: '4px solid rgba(46, 170, 220, 0.5)',
+            }}
+          />
+        )}
+      {blocks.map((block) => {
         if (!isDragging && hoverBlock && block.id === hoverBlock.id) {
           return (
             <div

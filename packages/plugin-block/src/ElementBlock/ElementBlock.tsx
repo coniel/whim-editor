@@ -6,7 +6,7 @@ export interface ElementBlockProps {
 }
 
 const ElementBlock: React.FC<ElementBlockProps> = ({ children, id }) => {
-  const { selectedBlocks } = useBlockPlugin();
+  const { selectedBlocks, isDragging } = useBlockPlugin();
   return (
     <div
       style={{
@@ -16,7 +16,7 @@ const ElementBlock: React.FC<ElementBlockProps> = ({ children, id }) => {
       }}
     >
       {children}
-      {selectedBlocks.find((block) => block.id === id) && (
+      {!isDragging && selectedBlocks.find((block) => block.id === id) && (
         <div
           style={{
             position: 'absolute',

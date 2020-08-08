@@ -22,6 +22,7 @@ import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
 import { EditableProps } from 'slate-react/dist/components/editable';
 
 export interface Element extends SlateElement {
+  type: string;
   id: string;
 }
 
