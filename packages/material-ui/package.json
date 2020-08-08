@@ -1,6 +1,6 @@
 {
   "name": "@slash/material-ui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Material UI components for the Slash editor",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
