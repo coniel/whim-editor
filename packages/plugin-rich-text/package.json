@@ -26,5 +26,8 @@
     "@slash/editor": "^0.1.0",
     "@slash/material-ui": "^0.1.3"
   },
-  "gitHead": "4b7896b01eca0fc0fe8c9c2d4f3b36e15ab8c68f"
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "30c4e5d45c35260259aab2982ccb7619159d3050"
 }

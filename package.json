@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "private": true,
   "description": "Test monorepo with ts and lerna",
   "scripts": {
     "postinstall": "lerna link",
