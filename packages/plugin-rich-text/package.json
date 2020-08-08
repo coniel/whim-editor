@@ -1,6 +1,6 @@
 {
   "name": "@slash/plugin-rich-text",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Adds basic rich-text functionality",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,6 +24,6 @@
   ],
   "devDependencies": {
     "@slash/editor": "^0.1.0",
-    "@slash/material-ui": "^0.1.1"
+    "@slash/material-ui": "^0.1.0"
   }
 }
