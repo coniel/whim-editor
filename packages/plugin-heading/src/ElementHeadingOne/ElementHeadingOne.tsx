@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps } from '@slash/editor';
+import { RenderElementProps } from '@sheets-editor/editor';
 
 export interface ElementHeadingOneProps extends RenderElementProps {
   foo?: string;

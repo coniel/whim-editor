@@ -1,4 +1,8 @@
-import { SlashPluginFactory, SlashPlugin, SlashEditor } from '@slash/editor';
+import {
+  SlashPluginFactory,
+  SlashPlugin,
+  SlashEditor,
+} from '@sheets-editor/editor';
 import { Transforms, Element, Node } from 'slate';
 import 'katex/dist/katex.min.css';
 import 'katex/dist/contrib/mhchem.js';

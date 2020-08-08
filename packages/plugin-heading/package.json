@@ -1,5 +1,5 @@
 {
-  "name": "@slash/plugin-heading",
+  "name": "@sheets-editor/plugin-heading",
   "version": "0.1.4",
   "description": "Adds support for various heading sizes",
   "main": "./dist/index.js",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "peerDependencies": {
-    "@slash/editor": "^0.1.0",
+    "@sheets-editor/editor": "^0.1.0",
     "react": "^16.9.0",
     "slate": "^0.58.1",
     "slate-react": "^0.58.1"
@@ -23,11 +23,11 @@
     "dist"
   ],
   "devDependencies": {
-    "@slash/editor": "^0.1.0",
-    "@slash/material-ui": "^0.1.4"
+    "@sheets-editor/editor": "^0.1.0",
+    "@sheets-editor/material-ui": "^0.1.4"
   },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "30c4e5d45c35260259aab2982ccb7619159d3050"
+  "gitHead": "3bfb75cecfaf4a28bb4b3c70e480144953904ee2"
 }

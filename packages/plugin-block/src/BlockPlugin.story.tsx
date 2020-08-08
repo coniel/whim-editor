@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Node } from 'slate';
-import { Editor } from '@slash/editor';
+import { Editor } from '@sheets-editor/editor';
 import { LoremIpsum } from 'lorem-ipsum';
 import { v4 } from 'uuid';
-import * as components from '@slash/material-ui';
+import * as components from '@sheets-editor/material-ui';
 import BlockPlugin from './BlockPlugin';
 
 const lorem = new LoremIpsum({

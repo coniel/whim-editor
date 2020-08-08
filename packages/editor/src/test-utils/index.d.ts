@@ -1,4 +1,4 @@
-declare module '@slash/test-utils' {
+declare module '@sheets-editor/test-utils' {
   function fixtures(dirname: string, fn: string, options: object): void;
   function fixtures(
     dirname: string,

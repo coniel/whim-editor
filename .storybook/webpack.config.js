@@ -17,7 +17,7 @@ module.exports = async ({ config }) => {
     ...packages.reduce(
       (acc, name) => ({
         ...acc,
-        [`@slash/${name}`]: path.join(basePath, name, 'src'),
+        [`@sheets-editor/${name}`]: path.join(basePath, name, 'src'),
       }),
       {},
     ),

@@ -8,7 +8,7 @@ import {
   MarkShortcut,
   DeserializeElementValue,
   DeserializeMarkValue,
-} from '@slash/editor';
+} from '@sheets-editor/editor';
 import onDOMBeforeInputRichText from './onDOMBeforeInputRichText';
 import StrikeThrough from './RichTextStrikeThrough';
 

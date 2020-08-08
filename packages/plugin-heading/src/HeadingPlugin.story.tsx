@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Node } from 'slate';
-import { Editor } from '@slash/editor';
-import components from '@slash/material-ui';
+import { Editor } from '@sheets-editor/editor';
+import components from '@sheets-editor/material-ui';
 import HeadingPlugin from './HeadingPlugin';
 
 export default { title: 'Plugins|Heading' };

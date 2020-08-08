@@ -1,5 +1,9 @@
 import React from 'react';
-import { SlashPluginFactory, SlashPlugin, SlashEditor } from '@slash/editor';
+import {
+  SlashPluginFactory,
+  SlashPlugin,
+  SlashEditor,
+} from '@sheets-editor/editor';
 import BlockPluginProvider from './BlockPluginProvider';
 import BlockPluginUI from './BlockPluginUI';
 import ElementBlock from './ElementBlock';

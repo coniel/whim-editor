@@ -1,5 +1,5 @@
 {
-  "name": "@slash/editor",
+  "name": "@sheets-editor/editor",
   "version": "0.4.4",
   "description": "The base editor",
   "main": "./dist/index.js",
@@ -17,7 +17,7 @@
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
-    "@slash/material-ui": "^0.1.0",
+    "@sheets-editor/material-ui": "^0.1.0",
     "react": "^16.9.0"
   },
   "scripts": {
@@ -36,5 +36,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "30c4e5d45c35260259aab2982ccb7619159d3050"
+  "gitHead": "3bfb75cecfaf4a28bb4b3c70e480144953904ee2"
 }

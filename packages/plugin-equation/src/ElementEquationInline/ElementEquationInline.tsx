@@ -1,7 +1,11 @@
 import React, { Fragment, useState, useEffect, FormEvent, useRef } from 'react';
 import { useEditor, useFocused, useSelected, ReactEditor } from 'slate-react';
 import { Transforms, Element } from 'slate';
-import { useUI, useHardReturn, RenderElementProps } from '@slash/editor';
+import {
+  useUI,
+  useHardReturn,
+  RenderElementProps,
+} from '@sheets-editor/editor';
 import EquationTextarea from '../EquationTextarea';
 import useTex from '../utils/useTex';
 import { EquationIcon, EnterIcon } from '../icons';

@@ -2,7 +2,7 @@
 to: packages/<%= name %>/package.json
 ---
 {
-  "name": "@slash/<%= h.changeCase.paramCase(name) %>",
+  "name": "@sheets-editor/<%= h.changeCase.paramCase(name) %>",
   "version": "0.0.1",
   "description": "<%= desc %>",
   "main": "./dist/index.js",

@@ -11,7 +11,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@slash/*": ["packages/*/src"],
+      "@sheets-editor/*": ["packages/*/src"],
       "*": ["node_modules", "packages"]
     }
   },

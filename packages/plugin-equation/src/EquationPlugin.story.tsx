@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Node, Range, Element } from 'slate';
-import { Editor } from '@slash/editor';
+import { Editor } from '@sheets-editor/editor';
 import { action } from '@storybook/addon-actions';
 import { useEditor } from 'slate-react';
-import * as components from '@slash/material-ui';
+import * as components from '@sheets-editor/material-ui';
 import EquationPlugin, { SlashEditorWithEquation } from './EquationPlugin';
 
 export default { title: 'Plugins|Equation' };

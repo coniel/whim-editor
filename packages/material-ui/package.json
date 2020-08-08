@@ -1,5 +1,5 @@
 {
-  "name": "@slash/material-ui",
+  "name": "@sheets-editor/material-ui",
   "version": "0.1.4",
   "description": "Material UI components for the Slash editor",
   "main": "./dist/index.js",
@@ -27,5 +27,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "30c4e5d45c35260259aab2982ccb7619159d3050"
+  "gitHead": "3bfb75cecfaf4a28bb4b3c70e480144953904ee2"
 }

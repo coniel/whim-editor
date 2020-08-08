@@ -5,7 +5,7 @@
     "emitDeclarationOnly": true,
     "declaration": true,
     "paths": {
-      "@slash/*": ["./node_modules/@slash/*/src"]
+      "@sheets-editor/*": ["./node_modules/@sheets-editor/*/src"]
     }
   },
   "exclude": ["**/*.story.*", "**/*.test.*", "dist"],

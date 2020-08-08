@@ -18,7 +18,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   modulePathIgnorePatterns: ['dist'],
   moduleNameMapper: {
-    '@slash/(.+)$': '<rootDir>packages/$1/src',
+    '@sheets-editor/(.+)$': '<rootDir>packages/$1/src',
   },
   notify: true,
   notifyMode: 'always',

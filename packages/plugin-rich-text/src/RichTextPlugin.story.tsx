@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Node } from 'slate';
 import RichTextPlugin, { SlashEditorWithRichText } from './RichTextPlugin';
-import { Editor } from '@slash/editor';
-import * as components from '@slash/material-ui';
+import { Editor } from '@sheets-editor/editor';
+import * as components from '@sheets-editor/material-ui';
 import { useEditor } from 'slate-react';
 
 export default { title: 'Plugins|RichText' };

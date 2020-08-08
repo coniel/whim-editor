@@ -1,7 +1,7 @@
 ---
 to: packages/<%= package %>/src/<%= name %>Plugin.ts
 ---
-import { SlashPluginFactory, SlashPlugin, SlashEditor } from '@slash/editor';
+import { SlashPluginFactory, SlashPlugin, SlashEditor } from '@sheets-editor/editor';
 <% if(implements.leaves || implements.renderLeaf){ -%>
 import renderLeaf<%= name %> from './renderLeaf<%= name %>';
 <% } -%>

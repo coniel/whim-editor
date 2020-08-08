@@ -2,7 +2,7 @@
 to: packages/<%= package %>/package.json
 ---
 {
-  "name": "@slash/<%= package %>",
+  "name": "@sheets-editor/<%= package %>",
   "version": "0.0.1",
   "description": "<%= description %>",
   "main": "./dist/index.js",
@@ -13,7 +13,7 @@ to: packages/<%= package %>/package.json
     "url": "git+https://github.com/coniel/slash.git"
   },
   "peerDependencies": {
-    "@slash/editor": "^0.1.0",
+    "@sheets-editor/editor": "^0.1.0",
     "react": "^16.9.0",
     "slate": "^0.58.1",
     "slate-react": "^0.58.1"

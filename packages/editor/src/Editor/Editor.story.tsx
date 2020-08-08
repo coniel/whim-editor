@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Node } from 'slate';
 import Editor from './Editor';
 import { SlashPlugin } from '../withPlugins/withPlugins';
-import components from '@slash/material-ui';
+import components from '@sheets-editor/material-ui';
 
 export default { title: 'Editor', component: Editor };
 
