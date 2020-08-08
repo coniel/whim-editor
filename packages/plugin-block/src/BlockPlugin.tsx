@@ -3,7 +3,7 @@ import {
   SlashPluginFactory,
   SlashPlugin,
   SlashEditor,
-} from '@sheets-editor/editor';
+} from '@sheets-editor/core';
 import BlockPluginProvider from './BlockPluginProvider';
 import BlockPluginUI from './BlockPluginUI';
 import ElementBlock from './ElementBlock';

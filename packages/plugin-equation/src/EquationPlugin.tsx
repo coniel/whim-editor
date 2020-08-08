@@ -2,7 +2,7 @@ import {
   SlashPluginFactory,
   SlashPlugin,
   SlashEditor,
-} from '@sheets-editor/editor';
+} from '@sheets-editor/core';
 import { Transforms, Element, Node } from 'slate';
 import 'katex/dist/katex.min.css';
 import 'katex/dist/contrib/mhchem.js';

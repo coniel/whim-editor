@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Node } from 'slate';
-import { Editor } from '@sheets-editor/editor';
+import { Editor } from '@sheets-editor/core';
 import { LoremIpsum } from 'lorem-ipsum';
 import { v4 } from 'uuid';
 import * as components from '@sheets-editor/material-ui';

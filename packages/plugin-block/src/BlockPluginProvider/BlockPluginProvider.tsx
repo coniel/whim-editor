@@ -8,7 +8,7 @@ import {
   Element as SlateElement,
 } from 'slate';
 import isHotkey from 'is-hotkey';
-import { Element, createContext } from '@sheets-editor/editor';
+import { Element, createContext } from '@sheets-editor/core';
 import { ReactEditor, useSlate } from 'slate-react';
 
 export interface Coordinates {

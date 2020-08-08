@@ -3,7 +3,7 @@ to: packages/<%= package %>/src/<%= name %>Plugin.story.tsx
 ---
 import React, { useState } from 'react';
 import { Node } from 'slate';
-import { Editor } from '@sheets-editor/editor';
+import { Editor } from '@sheets-editor/core';
 import <%= name %>Plugin from './<%= name %>Plugin';
 
 export default { title: 'Plugins|<%= name %>' };

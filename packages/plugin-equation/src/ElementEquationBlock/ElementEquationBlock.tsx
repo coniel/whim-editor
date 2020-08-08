@@ -1,11 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useEditor, ReactEditor } from 'slate-react';
 import { Transforms } from 'slate';
-import {
-  useUI,
-  useHardReturn,
-  RenderElementProps,
-} from '@sheets-editor/editor';
+import { useUI, useHardReturn, RenderElementProps } from '@sheets-editor/core';
 import EquationError from '../EquationError';
 import useTex from '../utils/useTex';
 import { EnterIcon, TexIcon } from '../icons';

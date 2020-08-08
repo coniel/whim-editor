@@ -1,7 +1,7 @@
 ---
 to: "<%= implements.onKeyDown ? `packages/${package}/src/onKeyDown${name}.ts` : null %>"
 ---
-import { SlashEditor } from '@sheets-editor/editor';
+import { SlashEditor } from '@sheets-editor/core';
 
 function onKeyDown<%= name %>(editor: SlashEditor, event: KeyboardEvent): void {
   if (event.key === 'somekey') {

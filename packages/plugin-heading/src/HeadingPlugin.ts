@@ -5,7 +5,7 @@ import {
   DeserializeElementValue,
   SlashPluginElementDescriptor,
   RenderElementProps,
-} from '@sheets-editor/editor';
+} from '@sheets-editor/core';
 import ElementHeadingOne from './ElementHeadingOne';
 import ElementHeadingTwo from './ElementHeadingTwo';
 import ElementHeadingThree from './ElementHeadingThree';

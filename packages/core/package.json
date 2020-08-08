@@ -1,5 +1,5 @@
 {
-  "name": "@sheets-editor/editor",
+  "name": "@sheets-editor/core",
   "version": "0.4.4",
   "description": "The base editor",
   "main": "./dist/index.js",

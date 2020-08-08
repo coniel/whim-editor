@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Node, Range, Element } from 'slate';
-import { Editor } from '@sheets-editor/editor';
+import { Editor } from '@sheets-editor/core';
 import { action } from '@storybook/addon-actions';
 import { useEditor } from 'slate-react';
 import * as components from '@sheets-editor/material-ui';

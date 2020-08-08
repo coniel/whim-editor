@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Node } from 'slate';
 import RichTextPlugin, { SlashEditorWithRichText } from './RichTextPlugin';
-import { Editor } from '@sheets-editor/editor';
+import { Editor } from '@sheets-editor/core';
 import * as components from '@sheets-editor/material-ui';
 import { useEditor } from 'slate-react';
 
