@@ -1,6 +1,6 @@
 {
   "name": "@slash/plugin-block",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Basic block which wraps all block components",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,8 +24,8 @@
   ],
   "devDependencies": {
     "@slash/editor": "^0.1.0",
-    "@slash/material-ui": "^0.1.2",
-    "@slash/plugin-heading": "^0.1.2",
+    "@slash/material-ui": "^0.1.3",
+    "@slash/plugin-heading": "^0.1.3",
     "@types/react-transition-group": "^4.4.0",
     "@types/uuid": "^8.0.0",
     "lorem-ipsum": "^2.0.3"
