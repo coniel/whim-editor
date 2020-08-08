@@ -32,5 +32,6 @@
     "assert": "^2.0.0",
     "is-plain-object": "^3.0.0",
     "slate-hyperscript": "^0.58.1"
-  }
+  },
+  "gitHead": "4b7896b01eca0fc0fe8c9c2d4f3b36e15ab8c68f"
 }

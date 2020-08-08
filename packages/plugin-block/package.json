@@ -36,5 +36,6 @@
     "is-hotkey": "^0.1.6",
     "react-transition-group": "^4.4.1",
     "uuid": "^8.3.0"
-  }
+  },
+  "gitHead": "4b7896b01eca0fc0fe8c9c2d4f3b36e15ab8c68f"
 }
