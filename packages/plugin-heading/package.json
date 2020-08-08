@@ -1,6 +1,6 @@
 {
   "name": "@slash/plugin-heading",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adds support for various heading sizes",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,6 +24,6 @@
   ],
   "devDependencies": {
     "@slash/editor": "^0.1.0",
-    "@slash/material-ui": "^0.1.0"
+    "@slash/material-ui": "^0.2.0"
   }
 }
