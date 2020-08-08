@@ -1,6 +1,6 @@
 {
   "name": "@slash/editor",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "The base editor",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
