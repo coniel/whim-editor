@@ -28,6 +28,7 @@
     "react-autosize-textarea": "^7.1.0"
   },
   "devDependencies": {
+    "@slash/editor": "^0.1.0",
     "@slash/material-ui": "^0.1.0",
     "@types/katex": "^0.11.0"
   }

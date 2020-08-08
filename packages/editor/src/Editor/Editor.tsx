@@ -3,9 +3,8 @@ import { Slate, withReact } from 'slate-react';
 import { createEditor, Node } from 'slate';
 import { withHistory } from 'slate-history';
 import withPlugins from '../withPlugins';
-import { SlashPluginFactory, SlashEditor } from '../withPlugins/withPlugins';
+import { SlashPluginFactory } from '../withPlugins/withPlugins';
 import UIProvider, { UIComponents } from '../UIProvider';
-import { render } from '@testing-library/react';
 import { EditableProps } from 'slate-react/dist/components/editable';
 
 export interface EditorProps {

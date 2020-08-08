@@ -23,6 +23,7 @@
     "dist"
   ],
   "devDependencies": {
+    "@slash/editor": "^0.1.0",
     "@slash/material-ui": "^0.1.0"
   }
 }

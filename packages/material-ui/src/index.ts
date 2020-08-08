@@ -1,4 +1,3 @@
-import { UIComponents } from '@slash/editor';
 import InlinePlaceholder from './InlinePlaceholder';
 import BlockPlaceholder from './BlockPlaceholder';
 import VoidBlock from './VoidBlock';
@@ -20,7 +19,7 @@ export * from './VoidBlock';
 export { default as Button } from './Button';
 export * from './Button';
 
-const components: UIComponents = {
+const components = {
   InlinePlaceholder,
   BlockPlaceholder,
   VoidBlock,

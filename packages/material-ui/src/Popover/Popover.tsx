@@ -1,9 +1,19 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { PopoverProps as SlashPopoverProps } from '@slash/editor';
 import MuiPopover from '@material-ui/core/Popover';
 
-export type PopoverProps = SlashPopoverProps;
+export interface PopoverAnchorPosition {
+  top: number;
+  left: number;
+}
+
+export interface PopoverProps {
+  anchorReference?: 'anchorPosition' | 'anchorEl';
+  onClose: () => void;
+  open: boolean;
+  anchorEl?: HTMLElement | null;
+  anchorPosition?: PopoverAnchorPosition;
+}
 
 const useStyles = makeStyles(() =>
   createStyles({
