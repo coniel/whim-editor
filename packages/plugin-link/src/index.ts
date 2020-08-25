@@ -3,3 +3,4 @@ export * from './LinkPlugin';
 
 export { default as ElementLink } from './ElementLink';
 export * from './ElementLink';
+export * from './LinkPlugin.types';

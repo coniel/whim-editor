@@ -48,7 +48,7 @@ const Toolbar: React.FC = () => {
           event.preventDefault();
           const url = window.prompt('Enter the URL of the link:');
           if (!url) return;
-          editor.insertLink(editor, url);
+          editor.insertLink(url);
         }}
       >
         B

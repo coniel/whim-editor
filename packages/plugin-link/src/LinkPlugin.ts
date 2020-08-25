@@ -42,16 +42,14 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
   }
 };
 
-const insertLink = (editor: SlashEditor, url: string): void => {
-  if (editor.selection) {
-    wrapLink(editor, url);
-  }
-};
-
 const withLinks = (editor: SlashEditor): void => {
   const { insertData, insertText } = editor;
 
-  editor.insertLink = insertLink;
+  editor.insertLink = (url: string): void => {
+    if (editor.selection) {
+      wrapLink(editor, url);
+    }
+  };
 
   editor.insertText = (text): void => {
     if (text && isUrl(text)) {

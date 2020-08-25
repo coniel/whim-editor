@@ -5,5 +5,5 @@ export interface LinkElement extends Element {
 }
 
 export interface EditorWithLinkPlugin extends SlashEditor {
-  insertLink: (editor: SlashEditor, url: string) => void;
+  insertLink: (url: string) => void;
 }
