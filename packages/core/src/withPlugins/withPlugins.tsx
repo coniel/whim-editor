@@ -5,7 +5,7 @@ import {
   Editable,
   ReactEditor,
   RenderElementProps as SlateReactRenderElementProps,
-  RenderLeafProps,
+  RenderLeafProps as SlateRenderLeafProps,
 } from 'slate-react';
 import {
   Range,
@@ -15,11 +15,11 @@ import {
   Transforms,
   Editor,
 } from 'slate';
-
+import { EditableProps } from 'slate-react/dist/components/editable';
+import { getBlockAbove, isNodeType, isBlockAboveEmpty } from '../queries';
 import deserializeHtml from '../deserializeHtml';
 import withMarkShortcuts from './withMarkShortcuts';
 import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
-import { EditableProps } from 'slate-react/dist/components/editable';
 
 export interface Element extends SlateElement {
   type: string;
@@ -37,6 +37,8 @@ export interface RenderElementProps extends SlateReactRenderElementProps {
   };
   element: Element;
 }
+
+export type RenderLeafProps = SlateRenderLeafProps;
 
 export interface Mark {
   [key: string]: boolean;
@@ -82,6 +84,7 @@ export interface SlashPluginElementDescriptor {
   isInline?: boolean;
   insert?: (editor: SlashEditor) => void;
   turnInto?: (editor: SlashEditor, element: SlateElement) => void;
+  returnBehaviour?: 'break-out' | 'same-type';
 }
 
 export interface SlashPluginLeafDescriptor {
@@ -215,6 +218,8 @@ const withPlugins = (
   const hotkeyActions: HotkeyActions = {};
   const markShortcuts: MarkShortcutActions = {};
   const blockShortcuts: BlockShortcut[] = [];
+  const breakOutElements: string[] = [];
+  const sameTypeElements: string[] = [];
   let elementDeserializers: ElementDeserializers = {};
   const markDeserializers: CombinedMarkDeserializers = {};
 
@@ -239,6 +244,7 @@ const withPlugins = (
             type,
             isVoid,
             isInline,
+            returnBehaviour,
           }) => {
             if (hotkeys) {
               hotkeys.forEach((hotkey) => {
@@ -263,6 +269,12 @@ const withPlugins = (
               const isInlineFn = editor.isInline;
               editor.isInline = (element): boolean =>
                 element.type === type ? isInline : isInlineFn(element);
+            }
+
+            if (returnBehaviour === 'same-type') {
+              sameTypeElements.push(type);
+            } else {
+              breakOutElements.push(type);
             }
           },
         );
@@ -417,6 +429,30 @@ const withPlugins = (
         if (action) {
           action(slashEditor);
         }
+      }
+    }
+
+    if (isHotkey('Enter', (event as unknown) as KeyboardEvent)) {
+      const entry = getBlockAbove(slashEditor);
+      if (
+        isNodeType(entry, {
+          exclude: sameTypeElements,
+          allow: breakOutElements,
+        })
+      ) {
+        event.preventDefault();
+        insertEmptyNode(slashEditor, 'paragraph')();
+      } else if (isBlockAboveEmpty(editor)) {
+        event.preventDefault();
+        Transforms.setNodes(
+          slashEditor,
+          { type: 'paragraph' },
+          { at: entry[1] },
+        );
+        Transforms.setSelection(editor, {
+          anchor: { path: entry[1], offset: 0 },
+          focus: { path: entry[1], offset: 0 },
+        });
       }
     }
 
