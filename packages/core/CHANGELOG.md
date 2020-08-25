@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.7.0 (2020-08-25)
+
+
+### Features
+
+* create plugin-ordered-list ([3bb1f22](https://github.com/coniel/slash/commit/3bb1f22adcbc54e63317dff99a1706ba532d1d03))
+* **core:** add option to define return behaviour for elements ([67ee557](https://github.com/coniel/slash/commit/67ee557d3e4d3657dab7ea9afb0c2ee62801aed3))
+
+
+
+
+
 ## 0.5.1 (2020-08-08)
 
 **Note:** Version bump only for package @sheets-editor/core

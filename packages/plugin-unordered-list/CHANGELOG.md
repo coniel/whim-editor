@@ -8,11 +8,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* create plugin-link ([56c6c5a](https://github.com/coniel/slash/commit/56c6c5adcd02d0407ed9de8a4e4aba79c5d7e0a9))
-
-
-
-
-
-## 0.0.1
-###### *August 25, 2020*
+* create unordered-list-plugin ([022fe15](https://github.com/coniel/slash/commit/022fe1511db0e3a431b3a82bd977db600766b752))
