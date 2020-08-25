@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/coniel/slash/compare/v0.7.0...v0.7.1) (2020-08-25)
+
+
+### Bug Fixes
+
+* make new packages public ([eadc1c1](https://github.com/coniel/slash/commit/eadc1c10f9760f8c58f9a094fd578c88704b9453))
+
+
+
+
+
 # 0.7.0 (2020-08-25)
 
 
