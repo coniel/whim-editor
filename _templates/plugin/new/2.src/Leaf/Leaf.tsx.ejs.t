@@ -2,7 +2,7 @@
 to: "<%= implements.leaves || implements.renderLeaf ? `packages/${package}/src/Leaf${name}/Leaf${name}.tsx` : null %>"
 ---
 import React from 'react';
-import { RenderLeafProps } from 'slate-react';
+import { RenderLeafProps } from '@sheets-editor/core';
 
 export interface Leaf<%= name %>Props extends RenderLeafProps {
   foo?: string;

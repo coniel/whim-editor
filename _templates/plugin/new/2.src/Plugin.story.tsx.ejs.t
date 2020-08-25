@@ -3,6 +3,7 @@ to: packages/<%= package %>/src/<%= name %>Plugin.story.tsx
 ---
 import React, { useState } from 'react';
 import { Node } from 'slate';
+import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import <%= name %>Plugin from './<%= name %>Plugin';
 
@@ -21,6 +22,7 @@ export const With<%= name %>Plugin: React.FC = () => {
 
   return (
     <Editor
+      components={components}
       value={value}
       plugins={[<%= name %>]}
       onChange={(newValue): void => {
@@ -40,6 +42,7 @@ export const WithCustomised<%= name %>Plugin: React.FC = () => {
 
   return (
     <Editor
+      components={components}
       value={value}
       plugins={[Custom<%= name %>]}
       onChange={(newValue): void => {
