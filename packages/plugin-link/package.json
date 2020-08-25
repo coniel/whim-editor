@@ -28,5 +28,9 @@
   ],
   "dependencies": {
     "is-url": "^1.2.4"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "513d0391610ca96cd38148917d6c3bf65555069f"
 }
