@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](http://test/compare/v0.8.0...v0.8.1) (2020-08-26)
+
+
+### Bug Fixes
+
+* **plugin-link:** make package public ([50d006e](http://test/commits/50d006e79f0c7cb6a8a19d4f732c2eedf0fe5e48))
+* make newly generated plugins public ([27f4808](http://test/commits/27f4808fdbf1712947a8f4626e99cb7ee7223a0e))
+
+
+
+
+
 # [0.8.0](http://test/compare/v0.7.1...v0.8.0) (2020-08-26)
 
 

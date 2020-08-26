@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-rich-text",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Adds basic rich-text functionality",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,8 +23,8 @@
     "dist"
   ],
   "devDependencies": {
-    "@sheets-editor/core": "^0.8.0",
-    "@sheets-editor/material-ui": "^0.8.0"
+    "@sheets-editor/core": "^0.8.1",
+    "@sheets-editor/material-ui": "^0.8.1"
   },
   "publishConfig": {
     "access": "public"
