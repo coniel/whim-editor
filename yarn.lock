@@ -2450,6 +2450,14 @@
     import-from "^3.0.0"
     lodash "^4.17.4"
 
+"@sheets-editor/material-ui@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/material-ui/-/material-ui-0.6.0.tgz#e1a71a06b3d560dc0d071ae79befee67c82564ce"
+  integrity sha512-hICBc6AwHV97yqbBzL2G/r4/ISUpeertn5nGpghyeKS2QeWUGPXFXoRrLnpfl8RltZ1wW+34YOYKYM5EuZN8Fg==
+  dependencies:
+    clsx "^1.0.4"
+    prop-types "^15.7.2"
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.1.tgz#e7df00f98a203324f6dc7cc606cad9d4a8ab2217"
@@ -4122,7 +4130,7 @@ babel-code-frame@^6.22.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@7.0.0-bridge.0:
+babel-core@7.0.0-bridge.0, babel-core@^7.0.0-bridge.0:
   version "7.0.0-bridge.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
   integrity sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==
