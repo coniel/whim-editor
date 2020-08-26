@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/coniel/slash/compare/v0.7.1...v0.8.0) (2020-08-26)
+
+
+### Bug Fixes
+
+* **plugin-link:** add insertLink to editor API ([37ba96f](https://github.com/coniel/slash/commit/37ba96f1948bd2dcf53767622afc299e36b4c1bc))
+
+
+
+
+
 ## [0.7.1](https://github.com/coniel/slash/compare/v0.7.0...v0.7.1) (2020-08-25)
 
 

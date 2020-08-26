@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](http://test/compare/v0.7.1...v0.8.0) (2020-08-26)
+
+
+### Bug Fixes
+
+* **plugin-link:** add insertLink to editor API ([37ba96f](http://test/commits/37ba96f1948bd2dcf53767622afc299e36b4c1bc))
+
+
+### Features
+
+* create plugin-paragraph ([f70c220](http://test/commits/f70c2208eb07aa58920b8bdf8a939b0420bd8971))
+
+
+
+
+
 ## [0.7.1](http://test/compare/v0.7.0...v0.7.1) (2020-08-25)
 
 
