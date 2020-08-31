@@ -19,30 +19,28 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  startIcon,
-  endIcon,
-  style,
-  type,
-}) => {
-  const classes = useStyles();
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, onClick, startIcon, endIcon, style, type }, ref) => {
+    const classes = useStyles();
 
-  return (
-    <MuiButton
-      size="small"
-      variant="outlined"
-      type={type}
-      onClick={onClick}
-      classes={classes}
-      startIcon={startIcon}
-      endIcon={endIcon}
-      style={style}
-    >
-      {children}
-    </MuiButton>
-  );
-};
+    return (
+      <MuiButton
+        ref={ref}
+        size="small"
+        variant="outlined"
+        type={type}
+        onClick={onClick}
+        classes={classes}
+        startIcon={startIcon}
+        endIcon={endIcon}
+        style={style}
+      >
+        {children}
+      </MuiButton>
+    );
+  },
+);
+
+Button.displayName = 'Button';
 
 export default Button;

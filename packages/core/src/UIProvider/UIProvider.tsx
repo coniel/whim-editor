@@ -21,25 +21,51 @@ export interface VoidBlockProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 export type VoidBlock = React.FC<VoidBlockProps>;
 
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   type?: 'submit' | 'button';
 }
-export type Button = React.FC<ButtonProps>;
+export type Button =
+  | React.FC<ButtonProps>
+  | React.ForwardRefExoticComponent<
+      ButtonProps & React.RefAttributes<HTMLButtonElement>
+    >;
 
 export interface PopoverAnchorPosition {
   top: number;
   left: number;
 }
+
+export interface PopoverAnchorOrigin {
+  vertical?: string;
+  horizontal?: string;
+}
+
+export interface PopoverTransformOrigin {
+  vertical?: string;
+  horizontal?: string;
+}
+
 export interface PopoverProps {
   anchorReference?: 'anchorPosition' | 'anchorEl';
   onClose: () => void;
   open: boolean;
   anchorEl?: HTMLElement | null;
   anchorPosition?: PopoverAnchorPosition;
+  anchorOrigin?: PopoverAnchorOrigin;
+  transformOrigin?: PopoverTransformOrigin;
 }
 export type Popover = React.FC<PopoverProps>;
+
+export type ListProps = React.HTMLAttributes<HTMLUListElement>;
+export type List = React.FC<ListProps>;
+
+export type MenuItemProps = React.HTMLAttributes<HTMLLIElement>;
+export type MenuItem = React.FC<MenuItemProps>;
+
+export type TextFieldProps = React.HTMLProps<HTMLInputElement>;
+export type TextField = React.FC<TextFieldProps>;
 
 export interface UIComponents {
   Button: Button;
@@ -47,6 +73,9 @@ export interface UIComponents {
   InlinePlaceholder: InlinePlaceholder;
   VoidBlock: VoidBlock;
   Popover: Popover;
+  List: List;
+  MenuItem: MenuItem;
+  TextField: TextField;
 }
 
 export interface UIProviderProps {
