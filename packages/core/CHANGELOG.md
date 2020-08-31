@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/coniel/slash/compare/v0.8.1...v0.9.0) (2020-08-31)
+
+
+### Bug Fixes
+
+* remove mark on carret when using mark shortcut ([30cfa01](https://github.com/coniel/slash/commit/30cfa01c1371ec4c9b87d83f2e7eac7722ff8103))
+
+
+### Features
+
+* add 'soft-break' as as option for block return bheaviour ([d3fd029](https://github.com/coniel/slash/commit/d3fd0296c29369ad8749eae5414f698e838979ce))
+* add new UI components ([4078125](https://github.com/coniel/slash/commit/4078125192d15854fd657346dfe44c4778230c90))
+
+
+
+
+
 ## [0.8.1](https://github.com/coniel/slash/compare/v0.8.0...v0.8.1) (2020-08-26)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](http://test/compare/v0.8.1...v0.9.0) (2020-08-31)
+
+
+### Bug Fixes
+
+* remove mark on carret when using mark shortcut ([30cfa01](http://test/commits/30cfa01c1371ec4c9b87d83f2e7eac7722ff8103))
+
+
+### Features
+
+* add 'soft-break' as as option for block return bheaviour ([d3fd029](http://test/commits/d3fd0296c29369ad8749eae5414f698e838979ce))
+* add new UI components ([4078125](http://test/commits/4078125192d15854fd657346dfe44c4778230c90))
+* create code plugin ([68fadd6](http://test/commits/68fadd641c89bc5dbcc7de56e5f637564362533f))
+
+
+
+
+
 ## [0.8.1](http://test/compare/v0.8.0...v0.8.1) (2020-08-26)
 
 
