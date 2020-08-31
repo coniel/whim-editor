@@ -22,7 +22,9 @@ export const output = (
   <editor>
     <block>
       <text {...props}>some text</text>
-      <cursor />
+      <text>
+        <cursor />
+      </text>
     </block>
   </editor>
 );

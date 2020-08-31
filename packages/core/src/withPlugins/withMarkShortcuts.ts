@@ -172,6 +172,11 @@ const withMarkShortcuts = (
                     reverse: true,
                   });
                 }
+
+                // We don't want text typed after this to
+                // have the mark.
+                editor.removeMark(shortcut.mark);
+
                 matched = true;
               }
             }
