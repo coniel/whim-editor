@@ -3,6 +3,15 @@ body {
   font-size: 16px;
 }
 
-* {
+p,
+h1,
+h2,
+h3,
+li {
   font-family: Helvetica;
+}
+
+code {
+  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier,
+    monospace !important;
 }

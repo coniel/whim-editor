@@ -1,0 +1,35 @@
+{
+  "name": "@sheets-editor/plugin-code",
+  "version": "0.0.1",
+  "description": "Adds support for syntax highlighted code blocks.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coniel/slash.git"
+  },
+  "dependencies": {
+    "is-hotkey": "^0.1.6",
+    "prismjs": "^1.21.0"
+  },
+  "peerDependencies": {
+    "@sheets-editor/core": "^0.8.1",
+    "react": "^16.9.0",
+    "slate": "^0.58.1",
+    "slate-react": "^0.58.1"
+  },
+  "devDependencies": {
+    "@sheets-editor/material-ui": "0.8.1"
+  },
+  "scripts": {
+    "build:declaration": "tsc --project tsconfig.build.json",
+    "build:es": "BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .ts,.tsx --delete-dir-on-start --no-comments"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ]
+}
