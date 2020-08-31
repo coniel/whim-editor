@@ -84,7 +84,7 @@ export interface SlashPluginElementDescriptor {
   isInline?: boolean;
   insert?: (editor: SlashEditor) => void;
   turnInto?: (editor: SlashEditor, element: SlateElement) => void;
-  returnBehaviour?: 'break-out' | 'same-type';
+  returnBehaviour?: 'break-out' | 'same-type' | 'soft-break';
 }
 
 export interface SlashPluginLeafDescriptor {
@@ -220,6 +220,7 @@ const withPlugins = (
   const blockShortcuts: BlockShortcut[] = [];
   const breakOutElements: string[] = [];
   const sameTypeElements: string[] = [];
+  const softBreakElements: string[] = [];
   let elementDeserializers: ElementDeserializers = {};
   const markDeserializers: CombinedMarkDeserializers = {};
 
@@ -273,6 +274,8 @@ const withPlugins = (
 
             if (returnBehaviour === 'same-type') {
               sameTypeElements.push(type);
+            } else if (returnBehaviour === 'soft-break') {
+              softBreakElements.push(type);
             } else {
               breakOutElements.push(type);
             }
@@ -436,12 +439,20 @@ const withPlugins = (
       const entry = getBlockAbove(slashEditor);
       if (
         isNodeType(entry, {
-          exclude: sameTypeElements,
+          exclude: [...sameTypeElements, ...softBreakElements],
           allow: breakOutElements,
         })
       ) {
         event.preventDefault();
         insertEmptyNode(slashEditor, 'paragraph')();
+      } else if (
+        isNodeType(entry, {
+          exclude: [...sameTypeElements, ...breakOutElements],
+          allow: softBreakElements,
+        })
+      ) {
+        event.preventDefault();
+        slashEditor.insertText('\n');
       } else if (isBlockAboveEmpty(editor)) {
         event.preventDefault();
         Transforms.setNodes(
