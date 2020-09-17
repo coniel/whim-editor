@@ -107,6 +107,8 @@ export interface SlashPlugin {
   isInline?: (element: SlateElement) => boolean;
   elements?: SlashPluginElementDescriptor[];
   leaves?: SlashPluginLeafDescriptor[];
+  insertData?: (data: DataTransfer) => void;
+  insertText?: (text: string) => void;
 }
 
 export type SlashPluginFactory = (editor: SlashEditor) => SlashPlugin;
@@ -188,9 +190,10 @@ function toggleMark(editor: SlashEditor, mark: string): ToggleMark {
 
 const withPlugins = (
   editor: ReactEditor,
-  plugins: SlashPluginFactory[],
+  pluginFactories: SlashPluginFactory[],
 ): SlashEditor => {
   const { apply } = editor;
+  const plugins: SlashPlugin[] = [];
   editor.onKeyDown = (): void => undefined;
   editor.renderElement = (props: RenderElementProps): JSX.Element =>
     renderElement(props);
@@ -242,7 +245,7 @@ const withPlugins = (
   let elementDeserializers: ElementDeserializers = {};
   const markDeserializers: CombinedMarkDeserializers = {};
 
-  let slashEditor = plugins.reduce(
+  let slashEditor = pluginFactories.reduce(
     (slashEditor: SlashEditor, pluginFn): SlashEditor => {
       const {
         renderElement,
@@ -252,6 +255,7 @@ const withPlugins = (
         decorate,
       } = slashEditor;
       const plugin = pluginFn(slashEditor);
+      plugins.push(plugin);
 
       if (plugin.elements) {
         plugin.elements.forEach(
@@ -522,8 +526,8 @@ const withPlugins = (
     onKeyDown(event);
   };
 
-  const { insertData } = editor;
-  editor.insertData = (data): void => {
+  const { insertData } = slashEditor;
+  slashEditor.insertData = (data): void => {
     const html = data.getData('text/html');
 
     if (html) {
@@ -538,15 +542,21 @@ const withPlugins = (
 
       // replace the selected node type by the first node type
       if (fragment[0].type) {
-        Transforms.setNodes(editor, { type: fragment[0].type });
+        Transforms.setNodes(slashEditor, { type: fragment[0].type });
       }
 
-      Transforms.insertFragment(editor, fragment);
+      Transforms.insertFragment(slashEditor, fragment);
       return;
     }
 
     insertData(data);
   };
+
+  plugins.forEach((plugin) => {
+    if (plugin.insertData) {
+      slashEditor.insertData = plugin.insertData;
+    }
+  });
 
   slashEditor = withMarkShortcuts(slashEditor, markShortcuts);
   slashEditor = withBlockShortcuts(slashEditor, blockShortcuts);
