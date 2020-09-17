@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Node } from 'slate';
 import components from '@sheets-editor/material-ui';
-import { Editor } from '@sheets-editor/core';
+import { Editor, useEditorState } from '@sheets-editor/core';
 import LinkPlugin from './LinkPlugin';
 import { useEditor } from 'slate-react';
 import { EditorWithLinkPlugin } from './LinkPlugin.types';
+import { LinkPopover } from './LinkPopover';
 
 export default { title: 'Plugins|Link' };
 
@@ -46,13 +47,13 @@ const Toolbar: React.FC = () => {
         style={{ marginRight: 8, fontWeight: 'bold' }}
         onMouseDown={(event): void => {
           event.preventDefault();
-          const url = window.prompt('Enter the URL of the link:');
-          if (!url) return;
-          editor.insertLink(url);
+          event.stopPropagation();
+          editor.openLinkPopover();
         }}
       >
         B
       </button>
+      <LinkPopover />
     </div>
   );
 };

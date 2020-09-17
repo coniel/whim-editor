@@ -6,4 +6,7 @@ export interface LinkElement extends Element {
 
 export interface EditorWithLinkPlugin extends SlashEditor {
   insertLink: (url: string) => void;
+  removeLink: () => void;
+  openLinkPopover: () => void;
+  linkPopover?: boolean;
 }
