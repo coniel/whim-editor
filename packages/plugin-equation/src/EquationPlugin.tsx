@@ -2,6 +2,7 @@ import {
   SlashPluginFactory,
   SlashPlugin,
   SlashEditor,
+  SlashPluginElementDescriptor,
 } from '@sheets-editor/core';
 import { Transforms, Element, Node } from 'slate';
 import 'katex/dist/katex.min.css';
@@ -16,9 +17,14 @@ export interface SlashEditorWithEquation extends SlashEditor {
   turnIntoBlockEquation: (element: Element) => void;
 }
 
-const EquationPlugin = (): SlashPluginFactory => (
-  editor: SlashEditor,
-): SlashPlugin => {
+export interface EquationPluginOptions {
+  block?: Partial<SlashPluginElementDescriptor>;
+  inline?: Partial<SlashPluginElementDescriptor>;
+}
+
+const EquationPlugin = (
+  options: EquationPluginOptions = {},
+): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
   const equationEditor = editor as SlashEditorWithEquation;
 
   const insertInlineEquation = (): void => {
@@ -78,6 +84,7 @@ const EquationPlugin = (): SlashPluginFactory => (
         shortcuts: ['$$$'],
         insert: insertBlockEquation,
         turnInto: turnIntoBlockEquation,
+        ...(options.block || {}),
       },
       {
         isVoid: true,
@@ -87,6 +94,7 @@ const EquationPlugin = (): SlashPluginFactory => (
         hotkeys: ['mod+Shift+e'],
         insert: insertInlineEquation,
         turnInto: turnIntoInlineEquation,
+        ...(options.inline || {}),
       },
     ],
   };
