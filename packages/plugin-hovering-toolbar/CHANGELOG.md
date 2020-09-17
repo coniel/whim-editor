@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/coniel/slash/compare/v0.10.2...v0.11.0) (2020-09-17)
+
+
+### Features
+
+* **plugin-hovering-toolbar:** replace custom popover implementation with UI Popover ([023b425](https://github.com/coniel/slash/commit/023b42582d50eda28767bdc1f400f91309eb037e))
+
+
+
+
+
 ## [0.10.2](https://github.com/coniel/slash/compare/v0.10.1...v0.10.2) (2020-09-17)
 
 

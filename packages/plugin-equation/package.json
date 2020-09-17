@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-equation",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Adds TeX support",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -28,8 +28,8 @@
     "react-autosize-textarea": "^7.1.0"
   },
   "devDependencies": {
-    "@sheets-editor/core": "^0.10.0",
-    "@sheets-editor/material-ui": "^0.10.0",
+    "@sheets-editor/core": "^0.11.0",
+    "@sheets-editor/material-ui": "^0.11.0",
     "@types/katex": "^0.11.0"
   },
   "publishConfig": {

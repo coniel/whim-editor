@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](http://test/compare/v0.10.2...v0.11.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **plugin-code:** add turnInto and insert methods to prevent crash when using hotkey ([9878ebc](http://test/commits/9878ebc1741f9c9e7473ecbf12ab1a00e16637d0))
+* **plugin-equation:** export components ([797ee0e](http://test/commits/797ee0e7f2eca16539186bb8ad1222f47fbe63d1))
+
+
+### Features
+
+* **plugin-hovering-toolbar:** replace custom popover implementation with UI Popover ([023b425](http://test/commits/023b42582d50eda28767bdc1f400f91309eb037e))
+
+
+
+
+
 ## [0.10.2](http://test/compare/v0.10.1...v0.10.2) (2020-09-17)
 
 
