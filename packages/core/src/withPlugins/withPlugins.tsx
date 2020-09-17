@@ -85,6 +85,7 @@ export interface SlashPluginElementDescriptor {
   insert?: (editor: SlashEditor) => void;
   turnInto?: (editor: SlashEditor, element: SlateElement) => void;
   returnBehaviour?: 'break-out' | 'same-type' | 'soft-break';
+  backspaceOutBehaviour?: 'delete' | 'turn-into-default' | 'do-nothing';
 }
 
 export interface SlashPluginLeafDescriptor {
@@ -111,11 +112,16 @@ export interface SlashPlugin {
 export type SlashPluginFactory = (editor: SlashEditor) => SlashPlugin;
 
 type InsertEmptyNode = (editor?: SlashEditor) => void;
+type TurnIntoNode = (editor?: SlashEditor) => void;
 type ToggleMark = (editor?: ReactEditor) => void;
-type HotkeyAction =
-  | InsertEmptyNode
-  | ToggleMark
-  | SlashPluginElementDescriptor['insert'];
+interface HotkeyAction {
+  action:
+    | InsertEmptyNode
+    | TurnIntoNode
+    | ToggleMark
+    | SlashPluginElementDescriptor['turnInto'];
+  type: string;
+}
 
 export type HotkeyActions = {
   [key: string]: HotkeyAction;
@@ -153,6 +159,13 @@ function insertEmptyNode(editor: SlashEditor, type: string): InsertEmptyNode {
     Transforms.insertNodes(editor, {
       type,
       children: [{ text: '' }],
+    });
+}
+
+function turnIntoNode(editor: SlashEditor, type: string): InsertEmptyNode {
+  return (): void =>
+    Transforms.setNodes(editor, {
+      type,
     });
 }
 
@@ -218,9 +231,14 @@ const withPlugins = (
   const hotkeyActions: HotkeyActions = {};
   const markShortcuts: MarkShortcutActions = {};
   const blockShortcuts: BlockShortcut[] = [];
-  const breakOutElements: string[] = [];
+  const breakOutElements: string[] = ['paragraph'];
   const sameTypeElements: string[] = [];
   const softBreakElements: string[] = [];
+  const backspaceOutBehaviours = {
+    delete: ['paragraph'] as string[],
+    'turn-into-default': [] as string[],
+    'do-nothing': [] as string[],
+  };
   let elementDeserializers: ElementDeserializers = {};
   const markDeserializers: CombinedMarkDeserializers = {};
 
@@ -240,17 +258,19 @@ const withPlugins = (
           ({
             hotkeys,
             shortcuts,
-            insert,
             turnInto,
             type,
             isVoid,
             isInline,
             returnBehaviour,
+            backspaceOutBehaviour = 'turn-into-default',
           }) => {
             if (hotkeys) {
               hotkeys.forEach((hotkey) => {
-                hotkeyActions[hotkey] =
-                  insert || insertEmptyNode(slashEditor, type);
+                hotkeyActions[hotkey] = {
+                  type,
+                  action: turnInto || turnIntoNode(slashEditor, type),
+                };
               });
             }
 
@@ -279,6 +299,8 @@ const withPlugins = (
             } else {
               breakOutElements.push(type);
             }
+
+            backspaceOutBehaviours[backspaceOutBehaviour].push(type);
           },
         );
       }
@@ -287,7 +309,10 @@ const withPlugins = (
         plugin.leaves.forEach(({ hotkeys, shortcuts, mark }) => {
           if (hotkeys) {
             hotkeys.forEach((hotkey) => {
-              hotkeyActions[hotkey] = toggleMark(slashEditor, mark);
+              hotkeyActions[hotkey] = {
+                type: mark,
+                action: toggleMark(slashEditor, mark),
+              };
             });
           }
 
@@ -427,10 +452,17 @@ const withPlugins = (
   slashEditor.onKeyDown = (event): void => {
     for (const hotkey in hotkeyActions) {
       if (isHotkey(hotkey, (event as unknown) as KeyboardEvent)) {
-        event.preventDefault();
-        const action = hotkeyActions[hotkey];
-        if (action) {
-          action(slashEditor);
+        const entry = getBlockAbove(slashEditor);
+        if (entry) {
+          event.preventDefault();
+          const hotkeyAction = hotkeyActions[hotkey];
+          if (hotkeyAction && hotkeyAction.action) {
+            if (entry[0].type === hotkeyAction.type) {
+              turnIntoNode(slashEditor, 'paragraph')();
+            } else {
+              hotkeyAction.action(slashEditor, entry[0]);
+            }
+          }
         }
       }
     }
@@ -455,15 +487,35 @@ const withPlugins = (
         slashEditor.insertText('\n');
       } else if (isBlockAboveEmpty(editor)) {
         event.preventDefault();
-        Transforms.setNodes(
-          slashEditor,
-          { type: 'paragraph' },
-          { at: entry[1] },
-        );
-        Transforms.setSelection(editor, {
-          anchor: { path: entry[1], offset: 0 },
-          focus: { path: entry[1], offset: 0 },
-        });
+        Transforms.setNodes(slashEditor, { type: 'paragraph' });
+      }
+    }
+
+    if (isHotkey('Backspace', (event as unknown) as KeyboardEvent)) {
+      if (isBlockAboveEmpty(slashEditor)) {
+        const entry = getBlockAbove(slashEditor);
+        if (
+          isNodeType(entry, {
+            exclude: [
+              ...backspaceOutBehaviours.delete,
+              ...backspaceOutBehaviours['do-nothing'],
+            ],
+            allow: backspaceOutBehaviours['turn-into-default'],
+          })
+        ) {
+          event.preventDefault();
+          Transforms.setNodes(slashEditor, { type: 'paragraph' });
+        } else if (
+          isNodeType(entry, {
+            exclude: [
+              ...backspaceOutBehaviours['turn-into-default'],
+              ...backspaceOutBehaviours.delete,
+            ],
+            allow: backspaceOutBehaviours['do-nothing'],
+          })
+        ) {
+          event.preventDefault();
+        }
       }
     }
 
