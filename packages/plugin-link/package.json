@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-link",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Adds support for links.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
