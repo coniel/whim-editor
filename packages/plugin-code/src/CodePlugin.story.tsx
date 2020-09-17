@@ -6,7 +6,10 @@ import CodePlugin from './CodePlugin';
 
 export default { title: 'Plugins|Code' };
 
-const Code = CodePlugin();
+const Code = CodePlugin({
+  defaultLanguage: 'typescript',
+  block: { hotkeys: ['mod+alt+6'] },
+});
 
 export const CodeBlock: React.FC = () => {
   const [value, setValue] = useState<Node[]>([
@@ -16,6 +19,7 @@ export const CodeBlock: React.FC = () => {
       children: [{ text: 'function foo() {\n  alert("foo");\n}' }],
     },
   ]);
+  console.log(value);
 
   return (
     <Editor

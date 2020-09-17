@@ -18,6 +18,7 @@ import LeafCode from './LeafCode';
 export interface CodePluginOptions {
   block?: Partial<SlashPluginElementDescriptor>;
   mark?: Partial<SlashPluginLeafDescriptor>;
+  defaultLanguage?: string;
 }
 
 const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
@@ -66,6 +67,19 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
           <ElementCode {...props} onSetLanguage={setBlockLanguage} />
         ),
         returnBehaviour: 'soft-break',
+        turnInto: (editor): void => {
+          Transforms.setNodes(editor, {
+            type: blockType,
+            language: options.defaultLanguage || 'javascript',
+          });
+        },
+        insert: (editor): void => {
+          Transforms.insertNodes(editor, {
+            type: blockType,
+            language: options.defaultLanguage || 'javascript',
+            children: [{ text: '' }],
+          });
+        },
         ...(options.block || {}),
       },
     ],
