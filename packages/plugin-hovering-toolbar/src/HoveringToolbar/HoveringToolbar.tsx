@@ -1,25 +1,26 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSlate, ReactEditor } from 'slate-react';
 import { Range, Editor } from 'slate';
-import { HoveringToolbarPortal } from '../HoveringToolbarPortal';
+import { useEditorState, useUI } from '@sheets-editor/core';
 
 export type HoveringToolbarProps = React.HTMLProps<HTMLDivElement>;
-
-const baseStyle: React.HTMLAttributes<HTMLDivElement>['style'] = {
-  position: 'absolute',
-  zIndex: 1,
-  top: -1000,
-  left: -1000,
-  opacity: 0,
-};
 
 export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
   children,
 }) => {
-  const [style, setStyle] = useState(baseStyle);
+  const { Popover } = useUI();
+  const { toggle, turnOff, turnOn } = useEditorState();
+  const [anchorPosition, setAnchorPosition] = useState<{
+    top: number;
+    left: number;
+  }>({ top: 0, left: 0 });
   const [mouseDown, setMouseDown] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
   const editor = useSlate();
+  const open = toggle('hovering-toolbar');
+
+  const close = useCallback(() => {
+    turnOff('hovering-toolbar');
+  }, []);
 
   useEffect(() => {
     function handleMouseDown(): void {
@@ -40,10 +41,9 @@ export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
   }, []);
 
   useEffect(() => {
-    const el = ref.current;
     const { selection } = editor;
 
-    if (!el || mouseDown) {
+    if (!selection || mouseDown) {
       return;
     }
 
@@ -53,7 +53,7 @@ export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
       Range.isCollapsed(selection) ||
       Editor.string(editor, selection) === ''
     ) {
-      setStyle(baseStyle);
+      close();
       return;
     }
 
@@ -63,20 +63,29 @@ export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
     }
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
-    setStyle({
-      ...baseStyle,
-      opacity: 1,
-      top: rect.top + window.pageYOffset - el.offsetHeight,
-      left:
-        rect.left + window.pageXOffset - el.offsetWidth / 2 + rect.width / 2,
+    setAnchorPosition({
+      top: rect.top + window.pageYOffset - 8,
+      left: rect.left + window.pageXOffset + rect.width / 2,
     });
+    turnOn('hovering-toolbar');
   }, [editor.selection, mouseDown]);
 
   return (
-    <HoveringToolbarPortal>
-      <div ref={ref} style={style}>
-        {children}
-      </div>
-    </HoveringToolbarPortal>
+    <Popover
+      open={open}
+      anchorReference="anchorPosition"
+      onClose={close}
+      anchorPosition={anchorPosition}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+    >
+      {children}
+    </Popover>
   );
 };
