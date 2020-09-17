@@ -6,6 +6,7 @@ import withPlugins from '../withPlugins';
 import { SlashPluginFactory } from '../withPlugins/withPlugins';
 import UIProvider, { UIComponents } from '../UIProvider';
 import { EditableProps } from 'slate-react/dist/components/editable';
+import { EditorStateProvider } from '../EditorStateProvider';
 
 export interface EditorProps {
   placeholder?: string;
@@ -44,10 +45,12 @@ const Editor: React.FC<EditorProps> = ({
 
   return (
     <Slate editor={editor} value={value} onChange={onChange}>
-      <UIProvider components={components}>
-        {children}
-        {editable}
-      </UIProvider>
+      <EditorStateProvider>
+        <UIProvider components={components}>
+          {children}
+          {editable}
+        </UIProvider>
+      </EditorStateProvider>
     </Slate>
   );
 };

@@ -10,3 +10,4 @@ export * from './utils';
 export * from './queries';
 export { default as UIProvider } from './UIProvider';
 export * from './UIProvider';
+export * from './EditorStateProvider';
