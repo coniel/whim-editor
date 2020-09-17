@@ -35,3 +35,31 @@ export const Default: React.FC = () => {
     />
   );
 };
+
+export const Placeholders: React.FC = () => {
+  const [value, setValue] = useState<Node[]>([
+    {
+      type: 'h1',
+      children: [{ text: '' }],
+    },
+    {
+      type: 'h2',
+      children: [{ text: '' }],
+    },
+    {
+      type: 'h3',
+      children: [{ text: '' }],
+    },
+  ]);
+
+  return (
+    <Editor
+      components={components}
+      value={value}
+      plugins={[Heading]}
+      onChange={(newValue): void => {
+        setValue(newValue);
+      }}
+    />
+  );
+};

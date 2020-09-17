@@ -58,9 +58,9 @@ const createHeadingPlugin = (
   };
 
   const HOTKEYS: HeadingHotkeys = {
-    [HEADING_1]: 'mod+Shift+1',
-    [HEADING_2]: 'mod+Shift+2',
-    [HEADING_3]: 'mod+Shift+3',
+    [HEADING_1]: 'mod+alt+1',
+    [HEADING_2]: 'mod+alt+2',
+    [HEADING_3]: 'mod+alt+3',
     ...hotkeys,
   };
 
