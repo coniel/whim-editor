@@ -6,6 +6,8 @@ import {
   getBlockAbove,
   Transforms,
   RenderElementProps,
+  SlashPluginLeafDescriptor,
+  SlashPluginElementDescriptor,
 } from '@sheets-editor/core';
 import isHotkey from 'is-hotkey';
 import { ReactEditor } from 'slate-react';
@@ -14,12 +16,19 @@ import ElementCode from './ElementCode';
 import LeafCode from './LeafCode';
 
 export interface CodePluginOptions {
-  foo?: string;
+  block?: Partial<SlashPluginElementDescriptor>;
+  mark?: Partial<SlashPluginLeafDescriptor>;
 }
 
 const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
   editor: SlashEditor,
 ): SlashPlugin => {
+  let blockType = 'code';
+
+  if (options.block && options.block.type) {
+    blockType = options.block.type;
+  }
+
   function setBlockLanguage(
     element: RenderElementProps['element'],
     language: string,
@@ -32,13 +41,13 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
     onKeyDown: (event): void => {
       if (isHotkey('Tab', (event as unknown) as KeyboardEvent)) {
         const parent = getBlockAbove(editor);
-        if (parent[0].type === 'code-block') {
+        if (parent[0].type === 'code') {
           event.preventDefault();
           editor.insertText('  ');
         }
       }
     },
-    decorate: createDecorator(editor),
+    decorate: createDecorator(editor, blockType),
     renderLeaf: ({ attributes, children, leaf }): React.ReactElement => {
       if (leaf.decorateCode) {
         return (
@@ -52,11 +61,12 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
     },
     elements: [
       {
-        type: 'code-block',
+        type: blockType,
         component: (props): React.ReactElement => (
           <ElementCode {...props} onSetLanguage={setBlockLanguage} />
         ),
         returnBehaviour: 'soft-break',
+        ...(options.block || {}),
       },
     ],
     leaves: [

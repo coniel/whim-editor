@@ -11,7 +11,7 @@ const Code = CodePlugin();
 export const CodeBlock: React.FC = () => {
   const [value, setValue] = useState<Node[]>([
     {
-      type: 'code-block',
+      type: 'code',
       language: 'javascript',
       children: [{ text: 'function foo() {\n  alert("foo");\n}' }],
     },

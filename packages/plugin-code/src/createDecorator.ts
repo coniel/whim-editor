@@ -81,10 +81,10 @@ const getLength = (token: string | Token): number => {
 };
 
 // decorate function depends on the language selected
-export const createDecorator = (editor: SlashEditor) => ([node, path]: [
-  Node,
-  Path,
-]): Range[] => {
+export const createDecorator = (editor: SlashEditor, type: string) => ([
+  node,
+  path,
+]: [Node, Path]): Range[] => {
   const ranges: Range[] = [];
   if (!Text.isText(node)) {
     return ranges;
@@ -92,7 +92,7 @@ export const createDecorator = (editor: SlashEditor) => ([node, path]: [
 
   const parent = getBlockAbove(editor, { at: path });
 
-  if (!parent || !isNodeType(parent, { allow: ['code-block'] })) {
+  if (!parent || !isNodeType(parent, { allow: [type] })) {
     return ranges;
   }
 
