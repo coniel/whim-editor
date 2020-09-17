@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](http://test/compare/v0.9.0...v0.10.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* add core as dependency to new packages ([2f11c8a](http://test/commits/2f11c8a122a2b55bb430a18698681c49680bf974))
+* **core:** fix withPlugins insertData overwriting plugin insertData ([8c931af](http://test/commits/8c931af3519c759aa7a417488f4ede44422340bf))
+
+
+### Features
+
+* **plugin-link:** lots of UX improvements ([be16a44](http://test/commits/be16a44d4121b3eb8b0e848dd375bb0019d37c10))
+* create plugin-hovering-toolbar ([853f712](http://test/commits/853f712e4cecb378c099ae5f0f45401f9cf17ea0))
+* **core:** add EditorStateProvider allowing global editor state within react components ([ba96fa5](http://test/commits/ba96fa57eb9c8465c79b1a961cc2a67e8e1e8a50))
+* create plugin-blockquote ([0edfb98](http://test/commits/0edfb985d0b5f3c8f627788fa60b56bedcc385d7))
+* **code-plugin:** add ability to configure plugin ([962a376](http://test/commits/962a376b4f45b61dabc614a0a61c834005f330d3))
+* **core:** add backspace out behaviour ([ede3a66](http://test/commits/ede3a661c87d18cf4794c54f3bf8c8c87e71c517))
+* **plugin-equation:** add ability to configure plugin ([900ad11](http://test/commits/900ad11a2f135770d4254d983b836ab1238783b5))
+* **plugin-heading:** Add placeholder & reconfigure default hotkeys ([804b84f](http://test/commits/804b84f8f88273a16eef4306bb1f8ac149f0484d))
+
+
+
+
+
 # [0.9.0](http://test/compare/v0.8.1...v0.9.0) (2020-08-31)
 
 

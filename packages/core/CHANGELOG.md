@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/coniel/slash/compare/v0.9.0...v0.10.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **core:** fix withPlugins insertData overwriting plugin insertData ([8c931af](https://github.com/coniel/slash/commit/8c931af3519c759aa7a417488f4ede44422340bf))
+
+
+### Features
+
+* **core:** add backspace out behaviour ([ede3a66](https://github.com/coniel/slash/commit/ede3a661c87d18cf4794c54f3bf8c8c87e71c517))
+* **core:** add EditorStateProvider allowing global editor state within react components ([ba96fa5](https://github.com/coniel/slash/commit/ba96fa57eb9c8465c79b1a961cc2a67e8e1e8a50))
+
+
+
+
+
 # [0.9.0](https://github.com/coniel/slash/compare/v0.8.1...v0.9.0) (2020-08-31)
 
 

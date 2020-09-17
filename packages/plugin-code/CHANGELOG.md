@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/coniel/slash/compare/v0.9.0...v0.10.0) (2020-09-17)
+
+
+### Features
+
+* **code-plugin:** add ability to configure plugin ([962a376](https://github.com/coniel/slash/commit/962a376b4f45b61dabc614a0a61c834005f330d3))
+
+
+
+
+
 # [0.9.0](https://github.com/coniel/slash/compare/v0.8.1...v0.9.0) (2020-08-31)
 
 
