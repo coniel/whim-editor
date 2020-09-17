@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Node } from 'slate';
 import components from '@sheets-editor/material-ui';
-import { Editor, useEditorState } from '@sheets-editor/core';
+import { Editor } from '@sheets-editor/core';
 import LinkPlugin from './LinkPlugin';
 import { useEditor } from 'slate-react';
 import { EditorWithLinkPlugin } from './LinkPlugin.types';
-import { LinkPopover } from './LinkPopover';
 
 export default { title: 'Plugins|Link' };
 
 const Link = LinkPlugin();
-const CustomLink = LinkPlugin({});
 const initialValue = [
   {
     children: [
@@ -53,7 +51,6 @@ const Toolbar: React.FC = () => {
       >
         B
       </button>
-      <LinkPopover />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import isUrl from 'is-url';
 import { Editor, Range, Node } from 'slate';
 import {
@@ -10,6 +11,7 @@ import {
 import ElementLink from './ElementLink';
 import isHotkey from 'is-hotkey';
 import { EditorWithLinkPlugin } from './LinkPlugin.types';
+import { LinkPopover } from './LinkPopover';
 
 export interface LinkPluginOptions {
   hotkey?: string;
@@ -51,7 +53,14 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
 const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
   editor: SlashEditor,
 ): SlashPlugin => {
-  const { insertText, insertData, normalizeNode } = editor;
+  const { insertText, insertData, normalizeNode, renderEditable } = editor;
+
+  editor.renderEditable = (props): JSX.Element => (
+    <>
+      {renderEditable(props)}
+      <LinkPopover />
+    </>
+  );
 
   editor.insertLink = (url: string): void => {
     if (editor.selection) {
