@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](http://test/compare/v0.12.0...v0.12.1) (2020-09-18)
+
+
+### Bug Fixes
+
+* **core:** add disableRestoreFocus to prevent unintended behaviour when opening a secondary popover ([b4b4fdd](http://test/commits/b4b4fddb671989f7b3805e70cdd1a181e7a07f4d))
+
+
+
+
+
 # [0.12.0](http://test/compare/v0.11.0...v0.12.0) (2020-09-18)
 
 
