@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/coniel/slash/compare/v0.11.0...v0.12.0) (2020-09-18)
+
+
+### Bug Fixes
+
+* **plugin-hovering-toolbar:** fix popover position being reset on click ([0bda669](https://github.com/coniel/slash/commit/0bda6699c82702bf00557e379af704f6bf1735b2))
+
+
+
+
+
 # [0.11.0](https://github.com/coniel/slash/compare/v0.10.2...v0.11.0) (2020-09-17)
 
 

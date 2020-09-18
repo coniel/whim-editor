@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/coniel/slash/compare/v0.11.0...v0.12.0) (2020-09-18)
+
+
+### Features
+
+* **core:** add option to disable backdrop for Popover component ([4ad115d](https://github.com/coniel/slash/commit/4ad115d8bb1964a26129b83c8a560830570da8ef))
+
+
+
+
+
 # [0.11.0](https://github.com/coniel/slash/compare/v0.10.2...v0.11.0) (2020-09-17)
 
 **Note:** Version bump only for package @sheets-editor/material-ui

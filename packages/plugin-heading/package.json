@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-heading",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Adds support for various heading sizes",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,8 +23,8 @@
     "dist"
   ],
   "devDependencies": {
-    "@sheets-editor/core": "^0.11.0",
-    "@sheets-editor/material-ui": "^0.11.0"
+    "@sheets-editor/core": "^0.12.0",
+    "@sheets-editor/material-ui": "^0.12.0"
   },
   "publishConfig": {
     "access": "public"
