@@ -43,7 +43,11 @@ export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
   useEffect(() => {
     const { selection } = editor;
 
-    if (!selection || mouseDown) {
+    if (open && (!selection || Range.isCollapsed(selection))) {
+      close();
+    }
+
+    if (open || !selection || mouseDown) {
       return;
     }
 
@@ -72,6 +76,7 @@ export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
 
   return (
     <Popover
+      disableBackdrop
       open={open}
       anchorReference="anchorPosition"
       onClose={close}

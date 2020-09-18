@@ -1,10 +1,71 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Node, Transforms } from 'slate';
+import { ReactEditor, useEditor, useFocused, useSlate } from 'slate-react';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
+import createRichTextPlugin, {
+  SlashEditorWithRichText,
+} from '@sheets-editor/plugin-rich-text';
 import { HoveringToolbar } from './HoveringToolbar';
 
 export default { title: 'Plugins|HoveringToolbar' };
+
+const RichText = createRichTextPlugin();
+
+const Toolbar: React.FC = () => {
+  const editor = useEditor() as SlashEditorWithRichText;
+  const slateEditor = useSlate();
+  const focused = useFocused();
+
+  console.log('focused', focused);
+
+  return (
+    <>
+      <button
+        type="button"
+        style={{ marginRight: 8, fontWeight: 'bold' }}
+        onMouseDown={(event): void => {
+          event.preventDefault();
+          event.stopPropagation();
+          editor.toggleRichTextFormat('bold');
+          ReactEditor.focus(editor);
+        }}
+      >
+        B
+      </button>
+      <button
+        type="button"
+        style={{ marginRight: 8 }}
+        onMouseDown={(event): void => {
+          event.preventDefault();
+          editor.toggleRichTextFormat('italic');
+        }}
+      >
+        <em>I</em>
+      </button>
+      <button
+        type="button"
+        style={{ marginRight: 8 }}
+        onMouseDown={(event): void => {
+          event.preventDefault();
+          editor.toggleRichTextFormat('underline');
+        }}
+      >
+        <u>U</u>
+      </button>
+      <button
+        type="button"
+        style={{ marginRight: 8, textDecoration: 'line-through' }}
+        onMouseDown={(event): void => {
+          event.preventDefault();
+          editor.toggleRichTextFormat('strike-through');
+        }}
+      >
+        S
+      </button>
+    </>
+  );
+};
 
 export const WithHoveringToolbarPlugin: React.FC = () => {
   const [value, setValue] = useState<Node[]>([
@@ -30,12 +91,13 @@ export const WithHoveringToolbarPlugin: React.FC = () => {
     <Editor
       components={components}
       value={value}
+      plugins={[RichText]}
       onChange={(newValue): void => {
         setValue(newValue);
       }}
     >
       <HoveringToolbar>
-        <div
+        {/* <div
           style={{
             backgroundColor: '#FFF',
             borderRadius: 3,
@@ -43,9 +105,9 @@ export const WithHoveringToolbarPlugin: React.FC = () => {
             boxShadow:
               'rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px',
           }}
-        >
-          Toolbar content
-        </div>
+        > */}
+        <Toolbar />
+        {/* </div> */}
       </HoveringToolbar>
     </Editor>
   );
