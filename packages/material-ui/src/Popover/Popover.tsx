@@ -13,6 +13,7 @@ export interface PopoverProps {
   open: boolean;
   anchorEl?: HTMLElement | null;
   anchorPosition?: PopoverAnchorPosition;
+  disableBackdrop?: boolean;
 }
 
 const useStyles = makeStyles(() =>
@@ -27,11 +28,18 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const Popover: React.FC<PopoverProps> = ({ children, ...other }) => {
+const Popover: React.FC<PopoverProps> = ({
+  children,
+  disableBackdrop,
+  ...other
+}) => {
   const classes = useStyles();
 
   return (
     <MuiPopover
+      disableAutoFocus
+      disableEnforceFocus
+      style={disableBackdrop ? { pointerEvents: 'none' } : {}}
       anchorReference="anchorEl"
       anchorOrigin={{
         vertical: 'bottom',
@@ -44,7 +52,9 @@ const Popover: React.FC<PopoverProps> = ({ children, ...other }) => {
       classes={classes}
       {...other}
     >
-      {children}
+      <div style={disableBackdrop ? { pointerEvents: 'all' } : {}}>
+        {children}
+      </div>
     </MuiPopover>
   );
 };

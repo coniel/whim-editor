@@ -51,6 +51,7 @@ export interface PopoverProps {
   anchorReference?: 'anchorPosition' | 'anchorEl';
   onClose: () => void;
   open: boolean;
+  disableBackdrop?: boolean;
   anchorEl?: HTMLElement | null;
   anchorPosition?: PopoverAnchorPosition;
   anchorOrigin?: PopoverAnchorOrigin;
