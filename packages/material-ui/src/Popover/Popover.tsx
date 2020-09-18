@@ -38,6 +38,7 @@ const Popover: React.FC<PopoverProps> = ({
     <MuiPopover
       disableAutoFocus
       disableEnforceFocus
+      disableRestoreFocus
       style={disableBackdrop ? { pointerEvents: 'none' } : {}}
       anchorReference="anchorEl"
       anchorOrigin={{

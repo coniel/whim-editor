@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@sheets-editor/material-ui": "^0.12.0",
+    "@sheets-editor/plugin-link": "^0.12.0",
     "@sheets-editor/plugin-rich-text": "^0.12.0"
   },
   "scripts": {
