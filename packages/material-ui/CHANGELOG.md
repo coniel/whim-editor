@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/coniel/slash/compare/v0.12.1...v0.13.0) (2020-09-19)
+
+
+### Features
+
+* **core:** add Tooltip component to UI components ([b5d4808](https://github.com/coniel/slash/commit/b5d48086450bd2ca364130eb82583f1252f2f964))
+
+
+
+
+
 ## [0.12.1](https://github.com/coniel/slash/compare/v0.12.0...v0.12.1) (2020-09-18)
 
 

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](http://test/compare/v0.12.1...v0.13.0) (2020-09-19)
+
+
+### Bug Fixes
+
+* **plugin-equation:** fix focus being lost after exiting inline euqation popover ([67aa3e8](http://test/commits/67aa3e8e2f57a5859ceb496ef50506e315a8552f))
+* **plugin-ordered-list:** fix selection moving to block above when inserting using shotcut ([66435d8](http://test/commits/66435d8c0c08659f0f200bc85c871fe34ee744f5))
+* **plugin-unordered-list:** fix selection moving to block above when inserting using shotcut ([83c34a1](http://test/commits/83c34a10be93fc2d9485081719624e27fc7da722))
+* fix hotkey and return behaviour bugs ([9e3c8ed](http://test/commits/9e3c8ed081b8335590d04a5a011d5881657749bb))
+
+
+### Features
+
+* **core:** add Tooltip component to UI components ([b5d4808](http://test/commits/b5d48086450bd2ca364130eb82583f1252f2f964))
+* **plugin-code:** add default shortcut and adjust stlying ([c0561b8](http://test/commits/c0561b85e38d815855c3dd7401d410079923aeba))
+* **plugin-link:** add http protocol to links without protocol ([d15789b](http://test/commits/d15789b382f396b1ba3e15c4c5be83af09077f8c))
+
+
+
+
+
 ## [0.12.1](http://test/compare/v0.12.0...v0.12.1) (2020-09-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/coniel/slash/compare/v0.12.1...v0.13.0) (2020-09-19)
+
+
+### Bug Fixes
+
+* **plugin-ordered-list:** fix selection moving to block above when inserting using shotcut ([66435d8](https://github.com/coniel/slash/commit/66435d8c0c08659f0f200bc85c871fe34ee744f5))
+
+
+
+
+
 ## [0.12.1](https://github.com/coniel/slash/compare/v0.12.0...v0.12.1) (2020-09-18)
 
 **Note:** Version bump only for package @sheets-editor/plugin-ordered-list
