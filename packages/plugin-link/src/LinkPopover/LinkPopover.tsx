@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import isUrl from 'is-url';
 import { useSlate, ReactEditor, useEditor } from 'slate-react';
 import { Node, NodeEntry, Path, Range } from 'slate';
 import {
@@ -88,11 +89,23 @@ export const LinkPopover: React.FC = () => {
     if (!value) {
       return;
     }
+
+    // Don't allow scripts
+    if (value.substr(0, 11) === 'javascript:') {
+      return;
+    }
+
+    let url = value;
+
+    if (!isUrl(value) && value.substr(0, 7) !== 'mailto:') {
+      url = `http://${url}`;
+    }
+
     Transforms.wrapNodes(
       editor,
       {
         type: 'link',
-        url: value,
+        url,
         children: [],
       },
       { at: selection, split: true },
