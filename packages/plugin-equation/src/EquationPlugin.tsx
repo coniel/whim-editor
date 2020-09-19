@@ -26,6 +26,8 @@ const EquationPlugin = (
   options: EquationPluginOptions = {},
 ): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
   const equationEditor = editor as SlashEditorWithEquation;
+  const blockType = (options.block || {}).type || 'equation';
+  const inlineType = (options.inline || {}).type || 'equation-inline';
 
   const insertInlineEquation = (): void => {
     let tex = '';
@@ -37,7 +39,7 @@ const EquationPlugin = (
       }
     }
     Transforms.insertNodes(editor, {
-      type: 'equation-inline',
+      type: inlineType,
       tex: tex,
       children: [{ text: '' }],
     });
@@ -55,7 +57,7 @@ const EquationPlugin = (
     Transforms.wrapNodes(
       editor,
       {
-        type: 'equation-inline',
+        type: inlineType,
         tex,
         children: [{ text: '' }],
       },
@@ -65,7 +67,7 @@ const EquationPlugin = (
 
   const insertBlockEquation = (): void => {
     Transforms.insertNodes(editor, {
-      type: 'equation',
+      type: blockType,
       tex: '',
       children: [{ text: '' }],
     });
@@ -76,7 +78,7 @@ const EquationPlugin = (
     element: Element,
   ): void => {
     Transforms.setNodes(editor, {
-      type: 'equation',
+      type: blockType,
       tex: Node.string(element),
     });
   };
@@ -91,7 +93,7 @@ const EquationPlugin = (
       {
         isVoid: true,
         component: BlockEquation,
-        type: 'equation',
+        type: blockType,
         shortcuts: ['$$$ '],
         insert: insertBlockEquation,
         turnInto: turnIntoBlockEquation,
@@ -101,7 +103,7 @@ const EquationPlugin = (
         isVoid: true,
         isInline: true,
         component: InlineEquationPlaceholder,
-        type: 'equation-inline',
+        type: inlineType,
         hotkeys: ['mod+Shift+e'],
         insert: insertInlineEquation,
         turnInto: turnIntoInlineEquation,
