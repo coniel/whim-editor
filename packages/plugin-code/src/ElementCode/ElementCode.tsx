@@ -125,6 +125,7 @@ const ElementCode: React.FC<ElementCodeProps> = ({
   return (
     <div
       style={{
+        margin: '8px 0',
         borderRadius: 3,
         backgroundColor: '#F7F6F3',
         position: 'relative',

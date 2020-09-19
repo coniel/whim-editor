@@ -63,6 +63,7 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
     elements: [
       {
         type: blockType,
+        shortcuts: ['``` '],
         component: (props): React.ReactElement => (
           <ElementCode {...props} onSetLanguage={setBlockLanguage} />
         ),
