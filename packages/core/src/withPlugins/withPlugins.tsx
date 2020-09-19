@@ -277,7 +277,7 @@ const withPlugins = (
                 let action: HotkeyAction['action'] =
                   turnInto || turnIntoNode(slashEditor, type);
 
-                if (isInline) {
+                if (isInline || isVoid) {
                   action = insert || insertEmptyNode(slashEditor, type);
                 }
 
