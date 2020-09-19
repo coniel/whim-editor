@@ -1,7 +1,7 @@
-import { SlashEditorWithRichText } from './RichTextPlugin';
+import { EditorWithRichTextPlugin } from './RichTextPlugin';
 
 function onDOMBeforeInputRichText(
-  editor: SlashEditorWithRichText,
+  editor: EditorWithRichTextPlugin,
   event: Event,
 ): void {
   switch ((event as InputEvent).inputType) {

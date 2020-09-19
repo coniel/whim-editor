@@ -14,7 +14,7 @@ import StrikeThrough from './RichTextStrikeThrough';
 
 export type RichTextFormat = 'bold' | 'italic' | 'underline' | 'strike-through';
 
-export interface SlashEditorWithRichText extends SlashEditor {
+export interface EditorWithRichTextPlugin extends SlashEditor {
   addRichTextFormat: (mark: RichTextFormat) => void;
   removeRichTextFormat: (mark: RichTextFormat) => void;
   toggleRichTextFormat: (mark: RichTextFormat) => void;
@@ -137,7 +137,7 @@ const createRichTextPlugin = (
       }
     }
 
-    const richTextEditor = editor as SlashEditorWithRichText;
+    const richTextEditor = editor as EditorWithRichTextPlugin;
 
     richTextEditor.isRichTextFormatActive = isRichTextFormatActive;
     richTextEditor.addRichTextFormat = addRichTextFormat;
@@ -154,15 +154,6 @@ const createRichTextPlugin = (
           ? (SHORTCUTS[format] as MarkShortcut[])
           : [],
       })),
-      elements: [
-        {
-          shortcuts: ['[]'],
-          component: ({ children, attributes }): React.ReactElement => (
-            <pre {...attributes}>{children}</pre>
-          ),
-          type: 'code',
-        },
-      ],
       elementDeserializers: {
         DIV: (): DeserializeElementValue => ({ type: 'text' }),
         P: (): DeserializeElementValue => ({ type: 'text' }),
