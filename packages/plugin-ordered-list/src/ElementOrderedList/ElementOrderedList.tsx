@@ -24,11 +24,13 @@ const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
       <div
         contentEditable={false}
         style={{
+          userSelect: 'none',
           marginRight: 4,
           width: 24,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          marginTop: '0.07em',
           minHeight: 'calc(1em + 3px + 3px)',
           flexGrow: 0,
           flexShrink: 0,
