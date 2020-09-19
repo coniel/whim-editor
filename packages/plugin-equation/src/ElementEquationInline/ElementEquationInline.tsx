@@ -70,6 +70,8 @@ const ElementEquationInline: React.FC<RenderElementProps> = ({
         editor.deleteBackward('character');
       }
     }
+
+    ReactEditor.focus(editor);
   };
 
   const handleKeyDown = (
@@ -92,6 +94,7 @@ const ElementEquationInline: React.FC<RenderElementProps> = ({
             unit: 'character',
             reverse: true,
           });
+          ReactEditor.focus(editor);
         } else if (selectionEnd === value.length && key === 'ArrowRight') {
           event.preventDefault();
           setOpen(false);
@@ -100,6 +103,7 @@ const ElementEquationInline: React.FC<RenderElementProps> = ({
             distance: 1,
             unit: 'character',
           });
+          ReactEditor.focus(editor);
         }
       }
     }
