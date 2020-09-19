@@ -6,6 +6,7 @@ import Popover from './Popover';
 import TextField from './TextField';
 import MenuItem from './MenuItem';
 import List from './List';
+import { Tooltip } from './Tooltip';
 
 export { default as Popover } from './Popover';
 export * from './Popover';
@@ -31,6 +32,8 @@ export * from './MenuItem';
 export { default as TextField } from './TextField';
 export * from './TextField';
 
+export * from './Tooltip';
+
 const components = {
   InlinePlaceholder,
   BlockPlaceholder,
@@ -40,6 +43,7 @@ const components = {
   List,
   MenuItem,
   TextField,
+  Tooltip,
 };
 
 export default components;

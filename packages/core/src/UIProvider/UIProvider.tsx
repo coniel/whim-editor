@@ -68,6 +68,14 @@ export type MenuItem = React.FC<MenuItemProps>;
 export type TextFieldProps = React.HTMLProps<HTMLInputElement>;
 export type TextField = React.FC<TextFieldProps>;
 
+export interface TooltipProps {
+  children: React.ReactElement<any, any>;
+  title: React.ReactNode;
+  shortcut?: string;
+  image?: string;
+}
+export type Tooltip = React.FC<TooltipProps>;
+
 export interface UIComponents {
   Button: Button;
   BlockPlaceholder: BlockPlaceholder;
@@ -77,6 +85,7 @@ export interface UIComponents {
   List: List;
   MenuItem: MenuItem;
   TextField: TextField;
+  Tooltip: Tooltip;
 }
 
 export interface UIProviderProps {
