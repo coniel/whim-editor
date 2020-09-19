@@ -13,8 +13,8 @@ import BlockEquation from './ElementEquationBlock';
 export interface SlashEditorWithEquation extends SlashEditor {
   insertInlineEquation: () => void;
   insertBlockEquation: () => void;
-  turnIntoInlineEquation: (element: Element) => void;
-  turnIntoBlockEquation: (element: Element) => void;
+  turnIntoInlineEquation: (editor: SlashEditor, element: Element) => void;
+  turnIntoBlockEquation: (editor: SlashEditor, element: Element) => void;
 }
 
 export interface EquationPluginOptions {
@@ -28,9 +28,17 @@ const EquationPlugin = (
   const equationEditor = editor as SlashEditorWithEquation;
 
   const insertInlineEquation = (): void => {
+    let tex = '';
+
+    if (editor.selection) {
+      const selection = window.getSelection();
+      if (selection) {
+        tex = selection.toString();
+      }
+    }
     Transforms.insertNodes(editor, {
       type: 'equation-inline',
-      tex: '',
+      tex: tex,
       children: [{ text: '' }],
     });
   };
@@ -63,7 +71,10 @@ const EquationPlugin = (
     });
   };
 
-  const turnIntoBlockEquation = (element: Element): void => {
+  const turnIntoBlockEquation = (
+    editor: SlashEditor,
+    element: Element,
+  ): void => {
     Transforms.setNodes(editor, {
       type: 'equation',
       tex: Node.string(element),
@@ -81,7 +92,7 @@ const EquationPlugin = (
         isVoid: true,
         component: BlockEquation,
         type: 'equation',
-        shortcuts: ['$$$'],
+        shortcuts: ['$$$ '],
         insert: insertBlockEquation,
         turnInto: turnIntoBlockEquation,
         ...(options.block || {}),

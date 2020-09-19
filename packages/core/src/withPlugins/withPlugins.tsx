@@ -120,8 +120,10 @@ interface HotkeyAction {
   action:
     | InsertEmptyNode
     | TurnIntoNode
+    | InsertEmptyNode
     | ToggleMark
-    | SlashPluginElementDescriptor['turnInto'];
+    | SlashPluginElementDescriptor['turnInto']
+    | SlashPluginElementDescriptor['insert'];
   type: string;
 }
 
@@ -263,6 +265,7 @@ const withPlugins = (
             hotkeys,
             shortcuts,
             turnInto,
+            insert,
             type,
             isVoid,
             isInline,
@@ -271,9 +274,16 @@ const withPlugins = (
           }) => {
             if (hotkeys) {
               hotkeys.forEach((hotkey) => {
+                let action: HotkeyAction['action'] =
+                  turnInto || turnIntoNode(slashEditor, type);
+
+                if (isInline) {
+                  action = insert || insertEmptyNode(slashEditor, type);
+                }
+
                 hotkeyActions[hotkey] = {
                   type,
-                  action: turnInto || turnIntoNode(slashEditor, type),
+                  action,
                 };
               });
             }
@@ -473,7 +483,18 @@ const withPlugins = (
 
     if (isHotkey('Enter', (event as unknown) as KeyboardEvent)) {
       const entry = getBlockAbove(slashEditor);
+
       if (
+        isBlockAboveEmpty(editor) &&
+        !isNodeType(entry, {
+          allow: ['paragraph'],
+        })
+      ) {
+        // Turn into default
+        event.preventDefault();
+        Transforms.setNodes(slashEditor, { type: 'paragraph' });
+      } else if (
+        // Break out
         isNodeType(entry, {
           exclude: [...sameTypeElements, ...softBreakElements],
           allow: breakOutElements,
@@ -482,6 +503,7 @@ const withPlugins = (
         event.preventDefault();
         insertEmptyNode(slashEditor, 'paragraph')();
       } else if (
+        // Soft break
         isNodeType(entry, {
           exclude: [...sameTypeElements, ...breakOutElements],
           allow: softBreakElements,
@@ -489,9 +511,6 @@ const withPlugins = (
       ) {
         event.preventDefault();
         slashEditor.insertText('\n');
-      } else if (isBlockAboveEmpty(editor)) {
-        event.preventDefault();
-        Transforms.setNodes(slashEditor, { type: 'paragraph' });
       }
     }
 

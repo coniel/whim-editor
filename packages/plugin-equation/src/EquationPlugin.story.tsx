@@ -23,6 +23,7 @@ const Toolbar: React.FC = () => {
           event.stopPropagation();
           editor.selection && Range.isExpanded(editor.selection)
             ? editor.turnIntoInlineEquation(
+                editor,
                 Node.get(editor, editor.selection.anchor.path) as Element,
               )
             : editor.insertInlineEquation();

@@ -1,5 +1,6 @@
 import { SlashEditor, SlashPluginElementDescriptor } from './withPlugins';
 import { Range, Transforms, Editor, Element } from 'slate';
+import { getBlockAbove } from '../queries';
 
 export interface BlockShortcut {
   trigger: string;
@@ -53,6 +54,7 @@ const withBlockShortcuts = (
       if (shortcut && type !== shortcut.type) {
         Transforms.select(editor, range);
         Transforms.delete(editor);
+
         if (shortcut.turnInto && block) {
           shortcut.turnInto(editor, block[0] as Element);
         } else {
@@ -62,11 +64,6 @@ const withBlockShortcuts = (
             { match: (n) => Editor.isBlock(editor, n) },
           );
         }
-
-        Transforms.setSelection(editor, {
-          anchor: { path, offset: 0 },
-          focus: { path, offset: 0 },
-        });
 
         return;
       }
