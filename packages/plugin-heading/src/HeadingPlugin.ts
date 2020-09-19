@@ -16,7 +16,7 @@ const HEADING_3 = 'heading-3';
 
 export type HeadingType = 'heading-1' | 'heading-2' | 'heading-3';
 
-export type SlashEditorWithHeading = SlashEditor;
+export type EditorWithHeadingPlugin = SlashEditor;
 
 export type HeadingHotkeys = {
   [key in HeadingType]: string | false;
