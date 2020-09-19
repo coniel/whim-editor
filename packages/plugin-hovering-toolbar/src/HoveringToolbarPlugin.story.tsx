@@ -4,7 +4,7 @@ import { ReactEditor, useEditor, useFocused, useSlate } from 'slate-react';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import createRichTextPlugin, {
-  SlashEditorWithRichText,
+  EditorWithRichTextPlugin,
 } from '@sheets-editor/plugin-rich-text';
 import createLinkPlugin, {
   EditorWithLinkPlugin,
@@ -13,7 +13,7 @@ import { HoveringToolbar } from './HoveringToolbar';
 
 interface EditorWithPlugins
   extends EditorWithLinkPlugin,
-    SlashEditorWithRichText {}
+    EditorWithRichTextPlugin {}
 
 export default { title: 'Plugins|HoveringToolbar' };
 
