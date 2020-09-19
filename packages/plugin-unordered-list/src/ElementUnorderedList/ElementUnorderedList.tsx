@@ -20,6 +20,7 @@ const ElementUnorderedList: React.FC<ElementUnorderedListProps> = ({
       <div
         contentEditable={false}
         style={{
+          userSelect: 'none',
           marginRight: 4,
           width: 24,
           display: 'flex',
@@ -38,7 +39,7 @@ const ElementUnorderedList: React.FC<ElementUnorderedListProps> = ({
             height: 6,
             borderRadius: 6,
             background: 'currentcolor',
-            marginTop: '0.1em',
+            marginTop: '0.2em',
           }}
         />
       </div>
