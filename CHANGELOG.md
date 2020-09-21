@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](http://test/compare/v0.13.0...v0.13.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* **core:** always consider void blocks as not empty in isBlockAboveEmpty ([25e0cb4](http://test/commits/25e0cb4c547e159cb26f908782cd354a972422ad))
+* **core:** make hotkeys insert void elements rather than turn into ([c876ef0](http://test/commits/c876ef05a00e64d96b48dbbe815d679c89013afe))
+* **plugin-code:** allow passing in block component in options ([179531c](http://test/commits/179531c83f49f864313ba57da8d7239b41d14c70))
+* **plugin-equation:** allow type overriding from options ([6c7c423](http://test/commits/6c7c423a22ffc77fdf23c3c428a6615ed1e8920b))
+
+
+
+
+
 # [0.13.0](http://test/compare/v0.12.1...v0.13.0) (2020-09-19)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/coniel/slash/compare/v0.13.0...v0.13.1) (2020-09-21)
+
+
+### Bug Fixes
+
+* **plugin-equation:** allow type overriding from options ([6c7c423](https://github.com/coniel/slash/commit/6c7c423a22ffc77fdf23c3c428a6615ed1e8920b))
+
+
+
+
+
 # [0.13.0](https://github.com/coniel/slash/compare/v0.12.1...v0.13.0) (2020-09-19)
 
 
