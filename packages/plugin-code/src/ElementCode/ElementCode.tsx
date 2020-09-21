@@ -87,7 +87,7 @@ const ElementCode: React.FC<ElementCodeProps> = ({
   onSetLanguage,
 }) => {
   const { Button, Popover, List, MenuItem, TextField } = useUI();
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonContainerRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState('');
   const [selectOpen, setSelectOpen] = useState(false);
   const [language, setLanguage] = useState(element.language);
@@ -147,10 +147,10 @@ const ElementCode: React.FC<ElementCodeProps> = ({
       <div
         contentEditable={false}
         style={{ position: 'absolute', bottom: 8, right: 8 }}
+        ref={buttonContainerRef}
       >
         <Button
           style={{ border: 0, color: '#757575' }}
-          ref={buttonRef}
           onClick={(): void => setSelectOpen(true)}
           endIcon={<DropdownIcon />}
         >
@@ -158,7 +158,7 @@ const ElementCode: React.FC<ElementCodeProps> = ({
         </Button>
         <Popover
           open={selectOpen}
-          anchorEl={buttonRef.current}
+          anchorEl={buttonContainerRef.current}
           onClose={handleClose}
           anchorOrigin={{
             vertical: 'bottom',
