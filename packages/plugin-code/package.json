@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-code",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "Adds support for syntax highlighted code blocks.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

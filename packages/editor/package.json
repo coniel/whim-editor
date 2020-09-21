@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/editor",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "Full editor includeing all plugins",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,7 +13,7 @@
     "@sheets-editor/core": "^0.14.0",
     "@sheets-editor/plugin-block": "^0.14.0",
     "@sheets-editor/plugin-blockquote": "^0.14.0",
-    "@sheets-editor/plugin-code": "^0.14.0",
+    "@sheets-editor/plugin-code": "^0.14.1",
     "@sheets-editor/plugin-equation": "^0.14.0",
     "@sheets-editor/plugin-heading": "^0.14.0",
     "@sheets-editor/plugin-hovering-toolbar": "^0.14.0",
