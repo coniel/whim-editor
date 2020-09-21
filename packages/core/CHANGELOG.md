@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/coniel/slash/compare/v0.13.1...v0.14.0) (2020-09-21)
+
+
+### Features
+
+* **core:** add onClickDelete property to UI BlockPlaceholder ([a4bd5ff](https://github.com/coniel/slash/commit/a4bd5ff6bedaf2a86a6d678664e25850ecf5b1ae))
+
+
+
+
+
 ## [0.13.1](https://github.com/coniel/slash/compare/v0.13.0...v0.13.1) (2020-09-21)
 
 
