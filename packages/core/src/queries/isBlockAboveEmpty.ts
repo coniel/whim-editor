@@ -8,5 +8,5 @@ import { isAncestorEmpty } from './isAncestorEmpty';
 export const isBlockAboveEmpty = (editor: Editor): boolean => {
   const blockEntry = getBlockAbove(editor);
   const [block] = blockEntry;
-  return isAncestorEmpty(editor, block);
+  return !editor.isVoid(block) && isAncestorEmpty(editor, block);
 };
