@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useEditor, ReactEditor } from 'slate-react';
-import { Transforms } from 'slate';
+import { useEditor, ReactEditor, useSelected } from 'slate-react';
+import { Transforms, Range } from 'slate';
 import { useUI, useHardReturn, RenderElementProps } from '@sheets-editor/core';
 import EquationError from '../EquationError';
 import useTex from '../utils/useTex';
@@ -17,12 +17,24 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
   element,
 }) => {
   const { BlockPlaceholder, VoidBlock, Button, Popover } = useUI();
-  const [open, setOpen] = useState(!element.tex);
+  const selected = useSelected();
+  const [open, setOpen] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const { html, error, onChange, value } = useTex(element.tex as string, {
     displayMode: true,
   });
   const editor = useEditor();
+
+  useEffect(() => {
+    if (
+      !element.tex &&
+      editor.selection &&
+      selected &&
+      Range.isCollapsed(editor.selection)
+    ) {
+      setOpen(true);
+    }
+  }, [selected, editor.selection, element.tex]);
 
   useEffect(() => {
     Transforms.setNodes(
