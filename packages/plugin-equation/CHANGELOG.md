@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/coniel/slash/compare/v0.14.1...v0.14.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* **plugin-equation:** fix popover opening on load ([924468b](https://github.com/coniel/slash/commit/924468b8df8697281e7214a7904c2b89ce3b38be))
+
+
+
+
+
 # [0.14.0](https://github.com/coniel/slash/compare/v0.13.1...v0.14.0) (2020-09-21)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](http://test/compare/v0.14.1...v0.14.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* **plugin-code:** move language selection popup anchor ref to button container ([0fc8d0e](http://test/commits/0fc8d0efaf2e00985e590f5935583912bf4c0a72))
+* **plugin-equation:** fix popover opening on load ([924468b](http://test/commits/924468b8df8697281e7214a7904c2b89ce3b38be))
+
+
+
+
+
 ## [0.14.1](http://test/compare/v0.14.0...v0.14.1) (2020-09-21)
 
 **Note:** Version bump only for package sheets-editor

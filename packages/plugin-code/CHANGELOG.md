@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/coniel/slash/compare/v0.14.1...v0.14.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* **plugin-code:** move language selection popup anchor ref to button container ([0fc8d0e](https://github.com/coniel/slash/commit/0fc8d0efaf2e00985e590f5935583912bf4c0a72))
+
+
+
+
+
 ## [0.14.1](https://github.com/coniel/slash/compare/v0.14.0...v0.14.1) (2020-09-21)
 
 **Note:** Version bump only for package @sheets-editor/plugin-code
