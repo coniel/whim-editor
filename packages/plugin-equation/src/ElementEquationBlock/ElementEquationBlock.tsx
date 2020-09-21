@@ -47,6 +47,15 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
     handleClose();
   };
 
+  const handleDelete = (event: React.MouseEvent): void => {
+    event.preventDefault();
+    const path = ReactEditor.findPath(editor, element);
+    Transforms.removeNodes(editor, {
+      at: path,
+      match: (node) => node.id === element.id,
+    });
+  };
+
   return (
     <div {...attributes}>
       <div ref={divRef}>
@@ -56,6 +65,7 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
             label="Add a TeX equation"
             icon={<TexIcon />}
             onClick={handleOpen}
+            onClickDelete={handleDelete}
           />
         )}
         {value && (

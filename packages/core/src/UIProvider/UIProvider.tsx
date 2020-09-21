@@ -6,6 +6,7 @@ export interface BlockPlaceholderProps
   label: React.ReactNode;
   icon?: React.ReactNode;
   onClick?: (event: React.MouseEvent) => void;
+  onClickDelete?: (event: React.MouseEvent) => void;
 }
 export type BlockPlaceholder = React.FC<BlockPlaceholderProps>;
 
