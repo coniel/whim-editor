@@ -12,11 +12,15 @@ import {
 import isHotkey from 'is-hotkey';
 import { ReactEditor } from 'slate-react';
 import { createDecorator } from './createDecorator';
-import ElementCode from './ElementCode';
+import ElementCode, { ElementCodeProps } from './ElementCode';
 import LeafCode from './LeafCode';
 
+interface BlockOptions extends Omit<SlashPluginElementDescriptor, 'component'> {
+  component: React.FC<ElementCodeProps>;
+}
+
 export interface CodePluginOptions {
-  block?: Partial<SlashPluginElementDescriptor>;
+  block?: Partial<BlockOptions>;
   mark?: Partial<SlashPluginLeafDescriptor>;
   defaultLanguage?: string;
 }
@@ -25,6 +29,10 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
   editor: SlashEditor,
 ): SlashPlugin => {
   let blockType = 'code';
+  let BlockComponent: BlockOptions['component'] = ElementCode;
+  if (options.block && options.block.component) {
+    BlockComponent = options.block.component;
+  }
 
   if (options.block && options.block.type) {
     blockType = options.block.type;
@@ -64,9 +72,6 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
       {
         type: blockType,
         shortcuts: ['``` '],
-        component: (props): React.ReactElement => (
-          <ElementCode {...props} onSetLanguage={setBlockLanguage} />
-        ),
         returnBehaviour: 'soft-break',
         turnInto: (editor): void => {
           Transforms.setNodes(editor, {
@@ -82,6 +87,9 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
           });
         },
         ...(options.block || {}),
+        component: (props): React.ReactElement => (
+          <BlockComponent {...props} onSetLanguage={setBlockLanguage} />
+        ),
       },
     ],
     leaves: [

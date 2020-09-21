@@ -16,7 +16,7 @@ interface Language {
 
 const languages: Language[] = [
   { value: 'abap', label: 'ABAP' },
-  { value: 'arduino', label: 'Arduino' },
+  // { value: 'arduino', label: 'Arduino' },
   { value: 'bash', label: 'Bash' },
   { value: 'basic', label: 'BASIC' },
   { value: 'c', label: 'C' },
