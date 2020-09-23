@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import ElementOrderedList, {
   ElementOrderedListProps,
 } from './ElementOrderedList';
-import { SlashEditor } from '@sheets-editor/core/src';
+import { SlashEditor } from '@sheets-editor/core';
 
 const TYPE = 'foo';
 const TEXT = 'Some text';

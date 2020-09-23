@@ -14,6 +14,7 @@ import {
   Element as SlateElement,
   Transforms,
   Editor,
+  Path,
 } from 'slate';
 import { EditableProps } from 'slate-react/dist/components/editable';
 import { getBlockAbove, isNodeType, isBlockAboveEmpty } from '../queries';
@@ -73,6 +74,7 @@ export interface SlashEditor extends ReactEditor {
   decorate: (entry: NodeEntry<Node>) => Range[];
   onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void | undefined;
   onDOMBeforeInput: (event: Event) => void;
+  deleteElement: (element: Element) => void;
 }
 
 export interface SlashPluginElementDescriptor {
@@ -205,6 +207,41 @@ const withPlugins = (
   editor.renderEditable = (props: EditableProps): React.ReactNode => (
     <Editable {...props} />
   );
+
+  editor.deleteElement = (element: Element): void => {
+    if (!SlateElement.isElement(element)) {
+      return;
+    }
+    const path = ReactEditor.findPath(editor, element);
+    const nextPath = Path.next(path);
+    const hasPrevPath = path.slice(-1)[0] !== 0;
+    let prevPath = path;
+    if (hasPrevPath) {
+      prevPath = Path.previous(path);
+    }
+    const hasPrev = !Node.has(editor, prevPath);
+
+    const nodeProps = Object.keys(element).filter(
+      (key) => !['id', 'children'].includes(key),
+    );
+
+    if (!Node.has(editor, nextPath)) {
+      Transforms.unsetNodes(editor, nodeProps, { at: path });
+      Transforms.setNodes(
+        editor,
+        { type: 'paragraph', children: [{ text: '' }] },
+        { at: path },
+      );
+      Transforms.select(editor, path);
+    } else {
+      Transforms.removeNodes(editor, { at: path });
+      Transforms.select(editor, hasPrev ? prevPath : path);
+    }
+
+    console.log(editor.selection);
+
+    ReactEditor.focus(editor);
+  };
 
   // Add ID to new nodes
   editor.apply = (operation): void => {

@@ -1,3 +1,4 @@
+import { UIComponents } from '@sheets-editor/core';
 import InlinePlaceholder from './InlinePlaceholder';
 import BlockPlaceholder from './BlockPlaceholder';
 import VoidBlock from './VoidBlock';
@@ -34,7 +35,7 @@ export * from './TextField';
 
 export * from './Tooltip';
 
-const components = {
+const components: UIComponents = {
   InlinePlaceholder,
   BlockPlaceholder,
   VoidBlock,

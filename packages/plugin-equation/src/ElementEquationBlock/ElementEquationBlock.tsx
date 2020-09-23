@@ -1,7 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useEditor, ReactEditor, useSelected } from 'slate-react';
 import { Transforms, Range } from 'slate';
-import { useUI, useHardReturn, RenderElementProps } from '@sheets-editor/core';
+import {
+  useUI,
+  useHardReturn,
+  RenderElementProps,
+  SlashEditor,
+} from '@sheets-editor/core';
 import EquationError from '../EquationError';
 import useTex from '../utils/useTex';
 import { EnterIcon, TexIcon } from '../icons';
@@ -23,7 +28,7 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
   const { html, error, onChange, value } = useTex(element.tex as string, {
     displayMode: true,
   });
-  const editor = useEditor();
+  const editor = useEditor() as SlashEditor;
 
   useEffect(() => {
     if (
@@ -61,11 +66,9 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
 
   const handleDelete = (event: React.MouseEvent): void => {
     event.preventDefault();
-    const path = ReactEditor.findPath(editor, element);
-    Transforms.removeNodes(editor, {
-      at: path,
-      match: (node) => node.id === element.id,
-    });
+    console.log('called 2');
+
+    editor.deleteElement(element);
   };
 
   return (

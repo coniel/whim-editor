@@ -127,10 +127,6 @@ export const LinkPopover: React.FC = () => {
     });
 
     close();
-
-    Transforms.setSelection(editor, selection);
-    Transforms.collapse(editor, { edge: 'end' });
-    ReactEditor.focus(reactEditor);
   }, [selection, value]);
 
   const handleSubmit = useCallback(

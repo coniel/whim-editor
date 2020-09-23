@@ -53,6 +53,8 @@ export const Default: React.FC = () => {
   return (
     <BlockPlaceholder
       icon={<Icon />}
+      onClick={(): void => undefined}
+      onClickDelete={(): void => undefined}
       label={text('placeholder', 'Add a TeX equation')}
     />
   );
