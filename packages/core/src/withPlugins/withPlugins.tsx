@@ -105,8 +105,8 @@ export interface SlashPlugin {
   renderLeaf?: (props: RenderLeafProps) => JSX.Element;
   onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void | undefined;
   onDOMBeforeInput?: (event: Event) => void;
-  isVoid?: (element: SlateElement) => boolean;
-  isInline?: (element: SlateElement) => boolean;
+  isVoid?: (element: Node) => boolean;
+  isInline?: (element: Node) => boolean;
   elements?: SlashPluginElementDescriptor[];
   leaves?: SlashPluginLeafDescriptor[];
   insertData?: (data: DataTransfer) => void;
@@ -215,32 +215,57 @@ const withPlugins = (
     const path = ReactEditor.findPath(editor, element);
     const nextPath = Path.next(path);
     const hasPrevPath = path.slice(-1)[0] !== 0;
-    let prevPath = path;
+    let prevPath: Path | null = null;
     if (hasPrevPath) {
       prevPath = Path.previous(path);
     }
-    const hasPrev = !Node.has(editor, prevPath);
+    const hasPrev = prevPath && Node.has(editor, prevPath);
+    const hasNext = Node.has(editor, nextPath);
 
     const nodeProps = Object.keys(element).filter(
       (key) => !['id', 'children'].includes(key),
     );
 
-    if (!Node.has(editor, nextPath)) {
+    if (hasNext && prevPath && hasPrev) {
+      // If there is a previous and next node, delete this node and
+      //  move selection to end of previous node unless it's void
+      Transforms.removeNodes(editor, { at: path, voids: true });
+      if (!editor.isVoid(Node.get(editor, prevPath) as Element)) {
+        setTimeout(() => {
+          Transforms.select(editor, prevPath as Path);
+          Transforms.collapse(editor, { edge: 'end' });
+          ReactEditor.focus(editor);
+        });
+      }
+    } else if (!hasNext) {
+      // If there is no following node, turn this node into a default node
+      // If the element is not void, remove its contents
+      if (!editor.isVoid(element)) {
+        Transforms.select(editor, path);
+        editor.deleteFragment();
+      }
+
+      // Unset all custom node props
       Transforms.unsetNodes(editor, nodeProps, { at: path });
-      Transforms.setNodes(
-        editor,
-        { type: 'paragraph', children: [{ text: '' }] },
-        { at: path },
-      );
-      Transforms.select(editor, path);
+      Transforms.setNodes(editor, { type: 'paragraph' }, { at: path });
+      setTimeout(() => {
+        Transforms.select(editor, path);
+        ReactEditor.focus(editor);
+      });
     } else {
+      // If the node has a next sibling, delete this node and
+      // move selection to the start start of the next node
+      // unless it's a void node
       Transforms.removeNodes(editor, { at: path });
-      Transforms.select(editor, hasPrev ? prevPath : path);
+      if (!editor.isVoid(Node.get(editor, nextPath) as Element)) {
+        // Next node's path will become current path
+        setTimeout(() => {
+          Transforms.select(editor, path);
+          Transforms.collapse(editor, { edge: 'start' });
+          ReactEditor.focus(editor);
+        });
+      }
     }
-
-    console.log(editor.selection);
-
-    ReactEditor.focus(editor);
   };
 
   // Add ID to new nodes

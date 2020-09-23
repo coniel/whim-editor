@@ -66,8 +66,6 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
 
   const handleDelete = (event: React.MouseEvent): void => {
     event.preventDefault();
-    console.log('called 2');
-
     editor.deleteElement(element);
   };
 
