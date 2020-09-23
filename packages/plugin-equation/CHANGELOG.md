@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/coniel/slash/compare/v0.14.2...v0.15.0) (2020-09-23)
+
+
+### Features
+
+* **core:** add deleteElement editor method ([fc5ed57](https://github.com/coniel/slash/commit/fc5ed570ea5000cadddc517864fa15425e551aae))
+
+
+
+
+
 ## [0.14.2](https://github.com/coniel/slash/compare/v0.14.1...v0.14.2) (2020-09-21)
 
 
