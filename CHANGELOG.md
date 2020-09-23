@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](http://test/compare/v0.15.0...v0.15.1) (2020-09-23)
+
+
+### Bug Fixes
+
+* **core:** fix errors thrown by deleteElement method ([32a9e60](http://test/commits/32a9e60ca44e2325a732bcd8f8bea1e87b4fe74d))
+
+
+
+
+
 # [0.15.0](http://test/compare/v0.14.2...v0.15.0) (2020-09-23)
 
 

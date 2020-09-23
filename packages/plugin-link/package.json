@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-link",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "description": "Adds support for links.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,7 +16,7 @@
     "slate-react": "^0.58.1"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.15.0",
+    "@sheets-editor/material-ui": "^0.15.1",
     "@types/is-url": "^1.2.28"
   },
   "scripts": {
