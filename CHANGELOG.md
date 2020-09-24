@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](http://test/compare/v0.15.1...v0.16.0) (2020-09-24)
+
+
+### Bug Fixes
+
+* remove real-time-collaboration plugin from editor ([b68f9d8](http://test/commits/b68f9d8dc12a017f3345f3f95c48d86cdc81cab3))
+
+
+### Features
+
+* create real-time collaboration plugin ([90447a7](http://test/commits/90447a7407da611db5dbefe5e599df4c46b58af3))
+* create slash commandsplugin ([7e48097](http://test/commits/7e480971be79ff3e5eec8e195ac462819b3f75cf))
+
+
+
+
+
 ## [0.15.1](http://test/compare/v0.15.0...v0.15.1) (2020-09-23)
 
 

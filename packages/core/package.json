@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/core",
-  "version": "0.15.1",
+  "version": "0.16.0",
   "description": "The base editor",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -28,7 +28,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.15.1",
+    "@sheets-editor/material-ui": "^0.16.0",
     "@types/uuid": "^8.0.0",
     "assert": "^2.0.0",
     "is-plain-object": "^3.0.0",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/coniel/slash/compare/v0.15.1...v0.16.0) (2020-09-24)
+
+
+### Features
+
+* create real-time collaboration plugin ([90447a7](https://github.com/coniel/slash/commit/90447a7407da611db5dbefe5e599df4c46b58af3))
+
+
+
+
+
 ## [0.15.1](https://github.com/coniel/slash/compare/v0.15.0...v0.15.1) (2020-09-23)
 
 **Note:** Version bump only for package @sheets-editor/plugin-rich-text
