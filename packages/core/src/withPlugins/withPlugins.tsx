@@ -56,9 +56,7 @@ export type ElementDeserializers = Record<
 >;
 
 export type DeserializeMarkValue = Record<string, unknown> | undefined | false;
-
 export type MarkDeserializer = (el: HTMLElement) => DeserializeMarkValue;
-
 export type MarkDeserializers = Record<string, MarkDeserializer>;
 export type CombinedMarkDeserializers = Record<string, MarkDeserializer[]>;
 
@@ -72,10 +70,15 @@ export interface SlashEditor extends ReactEditor {
   renderElement: (props: RenderElementProps) => JSX.Element;
   renderLeaf: (props: RenderLeafProps) => JSX.Element;
   decorate: (entry: NodeEntry<Node>) => Range[];
-  onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void | undefined;
+  onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void | true;
   onDOMBeforeInput: (event: Event) => void;
   deleteElement: (element: Element) => void;
+  insertElement: (type: string) => void;
+  turnIntoElement: (type: string, element: Element) => void;
 }
+
+export type Insert = (editor: SlashEditor) => void;
+export type TurnInto = (editor: SlashEditor, element: SlateElement) => void;
 
 export interface SlashPluginElementDescriptor {
   component: React.ReactType<RenderElementProps>;
@@ -84,8 +87,8 @@ export interface SlashPluginElementDescriptor {
   hotkeys?: string[];
   isVoid?: boolean;
   isInline?: boolean;
-  insert?: (editor: SlashEditor) => void;
-  turnInto?: (editor: SlashEditor, element: SlateElement) => void;
+  insert?: Insert;
+  turnInto?: TurnInto;
   returnBehaviour?: 'break-out' | 'same-type' | 'soft-break';
   backspaceOutBehaviour?: 'delete' | 'turn-into-default' | 'do-nothing';
 }
@@ -103,7 +106,7 @@ export interface SlashPlugin {
   markDeserializers?: MarkDeserializers;
   renderElement?: (props: RenderElementProps) => JSX.Element | undefined;
   renderLeaf?: (props: RenderLeafProps) => JSX.Element;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void | undefined;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void | true;
   onDOMBeforeInput?: (event: Event) => void;
   isVoid?: (element: Node) => boolean;
   isInline?: (element: Node) => boolean;
@@ -196,6 +199,8 @@ const withPlugins = (
   editor: ReactEditor,
   pluginFactories: SlashPluginFactory[],
 ): SlashEditor => {
+  const insertMap: Record<string, Insert | InsertEmptyNode> = {};
+  const turnIntoMap: Record<string, TurnInto | TurnIntoNode> = {};
   const { apply } = editor;
   const plugins: SlashPlugin[] = [];
   editor.onKeyDown = (): void => undefined;
@@ -270,25 +275,69 @@ const withPlugins = (
 
   // Add ID to new nodes
   editor.apply = (operation): void => {
+    // console.log(operation);
+
+    if (['insert_text', 'set_node', 'remove_text'].includes(operation.type)) {
+      const applied = apply(operation);
+      // setTimeout(() => {
+      //   console.log('--- update ---');
+      //   console.log(getBlockAbove(editor)[0]);
+      // });
+
+      return applied;
+    }
+    if (
+      operation.type === 'merge_node' &&
+      !operation.properties.isInline &&
+      operation.properties.type
+    ) {
+      console.log('deleted block (merge)', operation);
+    }
+    if (operation.type === 'remove_node' && !operation.node.isInline) {
+      console.log('deleted block (remove)', operation);
+    }
+    if (
+      operation.type === 'split_node' &&
+      !operation.properties.isInline &&
+      operation.properties.type
+    ) {
+      console.log('split block', operation);
+      setTimeout(() => {
+        console.log('created_block', getBlockAbove(editor)[0]);
+      });
+    }
+    if (operation.type === 'insert_node' && !operation.node.isInline) {
+      console.log('inserted block', operation);
+    }
     if (operation.type === 'split_node' && operation.properties.type) {
-      return apply({
+      apply({
         ...operation,
         properties: {
           ...operation.properties,
           id: v4(),
         },
       });
+      // setTimeout(() => {
+      //   console.log('--- split_node ---');
+      //   console.log(getBlockAbove(editor)[0]);
+      // });
+      return;
     }
     if (operation.type === 'insert_node') {
       const { node } = operation;
       if (SlateElement.isElement(node)) {
-        return apply({
+        apply({
           ...operation,
           node: {
             ...node,
             id: v4(),
           },
         });
+        // setTimeout(() => {
+        //   console.log('--- insert_node ---');
+        //   console.log(getBlockAbove(editor)[0]);
+        // });
+        return;
       }
     }
 
@@ -314,7 +363,6 @@ const withPlugins = (
       const {
         renderElement,
         renderLeaf,
-        onKeyDown,
         onDOMBeforeInput,
         decorate,
       } = slashEditor;
@@ -334,6 +382,8 @@ const withPlugins = (
             returnBehaviour,
             backspaceOutBehaviour = 'turn-into-default',
           }) => {
+            insertMap[type] = insert || insertEmptyNode(slashEditor, type);
+            turnIntoMap[type] = turnInto || turnIntoNode(slashEditor, type);
             if (hotkeys) {
               hotkeys.forEach((hotkey) => {
                 let action: HotkeyAction['action'] =
@@ -476,14 +526,6 @@ const withPlugins = (
         return renderLeaf({ ...props, children });
       };
 
-      slashEditor.onKeyDown = (event): void => {
-        if (plugin.onKeyDown) {
-          plugin.onKeyDown(event);
-        }
-
-        onKeyDown(event);
-      };
-
       slashEditor.onDOMBeforeInput = (event): void => {
         if (plugin.onDOMBeforeInput) {
           plugin.onDOMBeforeInput(event);
@@ -523,8 +565,11 @@ const withPlugins = (
     editor as SlashEditor,
   );
 
-  const { onKeyDown } = slashEditor;
+  editor.insertElement = (type: string) => insertMap[type](slashEditor);
+  editor.turnIntoElement = (type: string, element: Element) =>
+    turnIntoMap[type](slashEditor, element);
 
+  const { onKeyDown } = slashEditor;
   slashEditor.onKeyDown = (event): void => {
     for (const hotkey in hotkeyActions) {
       if (isHotkey(hotkey, (event as unknown) as KeyboardEvent)) {
@@ -544,6 +589,7 @@ const withPlugins = (
     }
 
     if (isHotkey('Enter', (event as unknown) as KeyboardEvent)) {
+      console.log('called root Enter');
       const entry = getBlockAbove(slashEditor);
 
       if (
@@ -634,8 +680,27 @@ const withPlugins = (
   };
 
   plugins.forEach((plugin) => {
+    const { onKeyDown, insertData } = slashEditor;
     if (plugin.insertData) {
-      slashEditor.insertData = plugin.insertData;
+      slashEditor.insertData = (data) => {
+        if (plugin.insertData) {
+          plugin.insertData(data);
+        }
+        insertData(data);
+      };
+    }
+
+    let handledByPlugin = false;
+    if (plugin.onKeyDown) {
+      slashEditor.onKeyDown = (event): void => {
+        if (plugin.onKeyDown) {
+          handledByPlugin = !!plugin.onKeyDown(event);
+        }
+
+        if (!handledByPlugin) {
+          onKeyDown(event);
+        }
+      };
     }
   });
 
