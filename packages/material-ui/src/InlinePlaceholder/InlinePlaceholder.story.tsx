@@ -1,5 +1,4 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
 import InlinePlaceholder from './InlinePlaceholder';
 
 export default {
@@ -23,10 +22,5 @@ const Icon: React.FC = () => (
 );
 
 export const Default: React.FC = () => {
-  return (
-    <InlinePlaceholder
-      icon={<Icon />}
-      label={text('placeholder', 'New equation')}
-    />
-  );
+  return <InlinePlaceholder icon={<Icon />} label="New equation" />;
 };

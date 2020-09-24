@@ -10,11 +10,11 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
+    "@sheets-editor/core": "^0.15.1",
     "is-hotkey": "^0.1.6",
     "prismjs": "^1.21.0"
   },
   "peerDependencies": {
-    "@sheets-editor/core": "^0.8.1",
     "react": "^16.9.0",
     "slate": "^0.58.1",
     "slate-react": "^0.58.1"

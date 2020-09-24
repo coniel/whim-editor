@@ -46,7 +46,9 @@ const BlockPlugin = (): SlashPluginFactory => (
     renderElement: (props): JSX.Element =>
       renderElement({
         ...props,
-        children: (
+        children: editor.isInline(props.element) ? (
+          props.children
+        ) : (
           <ElementBlock id={props.element.id}>{props.children}</ElementBlock>
         ),
       }),

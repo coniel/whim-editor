@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { Node } from 'slate';
 import Editor from './Editor';
@@ -27,7 +26,7 @@ export const Default: React.FC = () => {
   return (
     <Editor
       components={components}
-      placeholder={text('placeholder', 'Type some text')}
+      placeholder="Placeholder text"
       value={value}
       onChange={(newValue): void => {
         setValue(newValue);
@@ -52,7 +51,7 @@ export const WithPlugin: React.FC = () => {
   return (
     <Editor
       components={components}
-      placeholder={text('placeholder', 'Type some text')}
+      placeholder="Type some text"
       value={value}
       plugins={[plugin]}
       onChange={(newValue): void => {

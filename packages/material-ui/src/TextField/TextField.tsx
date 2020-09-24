@@ -26,7 +26,7 @@ export type TextFieldProps = React.HTMLProps<HTMLInputElement>;
 const TextField: React.FC<TextFieldProps> = (props) => {
   const classes = userStyles();
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return <InputBase classes={classes} {...props} />;
 };

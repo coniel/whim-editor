@@ -679,17 +679,18 @@ const BlockPluginProvider: React.FC = ({ children }) => {
     );
 
     if (triggerBlock) {
-      const path = ReactEditor.findPath(editor, triggerBlock);
-      incrementPath(path);
+      let path = ReactEditor.findPath(editor, triggerBlock);
+      path = Path.next(path);
       Transforms.insertNodes(
         editor,
-        { type: 'text', children: [{ text: '' }] },
-        { at: path },
+        { type: 'paragraph', children: [{ text: '' }] },
+        { at: path, select: true },
       );
-      editor.selection = {
-        anchor: { path, offset: 0 },
-        focus: { path, offset: 0 },
-      };
+      setTimeout(() => {
+        ReactEditor.focus(editor);
+        setSelectedBlocks([]);
+        setBlockSelection(null);
+      });
     }
   }, [hoverBlock, editor.children]);
 

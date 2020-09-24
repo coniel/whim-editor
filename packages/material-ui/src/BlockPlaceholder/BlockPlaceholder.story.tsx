@@ -1,5 +1,4 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
 import BlockPlaceholder from './BlockPlaceholder';
 
 export default {
@@ -55,7 +54,7 @@ export const Default: React.FC = () => {
       icon={<Icon />}
       onClick={(): void => undefined}
       onClickDelete={(): void => undefined}
-      label={text('placeholder', 'Add a TeX equation')}
+      label="Add a TeX equation"
     />
   );
 };

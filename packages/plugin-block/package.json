@@ -10,7 +10,6 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "peerDependencies": {
-    "@sheets-editor/core": ">=0.5.0",
     "react": "^16.9.0",
     "slate": "^0.58.1",
     "slate-react": "^0.58.1"
@@ -23,7 +22,6 @@
     "dist"
   ],
   "devDependencies": {
-    "@sheets-editor/core": "^0.15.1",
     "@sheets-editor/material-ui": "^0.15.1",
     "@sheets-editor/plugin-heading": "^0.15.1",
     "@types/react-transition-group": "^4.4.0",
@@ -31,6 +29,7 @@
     "lorem-ipsum": "^2.0.3"
   },
   "dependencies": {
+    "@sheets-editor/core": "^0.15.1",
     "@react-hook/mouse-position": "^4.1.0",
     "@react-hook/window-scroll": "^1.3.0",
     "is-hotkey": "^0.1.6",

@@ -9,20 +9,15 @@ export default {
 
 export const Default: React.FC = () => {
   const [value, setValue] = useState<Node[]>([
-    // {
-    //   type: 'paragraph',
-    //   id: '4',
-    //   children: [
-    //     {
-    //       text:
-    //         'Vivamus euismod mauris. Maecenas vestibulum mollis diam. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus. Suspendisse non nisl sit amet velit hendrerit rutrum. Curabitur blandit mollis lacus.',
-    //     },
-    //   ],
-    // },
     {
-      type: 'equation',
-      id: '3',
-      children: [{ text: '' }],
+      type: 'paragraph',
+      id: '4',
+      children: [
+        {
+          text:
+            'Vivamus euismod mauris. Maecenas vestibulum mollis diam. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus. Suspendisse non nisl sit amet velit hendrerit rutrum. Curabitur blandit mollis lacus.',
+        },
+      ],
     },
   ]);
 
