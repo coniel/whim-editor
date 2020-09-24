@@ -17,18 +17,12 @@ import createBlockquotePlugin from '@sheets-editor/plugin-blockquote';
 import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
 import createBlockPlugin from '@sheets-editor/plugin-block';
 import createSlashCommandsPlugin from '@sheets-editor/plugin-slash-commands';
-import createRealTimeCollaborationPlugin, {
-  RealTimeCollaborationPluginOptions,
-} from '@sheets-editor/plugin-real-time-collaboration';
 import { Node as SlateNode } from 'slate';
 import muiComponents from '@sheets-editor/material-ui';
 import { HoveringToolbar } from './HoveringToolbar';
 
 export type Node = SlateNode;
-export interface EditorProps
-  extends Pick<SheetsEditorProps, 'onChange' | 'value'> {
-  realTimeCollaborationConfig: RealTimeCollaborationPluginOptions;
-}
+export type EditorProps = Pick<SheetsEditorProps, 'onChange' | 'value'>;
 
 const RichTextPlugin = createRichTextPlugin({
   marks: {
@@ -169,13 +163,7 @@ export const Editor: React.FC<EditorProps> = ({
   onChange,
   children,
   value,
-  realTimeCollaborationConfig,
 }) => {
-  const RealTimeCollaborationPlugin = useMemo(
-    () => createRealTimeCollaborationPlugin(realTimeCollaborationConfig),
-    [realTimeCollaborationConfig],
-  );
-
   return (
     <SheetsEditor
       components={muiComponents}
@@ -192,7 +180,6 @@ export const Editor: React.FC<EditorProps> = ({
         BlockquotePlugin,
         EquationPlugin,
         SlashCommandsPlugin,
-        RealTimeCollaborationPlugin,
         BlockPlugin,
       ]}
       onChange={onChange}
