@@ -1,7 +1,7 @@
 {
-  "name": "@sheets-editor/plugin-rich-text",
+  "name": "@sheets-editor/plugin-real-time-collaboration",
   "version": "0.15.1",
-  "description": "Adds basic rich-text functionality",
+  "description": "Adds support for real time collaboration between multiple editors.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
@@ -10,25 +10,27 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
+    "pusher-js": "^7.0.0",
+    "uuid": "^8.3.0",
     "@sheets-editor/core": "^0.15.1"
   },
   "peerDependencies": {
+    "@sheets-editor/core": "^0.5.0",
     "react": "^16.9.0",
     "slate": "^0.58.1",
     "slate-react": "^0.58.1"
+  },
+  "devDependencies": {
+    "@sheets-editor/material-ui": "^0.15.1"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
     "build:es": "BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .ts,.tsx --delete-dir-on-start --no-comments"
   },
-  "files": [
-    "dist"
-  ],
-  "devDependencies": {
-    "@sheets-editor/material-ui": "^0.15.1"
-  },
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "ef2c8c394fb504d14427529da4ff2e20aca4367c"
+  "files": [
+    "dist"
+  ]
 }
