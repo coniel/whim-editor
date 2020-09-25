@@ -73,18 +73,26 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
         type: blockType,
         shortcuts: ['``` '],
         returnBehaviour: 'soft-break',
-        turnInto: (editor): void => {
-          Transforms.setNodes(editor, {
-            type: blockType,
-            language: options.defaultLanguage || 'javascript',
-          });
+        turnInto: (editor, element, turnIntoOptions): void => {
+          Transforms.setNodes(
+            editor,
+            {
+              type: blockType,
+              language: options.defaultLanguage || 'javascript',
+            },
+            turnIntoOptions,
+          );
         },
-        insert: (editor): void => {
-          Transforms.insertNodes(editor, {
-            type: blockType,
-            language: options.defaultLanguage || 'javascript',
-            children: [{ text: '' }],
-          });
+        insert: (editor, insertOptions): void => {
+          Transforms.insertNodes(
+            editor,
+            {
+              type: blockType,
+              language: options.defaultLanguage || 'javascript',
+              children: [{ text: '' }],
+            },
+            insertOptions,
+          );
         },
         ...(options.block || {}),
         component: (props): React.ReactElement => (

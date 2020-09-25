@@ -3,6 +3,8 @@ import {
   SlashPlugin,
   SlashEditor,
   SlashPluginElementDescriptor,
+  TurnInto,
+  Insert,
 } from '@sheets-editor/core';
 import { Transforms, Element, Node } from 'slate';
 import 'katex/dist/katex.min.css';
@@ -11,10 +13,10 @@ import InlineEquationPlaceholder from './ElementEquationInline';
 import BlockEquation from './ElementEquationBlock';
 
 export interface SlashEditorWithEquation extends SlashEditor {
-  insertInlineEquation: () => void;
-  insertBlockEquation: () => void;
-  turnIntoInlineEquation: (editor: SlashEditor, element: Element) => void;
-  turnIntoBlockEquation: (editor: SlashEditor, element: Element) => void;
+  insertInlineEquation: Insert;
+  insertBlockEquation: Insert;
+  turnIntoInlineEquation: TurnInto;
+  turnIntoBlockEquation: TurnInto;
 }
 
 export interface EquationPluginOptions {
@@ -29,7 +31,7 @@ const EquationPlugin = (
   const blockType = (options.block || {}).type || 'equation';
   const inlineType = (options.inline || {}).type || 'equation-inline';
 
-  const insertInlineEquation = (): void => {
+  const insertInlineEquation: Insert = (editor, options) => {
     let tex = '';
 
     if (editor.selection) {
@@ -38,14 +40,18 @@ const EquationPlugin = (
         tex = selection.toString();
       }
     }
-    Transforms.insertNodes(editor, {
-      type: inlineType,
-      tex: tex,
-      children: [{ text: '' }],
-    });
+    Transforms.insertNodes(
+      editor,
+      {
+        type: inlineType,
+        tex: tex,
+        children: [{ text: '' }],
+      },
+      options,
+    );
   };
 
-  const turnIntoInlineEquation = (): void => {
+  const turnIntoInlineEquation: TurnInto = (editor, options) => {
     let tex = '';
     if (editor.selection) {
       const selection = window.getSelection();
@@ -61,26 +67,31 @@ const EquationPlugin = (
         tex,
         children: [{ text: '' }],
       },
-      { split: true },
+      { split: true, ...options },
     );
   };
 
-  const insertBlockEquation = (): void => {
-    Transforms.insertNodes(editor, {
-      type: blockType,
-      tex: '',
-      children: [{ text: '' }],
-    });
+  const insertBlockEquation: Insert = (editor, options) => {
+    Transforms.insertNodes(
+      editor,
+      {
+        type: blockType,
+        tex: '',
+        children: [{ text: '' }],
+      },
+      options,
+    );
   };
 
-  const turnIntoBlockEquation = (
-    editor: SlashEditor,
-    element: Element,
-  ): void => {
-    Transforms.setNodes(editor, {
-      type: blockType,
-      tex: Node.string(element),
-    });
+  const turnIntoBlockEquation: TurnInto = (editor, element, options): void => {
+    Transforms.setNodes(
+      editor,
+      {
+        type: blockType,
+        tex: Node.string(element),
+      },
+      options,
+    );
   };
 
   equationEditor.insertBlockEquation = insertBlockEquation;

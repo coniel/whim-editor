@@ -26,7 +26,7 @@ const Toolbar: React.FC = () => {
                 editor,
                 Node.get(editor, editor.selection.anchor.path) as Element,
               )
-            : editor.insertInlineEquation();
+            : editor.insertElement('equation-inline');
         }}
       >
         Inline
@@ -37,7 +37,7 @@ const Toolbar: React.FC = () => {
         onMouseDown={(event): void => {
           event.preventDefault();
           event.stopPropagation();
-          editor.insertBlockEquation();
+          editor.insertElement('equation');
         }}
       >
         Block

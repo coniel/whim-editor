@@ -73,12 +73,28 @@ export interface SlashEditor extends ReactEditor {
   onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void | true;
   onDOMBeforeInput: (event: Event) => void;
   deleteElement: (element: Element) => void;
-  insertElement: (type: string) => void;
-  turnIntoElement: (type: string, element: Element) => void;
+  insertElement: (type: string, options?: InsertOptions) => void;
+  turnIntoElement: (
+    type: string,
+    element: Element,
+    options?: TurnIntoOptions,
+  ) => void;
 }
 
-export type Insert = (editor: SlashEditor) => void;
-export type TurnInto = (editor: SlashEditor, element: SlateElement) => void;
+export interface InsertOptions {
+  at?: Path;
+}
+
+export interface TurnIntoOptions {
+  at?: Path;
+}
+
+export type Insert = (editor: SlashEditor, options?: InsertOptions) => void;
+export type TurnInto = (
+  editor: SlashEditor,
+  element: SlateElement,
+  options?: TurnIntoOptions,
+) => void;
 
 export interface SlashPluginElementDescriptor {
   component: React.ReactType<RenderElementProps>;
@@ -118,8 +134,8 @@ export interface SlashPlugin {
 
 export type SlashPluginFactory = (editor: SlashEditor) => SlashPlugin;
 
-type InsertEmptyNode = (editor?: SlashEditor) => void;
-type TurnIntoNode = (editor?: SlashEditor) => void;
+type InsertEmptyNode = (editor: SlashEditor, options?: InsertOptions) => void;
+type TurnIntoNode = (editor: SlashEditor, options?: TurnIntoOptions) => void;
 type ToggleMark = (editor?: ReactEditor) => void;
 interface HotkeyAction {
   action:
@@ -163,19 +179,27 @@ function renderLeaf(props: RenderLeafProps): JSX.Element {
   return <Leaf {...props} />;
 }
 
-function insertEmptyNode(editor: SlashEditor, type: string): InsertEmptyNode {
-  return (): void =>
-    Transforms.insertNodes(editor, {
-      type,
-      children: [{ text: '' }],
-    });
+function insertEmptyNode(type: string): InsertEmptyNode {
+  return (editor, options): void =>
+    Transforms.insertNodes(
+      editor,
+      {
+        type,
+        children: [{ text: '' }],
+      },
+      options,
+    );
 }
 
-function turnIntoNode(editor: SlashEditor, type: string): InsertEmptyNode {
-  return (): void =>
-    Transforms.setNodes(editor, {
-      type,
-    });
+function turnIntoNode(type: string): TurnIntoNode {
+  return (editor: SlashEditor, options?: TurnIntoOptions): void =>
+    Transforms.setNodes(
+      editor,
+      {
+        type,
+      },
+      options,
+    );
 }
 
 function isMarkActive(editor: SlashEditor, mark: string): boolean {
@@ -382,15 +406,15 @@ const withPlugins = (
             returnBehaviour,
             backspaceOutBehaviour = 'turn-into-default',
           }) => {
-            insertMap[type] = insert || insertEmptyNode(slashEditor, type);
-            turnIntoMap[type] = turnInto || turnIntoNode(slashEditor, type);
+            insertMap[type] = insert || insertEmptyNode(type);
+            turnIntoMap[type] = turnInto || turnIntoNode(type);
             if (hotkeys) {
               hotkeys.forEach((hotkey) => {
                 let action: HotkeyAction['action'] =
-                  turnInto || turnIntoNode(slashEditor, type);
+                  turnInto || turnIntoNode(type);
 
                 if (isInline || isVoid) {
-                  action = insert || insertEmptyNode(slashEditor, type);
+                  action = insert || insertEmptyNode(type);
                 }
 
                 hotkeyActions[hotkey] = {
@@ -565,9 +589,13 @@ const withPlugins = (
     editor as SlashEditor,
   );
 
-  editor.insertElement = (type: string) => insertMap[type](slashEditor);
-  editor.turnIntoElement = (type: string, element: Element) =>
-    turnIntoMap[type](slashEditor, element);
+  editor.insertElement = (type: string, options?: InsertOptions) =>
+    insertMap[type](slashEditor, options);
+  editor.turnIntoElement = (
+    type: string,
+    element: Element,
+    options?: TurnIntoOptions,
+  ) => turnIntoMap[type](slashEditor, element, options);
 
   const { onKeyDown } = slashEditor;
   slashEditor.onKeyDown = (event): void => {
@@ -579,7 +607,7 @@ const withPlugins = (
           const hotkeyAction = hotkeyActions[hotkey];
           if (hotkeyAction && hotkeyAction.action) {
             if (entry[0].type === hotkeyAction.type) {
-              turnIntoNode(slashEditor, 'paragraph')();
+              turnIntoNode('paragraph')(slashEditor);
             } else {
               hotkeyAction.action(slashEditor, entry[0]);
             }
@@ -609,7 +637,7 @@ const withPlugins = (
         })
       ) {
         event.preventDefault();
-        insertEmptyNode(slashEditor, 'paragraph')();
+        insertEmptyNode('paragraph')(slashEditor);
       } else if (
         // Soft break
         isNodeType(entry, {
