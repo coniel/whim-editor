@@ -15,6 +15,6 @@ module.exports = {
     '../packages/plugin-rich-text/src/**/*.story.tsx',
     '../packages/plugin-slash-commands/src/**/*.story.tsx',
     '../packages/plugin-unordered-list/src/**/*.story.tsx',
-    '../packages/plugin-collaboration-pusher/src/**/*.story.tsx',
+    '../packages/plugin-forced-layout/src/**/*.story.tsx',
   ],
 };
