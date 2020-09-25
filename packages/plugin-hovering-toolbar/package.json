@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-hovering-toolbar",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "Adds support for a hovering toolbar.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.16.0"
+    "@sheets-editor/core": "^0.17.0"
   },
   "peerDependencies": {
     "react": "^16.9.0",
@@ -18,9 +18,9 @@
     "slate-react": "^0.58.1"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.16.0",
-    "@sheets-editor/plugin-link": "^0.16.0",
-    "@sheets-editor/plugin-rich-text": "^0.16.0"
+    "@sheets-editor/material-ui": "^0.17.0",
+    "@sheets-editor/plugin-link": "^0.17.0",
+    "@sheets-editor/plugin-rich-text": "^0.17.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

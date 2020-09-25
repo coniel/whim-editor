@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/coniel/slash/compare/v0.16.0...v0.17.0) (2020-09-25)
+
+
+### Features
+
+* **core:** add options to insert and turnInto methods ([99a714b](https://github.com/coniel/slash/commit/99a714ba43a0eff70b9aac29dcbf49a32dd0d1ea))
+
+
+
+
+
 # [0.16.0](https://github.com/coniel/slash/compare/v0.15.1...v0.16.0) (2020-09-24)
 
 **Note:** Version bump only for package @sheets-editor/plugin-code

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](http://test/compare/v0.16.0...v0.17.0) (2020-09-25)
+
+
+### Features
+
+* create forced layout plugin ([d35d402](http://test/commits/d35d402c250a91de13e8898f53f4bee900c85624))
+* **core:** add options to insert and turnInto methods ([99a714b](http://test/commits/99a714ba43a0eff70b9aac29dcbf49a32dd0d1ea))
+
+
+
+
+
 # [0.16.0](http://test/compare/v0.15.1...v0.16.0) (2020-09-24)
 
 
