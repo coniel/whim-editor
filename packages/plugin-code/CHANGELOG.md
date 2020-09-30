@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/coniel/slash/compare/v0.17.0...v0.18.0) (2020-09-30)
+
+
+### Bug Fixes
+
+* add UIProvider to component tests ([98944a4](https://github.com/coniel/slash/commit/98944a435c54a47806beb260918a9d9c8ca23bbe))
+
+
+
+
+
 # [0.17.0](https://github.com/coniel/slash/compare/v0.16.0...v0.17.0) (2020-09-25)
 
 

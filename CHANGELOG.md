@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](http://test/compare/v0.17.0...v0.18.0) (2020-09-30)
+
+
+### Bug Fixes
+
+* add UIProvider to component tests ([98944a4](http://test/commits/98944a435c54a47806beb260918a9d9c8ca23bbe))
+
+
+### Features
+
+* minor fixes and improvements ([7863a23](http://test/commits/7863a23409db9fec7f86ced6646158b0cace0d52))
+
+
+
+
+
 # [0.17.0](http://test/compare/v0.16.0...v0.17.0) (2020-09-25)
 
 
