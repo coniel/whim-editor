@@ -1,6 +1,5 @@
 import React from 'react';
-import { Node } from 'slate';
-import { RenderElementProps } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@sheets-editor/core';
 
 export type ElementHeadingTwoProps = RenderElementProps;
 
@@ -9,12 +8,12 @@ const ElementHeadingTwo: React.FC<ElementHeadingTwoProps> = ({
   children,
   element,
 }) => {
-  const texts = Array.from(Node.texts(element));
-  const hasContent = texts.length > 1 || texts[0][0].text.length > 0;
+  const { PlaceholderText } = useUI();
 
   return (
-    <h2
+    <div
       style={{
+        position: 'relative',
         maxWidth: '100%',
         width: '100%',
         whiteSpace: 'pre-wrap',
@@ -29,23 +28,9 @@ const ElementHeadingTwo: React.FC<ElementHeadingTwoProps> = ({
       }}
       {...attributes}
     >
-      {!hasContent && (
-        <span
-          contentEditable={false}
-          style={{
-            pointerEvents: 'none',
-            display: 'inline-block',
-            width: 0,
-            maxWidth: '100%',
-            whiteSpace: 'nowrap',
-            opacity: 0.25,
-          }}
-        >
-          Heading 2
-        </span>
-      )}
+      <PlaceholderText text="Heading 2" element={element} />
       {children}
-    </h2>
+    </div>
   );
 };
 

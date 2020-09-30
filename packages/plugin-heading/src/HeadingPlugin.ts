@@ -91,6 +91,9 @@ const createHeadingPlugin = (
         H1: (): DeserializeElementValue => ({ type: TYPES[HEADING_1] }),
         H2: (): DeserializeElementValue => ({ type: TYPES[HEADING_2] }),
         H3: (): DeserializeElementValue => ({ type: TYPES[HEADING_3] }),
+        H4: (): DeserializeElementValue => ({ type: TYPES[HEADING_3] }),
+        H5: (): DeserializeElementValue => ({ type: TYPES[HEADING_3] }),
+        H6: (): DeserializeElementValue => ({ type: TYPES[HEADING_3] }),
       },
     };
   };

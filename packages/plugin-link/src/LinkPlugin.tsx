@@ -106,6 +106,14 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
   };
 
   return {
+    elementDeserializers: {
+      A: (el) => {
+        const a = el as HTMLAnchorElement;
+        if (a.href) {
+          return { type: 'link', url: a.href };
+        }
+      },
+    },
     onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>): void => {
       if (
         isHotkey(options.hotkey || 'mod+k', (event as unknown) as KeyboardEvent)
@@ -127,15 +135,15 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
         insertText(text);
       }
     },
-    insertData: (data): void => {
-      const text = data.getData('text/plain');
+    // insertData: (data): void => {
+    //   const text = data.getData('text/plain');
 
-      if (text && isUrl(text)) {
-        wrapLink(editor, text);
-      } else {
-        insertData(data);
-      }
-    },
+    //   if (text && isUrl(text)) {
+    //     wrapLink(editor, text);
+    //   } else {
+    //     insertData(data);
+    //   }
+    // },
   };
 };
 

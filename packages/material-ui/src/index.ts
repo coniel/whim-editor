@@ -8,6 +8,9 @@ import TextField from './TextField';
 import MenuItem from './MenuItem';
 import List from './List';
 import { Tooltip } from './Tooltip';
+import { MenuSectionHeading } from './MenuSectionHeading';
+import { MenuDivider } from './MenuDivider';
+import { PlaceholderText } from './PlaceholderText';
 
 export { default as Popover } from './Popover';
 export * from './Popover';
@@ -34,6 +37,9 @@ export { default as TextField } from './TextField';
 export * from './TextField';
 
 export * from './Tooltip';
+export * from './MenuSectionHeading';
+export * from './PlaceholderText';
+export * from './MenuDivider';
 
 const components: UIComponents = {
   InlinePlaceholder,
@@ -45,6 +51,9 @@ const components: UIComponents = {
   MenuItem,
   TextField,
   Tooltip,
+  MenuSectionHeading,
+  MenuDivider,
+  PlaceholderText,
 };
 
 export default components;

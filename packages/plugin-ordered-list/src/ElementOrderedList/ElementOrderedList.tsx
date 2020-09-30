@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps, SlashEditor } from '@sheets-editor/core';
+import { RenderElementProps, SlashEditor, useUI } from '@sheets-editor/core';
 
 export interface ElementOrderedListProps extends RenderElementProps {
   editor: SlashEditor;
@@ -10,15 +10,19 @@ const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
   children,
   element,
 }) => {
+  const { PlaceholderText } = useUI();
+
   return (
     <div
       {...attributes}
       style={{
+        position: 'relative',
         display: 'flex',
         paddingLeft: 2,
         width: '100%',
         alignItems: 'flex-start',
         padding: '3px 0 3px 2px',
+        margin: '2px 0',
       }}
     >
       <div
@@ -47,7 +51,10 @@ const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
           flexDirection: 'column',
         }}
       >
-        <div style={{ padding: '3px 0' }}>{children}</div>
+        <div style={{ padding: '3px 0' }}>
+          <PlaceholderText text="List" element={element} />
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ describe('deserializeHtml', () => {
   it('should deserialize text nodes', () => {
     const parsed = new DOMParser().parseFromString(richText, 'text/html');
 
-    const fragment = deserialize(parsed.body, {}, {});
+    const fragment = deserialize(parsed.body, null, [{}], {});
 
     expect(fragment[0].text).toBe(
       'Bold text, Italic text, Strikethorugh text, Combined bold and italic text',
@@ -32,14 +32,17 @@ describe('deserializeHtml', () => {
 
     const fragment = deserialize(
       parsed.body,
-      {
-        DIV: () => ({ type: 'paragraph' }),
-        P: () => ({ type: 'paragraph' }),
-        H2: () => ({ type: 'heading-2' }),
-        H3: () => ({ type: 'heading-3' }),
-        UL: () => ({ type: 'unordered-list' }),
-        LI: () => ({ type: 'list-item' }),
-      },
+      null,
+      [
+        {
+          DIV: () => ({ type: 'paragraph' }),
+          P: () => ({ type: 'paragraph' }),
+          H2: () => ({ type: 'heading-2' }),
+          H3: () => ({ type: 'heading-3' }),
+          UL: () => ({ type: 'unordered-list' }),
+          LI: () => ({ type: 'list-item' }),
+        },
+      ],
       {},
     );
 
@@ -56,22 +59,18 @@ describe('deserializeHtml', () => {
   it('should deserialize marks', () => {
     const parsed = new DOMParser().parseFromString(richText, 'text/html');
 
-    const fragment = deserialize(
-      parsed.body,
-      {},
-      {
-        STRONG: [(): Mark => ({ bold: true })],
-        EM: [(): Mark => ({ italic: true })],
-        SPAN: [
-          (el): Mark =>
-            el.style.textDecoration === 'line-through'
-              ? {
-                  strikethrough: true,
-                }
-              : {},
-        ],
-      },
-    );
+    const fragment = deserialize(parsed.body, null, [{}], {
+      STRONG: [(): Mark => ({ bold: true })],
+      EM: [(): Mark => ({ italic: true })],
+      SPAN: [
+        (el): Mark =>
+          el.style.textDecoration === 'line-through'
+            ? {
+                strikethrough: true,
+              }
+            : {},
+      ],
+    });
 
     expect(fragment[0].bold).toBeTruthy();
     expect(fragment[2].italic).toBeTruthy();
@@ -88,9 +87,12 @@ describe('deserializeHtml', () => {
 
     const fragment = deserialize(
       parsed.body,
-      {
-        P: () => ({ type: 'paragraph' }),
-      },
+      null,
+      [
+        {
+          P: () => ({ type: 'paragraph' }),
+        },
+      ],
       {
         STRONG: [(): Mark => ({ bold: true })],
         EM: [(): Mark => ({ italic: true })],

@@ -18,12 +18,12 @@ export function useSearch<T>(
   const searcher = useMemo(() => {
     const defaultOptions = {
       shouldSort: true,
-      threshold: 0.6,
+      threshold: 0.5,
       location: 0,
-      distance: 100,
+      distance: 50,
       maxPatternLength: 32,
       minMatchCharLength: 1,
-      keys: ['title', 'keywords'],
+      keys: ['group', 'title', 'keywords'],
     };
     return new Fuse(data, { ...defaultOptions, ...(options || {}) });
   }, [data, options]);

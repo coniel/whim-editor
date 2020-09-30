@@ -25,6 +25,8 @@ export const WithUnorderedListPlugin: React.FC = () => {
     },
   ]);
 
+  console.log(value);
+
   return (
     <Editor
       components={components}

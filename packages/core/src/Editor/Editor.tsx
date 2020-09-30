@@ -14,6 +14,8 @@ export interface EditorProps {
   value: Node[];
   plugins?: SlashPluginFactory[];
   components: UIComponents;
+  autoFocus?: boolean;
+  spellCheck?: boolean;
 }
 
 const Editor: React.FC<EditorProps> = ({
@@ -23,6 +25,8 @@ const Editor: React.FC<EditorProps> = ({
   onChange,
   plugins = [],
   components,
+  spellCheck = true,
+  autoFocus = true,
 }) => {
   const editor = useMemo(
     () => withPlugins(withHistory(withReact(createEditor())), plugins),
@@ -36,9 +40,9 @@ const Editor: React.FC<EditorProps> = ({
         renderLeaf: editor.renderLeaf,
         decorate: editor.decorate,
         onDOMBeforeInput: editor.onDOMBeforeInput,
-        placeholder: placeholder,
-        spellCheck: true,
-        autoFocus: true,
+        placeholder,
+        spellCheck,
+        autoFocus,
       } as EditableProps),
     [editor],
   );

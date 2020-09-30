@@ -17,11 +17,11 @@ const Overlay: React.FC = () => {
     <div
       style={{
         position: 'absolute',
-        transition: 'opacity 0.18s linear',
+        transition: 'opacity 0.2s linear',
         top: 0,
-        right: 0,
+        right: -2,
         bottom: 0,
-        left: 0,
+        left: -2,
         pointerEvents: 'none',
         backgroundColor: 'rgba(46, 170, 220, 0.2)',
         opacity,
@@ -33,19 +33,7 @@ const Overlay: React.FC = () => {
 const ElementBlock: React.FC<ElementBlockProps> = ({ children, id }) => {
   const { selectedBlocks, isDragging } = useBlockPlugin();
   return (
-    <div
-      style={{
-        position: 'relative',
-        margin: '2px 0',
-        padding: '3px 2px',
-      }}
-    >
-      {/* <div
-        style={{ background: 'blue', color: '#FFF' }}
-        contentEditable={false}
-      >
-        {id}
-      </div> */}
+    <div>
       {children}
       {!isDragging && selectedBlocks.find((block) => block.id === id) && (
         <Overlay />

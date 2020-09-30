@@ -50,10 +50,13 @@ export interface DeserializeElementValue {
   [key: string]: unknown;
 }
 
-export type ElementDeserializers = Record<
-  string,
-  (el: HTMLElement) => DeserializeElementValue | undefined
->;
+export type ElementDeserializer = (
+  el: HTMLElement,
+  children: (Node | DeserializeElementValue | null)[],
+  parent: HTMLElement | null,
+) => DeserializeElementValue | DeserializeElementValue[] | void;
+
+export type ElementDeserializers = Record<string, ElementDeserializer>;
 
 export type DeserializeMarkValue = Record<string, unknown> | undefined | false;
 export type MarkDeserializer = (el: HTMLElement) => DeserializeMarkValue;
@@ -315,23 +318,23 @@ const withPlugins = (
       !operation.properties.isInline &&
       operation.properties.type
     ) {
-      console.log('deleted block (merge)', operation);
+      // console.log('deleted block (merge)', operation);
     }
     if (operation.type === 'remove_node' && !operation.node.isInline) {
-      console.log('deleted block (remove)', operation);
+      // console.log('deleted block (remove)', operation);
     }
     if (
       operation.type === 'split_node' &&
       !operation.properties.isInline &&
       operation.properties.type
     ) {
-      console.log('split block', operation);
+      // console.log('split block', operation);
       setTimeout(() => {
-        console.log('created_block', getBlockAbove(editor)[0]);
+        // console.log('created_block', getBlockAbove(editor)[0]);
       });
     }
     if (operation.type === 'insert_node' && !operation.node.isInline) {
-      console.log('inserted block', operation);
+      // console.log('inserted block', operation);
     }
     if (operation.type === 'split_node' && operation.properties.type) {
       apply({
@@ -379,7 +382,7 @@ const withPlugins = (
     'turn-into-default': [] as string[],
     'do-nothing': [] as string[],
   };
-  let elementDeserializers: ElementDeserializers = {};
+  let elementDeserializers: ElementDeserializers[] = [];
   const markDeserializers: CombinedMarkDeserializers = {};
 
   let slashEditor = pluginFactories.reduce(
@@ -482,10 +485,10 @@ const withPlugins = (
       }
 
       if (plugin.elementDeserializers) {
-        elementDeserializers = {
+        elementDeserializers = [
           ...elementDeserializers,
-          ...plugin.elementDeserializers,
-        };
+          plugin.elementDeserializers,
+        ];
       }
 
       if (plugin.markDeserializers) {
@@ -681,7 +684,7 @@ const withPlugins = (
     onKeyDown(event);
   };
 
-  const { insertData } = slashEditor;
+  // const { insertData } = slashEditor;
   slashEditor.insertData = (data): void => {
     const html = data.getData('text/html');
 
@@ -689,6 +692,7 @@ const withPlugins = (
       const { body } = new DOMParser().parseFromString(html, 'text/html');
       const fragment: Node[] = deserializeHtml(
         body,
+        null,
         elementDeserializers,
         markDeserializers,
       );
@@ -704,7 +708,30 @@ const withPlugins = (
       return;
     }
 
-    insertData(data);
+    // const fragment = data.getData('application/x-slate-fragment');
+
+    // if (fragment) {
+    //   const decoded = decodeURIComponent(window.atob(fragment));
+    //   const parsed = JSON.parse(decoded) as Node[];
+    //   editor.insertFragment(parsed);
+    //   return;
+    // }
+
+    // const text = data.getData('text/plain');
+
+    // if (text) {
+    //   const lines = text.split(/\r\n|\n\r|\r\r|\n\n/);
+    //   let split = false;
+
+    //   for (const line of lines) {
+    //     if (split) {
+    //       Transforms.splitNodes(editor, { always: true });
+    //     }
+
+    //     editor.insertText(line);
+    //     split = true;
+    //   }
+    // }
   };
 
   plugins.forEach((plugin) => {

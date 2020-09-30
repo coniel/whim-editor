@@ -40,4 +40,35 @@ export default ({
       return arr;
     }, []);
   }
+
+  if (deserializers['*']) {
+    console.log('has *', deserializers['*']);
+
+    const props = deserializers['*'].reduce((obj, tag) => {
+      console.log('el', el);
+
+      const newProps = tag(el);
+      if (newProps) {
+        Object.assign(obj, newProps);
+      }
+      return obj;
+    }, {});
+
+    console.log('props', props);
+
+    return children.reduce((arr: any[], child) => {
+      if (!child) return arr;
+
+      if (child.children) {
+        // setPropsToNodes(child, props, {
+        //   filter: Text.isText,
+        // });
+        arr.push(child);
+      } else {
+        arr.push(jsx('text', props, child));
+      }
+
+      return arr;
+    }, []);
+  }
 };

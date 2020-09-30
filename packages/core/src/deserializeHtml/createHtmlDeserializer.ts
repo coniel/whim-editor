@@ -1,3 +1,5 @@
+import { jsx } from 'slate-hyperscript';
+import { Text } from 'slate';
 import deserializeTextNode from './utils/deserializeTextNode';
 import deserializeBreak from './utils/deserializeBreak';
 import deserializeFragment from './utils/deserializeFragment';
@@ -10,9 +12,12 @@ import {
 
 const deserializeHtml = (
   node: HTMLElement | ChildNode,
-  elementDeserializers: ElementDeserializers,
+  parent: HTMLElement | ChildNode | null,
+  elementDeserializers: ElementDeserializers[],
   markDeserializers: CombinedMarkDeserializers,
 ): any => {
+  console.log(node);
+
   // text node
   const textNode = deserializeTextNode(node);
   if (textNode) return textNode;
@@ -24,11 +29,9 @@ const deserializeHtml = (
   const breakLine = deserializeBreak(node);
   if (breakLine) return breakLine;
 
-  const parent = node;
-
-  const children = Array.from(parent.childNodes)
+  const children = Array.from(node.childNodes)
     .map((childNode) =>
-      deserializeHtml(childNode, elementDeserializers, markDeserializers),
+      deserializeHtml(childNode, node, elementDeserializers, markDeserializers),
     )
     .flat();
 
@@ -39,16 +42,36 @@ const deserializeHtml = (
   if (fragment) return fragment;
 
   // element
-  const element = deserializeElement({ elementDeserializers, el, children });
+  const element = deserializeElement({
+    elementDeserializers,
+    el,
+    parent: parent as HTMLElement | null,
+    children,
+  });
+
   if (element) return element;
 
   // mark
-  const texts = deserializeMark({
-    deserializers: markDeserializers,
-    el,
-    children,
-  });
-  if (texts) return texts;
+  if (parent && parent.nodeName !== 'BODY') {
+    const texts = deserializeMark({
+      deserializers: markDeserializers,
+      el,
+      children,
+    });
+    if (texts) return texts;
+  }
+
+  // if (parent && parent.nodeName === 'BODY') {
+  //   // return children.map((child) => {
+  //   //   // if (
+  //   //   //   // Ignore non-breaking spaces
+  //   //   //   (typeof child === 'string' && child !== '\u00a0') ||
+  //   //   //   (Text.isText(child) && child.text !== '\u00a0')
+  //   //   // ) {
+  //   //   // }
+  //   // });
+  //   return jsx('element', { type: 'paragraph' }, children);
+  // }
 
   return children;
 };

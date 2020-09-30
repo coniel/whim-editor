@@ -1,8 +1,12 @@
 import React from 'react';
-import { Range, Element, Text } from 'slate';
+import { Range, Element, Text, Transforms, Path } from 'slate';
+import { useUI } from '@sheets-editor/core';
 import { useBlockPlugin } from '../BlockPluginProvider';
+import { useEditor } from 'slate-react';
 
 const BlockPluginUI: React.FC = () => {
+  const editor = useEditor();
+  const { Popover, List, MenuItem, MenuDivider, TextField } = useUI();
   const {
     isDragging,
     draggedBlock,
@@ -14,7 +18,22 @@ const BlockPluginUI: React.FC = () => {
     handleClickInsertBlock,
     blockSelection,
     selectedBlocks,
+    contextMenu,
+    closeContextMenu,
   } = useBlockPlugin();
+
+  function handleClickDelete(event: React.MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (selectedBlocks.length) {
+      [...selectedBlocks].reverse().forEach((block) => {
+        Transforms.removeNodes(editor, {
+          at: block.path as Path,
+        });
+      });
+    }
+    closeContextMenu();
+  }
 
   return (
     <div>
@@ -109,6 +128,53 @@ const BlockPluginUI: React.FC = () => {
           );
         }
       })}
+      <Popover
+        open={!!contextMenu}
+        onClose={closeContextMenu}
+        anchorReference="anchorPosition"
+        // anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+        anchorPosition={
+          contextMenu
+            ? { top: contextMenu.y, left: contextMenu.x }
+            : { top: -1000, left: -1000 }
+        }
+      >
+        <div style={{ width: 220, height: 380 }}>
+          <TextField
+            placeholder="Filter actions..."
+            style={{ width: 'calc(100% - 32px)', margin: 16, marginBottom: 8 }}
+          />
+          <List>
+            <MenuItem
+              primaryText="Delete"
+              shortcut="Del"
+              onClick={handleClickDelete}
+            />
+            <MenuItem
+              primaryText="Duplicate"
+              shortcut="⌘+D"
+              onClick={handleClickDelete}
+            />
+            <MenuItem primaryText="Turn into" onClick={handleClickDelete} />
+            <MenuItem primaryText="Copy link" onClick={handleClickDelete} />
+            <MenuDivider />
+            <MenuItem
+              primaryText="Create template"
+              shortcut="⌘+Shift+T"
+              onClick={handleClickDelete}
+            />
+            <MenuDivider />
+            <MenuItem
+              primaryText="Comment"
+              shortcut="⌘+Shift+M"
+              onClick={handleClickDelete}
+            />
+            <MenuDivider />
+            <MenuItem primaryText="Color" onClick={handleClickDelete} />
+          </List>
+        </div>
+      </Popover>
     </div>
   );
 };

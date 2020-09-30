@@ -1,4 +1,5 @@
 import React from 'react';
+import { Node } from 'slate';
 import { createContext } from '../utils';
 
 export interface BlockPlaceholderProps
@@ -63,19 +64,55 @@ export type Popover = React.FC<PopoverProps>;
 export type ListProps = React.HTMLAttributes<HTMLUListElement>;
 export type List = React.FC<ListProps>;
 
-export type MenuItemProps = React.HTMLAttributes<HTMLLIElement>;
+export interface MenuItemProps extends React.HTMLAttributes<HTMLLIElement> {
+  onClick?: (event: React.MouseEvent) => void;
+  icon?: React.ReactNode;
+  image?: string;
+  imageSize?: 'small' | 'large';
+  secondaryText?: React.ReactNode;
+  primaryText?: React.ReactNode;
+  shortcut?: string;
+  shortcutTooltip?: React.ReactNode;
+  tooltip?: React.ReactNode;
+  tooltipImage?: string;
+}
 export type MenuItem = React.FC<MenuItemProps>;
+export type MenuSectionHeading = React.FC;
+export type MenuDivider = React.FC;
 
 export type TextFieldProps = React.HTMLProps<HTMLInputElement>;
 export type TextField = React.FC<TextFieldProps>;
 
-export interface TooltipProps {
+export interface TooltipProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+  placement?:
+    | 'bottom-end'
+    | 'bottom-start'
+    | 'bottom'
+    | 'left-end'
+    | 'left-start'
+    | 'left'
+    | 'right-end'
+    | 'right-start'
+    | 'right'
+    | 'top-end'
+    | 'top-start'
+    | 'top';
   children: React.ReactElement<any, any>;
   title: React.ReactNode;
   shortcut?: string;
   image?: string;
 }
 export type Tooltip = React.FC<TooltipProps>;
+
+export interface PlaceholderTextProps
+  extends React.HtmlHTMLAttributes<HTMLSpanElement> {
+  element: Node;
+  text: string;
+  onlyWhenFocused?: boolean;
+}
+
+export type PlaceholderText = React.FC<PlaceholderTextProps>;
 
 export interface UIComponents {
   Button: Button;
@@ -87,6 +124,9 @@ export interface UIComponents {
   MenuItem: MenuItem;
   TextField: TextField;
   Tooltip: Tooltip;
+  MenuSectionHeading: MenuSectionHeading;
+  MenuDivider: MenuDivider;
+  PlaceholderText: PlaceholderText;
 }
 
 export interface UIProviderProps {

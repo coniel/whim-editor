@@ -36,6 +36,8 @@ export interface BlockPluginContextValue {
   selectAnchor: Block | null;
   selectFocus: Block | null;
   blocks: Block[];
+  contextMenu: Coordinates | null;
+  closeContextMenu: () => void;
 }
 
 function incrementPath(path: Path, amount = 1): void {
@@ -156,6 +158,7 @@ const BlockPluginProvider: React.FC = ({ children }) => {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [contextMenu, setContextMenu] = useState<Coordinates | null>(null);
   const [mouseDown, setMouseDown] = useState(false);
   const [selectingBlocks, setSelectingBlocks] = useState(false);
   const [selectAnchor, setSelectAnchor] = useState<Block | null>(null);
@@ -195,11 +198,18 @@ const BlockPluginProvider: React.FC = ({ children }) => {
     return (): void => document.removeEventListener('copy', copySelectedBlocks);
   }, [selectedBlocks]);
 
-  const mouseDownStateHandler = useCallback(() => {
+  const mouseDownStateHandler = useCallback((event: MouseEvent) => {
+    if (event.button !== 0) {
+      return;
+    }
+
     setMouseDown(true);
   }, []);
 
-  const mouseUpStateHandler = useCallback(() => {
+  const mouseUpStateHandler = useCallback((event: MouseEvent) => {
+    if (event.button !== 0) {
+      return;
+    }
     setMouseDown(false);
   }, []);
 
@@ -539,12 +549,48 @@ const BlockPluginProvider: React.FC = ({ children }) => {
     }
   }, [ref.current]);
 
-  function handleMouseUpSelect(): void {
+  function handleMouseUpSelect(event: MouseEvent): void {
+    // Only handle left mouse button
+    if (event.button !== 0) {
+      return;
+    }
     setSelectingBlocks(false);
     document.removeEventListener('mouseup', handleMouseUpSelect);
   }
 
+  function closeContextMenu(): void {
+    setContextMenu(null);
+    setSelectedBlocks([]);
+  }
+
+  function handleContextMenu(event: React.MouseEvent) {
+    event.preventDefault();
+
+    if (!selectedBlocks.length) {
+      const matches = blocks.filter(
+        ({ rect }) =>
+          event.clientY &&
+          rect.top <= event.clientY &&
+          rect.bottom >= event.clientY,
+      );
+
+      setSelectedBlocks(matches);
+    }
+
+    if (blocks.length) {
+      // setSelectedBlocks(blocks);
+      Transforms.setSelection(editor, {});
+      textInpputRef.current?.focus();
+      setContextMenu(mouse);
+    }
+  }
+
   function handleMouseDownSelect(event: React.MouseEvent): void {
+    // Only handle left click
+    if (event.button !== 0 || contextMenu) {
+      return;
+    }
+
     setSelectedBlocks([]);
     setBlockSelection(null);
 
@@ -701,6 +747,8 @@ const BlockPluginProvider: React.FC = ({ children }) => {
         isDragging,
         draggedBlock,
         handleMouseDown,
+        contextMenu,
+        closeContextMenu,
         mouse,
         offset,
         blocks,
@@ -723,13 +771,14 @@ const BlockPluginProvider: React.FC = ({ children }) => {
           position: 'absolute',
           left: -1000,
         }}
-        value=" "
+        defaultValue=" "
       />
       <div
         ref={ref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onMouseDown={handleMouseDownSelect}
+        onContextMenu={handleContextMenu}
         style={{
           position: 'relative',
           padding: '0 40px',

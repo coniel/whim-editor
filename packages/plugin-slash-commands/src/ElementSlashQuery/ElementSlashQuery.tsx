@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import {
   RenderElementProps,
@@ -30,9 +36,10 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
   const activeItemRef = useRef(menuItems[0]);
   const elementRef = useRef(element);
   const activeIndexRef = useRef(0);
+  const [ignoreMouse, setIgnoreMouse] = useState(true);
   const [open, setOpen] = useState(true);
   const [refReady, setRefReady] = useState(false);
-  const { Popover, List, MenuItem } = useUI();
+  const { Popover, List, MenuItem, MenuSectionHeading, MenuDivider } = useUI();
   const ref = useRef<HTMLSpanElement>(null);
   const text = Node.string(element);
   const textRef = useRef('/');
@@ -48,29 +55,43 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
     setOpen(false);
   }, []);
 
+  const handleSubmit = useCallback(() => {
+    const blockAbove = getBlockAbove(editor);
+    if (activeItemRef.current.inline) {
+      Transforms.select(
+        editor,
+        ReactEditor.findPath(editor, elementRef.current),
+      );
+      editor.insertElement(activeItemRef.current.id);
+    } else if (Node.string(blockAbove[0]) === textRef.current) {
+      editor.turnIntoElement(activeItemRef.current.id, {
+        ...elementRef.current,
+        children: [{ text: '' }],
+      });
+      Transforms.select(editor, blockAbove[1]);
+      Transforms.delete(editor);
+      setTimeout(() => {
+        ReactEditor.focus(editor);
+        Transforms.select(editor, blockAbove[1]);
+      });
+    } else {
+      Transforms.select(
+        editor,
+        ReactEditor.findPath(editor, elementRef.current),
+      );
+      Transforms.delete(editor);
+      setTimeout(() => {
+        editor.insertElement(activeItemRef.current.id);
+      });
+    }
+    close();
+  }, []);
+
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    setIgnoreMouse(true);
     if (isHotkey('Enter', event)) {
       event.preventDefault();
-      const blockAbove = getBlockAbove(editor);
-      if (activeItemRef.current.inline) {
-        Transforms.select(
-          editor,
-          ReactEditor.findPath(editor, elementRef.current),
-        );
-        editor.insertElement(activeItemRef.current.id);
-      } else if (Node.string(blockAbove[0]) === textRef.current) {
-        Transforms.select(editor, blockAbove[1]);
-        Transforms.delete(editor);
-        setTimeout(() => {
-          editor.turnIntoElement(activeItemRef.current.id, {
-            ...elementRef.current,
-            children: [{ text: '' }],
-          });
-        });
-      } else {
-        editor.insertElement(activeItemRef.current.id);
-      }
-      close();
+      handleSubmit();
     } else if (isHotkey('Escape', event)) {
       close();
     } else if (isHotkey('ArrowDown', event)) {
@@ -80,6 +101,10 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
       event.preventDefault();
       setActiveIndex(activeIndexRef.current - 1);
     }
+  }, []);
+
+  const handleMouseMove = useCallback(() => {
+    setIgnoreMouse(false);
   }, []);
 
   useEffect(() => {
@@ -94,14 +119,26 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
       activeItem = result[activeIndex];
     }
 
+    if (activeItem) {
+      const menuItem = document.getElementById(
+        `slash-menu-item-${activeItem.id}`,
+      );
+
+      if (ignoreMouse && menuItem) {
+        menuItem.scrollIntoView({ block: 'nearest' });
+      }
+    }
+
     activeItemRef.current = activeItem;
-  }, [activeIndex, result]);
+  }, [activeIndex, result, ignoreMouse]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -146,22 +183,73 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
           anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
           transformOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         >
-          <List>
-            {result.map((item, index) => (
-              <MenuItem
-                key={item.id}
-                style={
-                  index === activeIndex
-                    ? {
-                        backgroundColor: '#EFEFEF',
+          <div
+            style={{
+              maxHeight: '40vh',
+              overflow: 'hidden auto',
+              maxWidth: 'calc(100vw - 32px)',
+              width: 330,
+            }}
+          >
+            <List>
+              {result.map((item, index) => (
+                <Fragment key={item.id}>
+                  {(index === 0 || item.group !== result[index - 1].group) && (
+                    <>
+                      {index !== 0 && <MenuDivider />}
+                      <MenuSectionHeading>{item.group}</MenuSectionHeading>
+                    </>
+                  )}
+                  <div id={`slash-menu-item-${item.id}`}>
+                    <MenuItem
+                      onMouseEnter={(): void => setActiveIndex(index)}
+                      onClick={(event): void => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        handleSubmit();
+                      }}
+                      style={
+                        index === activeIndex
+                          ? {
+                              backgroundColor: '#DEEAFF',
+                            }
+                          : {}
                       }
-                    : {}
-                }
-              >
-                {item.title}
-              </MenuItem>
-            ))}
-          </List>
+                      primaryText={item.title}
+                      secondaryText={item.subtitle}
+                      image={item.image}
+                      imageSize={item.imageSize || 'large'}
+                      icon={item.icon}
+                      tooltip={item.tooltip}
+                      tooltipImage={item.tooltipImage}
+                    />
+                  </div>
+                </Fragment>
+              ))}
+              {result.length === 0 && (
+                <div
+                  style={{
+                    padding: '4px 16px',
+                    color: '#878682',
+                    fontSize: '14px',
+                  }}
+                >
+                  No matches
+                </div>
+              )}
+            </List>
+            {ignoreMouse && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
+                }}
+              />
+            )}
+          </div>
         </Popover>,
         document.body,
       )}

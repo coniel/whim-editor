@@ -1,6 +1,6 @@
 import React from 'react';
 import { Node } from 'slate';
-import { RenderElementProps } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@sheets-editor/core';
 
 export type ElementBlockquoteProps = RenderElementProps;
 
@@ -9,8 +9,7 @@ const ElementBlockquote: React.FC<ElementBlockquoteProps> = ({
   children,
   element,
 }) => {
-  const texts = Array.from(Node.texts(element));
-  const hasContent = texts.length > 1 || texts[0][0].text.length > 0;
+  const { PlaceholderText } = useUI();
 
   return (
     <blockquote
@@ -31,21 +30,7 @@ const ElementBlockquote: React.FC<ElementBlockquoteProps> = ({
       }}
       {...attributes}
     >
-      {!hasContent && (
-        <span
-          contentEditable={false}
-          style={{
-            pointerEvents: 'none',
-            display: 'inline-block',
-            width: 0,
-            maxWidth: '100%',
-            whiteSpace: 'nowrap',
-            opacity: 0.25,
-          }}
-        >
-          Empty quote
-        </span>
-      )}
+      <PlaceholderText text="Empty quote" element={element} />
       {children}
     </blockquote>
   );

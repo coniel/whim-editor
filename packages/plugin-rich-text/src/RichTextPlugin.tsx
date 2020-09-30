@@ -143,7 +143,10 @@ const createRichTextPlugin = (
     richTextEditor.addRichTextFormat = addRichTextFormat;
     richTextEditor.removeRichTextFormat = removeRichTextFormat;
     richTextEditor.toggleRichTextFormat = toggleRichTextFormat;
-    const leaf = { b: true };
+    const boldLeaf = { [MARKS.bold]: true };
+    const italicLeaf = { [MARKS.italic]: true };
+    const underlineLeaf = { [MARKS.underline]: true };
+    const strikeThroughLeaf = { [MARKS['strike-through']]: true };
 
     return {
       leaves: FORMATS.map((format) => ({
@@ -154,16 +157,50 @@ const createRichTextPlugin = (
           ? (SHORTCUTS[format] as MarkShortcut[])
           : [],
       })),
-      elementDeserializers: {
-        DIV: (): DeserializeElementValue => ({ type: 'text' }),
-        P: (): DeserializeElementValue => ({ type: 'text' }),
-      },
       markDeserializers: {
-        SPAN: (el): DeserializeMarkValue =>
-          ['600', '700', 'bold'].includes(el.style.fontWeight) && leaf,
-        STRONG: (): DeserializeMarkValue => leaf,
+        '*': (el): DeserializeMarkValue => {
+          if (
+            ['600', '700', '800', '900', 'bold'].includes(el.style.fontWeight)
+          ) {
+            return boldLeaf;
+          }
+          if (['italic', 'oblique'].includes(el.style.fontStyle)) {
+            return italicLeaf;
+          }
+          if (['line-through'].includes(el.style.textDecoration)) {
+            return strikeThroughLeaf;
+          }
+          if (['line-through'].includes(el.style.textDecorationLine)) {
+            return strikeThroughLeaf;
+          }
+          if (['underline'].includes(el.style.textDecoration)) {
+            return underlineLeaf;
+          }
+          if (['underline'].includes(el.style.textDecorationLine)) {
+            return underlineLeaf;
+          }
+        },
+        STRONG: (): DeserializeMarkValue => boldLeaf,
         B: (): DeserializeMarkValue => {
-          return leaf;
+          return boldLeaf;
+        },
+        DL: (): DeserializeMarkValue => {
+          return boldLeaf;
+        },
+        EM: (): DeserializeMarkValue => {
+          return italicLeaf;
+        },
+        I: (): DeserializeMarkValue => {
+          return italicLeaf;
+        },
+        DEL: (): DeserializeMarkValue => {
+          return strikeThroughLeaf;
+        },
+        INS: (): DeserializeMarkValue => {
+          return underlineLeaf;
+        },
+        U: (): DeserializeMarkValue => {
+          return underlineLeaf;
         },
       },
       // When a user right clicks on selected text

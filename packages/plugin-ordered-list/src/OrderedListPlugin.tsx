@@ -4,6 +4,7 @@ import {
   SlashPlugin,
   SlashPluginElementDescriptor,
   SlashEditor,
+  DeserializeElementValue,
 } from '@sheets-editor/core';
 import { Element, Transforms, Node, Path } from 'slate';
 import ElementOrderedList from './ElementOrderedList';
@@ -97,6 +98,23 @@ const OrderedListPlugin = (
     return normalizeNode(entry);
   };
   return {
+    elementDeserializers: {
+      LI: (el, children, parent) => {
+        if (parent && parent.nodeName === 'OL') {
+          return { type: 'ol' };
+        }
+      },
+      '*': (el, children, parent) => {
+        if (parent && parent.nodeName === 'OL') {
+          return { type: 'ol' };
+        }
+      },
+      OL: (el, children) =>
+        children.map((child, index) => ({
+          ...(child as DeserializeElementValue),
+          number: index + 1,
+        })),
+    },
     elements: [
       {
         type,
