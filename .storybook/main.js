@@ -4,7 +4,6 @@ module.exports = {
     reactDocgen: false,
   },
   stories: [
-    '../packages/core/src/**/*.story.tsx',
     '../packages/material-ui/src/**/*.story.tsx',
     '../packages/plugin-block/src/**/*.story.tsx',
     '../packages/plugin-code/src/**/*.story.tsx',

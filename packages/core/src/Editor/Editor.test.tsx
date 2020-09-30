@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import * as components from '@sheets-editor/material-ui';
+import { components } from '../test-utils';
 import Editor from './Editor';
 
 const value = [{ type: 'text', children: [{ text: 'Hello Slash' }] }];

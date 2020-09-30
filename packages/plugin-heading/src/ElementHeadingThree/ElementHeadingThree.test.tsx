@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { UIProvider, components } from '@sheets-editor/core';
 import ElementHeadingThree, {
   ElementHeadingThreeProps,
 } from './ElementHeadingThree';
@@ -20,7 +21,9 @@ const defaultProps: ElementHeadingThreeProps = {
 describe('ElementHeadingThree', () => {
   it('should render successfully', () => {
     const { baseElement, getByText } = render(
-      <ElementHeadingThree {...defaultProps} />,
+      <UIProvider components={components}>
+        <ElementHeadingThree {...defaultProps} />,
+      </UIProvider>,
     );
 
     expect(baseElement).toBeTruthy();

@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { UIProvider, components } from '@sheets-editor/core';
 import ElementUnorderedList, {
   ElementUnorderedListProps,
 } from './ElementUnorderedList';
@@ -21,7 +22,9 @@ const defaultProps: ElementUnorderedListProps = {
 describe('ElementUnorderedList', () => {
   it('should render successfully', () => {
     const { baseElement, getByText } = render(
-      <ElementUnorderedList {...defaultProps} />,
+      <UIProvider components={components}>
+        <ElementUnorderedList {...defaultProps} />,
+      </UIProvider>,
     );
 
     expect(baseElement).toBeTruthy();

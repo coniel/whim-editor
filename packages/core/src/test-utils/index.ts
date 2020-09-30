@@ -13,3 +13,5 @@ Object.defineProperty(Array.prototype, 'flat', {
 export { default as fixtures } from './fixtures';
 export { default as jsx } from './jsx';
 export { default as withTest } from './withTest';
+export * from './components';
+export * from './TestEditor';

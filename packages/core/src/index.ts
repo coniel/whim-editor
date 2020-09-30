@@ -11,3 +11,4 @@ export * from './queries';
 export { default as UIProvider } from './UIProvider';
 export * from './UIProvider';
 export * from './EditorStateProvider';
+export { components } from './test-utils/components';

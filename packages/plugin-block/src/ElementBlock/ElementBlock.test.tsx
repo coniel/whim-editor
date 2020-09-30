@@ -35,12 +35,10 @@ describe('ElementBlock', () => {
 
     expect(block).toMatchInlineSnapshot(`
       <DocumentFragment>
-        <div
-          style="position: relative; margin: 2px 0px; padding: 3px 2px;"
-        >
+        <div>
           CHILDREN
           <div
-            style="position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; pointer-events: none; background-color: rgba(46, 170, 220, 0.2);"
+            style="position: absolute; transition: opacity 0.2s linear; top: 0px; right: -2px; bottom: 0px; left: -2px; pointer-events: none; background-color: rgba(46, 170, 220, 0.2); opacity: 0;"
           />
         </div>
       </DocumentFragment>

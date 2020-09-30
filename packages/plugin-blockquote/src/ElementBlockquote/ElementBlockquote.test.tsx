@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { UIProvider, components } from '@sheets-editor/core';
 import ElementBlockquote, { ElementBlockquoteProps } from './ElementBlockquote';
 
 const TYPE = 'blockquote';
@@ -19,7 +20,9 @@ const defaultProps: ElementBlockquoteProps = {
 describe('ElementBlockquote', () => {
   it('should render successfully', () => {
     const { baseElement, getByText } = render(
-      <ElementBlockquote {...defaultProps} />,
+      <UIProvider components={components}>
+        <ElementBlockquote {...defaultProps} />,
+      </UIProvider>,
     );
 
     expect(baseElement).toBeTruthy();

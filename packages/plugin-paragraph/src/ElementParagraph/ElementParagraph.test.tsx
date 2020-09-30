@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { UIProvider, components } from '@sheets-editor/core';
 import ElementParagraph, { ElementParagraphProps } from './ElementParagraph';
 
 const TYPE = 'foo';
@@ -19,7 +20,9 @@ const defaultProps: ElementParagraphProps = {
 describe('ElementParagraph', () => {
   it('should render successfully', () => {
     const { baseElement, getByText } = render(
-      <ElementParagraph {...defaultProps} />,
+      <UIProvider components={components}>
+        <ElementParagraph {...defaultProps} />,
+      </UIProvider>,
     );
 
     expect(baseElement).toBeTruthy();

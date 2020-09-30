@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { UIProvider, components } from '@sheets-editor/core';
 import ElementCode, { ElementCodeProps } from './ElementCode';
 
 const TYPE = 'foo';
@@ -20,7 +21,9 @@ const defaultProps: ElementCodeProps = {
 describe('ElementCode', () => {
   it('should render successfully', () => {
     const { baseElement, getByText } = render(
-      <ElementCode {...defaultProps} />,
+      <UIProvider components={components}>
+        <ElementCode {...defaultProps} />,
+      </UIProvider>,
     );
 
     expect(baseElement).toBeTruthy();
