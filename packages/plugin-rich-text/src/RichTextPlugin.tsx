@@ -159,6 +159,10 @@ const createRichTextPlugin = (
       })),
       markDeserializers: {
         '*': (el): DeserializeMarkValue => {
+          if (!el.style) {
+            return;
+          }
+
           if (
             ['600', '700', '800', '900', 'bold'].includes(el.style.fontWeight)
           ) {
