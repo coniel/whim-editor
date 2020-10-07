@@ -151,7 +151,6 @@ const createHeightPlugin = (): SlashPluginFactory => (
     renderEditable({
       ...props,
       style: { minHeight: 200, height: '100%' },
-      placeholder: "Type '/' for commands",
     });
 
   return {};

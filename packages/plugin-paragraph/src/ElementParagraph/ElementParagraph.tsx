@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { RenderElementProps } from '@sheets-editor/core';
 
 export interface ElementParagraphProps extends RenderElementProps {
   foo?: string;
@@ -10,7 +10,6 @@ const ElementParagraph: React.FC<ElementParagraphProps> = ({
   children,
   element,
 }) => {
-  const { PlaceholderText } = useUI();
   return (
     <div
       style={{
@@ -22,11 +21,6 @@ const ElementParagraph: React.FC<ElementParagraphProps> = ({
       }}
       {...attributes}
     >
-      <PlaceholderText
-        onlyWhenFocused
-        text="Type '/' for commands"
-        element={element}
-      />
       {children}
     </div>
   );
