@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/coniel/slash/compare/v0.18.0...v0.18.1) (2020-10-07)
+
+
+### Bug Fixes
+
+* Remove "Type '/' for commands" placeholder ([0eab6ed](https://github.com/coniel/slash/commit/0eab6ede70d83632379637e593c00e710285c4bd))
+
+
+
+
+
 # [0.18.0](https://github.com/coniel/slash/compare/v0.17.0...v0.18.0) (2020-09-30)
 
 

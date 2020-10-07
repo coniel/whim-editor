@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-rich-text",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "description": "Adds basic rich-text functionality",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

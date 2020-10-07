@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](http://test/compare/v0.18.0...v0.18.1) (2020-10-07)
+
+
+### Bug Fixes
+
+* **plugin-rich-text:** check if deserialized element has style property before reading it ([73a29a6](http://test/commits/73a29a62ddfabf0ce8a9e2ed6c7946c7712c00e7))
+* Remove "Type '/' for commands" placeholder ([0eab6ed](http://test/commits/0eab6ede70d83632379637e593c00e710285c4bd))
+
+
+
+
+
 # [0.18.0](http://test/compare/v0.17.0...v0.18.0) (2020-09-30)
 
 

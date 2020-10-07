@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/coniel/slash/compare/v0.18.0...v0.18.1) (2020-10-07)
+
+
+### Bug Fixes
+
+* **plugin-rich-text:** check if deserialized element has style property before reading it ([73a29a6](https://github.com/coniel/slash/commit/73a29a62ddfabf0ce8a9e2ed6c7946c7712c00e7))
+
+
+
+
+
 # [0.18.0](https://github.com/coniel/slash/compare/v0.17.0...v0.18.0) (2020-09-30)
 
 
