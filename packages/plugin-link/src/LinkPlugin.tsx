@@ -54,6 +54,7 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
   editor: SlashEditor,
 ): SlashPlugin => {
   const { insertText, insertData, normalizeNode, renderEditable } = editor;
+  console.log('foo');
 
   editor.renderEditable = (props): JSX.Element => (
     <>
@@ -128,22 +129,23 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
         isInline: true,
       },
     ],
-    insertText: (text): void => {
+    insertData: (data): void => {
+      const text = data.getData('text/plain');
+
       if (text && isUrl(text)) {
-        wrapLink(editor, text);
+        if (editor.selection) {
+          wrapLink(editor, text);
+        } else {
+          Transforms.insertNodes(editor, {
+            type: 'link',
+            url: text,
+            children: [{ text }],
+          });
+        }
       } else {
-        insertText(text);
+        insertData(data);
       }
     },
-    // insertData: (data): void => {
-    //   const text = data.getData('text/plain');
-
-    //   if (text && isUrl(text)) {
-    //     wrapLink(editor, text);
-    //   } else {
-    //     insertData(data);
-    //   }
-    // },
   };
 };
 
