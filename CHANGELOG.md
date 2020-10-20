@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.2](http://test/compare/v0.18.1...v0.18.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **plugin-link:** fixed pasting links ([01a927a](http://test/commits/01a927a9cacba565fe0524762e55da9777561923))
+
+
+
+
+
 ## [0.18.1](http://test/compare/v0.18.0...v0.18.1) (2020-10-07)
 
 

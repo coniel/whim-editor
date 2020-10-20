@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-slash-commands",
-  "version": "0.18.1",
+  "version": "0.18.2",
   "description": "Adds support for slash commands",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -25,7 +25,7 @@
     "@sheets-editor/plugin-code": "^0.18.0",
     "@sheets-editor/plugin-equation": "^0.18.0",
     "@sheets-editor/plugin-heading": "^0.18.0",
-    "@sheets-editor/plugin-link": "^0.18.0",
+    "@sheets-editor/plugin-link": "^0.18.2",
     "@sheets-editor/plugin-ordered-list": "^0.18.0",
     "@sheets-editor/plugin-paragraph": "^0.18.1",
     "@sheets-editor/plugin-rich-text": "^0.18.1",

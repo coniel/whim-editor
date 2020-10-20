@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.2](https://github.com/coniel/slash/compare/v0.18.1...v0.18.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **plugin-link:** fixed pasting links ([01a927a](https://github.com/coniel/slash/commit/01a927a9cacba565fe0524762e55da9777561923))
+
+
+
+
+
 # [0.18.0](https://github.com/coniel/slash/compare/v0.17.0...v0.18.0) (2020-09-30)
 
 
