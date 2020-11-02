@@ -129,7 +129,7 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
         isInline: true,
       },
     ],
-    insertData: (data): void => {
+    insertData: (data): void | boolean => {
       const text = data.getData('text/plain');
 
       if (text && isUrl(text)) {
@@ -142,8 +142,8 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
             children: [{ text }],
           });
         }
-      } else {
-        insertData(data);
+
+        return true;
       }
     },
   };

@@ -131,7 +131,7 @@ export interface SlashPlugin {
   isInline?: (element: Node) => boolean;
   elements?: SlashPluginElementDescriptor[];
   leaves?: SlashPluginLeafDescriptor[];
-  insertData?: (data: DataTransfer) => void;
+  insertData?: (data: DataTransfer) => void | boolean;
   insertText?: (text: string) => void;
 }
 
@@ -738,10 +738,14 @@ const withPlugins = (
     const { onKeyDown, insertData } = slashEditor;
     if (plugin.insertData) {
       slashEditor.insertData = (data) => {
+        let handled;
         if (plugin.insertData) {
-          plugin.insertData(data);
+          handled = plugin.insertData(data);
         }
-        insertData(data);
+
+        if (!handled) {
+          insertData(data);
+        }
       };
     }
 
