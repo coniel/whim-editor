@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](http://test/compare/v0.18.2...v0.19.0) (2020-11-02)
+
+
+### Features
+
+* add ability to bypass default insertData ([b479eab](http://test/commits/b479eabd247eaf7e178e08c8938f2f9bab1aac9a))
+
+
+
+
+
 ## [0.18.2](http://test/compare/v0.18.1...v0.18.2) (2020-10-20)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/coniel/slash/compare/v0.18.2...v0.19.0) (2020-11-02)
+
+**Note:** Version bump only for package @sheets-editor/editor
+
+
+
+
+
 ## [0.18.2](https://github.com/coniel/slash/compare/v0.18.1...v0.18.2) (2020-10-20)
 
 **Note:** Version bump only for package @sheets-editor/editor

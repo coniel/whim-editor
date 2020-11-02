@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/coniel/slash/compare/v0.18.2...v0.19.0) (2020-11-02)
+
+
+### Features
+
+* add ability to bypass default insertData ([b479eab](https://github.com/coniel/slash/commit/b479eabd247eaf7e178e08c8938f2f9bab1aac9a))
+
+
+
+
+
 ## [0.18.2](https://github.com/coniel/slash/compare/v0.18.1...v0.18.2) (2020-10-20)
 
 
