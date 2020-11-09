@@ -12,8 +12,10 @@ to: packages/<%= package %>/package.json
     "type": "git",
     "url": "git+https://github.com/coniel/slash.git"
   },
+  "dependencies": {
+    "@sheets-editor/core": "^0.20.0"
+  },
   "peerDependencies": {
-    "@sheets-editor/core": "^0.5.0",
     "react": "^16.9.0",
     "slate": "^0.59.0",
     "slate-react": "^0.59.0"
