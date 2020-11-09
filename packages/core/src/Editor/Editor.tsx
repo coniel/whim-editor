@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { Slate, withReact } from 'slate-react';
 import { createEditor, Node } from 'slate';
 import { withHistory } from 'slate-history';
-import { useAndroidPlugin } from 'slate-android-plugin';
 import withPlugins from '../withPlugins';
 import { SlashPluginFactory } from '../withPlugins/withPlugins';
 import UIProvider, { UIComponents } from '../UIProvider';
@@ -29,11 +28,9 @@ const Editor: React.FC<EditorProps> = ({
   spellCheck = true,
   autoFocus = true,
 }) => {
-  const editor = useAndroidPlugin(
-    useMemo(
-      () => withPlugins(withHistory(withReact(createEditor())), plugins),
-      [],
-    ),
+  const editor = useMemo(
+    () => withPlugins(withHistory(withReact(createEditor())), plugins),
+    [],
   );
   const editable = useMemo(
     () =>
