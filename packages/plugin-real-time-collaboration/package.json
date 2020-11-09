@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-real-time-collaboration",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "description": "Adds support for real time collaboration between multiple editors.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
