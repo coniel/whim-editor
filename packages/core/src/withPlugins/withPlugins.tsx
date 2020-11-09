@@ -620,7 +620,6 @@ const withPlugins = (
     }
 
     if (isHotkey('Enter', (event as unknown) as KeyboardEvent)) {
-      console.log('called root Enter');
       const entry = getBlockAbove(slashEditor);
 
       if (
@@ -706,6 +705,12 @@ const withPlugins = (
 
       Transforms.insertFragment(slashEditor, fragment);
       return;
+    } else if (data.getData('text/plain')) {
+      const fragment = data
+        .getData('text/plain')
+        .split('\n\n')
+        .map((text) => ({ type: 'paragraph', children: [{ text }] }));
+      Transforms.insertFragment(slashEditor, fragment);
     }
 
     // const fragment = data.getData('application/x-slate-fragment');
@@ -738,8 +743,6 @@ const withPlugins = (
     const { onKeyDown, insertData } = slashEditor;
     if (plugin.insertData) {
       slashEditor.insertData = (data) => {
-        console.log(data);
-
         let handled;
         if (plugin.insertData) {
           handled = plugin.insertData(data);
