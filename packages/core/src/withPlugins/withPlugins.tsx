@@ -738,6 +738,8 @@ const withPlugins = (
     const { onKeyDown, insertData } = slashEditor;
     if (plugin.insertData) {
       slashEditor.insertData = (data) => {
+        console.log(data);
+
         let handled;
         if (plugin.insertData) {
           handled = plugin.insertData(data);

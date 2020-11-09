@@ -15,8 +15,8 @@ to: packages/<%= package %>/package.json
   "peerDependencies": {
     "@sheets-editor/core": "^0.5.0",
     "react": "^16.9.0",
-    "slate": "^0.58.1",
-    "slate-react": "^0.58.1"
+    "slate": "^0.59.0",
+    "slate-react": "^0.59.0"
   },
   "devDependencies": {
     "@sheets-editor/material-ui": "0.6.0"
