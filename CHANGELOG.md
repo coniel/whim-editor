@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](http://test/compare/v0.19.0...v0.20.0) (2020-11-09)
+
+
+### Features
+
+* **core:** add android support plugin ([29d9e64](http://test/commits/29d9e6455f9b602d874e4cc3d3cc26018036e890))
+
+
+
+
+
 # [0.19.0](http://test/compare/v0.18.2...v0.19.0) (2020-11-02)
 
 

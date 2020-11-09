@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-forced-layout",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "description": "Adds support for focred layouts.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,11 +16,11 @@
     "slate-react": "^0.59.0"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.19.0",
-    "@sheets-editor/plugin-equation": "^0.19.0",
-    "@sheets-editor/plugin-heading": "^0.19.0",
-    "@sheets-editor/plugin-paragraph": "^0.19.0",
-    "@sheets-editor/plugin-unordered-list": "^0.19.0"
+    "@sheets-editor/material-ui": "^0.20.0",
+    "@sheets-editor/plugin-equation": "^0.20.0",
+    "@sheets-editor/plugin-heading": "^0.20.0",
+    "@sheets-editor/plugin-paragraph": "^0.20.0",
+    "@sheets-editor/plugin-unordered-list": "^0.20.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
