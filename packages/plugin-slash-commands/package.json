@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-slash-commands",
-  "version": "0.20.2",
+  "version": "0.20.3",
   "description": "Adds support for slash commands",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.20.2"
+    "@sheets-editor/core": "^0.20.3"
   },
   "peerDependencies": {
     "is-hotkey": "^0.1.6",
@@ -19,17 +19,17 @@
     "slate-react": "^0.59.0"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.20.2",
-    "@sheets-editor/plugin-block": "^0.20.2",
-    "@sheets-editor/plugin-blockquote": "^0.20.2",
-    "@sheets-editor/plugin-code": "^0.20.2",
-    "@sheets-editor/plugin-equation": "^0.20.2",
-    "@sheets-editor/plugin-heading": "^0.20.2",
-    "@sheets-editor/plugin-link": "^0.20.2",
-    "@sheets-editor/plugin-ordered-list": "^0.20.2",
-    "@sheets-editor/plugin-paragraph": "^0.20.2",
-    "@sheets-editor/plugin-rich-text": "^0.20.2",
-    "@sheets-editor/plugin-unordered-list": "^0.20.2"
+    "@sheets-editor/material-ui": "^0.20.3",
+    "@sheets-editor/plugin-block": "^0.20.3",
+    "@sheets-editor/plugin-blockquote": "^0.20.3",
+    "@sheets-editor/plugin-code": "^0.20.3",
+    "@sheets-editor/plugin-equation": "^0.20.3",
+    "@sheets-editor/plugin-heading": "^0.20.3",
+    "@sheets-editor/plugin-link": "^0.20.3",
+    "@sheets-editor/plugin-ordered-list": "^0.20.3",
+    "@sheets-editor/plugin-paragraph": "^0.20.3",
+    "@sheets-editor/plugin-rich-text": "^0.20.3",
+    "@sheets-editor/plugin-unordered-list": "^0.20.3"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

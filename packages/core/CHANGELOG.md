@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.3](https://github.com/coniel/slash/compare/v0.20.2...v0.20.3) (2020-11-09)
+
+
+### Bug Fixes
+
+* **core:** remove slate-android-plugin ([ab41914](https://github.com/coniel/slash/commit/ab41914350d73f958cec40a4d0f9b6ad485b8b17))
+
+
+
+
+
 ## [0.20.2](https://github.com/coniel/slash/compare/v0.20.1...v0.20.2) (2020-11-09)
 
 
