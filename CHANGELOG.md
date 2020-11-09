@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](http://test/compare/v0.20.1...v0.20.2) (2020-11-09)
+
+
+### Bug Fixes
+
+* **core:** paste plain text when insertData is not otherwise handled ([976aeb7](http://test/commits/976aeb76571711da95983bfd487d2d0d4082deb7))
+
+
+
+
+
 ## [0.20.1](http://test/compare/v0.20.0...v0.20.1) (2020-11-09)
 
 **Note:** Version bump only for package sheets-editor
