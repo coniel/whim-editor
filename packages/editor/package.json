@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/editor",
-  "version": "0.20.3",
+  "version": "0.21.0",
   "description": "Full editor including all plugins",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,25 +10,25 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.20.3",
-    "@sheets-editor/plugin-block": "^0.20.3",
-    "@sheets-editor/plugin-blockquote": "^0.20.3",
-    "@sheets-editor/plugin-code": "^0.20.3",
-    "@sheets-editor/plugin-equation": "^0.20.3",
-    "@sheets-editor/plugin-heading": "^0.20.3",
-    "@sheets-editor/plugin-hovering-toolbar": "^0.20.3",
-    "@sheets-editor/plugin-link": "^0.20.3",
-    "@sheets-editor/plugin-ordered-list": "^0.20.3",
-    "@sheets-editor/plugin-paragraph": "^0.20.3",
-    "@sheets-editor/plugin-rich-text": "^0.20.3",
-    "@sheets-editor/plugin-slash-commands": "^0.20.3",
-    "@sheets-editor/plugin-unordered-list": "^0.20.3"
+    "@sheets-editor/core": "^0.21.0",
+    "@sheets-editor/plugin-block": "^0.21.0",
+    "@sheets-editor/plugin-blockquote": "^0.21.0",
+    "@sheets-editor/plugin-code": "^0.21.0",
+    "@sheets-editor/plugin-equation": "^0.21.0",
+    "@sheets-editor/plugin-heading": "^0.21.0",
+    "@sheets-editor/plugin-hovering-toolbar": "^0.21.0",
+    "@sheets-editor/plugin-link": "^0.21.0",
+    "@sheets-editor/plugin-ordered-list": "^0.21.0",
+    "@sheets-editor/plugin-paragraph": "^0.21.0",
+    "@sheets-editor/plugin-rich-text": "^0.21.0",
+    "@sheets-editor/plugin-slash-commands": "^0.21.0",
+    "@sheets-editor/plugin-unordered-list": "^0.21.0"
   },
   "peerDependencies": {
     "react": "^16.9.0"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.20.3"
+    "@sheets-editor/material-ui": "^0.21.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

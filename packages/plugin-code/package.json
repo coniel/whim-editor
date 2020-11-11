@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-code",
-  "version": "0.20.3",
+  "version": "0.21.0",
   "description": "Adds support for syntax highlighted code blocks.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.20.3",
+    "@sheets-editor/core": "^0.21.0",
     "is-hotkey": "^0.1.6",
     "prismjs": "^1.21.0"
   },
@@ -20,7 +20,7 @@
     "slate-react": "^0.59.0"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.20.3"
+    "@sheets-editor/material-ui": "^0.21.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

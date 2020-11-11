@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](http://test/compare/v0.20.3...v0.21.0) (2020-11-11)
+
+
+### Features
+
+* **core:** add slate-android-plugin ([a500bf1](http://test/commits/a500bf125f3d9632991f250b7683a55efa9cb8ae))
+
+
+
+
+
 ## [0.20.3](http://test/compare/v0.20.2...v0.20.3) (2020-11-09)
 
 

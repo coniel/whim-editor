@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/coniel/slash/compare/v0.20.3...v0.21.0) (2020-11-11)
+
+**Note:** Version bump only for package @sheets-editor/plugin-blockquote
+
+
+
+
+
 ## [0.20.3](https://github.com/coniel/slash/compare/v0.20.2...v0.20.3) (2020-11-09)
 
 **Note:** Version bump only for package @sheets-editor/plugin-blockquote
