@@ -14404,10 +14404,10 @@ slash@^3.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
-slate-android-plugin@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/slate-android-plugin/-/slate-android-plugin-0.0.2.tgz#b4bbc254c7b2ae7223f1338a0ef29241c2eee289"
-  integrity sha512-9dEfqNvGKd7upATESYZv6GuMba/poP2qPXqLMiefGueyLwjz6rG753I01MrcnbzyDC/eFlV4RPI98VaVJOMPBA==
+slate-android-plugin@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/slate-android-plugin/-/slate-android-plugin-0.0.3.tgz#ae7f091b95bb252d973b486f2e01c48621f82263"
+  integrity sha512-Yg1AAtq6F3VxOlXAzKk92TkxV3M4i7YY6+dELZ1eHKjbU9JZGFn0GC2K0Ha+Yu+V1PBKrnOMR3MCF9+tbmarFQ==
 
 slate-history@^0.59.0:
   version "0.59.0"
