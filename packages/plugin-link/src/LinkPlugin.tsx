@@ -53,8 +53,7 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
 const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
   editor: SlashEditor,
 ): SlashPlugin => {
-  const { insertText, insertData, normalizeNode, renderEditable } = editor;
-  console.log('foo');
+  const { normalizeNode, renderEditable } = editor;
 
   editor.renderEditable = (props): JSX.Element => (
     <>

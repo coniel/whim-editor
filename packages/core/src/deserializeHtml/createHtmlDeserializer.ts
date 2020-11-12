@@ -16,8 +16,6 @@ const deserializeHtml = (
   elementDeserializers: ElementDeserializers[],
   markDeserializers: CombinedMarkDeserializers,
 ): any => {
-  console.log(node);
-
   // text node
   const textNode = deserializeTextNode(node);
   if (textNode) return textNode;
