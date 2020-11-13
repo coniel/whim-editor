@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](http://test/compare/v0.21.0...v0.21.1) (2020-11-13)
+
+
+### Bug Fixes
+
+* **plugin-equation:** switch Done button type to button ([05a83e3](http://test/commits/05a83e3a8f73149030fbfd53f40cd74337f51bc2))
+* remove left over console.log calls ([054db74](http://test/commits/054db74a7f722860e274ed3ec9345bb00ea60eb5))
+
+
+
+
+
 # [0.21.0](http://test/compare/v0.20.3...v0.21.0) (2020-11-11)
 
 
