@@ -15,5 +15,6 @@ module.exports = {
     '../packages/plugin-slash-commands/src/**/*.story.tsx',
     '../packages/plugin-unordered-list/src/**/*.story.tsx',
     '../packages/plugin-forced-layout/src/**/*.story.tsx',
+    '../packages/plugin-equation/src/**/*.story.tsx',
   ],
 };
