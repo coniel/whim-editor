@@ -140,7 +140,7 @@ const ElementEquationInline: React.FC<RenderElementProps> = ({
             onChange={onChange}
             placeholder="E = mc^2"
           />
-          <Button type="submit" endIcon={<EnterIcon />}>
+          <Button endIcon={<EnterIcon />} onClick={handleClose}>
             Done
           </Button>
         </form>

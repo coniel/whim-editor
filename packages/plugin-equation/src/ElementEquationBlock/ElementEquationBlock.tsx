@@ -132,11 +132,7 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
                 </span>{' '}
                 for new line
               </div>
-              <Button
-                onClick={handleClose}
-                type="submit"
-                endIcon={<EnterIcon />}
-              >
+              <Button onClick={handleClose} endIcon={<EnterIcon />}>
                 Done
               </Button>
             </div>
