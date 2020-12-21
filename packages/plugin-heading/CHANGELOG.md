@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/coniel/slash/compare/v0.22.0...v0.22.1) (2020-12-21)
+
+
+### Bug Fixes
+
+* **plugin-hovering-toolbar:** fix hovering toolbar placement on long pages ([1b380f5](https://github.com/coniel/slash/commit/1b380f56d8bd61944bdfb05e001843e2c574157d))
+
+
+
+
+
 # [0.22.0](https://github.com/coniel/slash/compare/v0.21.2...v0.22.0) (2020-12-21)
 
 

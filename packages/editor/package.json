@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/editor",
-  "version": "0.22.0",
+  "version": "0.22.1",
   "description": "Full editor including all plugins",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@sheets-editor/core": "^0.22.0",
-    "@sheets-editor/plugin-block": "^0.22.0",
+    "@sheets-editor/plugin-block": "^0.22.1",
     "@sheets-editor/plugin-blockquote": "^0.22.0",
     "@sheets-editor/plugin-code": "^0.22.0",
     "@sheets-editor/plugin-equation": "^0.22.0",
-    "@sheets-editor/plugin-heading": "^0.22.0",
-    "@sheets-editor/plugin-hovering-toolbar": "^0.22.0",
+    "@sheets-editor/plugin-heading": "^0.22.1",
+    "@sheets-editor/plugin-hovering-toolbar": "^0.22.1",
     "@sheets-editor/plugin-link": "^0.22.0",
     "@sheets-editor/plugin-ordered-list": "^0.22.0",
     "@sheets-editor/plugin-paragraph": "^0.22.0",
     "@sheets-editor/plugin-rich-text": "^0.22.0",
-    "@sheets-editor/plugin-slash-commands": "^0.22.0",
+    "@sheets-editor/plugin-slash-commands": "^0.22.1",
     "@sheets-editor/plugin-unordered-list": "^0.22.0"
   },
   "peerDependencies": {

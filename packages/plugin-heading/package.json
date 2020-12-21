@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-heading",
-  "version": "0.22.0",
+  "version": "0.22.1",
   "description": "Adds support for various heading sizes",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

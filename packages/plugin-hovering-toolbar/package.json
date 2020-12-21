@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-hovering-toolbar",
-  "version": "0.22.0",
+  "version": "0.22.1",
   "description": "Adds support for a hovering toolbar.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
