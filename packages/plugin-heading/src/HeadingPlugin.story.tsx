@@ -29,6 +29,7 @@ export const Default: React.FC = () => {
       components={components}
       value={value}
       plugins={[Heading]}
+      onSelectionChange={(selection) => console.log('selection', selection)}
       onChange={(newValue): void => {
         setValue(newValue);
       }}

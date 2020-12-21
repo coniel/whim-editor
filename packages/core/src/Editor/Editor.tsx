@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Slate, withReact } from 'slate-react';
-import { createEditor, Node } from 'slate';
+import { createEditor, Node, Range } from 'slate';
 import { withHistory } from 'slate-history';
 import { useAndroidPlugin } from 'slate-android-plugin';
 import withPlugins from '../withPlugins';
@@ -13,6 +13,7 @@ export interface EditorProps {
   className?: string;
   placeholder?: string;
   onChange: (value: Node[]) => void;
+  onSelectionChange?: (selection: Range | null) => void;
   value: Node[];
   plugins?: SlashPluginFactory[];
   components: UIComponents;
@@ -27,6 +28,7 @@ const Editor: React.FC<EditorProps> = ({
   placeholder,
   value,
   onChange,
+  onSelectionChange,
   plugins = [],
   components,
   spellCheck = true,
@@ -56,8 +58,16 @@ const Editor: React.FC<EditorProps> = ({
     [editor],
   );
 
+  function handleChange(nextValue: Node[]) {
+    onChange(nextValue);
+
+    if (onSelectionChange) {
+      onSelectionChange(editor.selection);
+    }
+  }
+
   return (
-    <Slate editor={editor} value={value} onChange={onChange}>
+    <Slate editor={editor} value={value} onChange={handleChange}>
       <EditorStateProvider>
         <UIProvider components={components}>
           {children}
