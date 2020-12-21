@@ -10,6 +10,7 @@ import { EditableProps } from 'slate-react/dist/components/editable';
 import { EditorStateProvider } from '../EditorStateProvider';
 
 export interface EditorProps {
+  className?: string;
   placeholder?: string;
   onChange: (value: Node[]) => void;
   value: Node[];
@@ -17,10 +18,12 @@ export interface EditorProps {
   components: UIComponents;
   autoFocus?: boolean;
   spellCheck?: boolean;
+  readOnly?: boolean;
 }
 
 const Editor: React.FC<EditorProps> = ({
   children,
+  className,
   placeholder,
   value,
   onChange,
@@ -28,6 +31,7 @@ const Editor: React.FC<EditorProps> = ({
   components,
   spellCheck = true,
   autoFocus = true,
+  readOnly = false,
 }) => {
   const editor = useAndroidPlugin(
     useMemo(
@@ -38,14 +42,16 @@ const Editor: React.FC<EditorProps> = ({
   const editable = useMemo(
     () =>
       editor.renderEditable({
+        className,
+        placeholder,
+        spellCheck,
+        readOnly,
+        autoFocus,
         renderElement: editor.renderElement,
         onKeyDown: editor.onKeyDown,
         renderLeaf: editor.renderLeaf,
         decorate: editor.decorate,
         onDOMBeforeInput: editor.onDOMBeforeInput,
-        placeholder,
-        spellCheck,
-        autoFocus,
       } as EditableProps),
     [editor],
   );
