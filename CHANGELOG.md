@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](http://test/compare/v0.21.2...v0.22.0) (2020-12-21)
+
+
+### Features
+
+* **core:** add onSelectionChange prop ([b62e4bb](http://test/commits/b62e4bb83f4904ae47c83491b975f31da71e2205))
+
+
+
+
+
 ## [0.21.2](http://test/compare/v0.21.1...v0.21.2) (2020-12-21)
 
 
