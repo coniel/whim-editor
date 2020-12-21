@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-real-time-collaboration",
-  "version": "0.21.1",
+  "version": "0.21.2",
   "description": "Adds support for real time collaboration between multiple editors.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.21.1",
+    "@sheets-editor/core": "^0.21.2",
     "pusher-js": "^7.0.0",
     "uuid": "^8.3.0"
   },
@@ -20,7 +20,7 @@
     "slate-react": "^0.59.0"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.21.1"
+    "@sheets-editor/material-ui": "^0.21.2"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
