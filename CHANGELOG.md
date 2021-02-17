@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](http://test/compare/v0.22.1...v0.22.2) (2021-02-17)
+
+
+### Bug Fixes
+
+* **plugin-slash-commands:** fix crash when inserting void block element on empty line ([cb7c355](http://test/commits/cb7c355255e7824c7351e090a1de4fcd663b318f))
+
+
+
+
+
 ## [0.22.1](http://test/compare/v0.22.0...v0.22.1) (2020-12-21)
 
 
