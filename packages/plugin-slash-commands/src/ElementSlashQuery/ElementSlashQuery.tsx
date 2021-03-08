@@ -71,8 +71,14 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
         children: [{ text: '' }],
       });
       setTimeout(() => {
-        ReactEditor.focus(editor);
-        Transforms.select(editor, blockAbove[1]);
+        editor.turnIntoElement(activeItemRef.current.id, {
+          ...elementRef.current,
+          children: [{ text: '' }],
+        });
+        setTimeout(() => {
+          ReactEditor.focus(editor);
+          Transforms.select(editor, blockAbove[1]);
+        });
       });
     } else {
       Transforms.select(

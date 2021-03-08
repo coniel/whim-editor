@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/coniel/slash/compare/v0.21.2...v0.22.0) (2020-12-21)
+
+
+### Features
+
+* **core:** add onSelectionChange prop ([b62e4bb](https://github.com/coniel/slash/commit/b62e4bb83f4904ae47c83491b975f31da71e2205))
+
+
+
+
+
+## [0.21.2](https://github.com/coniel/slash/compare/v0.21.1...v0.21.2) (2020-12-21)
+
+
+### Bug Fixes
+
+* **core:** add support for className and readOnly props ([22b4848](https://github.com/coniel/slash/commit/22b484808577de1235378666a5994827e083d8c8))
+
+
+
+
+
 ## [0.21.1](https://github.com/coniel/slash/compare/v0.21.0...v0.21.1) (2020-11-13)
 
 

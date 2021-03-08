@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Slate, withReact } from 'slate-react';
-import { createEditor, Node } from 'slate';
+import { createEditor, Node, Range } from 'slate';
 import { withHistory } from 'slate-history';
 import { useAndroidPlugin } from 'slate-android-plugin';
 import withPlugins from '../withPlugins';
@@ -10,24 +10,30 @@ import { EditableProps } from 'slate-react/dist/components/editable';
 import { EditorStateProvider } from '../EditorStateProvider';
 
 export interface EditorProps {
+  className?: string;
   placeholder?: string;
   onChange: (value: Node[]) => void;
+  onSelectionChange?: (selection: Range | null) => void;
   value: Node[];
   plugins?: SlashPluginFactory[];
   components: UIComponents;
   autoFocus?: boolean;
   spellCheck?: boolean;
+  readOnly?: boolean;
 }
 
 const Editor: React.FC<EditorProps> = ({
   children,
+  className,
   placeholder,
   value,
   onChange,
+  onSelectionChange,
   plugins = [],
   components,
   spellCheck = true,
   autoFocus = true,
+  readOnly = false,
 }) => {
   const editor = useAndroidPlugin(
     useMemo(
@@ -38,20 +44,30 @@ const Editor: React.FC<EditorProps> = ({
   const editable = useMemo(
     () =>
       editor.renderEditable({
+        className,
+        placeholder,
+        spellCheck,
+        readOnly,
+        autoFocus,
         renderElement: editor.renderElement,
         onKeyDown: editor.onKeyDown,
         renderLeaf: editor.renderLeaf,
         decorate: editor.decorate,
         onDOMBeforeInput: editor.onDOMBeforeInput,
-        placeholder,
-        spellCheck,
-        autoFocus,
       } as EditableProps),
     [editor],
   );
 
+  function handleChange(nextValue: Node[]) {
+    onChange(nextValue);
+
+    if (onSelectionChange) {
+      onSelectionChange(editor.selection);
+    }
+  }
+
   return (
-    <Slate editor={editor} value={value} onChange={onChange}>
+    <Slate editor={editor} value={value} onChange={handleChange}>
       <EditorStateProvider>
         <UIProvider components={components}>
           {children}

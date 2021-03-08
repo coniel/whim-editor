@@ -67,9 +67,11 @@ export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
     }
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
+    console.log(rect);
+
     setAnchorPosition({
-      top: rect.top + window.pageYOffset - 8,
-      left: rect.left + window.pageXOffset + rect.width / 2,
+      top: rect.top - 8,
+      left: rect.left + rect.width / 2,
     });
     turnOn('hovering-toolbar');
   }, [editor.selection, mouseDown]);

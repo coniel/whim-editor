@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](http://test/compare/v0.22.1...v0.22.2) (2021-02-17)
+
+
+### Bug Fixes
+
+* **plugin-slash-commands:** fix crash when inserting void block element on empty line ([cb7c355](http://test/commits/cb7c355255e7824c7351e090a1de4fcd663b318f))
+
+
+
+
+
+## [0.22.1](http://test/compare/v0.22.0...v0.22.1) (2020-12-21)
+
+
+### Bug Fixes
+
+* **plugin-hovering-toolbar:** fix hovering toolbar placement on long pages ([1b380f5](http://test/commits/1b380f56d8bd61944bdfb05e001843e2c574157d))
+
+
+
+
+
+# [0.22.0](http://test/compare/v0.21.2...v0.22.0) (2020-12-21)
+
+
+### Features
+
+* **core:** add onSelectionChange prop ([b62e4bb](http://test/commits/b62e4bb83f4904ae47c83491b975f31da71e2205))
+
+
+
+
+
+## [0.21.2](http://test/compare/v0.21.1...v0.21.2) (2020-12-21)
+
+
+### Bug Fixes
+
+* **core:** add support for className and readOnly props ([22b4848](http://test/commits/22b484808577de1235378666a5994827e083d8c8))
+
+
+
+
+
 ## [0.21.1](http://test/compare/v0.21.0...v0.21.1) (2020-11-13)
 
 
