@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-block-api",
-  "version": "0.18.0",
+  "version": "0.23.0",
   "description": "Adds ability to create a block level API.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@sheets-editor/core": "^0.18.0",
-    "@sheets-editor/plugin-block-id": "^0.18.0",
-    "@sheets-editor/plugin-paragraph": "^0.18.0",
+    "@sheets-editor/plugin-block-id": "^0.23.0",
     "@sheets-editor/plugin-equation": "^0.18.0",
+    "@sheets-editor/plugin-paragraph": "^0.18.0",
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
@@ -22,8 +22,8 @@
     "slate-react": "^0.59.0"
   },
   "devDependencies": {
-    "@sheets-editor/plugin-block": "0.6.0",
-    "@sheets-editor/material-ui": "0.6.0"
+    "@sheets-editor/material-ui": "0.6.0",
+    "@sheets-editor/plugin-block": "0.6.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

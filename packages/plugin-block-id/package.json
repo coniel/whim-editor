@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-block-id",
-  "version": "0.18.0",
+  "version": "0.23.0",
   "description": "Add a UUID to each block element.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

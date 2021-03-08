@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-paragraph",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "description": "A basic paragraph element.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.22.0"
+    "@sheets-editor/core": "^0.23.0"
   },
   "peerDependencies": {
     "react": "^16.9.0",
