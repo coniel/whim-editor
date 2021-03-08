@@ -6,6 +6,7 @@ module.exports = {
   stories: [
     '../packages/material-ui/src/**/*.story.tsx',
     '../packages/plugin-block/src/**/*.story.tsx',
+    '../packages/plugin-block-api/src/**/*.story.tsx',
     '../packages/plugin-code/src/**/*.story.tsx',
     '../packages/plugin-heading/src/**/*.story.tsx',
     '../packages/plugin-hovering-toolbar/src/**/*.story.tsx',

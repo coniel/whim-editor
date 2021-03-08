@@ -4,6 +4,8 @@ import { Editor } from '@sheets-editor/core';
 import { LoremIpsum } from 'lorem-ipsum';
 import { v4 } from 'uuid';
 import * as components from '@sheets-editor/material-ui';
+import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
+import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
 import BlockPlugin from './BlockPlugin';
 
 const lorem = new LoremIpsum({
@@ -23,7 +25,7 @@ function generateBlocks(count: number): Node[] {
 
   while (remainingCount > 0) {
     blocks.push({
-      type: 'text',
+      type: 'paragraph',
       id: v4(),
       children: [
         {
@@ -39,16 +41,35 @@ function generateBlocks(count: number): Node[] {
 
 export default { title: 'Plugins|Block' };
 
+const BlockIdPlugin = createBlockIdPlugin();
+const ParagraphPlugin = createParagraphPlugin();
 const Block = BlockPlugin();
 
 export const WithBlockPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>(generateBlocks(50));
+  const [value, setValue] = useState<Node[]>([
+    {
+      type: 'paragraph',
+      id: v4(),
+      children: generateBlocks(5),
+    },
+    {
+      type: 'paragraph',
+      id: v4(),
+      children: generateBlocks(3),
+    },
+    {
+      type: 'paragraph',
+      id: v4(),
+      children: generateBlocks(2),
+    },
+  ]);
+  console.log(value);
 
   return (
     <Editor
       components={components}
       value={value}
-      plugins={[Block]}
+      plugins={[BlockIdPlugin, ParagraphPlugin, Block]}
       onChange={(newValue): void => {
         setValue(newValue);
       }}

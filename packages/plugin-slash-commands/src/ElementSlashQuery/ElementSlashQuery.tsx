@@ -64,12 +64,12 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
       );
       editor.insertElement(activeItemRef.current.id);
     } else if (Node.string(blockAbove[0]) === textRef.current) {
+      Transforms.select(editor, blockAbove[1]);
+      Transforms.delete(editor);
       editor.turnIntoElement(activeItemRef.current.id, {
         ...elementRef.current,
         children: [{ text: '' }],
       });
-      Transforms.select(editor, blockAbove[1]);
-      Transforms.delete(editor);
       setTimeout(() => {
         ReactEditor.focus(editor);
         Transforms.select(editor, blockAbove[1]);

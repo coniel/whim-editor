@@ -24,18 +24,9 @@ import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
 
 export interface Element extends SlateElement {
   type: string;
-  id: string;
 }
 
 export interface RenderElementProps extends SlateReactRenderElementProps {
-  attributes: {
-    'data-slate-node': 'element';
-    'data-block-id': string;
-    'data-slate-inline'?: true;
-    'data-slate-void'?: true;
-    dir?: 'rtl';
-    ref: any;
-  };
   element: Element;
 }
 
@@ -300,77 +291,6 @@ const withPlugins = (
     }
   };
 
-  // Add ID to new nodes
-  editor.apply = (operation): void => {
-    // console.log(operation);
-
-    if (['insert_text', 'set_node', 'remove_text'].includes(operation.type)) {
-      const applied = apply(operation);
-      // setTimeout(() => {
-      //   console.log('--- update ---');
-      //   console.log(getBlockAbove(editor)[0]);
-      // });
-
-      return applied;
-    }
-    if (
-      operation.type === 'merge_node' &&
-      !operation.properties.isInline &&
-      operation.properties.type
-    ) {
-      // console.log('deleted block (merge)', operation);
-    }
-    if (operation.type === 'remove_node' && !operation.node.isInline) {
-      // console.log('deleted block (remove)', operation);
-    }
-    if (
-      operation.type === 'split_node' &&
-      !operation.properties.isInline &&
-      operation.properties.type
-    ) {
-      // console.log('split block', operation);
-      setTimeout(() => {
-        // console.log('created_block', getBlockAbove(editor)[0]);
-      });
-    }
-    if (operation.type === 'insert_node' && !operation.node.isInline) {
-      // console.log('inserted block', operation);
-    }
-    if (operation.type === 'split_node' && operation.properties.type) {
-      apply({
-        ...operation,
-        properties: {
-          ...operation.properties,
-          id: v4(),
-        },
-      });
-      // setTimeout(() => {
-      //   console.log('--- split_node ---');
-      //   console.log(getBlockAbove(editor)[0]);
-      // });
-      return;
-    }
-    if (operation.type === 'insert_node') {
-      const { node } = operation;
-      if (SlateElement.isElement(node)) {
-        apply({
-          ...operation,
-          node: {
-            ...node,
-            id: v4(),
-          },
-        });
-        // setTimeout(() => {
-        //   console.log('--- insert_node ---');
-        //   console.log(getBlockAbove(editor)[0]);
-        // });
-        return;
-      }
-    }
-
-    apply(operation);
-  };
-
   const hotkeyActions: HotkeyActions = {};
   const markShortcuts: MarkShortcutActions = {};
   const blockShortcuts: BlockShortcut[] = [];
@@ -387,12 +307,7 @@ const withPlugins = (
 
   let slashEditor = pluginFactories.reduce(
     (slashEditor: SlashEditor, pluginFn): SlashEditor => {
-      const {
-        renderElement,
-        renderLeaf,
-        onDOMBeforeInput,
-        decorate,
-      } = slashEditor;
+      const { renderLeaf, onDOMBeforeInput, decorate } = slashEditor;
       const plugin = pluginFn(slashEditor);
       plugins.push(plugin);
 
@@ -505,17 +420,13 @@ const withPlugins = (
         });
       }
 
+      const { renderElement } = slashEditor;
+
       slashEditor.renderElement = (props): JSX.Element => {
         let element: JSX.Element | undefined;
 
         if (plugin.renderElement) {
-          element = plugin.renderElement({
-            ...props,
-            attributes: {
-              ...props.attributes,
-              'data-block-id': props.element.id,
-            },
-          });
+          element = plugin.renderElement(props);
         }
 
         if (!element && plugin.elements) {
@@ -683,7 +594,6 @@ const withPlugins = (
     onKeyDown(event);
   };
 
-  // const { insertData } = slashEditor;
   slashEditor.insertData = (data): void => {
     const html = data.getData('text/html');
 
@@ -713,30 +623,21 @@ const withPlugins = (
       Transforms.insertFragment(slashEditor, fragment);
     }
 
-    // const fragment = data.getData('application/x-slate-fragment');
+    const text = data.getData('text/plain');
 
-    // if (fragment) {
-    //   const decoded = decodeURIComponent(window.atob(fragment));
-    //   const parsed = JSON.parse(decoded) as Node[];
-    //   editor.insertFragment(parsed);
-    //   return;
-    // }
+    if (text) {
+      const lines = text.split(/\r\n|\n\r|\r\r|\n\n/);
+      let split = false;
 
-    // const text = data.getData('text/plain');
+      for (const line of lines) {
+        if (split) {
+          Transforms.splitNodes(editor, { always: true });
+        }
 
-    // if (text) {
-    //   const lines = text.split(/\r\n|\n\r|\r\r|\n\n/);
-    //   let split = false;
-
-    //   for (const line of lines) {
-    //     if (split) {
-    //       Transforms.splitNodes(editor, { always: true });
-    //     }
-
-    //     editor.insertText(line);
-    //     split = true;
-    //   }
-    // }
+        editor.insertText(line);
+        split = true;
+      }
+    }
   };
 
   plugins.forEach((plugin) => {

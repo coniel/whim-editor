@@ -11,7 +11,6 @@ import withPlugins, {
 
 const createElement = (type: string): Element => ({
   type,
-  id: 'block-id',
   children: [{ text: '' }],
 });
 
@@ -170,7 +169,6 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: {
             'data-slate-node': 'element',
-            'data-block-id': 'block-1',
             ref: React.createRef(),
           },
           children: 'Element',
@@ -191,7 +189,6 @@ describe('Editor', () => {
           attributes: {
             'data-slate-node': 'element',
             ref: React.createRef(),
-            'data-block-id': 'block-1',
           },
           children: 'CHILDREN_1',
           element: createElement('plug-1-elem-1'),
@@ -209,7 +206,6 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: {
             'data-slate-node': 'element',
-            'data-block-id': 'block-2',
             ref: React.createRef(),
           },
           children: 'CHILDREN_2',

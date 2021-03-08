@@ -5,15 +5,13 @@ import ElementCode, { ElementCodeProps } from './ElementCode';
 
 const TYPE = 'foo';
 const TEXT = 'Some text';
-const ID = 'element-id';
 
 const defaultProps: ElementCodeProps = {
   attributes: {
     'data-slate-node': 'element',
     ref: React.createRef(),
-    'data-block-id': ID,
   },
-  element: { type: TYPE, children: [{ text: TEXT }], id: ID },
+  element: { type: TYPE, children: [{ text: TEXT }] },
   children: <div>{TEXT}</div>,
   onSetLanguage: jest.fn(),
 };

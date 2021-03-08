@@ -89,6 +89,7 @@ const EquationPlugin = (
       {
         type: blockType,
         tex: Node.string(element),
+        children: [{ text: '' }],
       },
       options,
     );

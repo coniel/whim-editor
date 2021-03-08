@@ -5,15 +5,13 @@ import ElementBlockquote, { ElementBlockquoteProps } from './ElementBlockquote';
 
 const TYPE = 'blockquote';
 const TEXT = 'Some text';
-const ID = 'element-id';
 
 const defaultProps: ElementBlockquoteProps = {
   attributes: {
     'data-slate-node': 'element',
     ref: React.createRef(),
-    'data-block-id': ID,
   },
-  element: { type: TYPE, children: [{ text: TEXT }], id: ID },
+  element: { type: TYPE, children: [{ text: TEXT }] },
   children: <div>{TEXT}</div>,
 };
 

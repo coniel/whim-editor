@@ -2716,6 +2716,18 @@
     import-from "^3.0.0"
     lodash "^4.17.4"
 
+"@sheets-editor/core@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/core/-/core-0.18.0.tgz#ec5c0bf06215f7194400954444d9912a520b84d3"
+  integrity sha512-eFejv1Sui+PJHEyxezc/b5nwgntu11yLh2R8nrqi+kb2sf5M2tEoOsCLVhH7HGPTvDfXZ2clAIUke+4BaZqoZw==
+  dependencies:
+    fuse.js "6.4.1"
+    is-hotkey "^0.1.6"
+    slate "^0.58.1"
+    slate-history "^0.58.1"
+    slate-react "^0.58.1"
+    uuid "^8.3.0"
+
 "@sheets-editor/material-ui@0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@sheets-editor/material-ui/-/material-ui-0.6.0.tgz#e1a71a06b3d560dc0d071ae79befee67c82564ce"
@@ -2723,6 +2735,23 @@
   dependencies:
     clsx "^1.0.4"
     prop-types "^15.7.2"
+
+"@sheets-editor/plugin-equation@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/plugin-equation/-/plugin-equation-0.18.0.tgz#ffcd1693f12be3e4e3d4a5835028ed93e26b58cd"
+  integrity sha512-DefjLJaJLHXO5QRp1THSuHHvUE50kcdhXVsyIQor2uOizbm+ZzgeSePSIshg2rs+VURHQ5UM7jnizDhDvVsmXw==
+  dependencies:
+    "@sheets-editor/core" "^0.18.0"
+    is-hotkey "^0.1.6"
+    katex "^0.12.0"
+    react-autosize-textarea "^7.1.0"
+
+"@sheets-editor/plugin-paragraph@^0.18.0":
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/plugin-paragraph/-/plugin-paragraph-0.18.1.tgz#6717e6a552f2b31fa357925cdd3889ad35eb70fa"
+  integrity sha512-FH0yDcrxWNvupBM7uAmETRFkJRjTQdhwyFebA+jwl46Kt68nqK0Ur4cnmm4zMuaXH/7wsHDcrYkPm6ZcwaZnsw==
+  dependencies:
+    "@sheets-editor/core" "^0.18.0"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.1"
@@ -14409,6 +14438,14 @@ slate-android-plugin@^0.0.3:
   resolved "https://registry.yarnpkg.com/slate-android-plugin/-/slate-android-plugin-0.0.3.tgz#ae7f091b95bb252d973b486f2e01c48621f82263"
   integrity sha512-Yg1AAtq6F3VxOlXAzKk92TkxV3M4i7YY6+dELZ1eHKjbU9JZGFn0GC2K0Ha+Yu+V1PBKrnOMR3MCF9+tbmarFQ==
 
+slate-history@^0.58.1:
+  version "0.58.4"
+  resolved "https://registry.yarnpkg.com/slate-history/-/slate-history-0.58.4.tgz#f24f4745f192e8eb16975037536bdc22f6d1c03b"
+  integrity sha512-QWmVvB02R+Z+I8sC7Hb+27Zqtm1vDt9kulHjmqRk8ixPp7052S04q4WEjNsk0StrgmEOEd+POvzNGfOYELXitw==
+  dependencies:
+    immer "^5.0.0"
+    is-plain-object "^3.0.0"
+
 slate-history@^0.59.0:
   version "0.59.0"
   resolved "https://registry.yarnpkg.com/slate-history/-/slate-history-0.59.0.tgz#3c5ecbe8893ce2ae9523068ccc17c62d52b24a1a"
@@ -14424,6 +14461,19 @@ slate-hyperscript@^0.59.0:
   dependencies:
     is-plain-object "^3.0.0"
 
+slate-react@^0.58.1:
+  version "0.58.4"
+  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.58.4.tgz#ecde34dd322af8413c2f23f0f0a577fed2422f46"
+  integrity sha512-3JXWHVPmYrR/EMcH1qtmwXZtYxxCtuokQg+r/4wD1Ab9J3zRmW4UGLoaRP9/uQrZOAOvr8mMh4IgmrxV2dQskw==
+  dependencies:
+    "@types/is-hotkey" "^0.1.1"
+    "@types/lodash" "^4.14.149"
+    direction "^1.0.3"
+    is-hotkey "^0.1.6"
+    is-plain-object "^3.0.0"
+    lodash "^4.17.4"
+    scroll-into-view-if-needed "^2.2.20"
+
 slate-react@^0.59.0:
   version "0.59.0"
   resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.59.0.tgz#c8043dce7ea71279f314d9951c32e4f548b1ea0b"
@@ -14436,6 +14486,17 @@ slate-react@^0.59.0:
     is-plain-object "^3.0.0"
     lodash "^4.17.4"
     scroll-into-view-if-needed "^2.2.20"
+
+slate@^0.58.1:
+  version "0.58.4"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.58.4.tgz#4259387e632b45b00cf88bcecf5570d7d16ddd8b"
+  integrity sha512-XxKwNJgCMf7S2sDT8CVJy0zYm95MiYorJo9Hah05zKjItrw0VVeCc2BGKDZSlNGcaIfM3xcfFUN7XE+c8ehAbA==
+  dependencies:
+    "@types/esrever" "^0.2.0"
+    esrever "^0.2.0"
+    immer "^5.0.0"
+    is-plain-object "^3.0.0"
+    tiny-warning "^1.0.3"
 
 slate@^0.59.0:
   version "0.59.0"
