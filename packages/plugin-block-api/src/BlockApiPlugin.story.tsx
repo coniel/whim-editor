@@ -8,7 +8,7 @@ import createEquationPlugin from '@sheets-editor/plugin-equation';
 import createBlockPlugin from '@sheets-editor/plugin-block';
 import BlockApiPlugin from './BlockApiPlugin';
 
-export default { title: 'Plugins|BlockApi' };
+export default { title: 'Plugins/BlockApi' };
 
 const BlockApi = BlockApiPlugin({
   onUpdateBlock: (block) => console.log('updated block', block),
@@ -18,10 +18,9 @@ const BlockApi = BlockApiPlugin({
 const BlockIdPlugin = createBlockIdPlugin({ ignoreTypes: ['equation-inline'] });
 const EquationPlugin = createEquationPlugin();
 const ParagraphPlugin = createParagraphPlugin();
-const CustomBlockApi = BlockApiPlugin({});
 const BlockPlugin = createBlockPlugin();
 
-export const WithBlockApiPlugin: React.FC = () => {
+export const NestedBlocks: React.FC = () => {
   const [value, setValue] = useState<Node[]>([
     {
       type: 'paragraph',
@@ -71,10 +70,10 @@ export const WithBlockApiPlugin: React.FC = () => {
   );
 };
 
-export const WithCustomisedBlockApiPlugin: React.FC = () => {
+export const RootBlocks: React.FC = () => {
   const [value, setValue] = useState<Node[]>([
     {
-      type: 'text',
+      type: 'paragraph',
       children: [{ text: 'I use the BlockApiPlugin with custom options.' }],
     },
   ]);
@@ -83,7 +82,13 @@ export const WithCustomisedBlockApiPlugin: React.FC = () => {
     <Editor
       components={components}
       value={value}
-      plugins={[CustomBlockApi]}
+      plugins={[
+        BlockApi,
+        BlockIdPlugin,
+        ParagraphPlugin,
+        EquationPlugin,
+        BlockPlugin,
+      ]}
       onChange={(newValue): void => {
         setValue(newValue);
       }}

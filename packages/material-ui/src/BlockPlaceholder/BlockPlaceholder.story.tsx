@@ -2,7 +2,7 @@ import React from 'react';
 import BlockPlaceholder from './BlockPlaceholder';
 
 export default {
-  title: 'ui|BlockPlaceholder',
+  title: 'UI/BlockPlaceholder',
   component: BlockPlaceholder,
 };
 

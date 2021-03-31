@@ -4,7 +4,7 @@ import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import ParagraphPlugin from './ParagraphPlugin';
 
-export default { title: 'Plugins|Paragraph' };
+export default { title: 'Plugins/Paragraph' };
 
 const Paragraph = ParagraphPlugin();
 const CustomParagraph = ParagraphPlugin({});

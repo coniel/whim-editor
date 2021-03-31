@@ -2,7 +2,7 @@ import React from 'react';
 import InlinePlaceholder from './InlinePlaceholder';
 
 export default {
-  title: 'ui|InlinePlaceholder',
+  title: 'UI/InlinePlaceholder',
   component: InlinePlaceholder,
 };
 

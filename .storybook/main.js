@@ -17,5 +17,6 @@ module.exports = {
     '../packages/plugin-unordered-list/src/**/*.story.tsx',
     '../packages/plugin-forced-layout/src/**/*.story.tsx',
     '../packages/plugin-equation/src/**/*.story.tsx',
+    '../packages/editor/src/**/*.story.tsx',
   ],
 };

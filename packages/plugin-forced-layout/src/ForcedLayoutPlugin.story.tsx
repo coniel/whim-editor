@@ -8,7 +8,7 @@ import createUnorderedListPlugin from '@sheets-editor/plugin-unordered-list';
 import createEquationPlugin from '@sheets-editor/plugin-equation';
 import ForcedLayoutPlugin from './ForcedLayoutPlugin';
 
-export default { title: 'Plugins|ForcedLayout' };
+export default { title: 'Plugins/ForcedLayout' };
 
 const HeadingPlugin = createHeadingPlugin();
 const ParagraphPlugin = createParagraphPlugin();

@@ -29,6 +29,7 @@ const BlockApiPlugin = ({
 
     if (operation.type === 'move_node' && onUpdateBlock) {
       setTimeout(() => {
+        console.log('Moved block', operation)
         // onUpdateBlock();
       });
     }

@@ -3,7 +3,7 @@ import { Node } from 'slate';
 import { Editor } from './Editor';
 
 export default {
-  title: 'editor|Full',
+  title: 'Editor/Full',
   component: Editor,
 };
 
@@ -20,6 +20,8 @@ export const Default: React.FC = () => {
       ],
     },
   ]);
+
+  console.log(value);
 
   return (
     <div

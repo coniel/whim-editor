@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from './TextField';
 
 export default {
-  title: 'ui|TextField',
+  title: 'UI/TextField',
   component: TextField,
 };
 

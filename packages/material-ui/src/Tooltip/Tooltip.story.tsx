@@ -3,7 +3,7 @@ import Button from '../Button';
 import { Tooltip } from './Tooltip';
 
 export default {
-  title: 'material-ui|Tooltip',
+  title: 'material-ui/Tooltip',
   component: Tooltip,
 };
 

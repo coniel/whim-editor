@@ -39,7 +39,7 @@ function generateBlocks(count: number): Node[] {
   return blocks;
 }
 
-export default { title: 'Plugins|Block' };
+export default { title: 'Plugins/Block' };
 
 const BlockIdPlugin = createBlockIdPlugin();
 const ParagraphPlugin = createParagraphPlugin();

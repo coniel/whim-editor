@@ -2728,6 +2728,19 @@
     slate-react "^0.58.1"
     uuid "^8.3.0"
 
+"@sheets-editor/core@^0.21.2":
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/core/-/core-0.21.2.tgz#d70b40753a0bf7451d38dbb125a9790559ca474e"
+  integrity sha512-smTr3g3+3OveeWUL6OIDiAqFowuEX8yexiqj9tUTRAGz/wsQKZz/8rlyMQTO5TTVuxfHYv8XXanv1m9/NppPEQ==
+  dependencies:
+    fuse.js "6.4.1"
+    is-hotkey "^0.1.6"
+    slate "^0.59.0"
+    slate-android-plugin "^0.0.3"
+    slate-history "^0.59.0"
+    slate-react "^0.59.0"
+    uuid "^8.3.0"
+
 "@sheets-editor/material-ui@0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@sheets-editor/material-ui/-/material-ui-0.6.0.tgz#e1a71a06b3d560dc0d071ae79befee67c82564ce"
@@ -2735,6 +2748,26 @@
   dependencies:
     clsx "^1.0.4"
     prop-types "^15.7.2"
+
+"@sheets-editor/material-ui@^0.21.1":
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/material-ui/-/material-ui-0.21.2.tgz#452b7f65a7c88440063bfcbd87df76d3b6766592"
+  integrity sha512-z0vEpNRlrfaRsfKFuJve9JrSSsyFfnpsBOsA+qE0PN6CKiPQv1GFR2RAQKGALJfMU260Uo6F/kmq9TRjvCZnkg==
+  dependencies:
+    "@sheets-editor/core" "^0.21.2"
+    clsx "^1.0.4"
+    prop-types "^15.7.2"
+
+"@sheets-editor/plugin-block@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/plugin-block/-/plugin-block-0.6.0.tgz#3257bc47ff1eab56ef4f208aa19d6ebe15e7848c"
+  integrity sha512-SSusgm6VHALAn3tNMza/BPHdVSiqhMhW4CaEIXAeHio+NyuQx8eAHvLTp9KYL9CSl/PLFgxWxZ5TjTB1ty0CJw==
+  dependencies:
+    "@react-hook/mouse-position" "^4.1.0"
+    "@react-hook/window-scroll" "^1.3.0"
+    is-hotkey "^0.1.6"
+    react-transition-group "^4.4.1"
+    uuid "^8.3.0"
 
 "@sheets-editor/plugin-equation@^0.18.0":
   version "0.18.0"
@@ -2746,12 +2779,26 @@
     katex "^0.12.0"
     react-autosize-textarea "^7.1.0"
 
+"@sheets-editor/plugin-heading@^0.21.1":
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/plugin-heading/-/plugin-heading-0.21.2.tgz#192fda3a55c56cdf2a61e20cf117b51c32120ed2"
+  integrity sha512-cjdEMwtuoGk97y2ExPp8kGL0hW1/x2BIhDbNAQaosm0D23AJIfjCJueb80HRTEnrxley/HTDn3SSPXFc4JSd7g==
+  dependencies:
+    "@sheets-editor/core" "^0.21.2"
+
 "@sheets-editor/plugin-paragraph@^0.18.0":
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/@sheets-editor/plugin-paragraph/-/plugin-paragraph-0.18.1.tgz#6717e6a552f2b31fa357925cdd3889ad35eb70fa"
   integrity sha512-FH0yDcrxWNvupBM7uAmETRFkJRjTQdhwyFebA+jwl46Kt68nqK0Ur4cnmm4zMuaXH/7wsHDcrYkPm6ZcwaZnsw==
   dependencies:
     "@sheets-editor/core" "^0.18.0"
+
+"@sheets-editor/plugin-paragraph@^0.21.1":
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/@sheets-editor/plugin-paragraph/-/plugin-paragraph-0.21.2.tgz#7cf22746e53de0cca591596e9967bb77f63d43a5"
+  integrity sha512-MNzu3jNqTnJBdHnAWyj9fRkWKucjtt/tXEzHJL4VsseMWEadvHVc4nGPYeK3hF3q3GCRt9+7FH56QEz6apV6rA==
+  dependencies:
+    "@sheets-editor/core" "^0.21.2"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.1"

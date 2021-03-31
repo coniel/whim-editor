@@ -5,7 +5,7 @@ import { Editor } from '@sheets-editor/core';
 import * as components from '@sheets-editor/material-ui';
 import { useEditor } from 'slate-react';
 
-export default { title: 'Plugins|RichText' };
+export default { title: 'Plugins/RichText' };
 
 const withRichText = RichTextPlugin();
 const withPartialRichText = RichTextPlugin({ formats: ['bold'] });

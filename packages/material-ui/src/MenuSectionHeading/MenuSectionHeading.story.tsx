@@ -2,7 +2,7 @@ import React from 'react';
 import { MenuSectionHeading } from './MenuSectionHeading';
 
 export default {
-  title: 'material-ui|MenuSectionHeading',
+  title: 'material-ui/MenuSectionHeading',
   component: MenuSectionHeading,
 };
 

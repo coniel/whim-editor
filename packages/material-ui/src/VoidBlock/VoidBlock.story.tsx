@@ -3,7 +3,7 @@ import VoidBlock from './VoidBlock';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'ui|VoidBlock',
+  title: 'UI/VoidBlock',
   component: VoidBlock,
 };
 

@@ -6,7 +6,7 @@ import { useEditor } from 'slate-react';
 import * as components from '@sheets-editor/material-ui';
 import EquationPlugin, { SlashEditorWithEquation } from './EquationPlugin';
 
-export default { title: 'Plugins|Equation' };
+export default { title: 'Plugins/Equation' };
 
 const Equation = EquationPlugin();
 

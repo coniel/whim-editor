@@ -4,7 +4,7 @@ import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import BlockquotePlugin from './BlockquotePlugin';
 
-export default { title: 'Plugins|Blockquote' };
+export default { title: 'Plugins/Blockquote' };
 
 const Blockquote = BlockquotePlugin();
 

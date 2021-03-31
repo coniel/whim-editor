@@ -4,7 +4,7 @@ import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import UnorderedListPlugin from './UnorderedListPlugin';
 
-export default { title: 'Plugins|UnorderedList' };
+export default { title: 'Plugins/UnorderedList' };
 
 const UnorderedList = UnorderedListPlugin();
 const CustomUnorderedList = UnorderedListPlugin({});

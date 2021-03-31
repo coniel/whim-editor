@@ -5,7 +5,7 @@ import { Editor } from '@sheets-editor/core';
 import CodePlugin from './CodePlugin';
 import ElementCode, { ElementCodeProps } from './ElementCode';
 
-export default { title: 'Plugins|Code' };
+export default { title: 'Plugins/Code' };
 
 const Code = CodePlugin({
   defaultLanguage: 'typescript',

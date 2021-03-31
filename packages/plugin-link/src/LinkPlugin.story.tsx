@@ -6,7 +6,7 @@ import LinkPlugin from './LinkPlugin';
 import { useEditor } from 'slate-react';
 import { EditorWithLinkPlugin } from './LinkPlugin.types';
 
-export default { title: 'Plugins|Link' };
+export default { title: 'Plugins/Link' };
 
 const Link = LinkPlugin();
 const initialValue = [

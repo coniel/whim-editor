@@ -15,7 +15,7 @@ interface EditorWithPlugins
   extends EditorWithLinkPlugin,
     EditorWithRichTextPlugin {}
 
-export default { title: 'Plugins|HoveringToolbar' };
+export default { title: 'Plugins/HoveringToolbar' };
 
 const RichText = createRichTextPlugin();
 const Link = createLinkPlugin();

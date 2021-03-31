@@ -16,6 +16,7 @@ import createEquationPlugin from '@sheets-editor/plugin-equation';
 import createBlockquotePlugin from '@sheets-editor/plugin-blockquote';
 import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
 import createBlockPlugin from '@sheets-editor/plugin-block';
+import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
 import createSlashCommandsPlugin from '@sheets-editor/plugin-slash-commands';
 import { Node as SlateNode } from 'slate';
 import muiComponents from '@sheets-editor/material-ui';
@@ -45,6 +46,7 @@ const HeadingPlugin = createHeadingPlugin({
   },
 });
 const BlockPlugin = createBlockPlugin();
+const BlockPluginId = createBlockIdPlugin();
 const LinkPlugin = createLinkPlugin();
 const OLPlugin = createOLPlugin({ hotkeys: ['mod+alt+5'] });
 const ULPlugin = createULPlugin({ hotkeys: ['mod+alt+4'] });
@@ -180,6 +182,7 @@ export const Editor: React.FC<EditorProps> = ({
         EquationPlugin,
         SlashCommandsPlugin,
         BlockPlugin,
+        BlockPluginId,
       ]}
       onChange={onChange}
       value={value}

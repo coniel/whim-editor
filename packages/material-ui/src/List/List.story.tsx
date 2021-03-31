@@ -3,7 +3,7 @@ import List from './List';
 import MenuItem from '../MenuItem';
 
 export default {
-  title: 'material-ui|List',
+  title: 'material-ui/List',
   component: List,
 };
 

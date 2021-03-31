@@ -21,6 +21,7 @@
   "devDependencies": {
     "@sheets-editor/material-ui": "^0.23.0",
     "@sheets-editor/plugin-block": "^0.23.0",
+    "@sheets-editor/plugin-block-id": "^0.23.0",
     "@sheets-editor/plugin-blockquote": "^0.23.0",
     "@sheets-editor/plugin-code": "^0.23.0",
     "@sheets-editor/plugin-equation": "^0.23.0",

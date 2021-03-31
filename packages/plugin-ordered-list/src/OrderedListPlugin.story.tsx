@@ -4,7 +4,7 @@ import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import OrderedListPlugin from './OrderedListPlugin';
 
-export default { title: 'Plugins|OrderedList' };
+export default { title: 'Plugins/OrderedList' };
 
 const OrderedList = OrderedListPlugin();
 const CustomOrderedList = OrderedListPlugin({});

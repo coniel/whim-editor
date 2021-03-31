@@ -4,7 +4,7 @@ import { Editor } from '@sheets-editor/core';
 import components from '@sheets-editor/material-ui';
 import HeadingPlugin from './HeadingPlugin';
 
-export default { title: 'Plugins|Heading' };
+export default { title: 'Plugins/Heading' };
 
 const Heading = HeadingPlugin();
 
