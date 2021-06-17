@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/coniel/slash/compare/v0.23.0...v0.24.0) (2021-06-17)
+
+
+### Bug Fixes
+
+* type fixes ([00e4566](https://github.com/coniel/slash/commit/00e4566a8bd88f5d7c247213756cc73c791b136e))
+
+
+
+
+
 # [0.23.0](https://github.com/coniel/slash/compare/v0.22.2...v0.23.0) (2021-03-08)
 
 **Note:** Version bump only for package @sheets-editor/plugin-real-time-collaboration

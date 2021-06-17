@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](http://test/compare/v0.23.0...v0.24.0) (2021-06-17)
+
+
+### Bug Fixes
+
+* **core:** rename Slate.d.ts to Slate.ts ([15dc892](http://test/commits/15dc892ab43f0609af07e2a582cf20399f5776a4))
+* ignore DS_STORE files ([d6f84c6](http://test/commits/d6f84c673bb92aa65cbb0bd53df5fb4459c044ab))
+* restore deleted type files ([197fd02](http://test/commits/197fd02573cc8f26b0e4cac0421f6fa1251c8c1c))
+* type fixes ([00e4566](http://test/commits/00e4566a8bd88f5d7c247213756cc73c791b136e))
+* **core:** type fixes ([b14b718](http://test/commits/b14b71826f1425df3821dab8041b06b8597bfdc5))
+* **storybook:** replace old path separators with / ([ab2ef4e](http://test/commits/ab2ef4ec1773336537973e406bd24b84e239c51d))
+
+
+### Features
+
+* **plugin-block-api:** add missing operation handlers ([29fb7cd](http://test/commits/29fb7cd4a539d43a11df4f4f232cf20922247b81))
+
+
+
+
+
 # [0.23.0](http://test/compare/v0.22.2...v0.23.0) (2021-03-08)
 
 

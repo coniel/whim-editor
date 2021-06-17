@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-block",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "description": "Basic block which wraps all block components",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,9 +22,9 @@
     "dist"
   ],
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.23.0",
-    "@sheets-editor/plugin-heading": "^0.23.0",
-    "@sheets-editor/plugin-paragraph": "^0.23.0",
+    "@sheets-editor/material-ui": "^0.24.0",
+    "@sheets-editor/plugin-heading": "^0.24.0",
+    "@sheets-editor/plugin-paragraph": "^0.24.0",
     "@types/react-transition-group": "^4.4.0",
     "@types/uuid": "^8.0.0",
     "lorem-ipsum": "^2.0.3"
@@ -32,8 +32,8 @@
   "dependencies": {
     "@react-hook/mouse-position": "^4.1.0",
     "@react-hook/window-scroll": "^1.3.0",
-    "@sheets-editor/core": "^0.23.0",
-    "@sheets-editor/plugin-block-id": "^0.23.0",
+    "@sheets-editor/core": "^0.24.0",
+    "@sheets-editor/plugin-block-id": "^0.24.0",
     "is-hotkey": "^0.1.6",
     "react-transition-group": "^4.4.1",
     "uuid": "^8.3.0"

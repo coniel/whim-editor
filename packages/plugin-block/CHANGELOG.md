@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/coniel/slash/compare/v0.23.0...v0.24.0) (2021-06-17)
+
+
+### Bug Fixes
+
+* **storybook:** replace old path separators with / ([ab2ef4e](https://github.com/coniel/slash/commit/ab2ef4ec1773336537973e406bd24b84e239c51d))
+
+
+### Features
+
+* **plugin-block-api:** add missing operation handlers ([29fb7cd](https://github.com/coniel/slash/commit/29fb7cd4a539d43a11df4f4f232cf20922247b81))
+
+
+
+
+
 # [0.23.0](https://github.com/coniel/slash/compare/v0.22.2...v0.23.0) (2021-03-08)
 
 

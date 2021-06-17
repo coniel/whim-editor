@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/coniel/slash/compare/v0.23.0...v0.24.0) (2021-06-17)
+
+
+### Bug Fixes
+
+* **core:** rename Slate.d.ts to Slate.ts ([15dc892](https://github.com/coniel/slash/commit/15dc892ab43f0609af07e2a582cf20399f5776a4))
+* **core:** type fixes ([b14b718](https://github.com/coniel/slash/commit/b14b71826f1425df3821dab8041b06b8597bfdc5))
+
+
+
+
+
 # [0.23.0](https://github.com/coniel/slash/compare/v0.22.2...v0.23.0) (2021-03-08)
 
 

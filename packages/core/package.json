@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/core",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "description": "The base editor",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
