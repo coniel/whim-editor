@@ -22,7 +22,7 @@ import { getBlockAbove, isNodeType, isBlockAboveEmpty } from '../queries';
 import deserializeHtml from '../deserializeHtml';
 import withMarkShortcuts from './withMarkShortcuts';
 import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
-import { BraindropEditor } from '../types/Slate.d';
+import { BraindropEditor } from '../types/Slate';
 
 export interface Element extends SlateElement {
   type: string;
