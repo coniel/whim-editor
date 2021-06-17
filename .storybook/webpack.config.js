@@ -9,7 +9,10 @@ const packages = readdirSync(basePath).filter((name) =>
 module.exports = async ({ config }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
-    loader: require.resolve('awesome-typescript-loader'),
+    loader: require.resolve('ts-loader'),
+    options: {
+      configFile: 'tsconfig.storybook.json',
+    },
   });
   config.resolve.extensions.push('.ts', '.tsx');
 
