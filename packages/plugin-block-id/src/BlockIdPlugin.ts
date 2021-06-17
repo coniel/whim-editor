@@ -4,11 +4,11 @@ import {
   SlashPluginFactory,
   SlashPlugin,
   SlashEditor,
-  Element as CoreElement,
+  Element,
   RenderElementProps as CoreRenderElementProps,
 } from '@sheets-editor/core';
 
-export interface Element extends CoreElement {
+export interface ElementWithId extends Element {
   id: string;
 }
 
@@ -21,7 +21,7 @@ export interface RenderElementProps extends CoreRenderElementProps {
     dir?: 'rtl';
     ref: any;
   };
-  element: Element;
+  element: ElementWithId;
 }
 
 export type RenderElement = (props: RenderElementProps) => JSX.Element;
@@ -29,6 +29,7 @@ export type RenderElement = (props: RenderElementProps) => JSX.Element;
 export interface EditorWithBlockIdPlugin
   extends Omit<SlashEditor, 'renderElement'> {
   renderElement: RenderElement;
+  children: ElementWithId[];
 }
 
 export interface BlockIdPluginOptions {
@@ -40,7 +41,6 @@ const BlockIdPlugin = (
   options: BlockIdPluginOptions = {},
 ): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
   const generateId = options.idGenerator || uuid;
-  const ignore = options.ignoreTypes || [];
 
   const { apply } = editor;
 
@@ -48,7 +48,11 @@ const BlockIdPlugin = (
   editor.apply = (operation): void => {
     if (
       operation.type === 'split_node' &&
-      !editor.isInline({ ...operation.properties, children: [] })
+      (operation.properties as Element).type &&
+      !editor.isInline({
+        ...operation.properties,
+        children: [],
+      } as SlateElement)
     ) {
       return apply({
         ...operation,
@@ -61,6 +65,7 @@ const BlockIdPlugin = (
     if (
       operation.type === 'insert_node' &&
       !Text.isText(operation.node) &&
+      SlateElement.isElement(operation.node) &&
       !editor.isInline(operation.node)
     ) {
       const { node } = operation;

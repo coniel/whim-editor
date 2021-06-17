@@ -7,8 +7,10 @@ import {
   Transforms,
   Element as SlateElement,
 } from 'slate';
+import { v4 as uuid } from 'uuid';
 import isHotkey from 'is-hotkey';
-import { Element, createContext } from '@sheets-editor/core';
+import { Element, createContext, BraindropEditor } from '@sheets-editor/core';
+import { ElementWithId } from '@sheets-editor/plugin-block-id';
 import { ReactEditor, useSlate } from 'slate-react';
 
 export interface Coordinates {
@@ -17,6 +19,7 @@ export interface Coordinates {
 }
 
 export interface Block extends Element {
+  id: string;
   rect: DOMRect;
   path: Path;
 }
@@ -32,7 +35,7 @@ export interface BlockPluginContextValue {
   mouse: Coordinates;
   hoverBlock: Block | null;
   value: Node[];
-  selectedBlocks: Node[];
+  selectedBlocks: Block[];
   selectAnchor: Block | null;
   selectFocus: Block | null;
   blocks: Block[];
@@ -60,7 +63,7 @@ export function getFirstPathBlock(
 
   if (anchorNode) {
     const element = anchorNode ? anchorNode[0] : null;
-    if (element) {
+    if (element && SlateElement.isElement(element)) {
       block = blocks.find(({ id }) => id === element.id);
     }
   }
@@ -68,7 +71,7 @@ export function getFirstPathBlock(
   return block || null;
 }
 
-function getBlockPath(root: ReactEditor, path: Path): Path | null {
+function getBlockPath(root: BraindropEditor, path: Path): Path | null {
   const levels = Array.from(Node.levels(root, path));
   let anchorNode = levels.pop();
   while (anchorNode && !SlateElement.isElement(anchorNode[0])) {
@@ -104,9 +107,9 @@ function getPreviousBlock(blocks: Block[], block: Block): Block | null {
   }
 }
 
-function childrenToBlocks(editor: ReactEditor): Block[] {
+function childrenToBlocks(editor: BraindropEditor): Block[] {
   return editor.children.map((child, index) => ({
-    ...(child as Element),
+    ...(child as ElementWithId),
     index,
     path: ReactEditor.findPath(editor, child),
     rect: ReactEditor.toDOMNode(editor, child).getBoundingClientRect(),
@@ -729,7 +732,7 @@ const BlockPluginProvider: React.FC = ({ children }) => {
       path = Path.next(path);
       Transforms.insertNodes(
         editor,
-        { type: 'paragraph', children: [{ text: '' }] },
+        { type: 'paragraph', id: uuid(), children: [{ text: '' }] },
         { at: path, select: true },
       );
       setTimeout(() => {

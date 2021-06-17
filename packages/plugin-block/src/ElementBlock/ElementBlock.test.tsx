@@ -6,7 +6,23 @@ import ElementBlock, { ElementBlockProps } from './ElementBlock';
 jest.mock('../BlockPluginProvider', () => ({
   useBlockPlugin: (): Partial<BlockPluginContextValue> => ({
     selectedBlocks: [
-      { id: 'block-id', type: 'text', children: [{ text: '' }] },
+      {
+        id: 'block-id',
+        type: 'text',
+        children: [{ text: '' }],
+        path: [0, 0],
+        rect: {
+          x: 0,
+          y: 0,
+          width: 100,
+          height: 50,
+          bottom: 200,
+          left: 0,
+          top: 0,
+          right: 0,
+          toJSON: () => '',
+        },
+      },
     ],
   }),
 }));

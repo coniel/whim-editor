@@ -2,10 +2,10 @@ import React from 'react';
 import { Range, Element, Text, Transforms, Path } from 'slate';
 import { useUI } from '@sheets-editor/core';
 import { useBlockPlugin } from '../BlockPluginProvider';
-import { useEditor } from 'slate-react';
+import { useSlateStatic } from 'slate-react';
 
 const BlockPluginUI: React.FC = () => {
-  const editor = useEditor();
+  const editor = useSlateStatic();
   const { Popover, List, MenuItem, MenuDivider, TextField } = useUI();
   const {
     isDragging,

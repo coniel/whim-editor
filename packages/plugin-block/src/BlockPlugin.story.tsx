@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import { Editor } from '@sheets-editor/core';
 import { LoremIpsum } from 'lorem-ipsum';
 import { v4 } from 'uuid';
@@ -19,9 +19,9 @@ const lorem = new LoremIpsum({
   },
 });
 
-function generateBlocks(count: number): Node[] {
+function generateBlocks(count: number): Descendant[] {
   let remainingCount = count;
-  const blocks: Node[] = [];
+  const blocks: Descendant[] = [];
 
   while (remainingCount > 0) {
     blocks.push({
@@ -46,7 +46,7 @@ const ParagraphPlugin = createParagraphPlugin();
 const Block = BlockPlugin();
 
 export const WithBlockPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
       id: v4(),
