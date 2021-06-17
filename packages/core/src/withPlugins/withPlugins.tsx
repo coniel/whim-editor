@@ -1,6 +1,6 @@
 import React from 'react';
 import isHotkey from 'is-hotkey';
-import { v4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import {
   Editable,
   ReactEditor,
@@ -8,19 +8,21 @@ import {
   RenderLeafProps as SlateRenderLeafProps,
 } from 'slate-react';
 import {
-  Range,
+  BaseRange,
   NodeEntry,
   Node,
   Element as SlateElement,
   Transforms,
   Editor,
   Path,
+  BaseText,
 } from 'slate';
 import { EditableProps } from 'slate-react/dist/components/editable';
 import { getBlockAbove, isNodeType, isBlockAboveEmpty } from '../queries';
 import deserializeHtml from '../deserializeHtml';
 import withMarkShortcuts from './withMarkShortcuts';
 import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
+import { BraindropEditor } from '../types/Slate.d';
 
 export interface Element extends SlateElement {
   type: string;
@@ -34,6 +36,10 @@ export type RenderLeafProps = SlateRenderLeafProps;
 
 export interface Mark {
   [key: string]: boolean;
+}
+
+export interface MarkedText extends BaseText {
+  [key: string]: boolean | string;
 }
 
 export interface DeserializeElementValue {
@@ -59,22 +65,6 @@ export interface MarkShortcut {
   end: string;
 }
 
-export interface SlashEditor extends ReactEditor {
-  renderEditable: (props: EditableProps) => JSX.Element;
-  renderElement: (props: RenderElementProps) => JSX.Element;
-  renderLeaf: (props: RenderLeafProps) => JSX.Element;
-  decorate: (entry: NodeEntry<Node>) => Range[];
-  onKeyDown: (event: React.KeyboardEvent<HTMLDivElement>) => void | true;
-  onDOMBeforeInput: (event: Event) => void;
-  deleteElement: (element: Element) => void;
-  insertElement: (type: string, options?: InsertOptions) => void;
-  turnIntoElement: (
-    type: string,
-    element: Element,
-    options?: TurnIntoOptions,
-  ) => void;
-}
-
 export interface InsertOptions {
   at?: Path;
 }
@@ -83,9 +73,11 @@ export interface TurnIntoOptions {
   at?: Path;
 }
 
-export type Insert = (editor: SlashEditor, options?: InsertOptions) => void;
+export type SlashEditor = Editor;
+
+export type Insert = (editor: BraindropEditor, options?: InsertOptions) => void;
 export type TurnInto = (
-  editor: SlashEditor,
+  editor: BraindropEditor,
   element: SlateElement,
   options?: TurnIntoOptions,
 ) => void;
@@ -111,7 +103,7 @@ export interface SlashPluginLeafDescriptor {
 }
 
 export interface SlashPlugin {
-  decorate?: (entry: NodeEntry<Node>) => Range[] | undefined;
+  decorate?: (entry: NodeEntry<Node>) => BaseRange[] | undefined;
   elementDeserializers?: ElementDeserializers;
   markDeserializers?: MarkDeserializers;
   renderElement?: (props: RenderElementProps) => JSX.Element | undefined;
@@ -126,11 +118,17 @@ export interface SlashPlugin {
   insertText?: (text: string) => void;
 }
 
-export type SlashPluginFactory = (editor: SlashEditor) => SlashPlugin;
+export type SlashPluginFactory = (editor: BraindropEditor) => SlashPlugin;
 
-type InsertEmptyNode = (editor: SlashEditor, options?: InsertOptions) => void;
-type TurnIntoNode = (editor: SlashEditor, options?: TurnIntoOptions) => void;
-type ToggleMark = (editor?: ReactEditor) => void;
+type InsertEmptyNode = (
+  editor: BraindropEditor,
+  options?: InsertOptions,
+) => void;
+type TurnIntoNode = (
+  editor: BraindropEditor,
+  options?: TurnIntoOptions,
+) => void;
+type ToggleMark = (editor?: BraindropEditor) => void;
 interface HotkeyAction {
   action:
     | InsertEmptyNode
@@ -179,6 +177,7 @@ function insertEmptyNode(type: string): InsertEmptyNode {
       editor,
       {
         type,
+        id: uuid(),
         children: [{ text: '' }],
       },
       options,
@@ -186,7 +185,7 @@ function insertEmptyNode(type: string): InsertEmptyNode {
 }
 
 function turnIntoNode(type: string): TurnIntoNode {
-  return (editor: SlashEditor, options?: TurnIntoOptions): void =>
+  return (editor: BraindropEditor, options?: TurnIntoOptions): void =>
     Transforms.setNodes(
       editor,
       {
@@ -196,12 +195,12 @@ function turnIntoNode(type: string): TurnIntoNode {
     );
 }
 
-function isMarkActive(editor: SlashEditor, mark: string): boolean {
-  const marks = Editor.marks(editor);
+function isMarkActive(editor: BraindropEditor, mark: string): boolean {
+  const marks = Editor.marks(editor) as Record<string, boolean> | null;
   return marks ? marks[mark] === true : false;
 }
 
-function toggleMark(editor: SlashEditor, mark: string): ToggleMark {
+function toggleMark(editor: BraindropEditor, mark: string): ToggleMark {
   return (): void => {
     const isActive = isMarkActive(editor, mark);
 
@@ -214,20 +213,19 @@ function toggleMark(editor: SlashEditor, mark: string): ToggleMark {
 }
 
 const withPlugins = (
-  editor: ReactEditor,
+  editor: BraindropEditor,
   pluginFactories: SlashPluginFactory[],
-): SlashEditor => {
+): BraindropEditor => {
   const insertMap: Record<string, Insert | InsertEmptyNode> = {};
   const turnIntoMap: Record<string, TurnInto | TurnIntoNode> = {};
-  const { apply } = editor;
   const plugins: SlashPlugin[] = [];
   editor.onKeyDown = (): void => undefined;
   editor.renderElement = (props: RenderElementProps): JSX.Element =>
     renderElement(props);
   editor.renderLeaf = (props: RenderLeafProps): JSX.Element =>
     renderLeaf(props);
-  editor.decorate = (): Range[] => [];
-  editor.renderEditable = (props: EditableProps): React.ReactNode => (
+  editor.decorate = (): BaseRange[] => [];
+  editor.renderEditable = (props: EditableProps): React.ReactElement => (
     <Editable {...props} />
   );
 
@@ -305,10 +303,10 @@ const withPlugins = (
   let elementDeserializers: ElementDeserializers[] = [];
   const markDeserializers: CombinedMarkDeserializers = {};
 
-  let slashEditor = pluginFactories.reduce(
-    (slashEditor: SlashEditor, pluginFn): SlashEditor => {
-      const { renderLeaf, onDOMBeforeInput, decorate } = slashEditor;
-      const plugin = pluginFn(slashEditor);
+  let Editor = pluginFactories.reduce(
+    (Editor: BraindropEditor, pluginFn): BraindropEditor => {
+      const { renderLeaf, onDOMBeforeInput, decorate } = Editor;
+      const plugin = pluginFn(Editor);
       plugins.push(plugin);
 
       if (plugin.elements) {
@@ -379,7 +377,7 @@ const withPlugins = (
             hotkeys.forEach((hotkey) => {
               hotkeyActions[hotkey] = {
                 type: mark,
-                action: toggleMark(slashEditor, mark),
+                action: toggleMark(Editor, mark),
               };
             });
           }
@@ -420,9 +418,9 @@ const withPlugins = (
         });
       }
 
-      const { renderElement } = slashEditor;
+      const { renderElement } = Editor;
 
-      slashEditor.renderElement = (props): JSX.Element => {
+      Editor.renderElement = (props): JSX.Element => {
         let element: JSX.Element | undefined;
 
         if (plugin.renderElement) {
@@ -442,7 +440,7 @@ const withPlugins = (
         return element || renderElement(props);
       };
 
-      slashEditor.renderLeaf = (props): JSX.Element => {
+      Editor.renderLeaf = (props): JSX.Element => {
         let { children } = props;
 
         if (plugin.renderLeaf) {
@@ -453,7 +451,7 @@ const withPlugins = (
           const { leaf } = props;
 
           plugin.leaves.forEach((leafDescriptor) => {
-            if (leaf[leafDescriptor.mark]) {
+            if ((leaf as MarkedText)[leafDescriptor.mark]) {
               const Leaf = leafDescriptor.component;
 
               children = <Leaf {...props}>{children}</Leaf>;
@@ -464,7 +462,7 @@ const withPlugins = (
         return renderLeaf({ ...props, children });
       };
 
-      slashEditor.onDOMBeforeInput = (event): void => {
+      Editor.onDOMBeforeInput = (event): void => {
         if (plugin.onDOMBeforeInput) {
           plugin.onDOMBeforeInput(event);
         }
@@ -474,7 +472,7 @@ const withPlugins = (
         }
       };
 
-      slashEditor.decorate = (props): Range[] => {
+      Editor.decorate = (props): BaseRange[] => {
         if (plugin.decorate) {
           return plugin.decorate(props) || decorate(props);
         }
@@ -483,47 +481,51 @@ const withPlugins = (
       };
 
       if (typeof plugin.isVoid === 'function') {
-        const { isVoid } = slashEditor;
+        const { isVoid } = Editor;
         const pluginIsVoid = plugin.isVoid;
 
-        slashEditor.isVoid = (element): boolean =>
+        Editor.isVoid = (element): boolean =>
           pluginIsVoid(element) || isVoid(element);
       }
 
       if (typeof plugin.isInline === 'function') {
-        const { isInline } = slashEditor;
+        const { isInline } = Editor;
         const pluginIsInline = plugin.isInline;
 
-        slashEditor.isInline = (element): boolean =>
+        Editor.isInline = (element): boolean =>
           pluginIsInline(element) || isInline(element);
       }
 
-      return slashEditor;
+      return Editor;
     },
-    editor as SlashEditor,
+    editor as Editor,
   );
 
   editor.insertElement = (type: string, options?: InsertOptions) =>
-    insertMap[type](slashEditor, options);
+    insertMap[type](Editor, options);
   editor.turnIntoElement = (
     type: string,
     element: Element,
     options?: TurnIntoOptions,
-  ) => turnIntoMap[type](slashEditor, element, options);
+  ) => turnIntoMap[type](Editor, element, options);
 
-  const { onKeyDown } = slashEditor;
-  slashEditor.onKeyDown = (event): void => {
+  const { onKeyDown } = Editor;
+  Editor.onKeyDown = (event): void => {
     for (const hotkey in hotkeyActions) {
       if (isHotkey(hotkey, (event as unknown) as KeyboardEvent)) {
-        const entry = getBlockAbove(slashEditor);
+        const entry = getBlockAbove(Editor);
         if (entry) {
           event.preventDefault();
           const hotkeyAction = hotkeyActions[hotkey];
-          if (hotkeyAction && hotkeyAction.action) {
+          if (
+            hotkeyAction &&
+            hotkeyAction.action &&
+            SlateElement.isElement(entry[0])
+          ) {
             if (entry[0].type === hotkeyAction.type) {
-              turnIntoNode('paragraph')(slashEditor);
+              turnIntoNode('paragraph')(Editor);
             } else {
-              hotkeyAction.action(slashEditor, entry[0]);
+              hotkeyAction.action(Editor, entry[0]);
             }
           }
         }
@@ -531,7 +533,7 @@ const withPlugins = (
     }
 
     if (isHotkey('Enter', (event as unknown) as KeyboardEvent)) {
-      const entry = getBlockAbove(slashEditor);
+      const entry = getBlockAbove(Editor);
 
       if (
         isBlockAboveEmpty(editor) &&
@@ -541,7 +543,7 @@ const withPlugins = (
       ) {
         // Turn into default
         event.preventDefault();
-        Transforms.setNodes(slashEditor, { type: 'paragraph' });
+        Transforms.setNodes(Editor, { type: 'paragraph' });
       } else if (
         // Break out
         isNodeType(entry, {
@@ -550,7 +552,7 @@ const withPlugins = (
         })
       ) {
         event.preventDefault();
-        insertEmptyNode('paragraph')(slashEditor);
+        insertEmptyNode('paragraph')(Editor);
       } else if (
         // Soft break
         isNodeType(entry, {
@@ -559,13 +561,13 @@ const withPlugins = (
         })
       ) {
         event.preventDefault();
-        slashEditor.insertText('\n');
+        Editor.insertText('\n');
       }
     }
 
     if (isHotkey('Backspace', (event as unknown) as KeyboardEvent)) {
-      if (isBlockAboveEmpty(slashEditor)) {
-        const entry = getBlockAbove(slashEditor);
+      if (isBlockAboveEmpty(Editor)) {
+        const entry = getBlockAbove(Editor);
         if (
           isNodeType(entry, {
             exclude: [
@@ -576,7 +578,7 @@ const withPlugins = (
           })
         ) {
           event.preventDefault();
-          Transforms.setNodes(slashEditor, { type: 'paragraph' });
+          Transforms.setNodes(Editor, { type: 'paragraph' });
         } else if (
           isNodeType(entry, {
             exclude: [
@@ -594,7 +596,7 @@ const withPlugins = (
     onKeyDown(event);
   };
 
-  slashEditor.insertData = (data): void => {
+  Editor.insertData = (data): void => {
     const html = data.getData('text/html');
 
     if (html) {
@@ -609,18 +611,22 @@ const withPlugins = (
       if (!fragment.length) return;
 
       // replace the selected node type by the first node type
-      if (fragment[0].type) {
-        Transforms.setNodes(slashEditor, { type: fragment[0].type });
+      if (SlateElement.isElement(fragment[0]) && fragment[0].type) {
+        Transforms.setNodes(Editor, { type: fragment[0].type });
       }
 
-      Transforms.insertFragment(slashEditor, fragment);
+      Transforms.insertFragment(Editor, fragment);
       return;
     } else if (data.getData('text/plain')) {
       const fragment = data
         .getData('text/plain')
         .split('\n\n')
-        .map((text) => ({ type: 'paragraph', children: [{ text }] }));
-      Transforms.insertFragment(slashEditor, fragment);
+        .map((text) => ({
+          type: 'paragraph',
+          id: uuid(),
+          children: [{ text }],
+        }));
+      Transforms.insertFragment(Editor, fragment);
     }
 
     const text = data.getData('text/plain');
@@ -641,9 +647,9 @@ const withPlugins = (
   };
 
   plugins.forEach((plugin) => {
-    const { onKeyDown, insertData } = slashEditor;
+    const { onKeyDown, insertData } = Editor;
     if (plugin.insertData) {
-      slashEditor.insertData = (data) => {
+      Editor.insertData = (data) => {
         let handled;
         if (plugin.insertData) {
           handled = plugin.insertData(data);
@@ -657,7 +663,7 @@ const withPlugins = (
 
     let handledByPlugin = false;
     if (plugin.onKeyDown) {
-      slashEditor.onKeyDown = (event): void => {
+      Editor.onKeyDown = (event): void => {
         if (plugin.onKeyDown) {
           handledByPlugin = !!plugin.onKeyDown(event);
         }
@@ -669,10 +675,10 @@ const withPlugins = (
     }
   });
 
-  slashEditor = withMarkShortcuts(slashEditor, markShortcuts);
-  slashEditor = withBlockShortcuts(slashEditor, blockShortcuts);
+  Editor = withMarkShortcuts(Editor, markShortcuts);
+  Editor = withBlockShortcuts(Editor, blockShortcuts);
 
-  return slashEditor;
+  return Editor;
 };
 
 export default withPlugins;

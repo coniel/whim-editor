@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { withReact, RenderLeafProps } from 'slate-react';
-import { createEditor, Node, Range } from 'slate';
+import { createEditor, Node, Range, Element as SlateElement } from 'slate';
 import withPlugins, {
   Element,
   SlashEditor,
   SlashPluginFactory,
   RenderElementProps,
+  MarkedText,
 } from './withPlugins';
 
 const createElement = (type: string): Element => ({
@@ -43,7 +44,7 @@ const testPlugin1: SlashPluginFactory = () => ({
     }
   },
   renderLeaf: ({ leaf, children }): JSX.Element => {
-    if (leaf.bold) {
+    if ((leaf as MarkedText).bold) {
       return (
         <span>
           LEAF_BOLD<span>{children}</span>
@@ -68,8 +69,10 @@ const testPlugin1: SlashPluginFactory = () => ({
       isInline: true,
     },
   ],
-  isVoid: (element): boolean => element.type === 'plug-1-elem-2',
-  isInline: (element): boolean => element.type === 'plug-1-elem-2',
+  isVoid: (element): boolean =>
+    SlateElement.isElement(element) && element.type === 'plug-1-elem-2',
+  isInline: (element): boolean =>
+    SlateElement.isElement(element) && element.type === 'plug-1-elem-2',
   onKeyDown: onKeyDownFn1,
   onDOMBeforeInput: onDOMBeforeInputFn1,
   decorate: ([, path]): Range[] | undefined => {
@@ -140,8 +143,10 @@ const testPlugin2: SlashPluginFactory = () => ({
       mark: 'italic',
     },
   ],
-  isVoid: (element): boolean => element.type === 'plug-2-elem-4',
-  isInline: (element): boolean => element.type === 'plug-2-elem-4',
+  isVoid: (element): boolean =>
+    SlateElement.isElement(element) && element.type === 'plug-2-elem-4',
+  isInline: (element): boolean =>
+    SlateElement.isElement(element) && element.type === 'plug-2-elem-4',
   onKeyDown: onKeyDownFn2,
   onDOMBeforeInput: onDOMBeforeInputFn2,
   decorate: ([, path]): Range[] | undefined => {
@@ -240,7 +245,7 @@ describe('Editor', () => {
       // testPlugin1
       const { getByText, container, rerender } = render(
         editor.renderLeaf({
-          leaf: { text: 'Some text', bold: true },
+          leaf: { text: 'Some text', bold: true } as MarkedText,
           attributes: { 'data-slate-leaf': true },
           children: 'CHILDREN_1',
           text: { text: 'Some text' },
@@ -256,7 +261,7 @@ describe('Editor', () => {
       // testPlugin2
       rerender(
         editor.renderLeaf({
-          leaf: { text: 'Some text', italic: true },
+          leaf: { text: 'Some text', italic: true } as MarkedText,
           attributes: { 'data-slate-leaf': true },
           children: 'CHILDREN_2',
           text: { text: 'Some text' },

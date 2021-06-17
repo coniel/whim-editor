@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
-import { Editor, Range } from 'slate';
+import { Editor, Element } from 'slate';
 import { HoveringToolbar as HoveringToolbarPlugin } from '@sheets-editor/plugin-hovering-toolbar';
 import { HoveringToolbarButton as Button } from '../HoveringToolbarButton';
 import { useUI } from '@sheets-editor/core';
@@ -8,7 +8,7 @@ import { EditorWithPlugins } from '../Editor.types';
 
 const isBlockActive = (editor: EditorWithPlugins, format: string): boolean => {
   const [match] = Editor.nodes(editor, {
-    match: (n) => n.type === format,
+    match: (n) => Element.isElement(n) && n.type === format,
   });
 
   return !!match;

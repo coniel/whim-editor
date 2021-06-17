@@ -5,6 +5,7 @@ import {
   SlashPluginFactory,
   SlashEditor,
   SlashPlugin,
+  BraindropEditor,
 } from '@sheets-editor/core';
 import createRichTextPlugin from '@sheets-editor/plugin-rich-text';
 import createHeadingPlugin from '@sheets-editor/plugin-heading';
@@ -144,9 +145,7 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
   ],
 });
 
-const createHeightPlugin = (): SlashPluginFactory => (
-  editor: SlashEditor,
-): SlashPlugin => {
+const createHeightPlugin = (): SlashPluginFactory => (editor) => {
   const { renderEditable } = editor;
 
   editor.renderEditable = (props): JSX.Element =>

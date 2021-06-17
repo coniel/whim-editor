@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import { Slate, withReact } from 'slate-react';
-import { createEditor, Node, Range } from 'slate';
+import { createEditor, Descendant, Range } from 'slate';
 import { withHistory } from 'slate-history';
-import { useAndroidPlugin } from 'slate-android-plugin';
 import withPlugins from '../withPlugins';
 import { SlashPluginFactory } from '../withPlugins/withPlugins';
 import UIProvider, { UIComponents } from '../UIProvider';
@@ -12,9 +11,9 @@ import { EditorStateProvider } from '../EditorStateProvider';
 export interface EditorProps {
   className?: string;
   placeholder?: string;
-  onChange: (value: Node[]) => void;
+  onChange: (value: Descendant[]) => void;
   onSelectionChange?: (selection: Range | null) => void;
-  value: Node[];
+  value: Descendant[];
   plugins?: SlashPluginFactory[];
   components: UIComponents;
   autoFocus?: boolean;
@@ -35,11 +34,9 @@ const Editor: React.FC<EditorProps> = ({
   autoFocus = true,
   readOnly = false,
 }) => {
-  const editor = useAndroidPlugin(
-    useMemo(
-      () => withPlugins(withHistory(withReact(createEditor())), plugins),
-      [],
-    ),
+  const editor = useMemo(
+    () => withPlugins(withHistory(withReact(createEditor())), plugins),
+    [],
   );
   const editable = useMemo(
     () =>
@@ -58,7 +55,7 @@ const Editor: React.FC<EditorProps> = ({
     [editor],
   );
 
-  function handleChange(nextValue: Node[]) {
+  function handleChange(nextValue: Descendant[]) {
     onChange(nextValue);
 
     if (onSelectionChange) {

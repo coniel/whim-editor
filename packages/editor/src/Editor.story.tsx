@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import { Editor } from './Editor';
 
 export default {
@@ -7,8 +7,10 @@ export default {
   component: Editor,
 };
 
+console.log('EDITOR STORY');
+
 export const Default: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
       id: '4',

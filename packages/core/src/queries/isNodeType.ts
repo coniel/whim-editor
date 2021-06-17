@@ -1,4 +1,4 @@
-import { Node, NodeEntry } from 'slate';
+import { Node, NodeEntry, Element } from 'slate';
 import { QueryOptions } from '../types/QueryOptions.types';
 
 /**
@@ -10,12 +10,14 @@ export const isNodeType = (
 ): boolean => {
   let filterAllow: typeof filter = () => true;
   if (allow.length) {
-    filterAllow = ([n]): boolean => allow.includes(n.type as string);
+    filterAllow = ([n]): boolean =>
+      Element.isElement(n) && allow.includes(n.type as string);
   }
 
   let filterExclude: typeof filter = () => true;
   if (exclude.length) {
-    filterExclude = ([n]): boolean => !exclude.includes(n.type as string);
+    filterExclude = ([n]): boolean =>
+      !Element.isElement(n) || !exclude.includes(n.type as string);
   }
 
   return !!entry && filter(entry) && filterAllow(entry) && filterExclude(entry);

@@ -8,11 +8,11 @@ const withTest = (
   const { isInline, isVoid } = editor;
 
   editor.isInline = (element): boolean => {
-    return element.inline === true ? true : isInline(element);
+    return isInline(element);
   };
 
   editor.isVoid = (element): boolean => {
-    return element.void === true ? true : isVoid(element);
+    return isVoid(element);
   };
 
   return editor;

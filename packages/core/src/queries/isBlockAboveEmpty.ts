@@ -1,4 +1,4 @@
-import { Editor } from 'slate';
+import { Editor, Element } from 'slate';
 import { getBlockAbove } from './getBlockAbove';
 import { isAncestorEmpty } from './isAncestorEmpty';
 
@@ -8,5 +8,9 @@ import { isAncestorEmpty } from './isAncestorEmpty';
 export const isBlockAboveEmpty = (editor: Editor): boolean => {
   const blockEntry = getBlockAbove(editor);
   const [block] = blockEntry;
-  return !editor.isVoid(block) && isAncestorEmpty(editor, block);
+  return (
+    Element.isElement(block) &&
+    !editor.isVoid(block) &&
+    isAncestorEmpty(editor, block)
+  );
 };

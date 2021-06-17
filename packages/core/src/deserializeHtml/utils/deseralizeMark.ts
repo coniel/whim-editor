@@ -1,4 +1,3 @@
-// import { setPropsToNodes } from 'common/transforms';
 import { CombinedMarkDeserializers } from '../../withPlugins';
 import { Node, Text } from 'slate';
 import { jsx } from 'slate-hyperscript';
@@ -28,13 +27,10 @@ export default ({
     return children.reduce((arr: any[], child) => {
       if (!child) return arr;
 
-      if (child.children) {
-        // setPropsToNodes(child, props, {
-        //   filter: Text.isText,
-        // });
-        arr.push(child);
-      } else {
+      if (Text.isText(child)) {
         arr.push(jsx('text', props, child));
+      } else {
+        arr.push(child);
       }
 
       return arr;
@@ -42,11 +38,7 @@ export default ({
   }
 
   if (deserializers['*']) {
-    console.log('has *', deserializers['*']);
-
     const props = deserializers['*'].reduce((obj, tag) => {
-      console.log('el', el);
-
       const newProps = tag(el);
       if (newProps) {
         Object.assign(obj, newProps);
@@ -54,18 +46,13 @@ export default ({
       return obj;
     }, {});
 
-    console.log('props', props);
-
     return children.reduce((arr: any[], child) => {
       if (!child) return arr;
 
-      if (child.children) {
-        // setPropsToNodes(child, props, {
-        //   filter: Text.isText,
-        // });
-        arr.push(child);
-      } else {
+      if (Text.isText(child)) {
         arr.push(jsx('text', props, child));
+      } else {
+        arr.push(child);
       }
 
       return arr;

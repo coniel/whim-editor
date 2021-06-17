@@ -1,4 +1,4 @@
-import { SlashEditor, MarkShortcutActions } from './withPlugins';
+import { SlashEditor, MarkShortcutActions, MarkedText } from './withPlugins';
 import { Range, Transforms, Editor, Text } from 'slate';
 
 const withMarkShortcuts = (
@@ -85,9 +85,10 @@ const withMarkShortcuts = (
               // Loop through all the leaves up to and including
               // the one into which the text is being inserted.
               block[0].children.forEach((child, index) => {
+                const textNode = (child as unknown) as Text;
                 // Ignore leaves which are after the caret
                 if (index <= shortcutEndLeafIndex) {
-                  if ((child as Text).text.includes(shortcut.start)) {
+                  if (textNode.text.includes(shortcut.start)) {
                     // We want the closest match, so overriding an
                     // existing value is fine.
                     shortcutStartLeafIndex = index;
@@ -95,7 +96,7 @@ const withMarkShortcuts = (
 
                     // If the mark is at the end of the text, the
                     // first affected leaf will be the next leaf.
-                    if ((child as Text).text.endsWith(shortcut.end)) {
+                    if (textNode.text.endsWith(shortcut.end)) {
                       firstAffectedLeafIndex += 1;
                     }
                   }
@@ -119,7 +120,7 @@ const withMarkShortcuts = (
                 block[0].children
                   .slice(firstAffectedLeafIndex, shortcutEndLeafIndex + 1)
                   .forEach((child) => {
-                    if (!(child as Text)[shortcut.mark]) {
+                    if (!(child as MarkedText)[shortcut.mark]) {
                       unset = false;
                     }
                   });
