@@ -11,9 +11,10 @@ import EquationError from '../EquationError';
 import useTex from '../utils/useTex';
 import { EnterIcon, TexIcon } from '../icons';
 import EquationTextarea from '../EquationTextarea';
+import { BlockEquationElement } from '../EquationPlugin.types';
 
 export interface ElementEquationBlockProps extends RenderElementProps {
-  foo?: string;
+  element: BlockEquationElement;
 }
 
 const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
@@ -46,7 +47,7 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
       editor,
       {
         tex: value,
-      },
+      } as Partial<BlockEquationElement>,
       { at: ReactEditor.findPath(editor, element) },
     );
   }, [value]);

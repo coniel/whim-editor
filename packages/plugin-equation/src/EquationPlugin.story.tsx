@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { Node, Range, Element } from 'slate';
+import { Descendant, Node, Range, Element } from 'slate';
 import { Editor } from '@sheets-editor/core';
 import { action } from '@storybook/addon-actions';
-import { useEditor } from 'slate-react';
+import { useSlateStatic } from 'slate-react';
 import * as components from '@sheets-editor/material-ui';
 import EquationPlugin, { SlashEditorWithEquation } from './EquationPlugin';
+import {
+  BlockEquationElement,
+  InlineEquationElement,
+} from './EquationPlugin.types';
 
 export default { title: 'Plugins/Equation' };
 
 const Equation = EquationPlugin();
 
+type EquationDescendant = Descendant | BlockEquationElement;
+
 const Toolbar: React.FC = () => {
-  const editor = useEditor() as SlashEditorWithEquation;
+  const editor = useSlateStatic() as SlashEditorWithEquation;
 
   return (
     <div>
@@ -47,7 +53,7 @@ const Toolbar: React.FC = () => {
 };
 
 export const WithEquationPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<EquationDescendant[]>([
     {
       type: 'text',
       children: [
@@ -56,7 +62,7 @@ export const WithEquationPlugin: React.FC = () => {
           type: 'equation-inline',
           tex: 'E=mc^2',
           children: [{ text: '' }],
-        },
+        } as InlineEquationElement,
         { text: '.' },
       ],
     },

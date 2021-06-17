@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Node, Transforms } from 'slate';
-import { ReactEditor, useEditor, useFocused, useSlate } from 'slate-react';
+import { Descendant } from 'slate';
+import { ReactEditor, useSlateStatic } from 'slate-react';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import createRichTextPlugin, {
@@ -21,7 +21,7 @@ const RichText = createRichTextPlugin();
 const Link = createLinkPlugin();
 
 const Toolbar: React.FC = () => {
-  const editor = useEditor() as EditorWithPlugins;
+  const editor = useSlateStatic() as EditorWithPlugins;
 
   return (
     <>
@@ -83,7 +83,7 @@ const Toolbar: React.FC = () => {
 };
 
 export const WithHoveringToolbarPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'text',
       children: [{ text: 'I use the HoveringToolbarPlugin.' }],

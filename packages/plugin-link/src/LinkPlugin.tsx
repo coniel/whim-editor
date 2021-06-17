@@ -1,6 +1,6 @@
 import React from 'react';
 import isUrl from 'is-url';
-import { Editor, Range, Node } from 'slate';
+import { Editor, Range, Node, Element } from 'slate';
 import {
   SlashPluginFactory,
   SlashPlugin,
@@ -10,7 +10,7 @@ import {
 } from '@sheets-editor/core';
 import ElementLink from './ElementLink';
 import isHotkey from 'is-hotkey';
-import { EditorWithLinkPlugin } from './LinkPlugin.types';
+import { EditorWithLinkPlugin, LinkElement } from './LinkPlugin.types';
 import { LinkPopover } from './LinkPopover';
 
 export interface LinkPluginOptions {
@@ -19,13 +19,15 @@ export interface LinkPluginOptions {
 
 const unwrapLink = (editor: SlashEditor): void => {
   Transforms.unwrapNodes(editor, {
-    match: (n) => n.type === 'link',
+    match: (n) => Element.isElement(n) && n.type === 'link',
     split: true,
   });
 };
 
 const isLinkActive = (editor: SlashEditor): boolean => {
-  const [link] = Editor.nodes(editor, { match: (n) => n.type === 'link' });
+  const [link] = Editor.nodes(editor, {
+    match: (n) => Element.isElement(n) && n.type === 'link',
+  });
   return !!link;
 };
 
@@ -51,8 +53,9 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
 };
 
 const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
-  editor: SlashEditor,
+  baseEditor: SlashEditor,
 ): SlashPlugin => {
+  const editor = baseEditor as EditorWithLinkPlugin;
   const { normalizeNode, renderEditable } = editor;
 
   editor.renderEditable = (props): JSX.Element => (
@@ -75,13 +78,14 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
   };
 
   editor.normalizeNode = (entry): void => {
-    const [node, path] = entry;
+    const [baseNode, path] = entry;
+    const node = baseNode as LinkElement;
 
     if (isNodeType(entry, { allow: ['link'] })) {
       // Don't allow links without a URL
       if (!node.url) {
         Transforms.unwrapNodes(editor, {
-          match: (n) => n.type === 'link',
+          match: (n) => Element.isElement(n) && n.type === 'link',
           split: true,
           at: path,
         });
@@ -95,7 +99,7 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
 
       links.forEach((link) => {
         Transforms.unwrapNodes(editor, {
-          match: (n) => n.type === 'link',
+          match: (n) => Element.isElement(n) && n.type === 'link',
           split: true,
           at: link[1],
         });
@@ -139,7 +143,7 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
             type: 'link',
             url: text,
             children: [{ text }],
-          });
+          } as LinkElement);
         }
 
         return true;

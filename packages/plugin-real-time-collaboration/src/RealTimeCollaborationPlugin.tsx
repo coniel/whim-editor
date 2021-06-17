@@ -37,7 +37,8 @@ const RealTimeCollaborationPlugin = ({
   const { apply } = editor;
 
   editor.apply = (operation): void => {
-    if (operation.type !== 'set_selection' && !operation.foreign) {
+    if (operation.type !== 'set_selection') {
+      // && !operation.foreign
       channel.trigger('client-editor-operation', {
         ...operation,
         foreign: true,

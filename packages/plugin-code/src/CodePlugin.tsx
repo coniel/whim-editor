@@ -1,19 +1,18 @@
 import React from 'react';
 import {
   SlashPluginFactory,
-  SlashPlugin,
-  SlashEditor,
   getBlockAbove,
   Transforms,
-  RenderElementProps,
   SlashPluginLeafDescriptor,
   SlashPluginElementDescriptor,
 } from '@sheets-editor/core';
+import { Element } from 'slate';
 import isHotkey from 'is-hotkey';
 import { ReactEditor } from 'slate-react';
 import { createDecorator } from './createDecorator';
 import ElementCode, { ElementCodeProps } from './ElementCode';
 import LeafCode from './LeafCode';
+import { CodeElement, CodeText } from './CodePlugin.types';
 
 interface BlockOptions extends Omit<SlashPluginElementDescriptor, 'component'> {
   component: React.FC<ElementCodeProps>;
@@ -26,8 +25,8 @@ export interface CodePluginOptions {
 }
 
 const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
-  editor: SlashEditor,
-): SlashPlugin => {
+  editor,
+) => {
   let blockType = 'code';
   let BlockComponent: BlockOptions['component'] = ElementCode;
   if (options.block && options.block.component) {
@@ -38,19 +37,18 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
     blockType = options.block.type;
   }
 
-  function setBlockLanguage(
-    element: RenderElementProps['element'],
-    language: string,
-  ): void {
+  function setBlockLanguage(element: CodeElement, language: string): void {
     const path = ReactEditor.findPath(editor, element);
-    Transforms.setNodes(editor, { language }, { at: path });
+    Transforms.setNodes(editor, { language } as Partial<CodeElement>, {
+      at: path,
+    });
   }
 
   return {
     onKeyDown: (event): void => {
       if (isHotkey('Tab', (event as unknown) as KeyboardEvent)) {
         const parent = getBlockAbove(editor);
-        if (parent[0].type === 'code') {
+        if (Element.isElement(parent[0]) && parent[0].type === 'code') {
           event.preventDefault();
           editor.insertText('  ');
         }
@@ -58,9 +56,10 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
     },
     decorate: createDecorator(editor, blockType),
     renderLeaf: ({ attributes, children, leaf }): React.ReactElement => {
-      if (leaf.decorateCode) {
+      const codeLeaf = leaf as CodeText;
+      if (codeLeaf.decorateCode) {
         return (
-          <span {...attributes} className={`token ${leaf.token}`}>
+          <span {...attributes} className={`token ${codeLeaf.token}`}>
             {children}
           </span>
         );
@@ -79,7 +78,7 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
             {
               type: blockType,
               language: options.defaultLanguage || 'javascript',
-            },
+            } as Partial<CodeElement>,
             turnIntoOptions,
           );
         },
@@ -90,13 +89,17 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
               type: blockType,
               language: options.defaultLanguage || 'javascript',
               children: [{ text: '' }],
-            },
+            } as CodeElement,
             insertOptions,
           );
         },
         ...(options.block || {}),
         component: (props): React.ReactElement => (
-          <BlockComponent {...props} onSetLanguage={setBlockLanguage} />
+          <BlockComponent
+            {...props}
+            element={props.element as CodeElement}
+            onSetLanguage={setBlockLanguage}
+          />
         ),
       },
     ],

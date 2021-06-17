@@ -1,8 +1,9 @@
 import React from 'react';
-import { RenderElementProps, SlashEditor, useUI } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { OrderedListElement } from '../OrderedListPlugin.types';
 
 export interface ElementOrderedListProps extends RenderElementProps {
-  editor: SlashEditor;
+  element: OrderedListElement;
 }
 
 const ElementOrderedList: React.FC<ElementOrderedListProps> = ({

@@ -5,7 +5,7 @@ import {
   Transforms,
   Element,
 } from '@sheets-editor/core';
-import { Node } from 'slate';
+import { Node, Element as SlateElement } from 'slate';
 
 type TypeOption = 'any' | 'non-void' | 'void' | string;
 
@@ -71,6 +71,7 @@ const ForcedLayoutPlugin = (
           ) {
             editor.turnIntoElement(defaultVoidType, node, { at: childPath });
           } else if (
+            SlateElement.isElement(child) &&
             !['void', 'non-void', 'any'].includes(type) &&
             child.type !== type
           ) {

@@ -1,9 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import ElementOrderedList, {
-  ElementOrderedListProps,
-} from './ElementOrderedList';
-import { SlashEditor } from '@sheets-editor/core';
+import { ElementOrderedListProps } from './ElementOrderedList';
 
 const TYPE = 'foo';
 const TEXT = 'Some text';
@@ -13,9 +9,8 @@ const defaultProps: ElementOrderedListProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, children: [{ text: TEXT }] },
+  element: { type: TYPE, number: 1, children: [{ text: TEXT }] },
   children: <div>{TEXT}</div>,
-  editor: {} as SlashEditor,
 };
 
 describe('ElementOrderedList', () => {

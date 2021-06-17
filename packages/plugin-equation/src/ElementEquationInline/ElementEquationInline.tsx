@@ -1,19 +1,23 @@
 import React, { Fragment, useState, useEffect, FormEvent, useRef } from 'react';
-import { useEditor, useFocused, useSelected, ReactEditor } from 'slate-react';
-import { Transforms, Element } from 'slate';
+import {
+  useSlateStatic,
+  useFocused,
+  useSelected,
+  ReactEditor,
+} from 'slate-react';
+import { Transforms } from 'slate';
 import { useUI, useHardReturn, RenderElementProps } from '@sheets-editor/core';
 import EquationTextarea from '../EquationTextarea';
 import useTex from '../utils/useTex';
 import { EquationIcon, EnterIcon } from '../icons';
 import EquationError from '../EquationError';
+import { InlineEquationElement } from '../EquationPlugin.types';
 
-export interface InlineEquationElement extends Element {
-  tex: string;
+export interface ElementEquationInlineProps extends RenderElementProps {
+  element: InlineEquationElement;
 }
 
-export type ElementEquationInlineProps = RenderElementProps;
-
-const ElementEquationInline: React.FC<RenderElementProps> = ({
+const ElementEquationInline: React.FC<ElementEquationInlineProps> = ({
   attributes,
   children,
   element,
@@ -25,7 +29,7 @@ const ElementEquationInline: React.FC<RenderElementProps> = ({
   const focused = useFocused();
   const selected = useSelected();
   const [rect, setRect] = useState({ bottom: 0, left: 0 });
-  const editor = useEditor();
+  const editor = useSlateStatic();
   const [selection, setSelection] = useState(editor.selection);
 
   const handleOpen = (): void => {
@@ -53,7 +57,7 @@ const ElementEquationInline: React.FC<RenderElementProps> = ({
       editor,
       {
         tex: value,
-      },
+      } as Partial<InlineEquationElement>,
       { at: ReactEditor.findPath(editor, element) },
     );
   }, [value]);

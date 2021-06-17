@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import ParagraphPlugin from './ParagraphPlugin';
@@ -10,7 +10,7 @@ const Paragraph = ParagraphPlugin();
 const CustomParagraph = ParagraphPlugin({});
 
 export const WithParagraphPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
       children: [{ text: 'I use the ParagraphPlugin.' }],
@@ -30,7 +30,7 @@ export const WithParagraphPlugin: React.FC = () => {
 };
 
 export const WithCustomisedParagraphPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
       children: [{ text: 'I use the ParagraphPlugin with custom options.' }],

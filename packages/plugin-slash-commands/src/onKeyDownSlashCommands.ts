@@ -1,5 +1,5 @@
 import isHotkey from 'is-hotkey';
-import { Node } from 'slate';
+import { Ancestor, Element, Node } from 'slate';
 import { SlashEditor, Transforms } from '@sheets-editor/core';
 
 function onKeyDownSlashCommands(
@@ -7,12 +7,18 @@ function onKeyDownSlashCommands(
   event: KeyboardEvent,
 ): void | true {
   if (isHotkey('/', event)) {
-    console.log('called');
+    let parent: Ancestor | null = null;
+    const hasParent =
+      editor.selection && Node.has(editor, editor.selection.focus.path);
 
+    if (hasParent && editor.selection) {
+      parent = Node.parent(editor, editor.selection.focus.path);
+    }
     if (
       editor.selection &&
-      Node.has(editor, editor.selection.focus.path) &&
-      Node.parent(editor, editor.selection.focus.path).type !== 'slash-query'
+      hasParent &&
+      Element.isElement(parent) &&
+      parent.type !== 'slash-query'
     ) {
       console.log(
         'Node.get(editor, editor.selection.focus.path)',
@@ -41,10 +47,19 @@ function onKeyDownSlashCommands(
       Transforms.move(editor, { unit: 'character', distance: 1 });
     }
   } else if (isHotkey('Enter', event)) {
+    let parent: Ancestor | null = null;
+    const hasParent =
+      editor.selection && Node.has(editor, editor.selection.focus.path);
+
+    if (hasParent && editor.selection) {
+      parent = Node.parent(editor, editor.selection.focus.path);
+    }
+
     if (
       editor.selection &&
-      Node.has(editor, editor.selection.focus.path) &&
-      Node.parent(editor, editor.selection.focus.path).type === 'slash-query'
+      hasParent &&
+      Element.isElement(parent) &&
+      parent.type === 'slash-query'
     ) {
       event.preventDefault();
       return true;

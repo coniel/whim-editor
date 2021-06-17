@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import BlockquotePlugin from './BlockquotePlugin';
@@ -9,7 +9,7 @@ export default { title: 'Plugins/Blockquote' };
 const Blockquote = BlockquotePlugin();
 
 export const WithBlockquotePlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'blockquote',
       children: [

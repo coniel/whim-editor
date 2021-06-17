@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import UnorderedListPlugin from './UnorderedListPlugin';
@@ -10,7 +10,7 @@ const UnorderedList = UnorderedListPlugin();
 const CustomUnorderedList = UnorderedListPlugin({});
 
 export const WithUnorderedListPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'ul',
       children: [{ text: 'List item 1' }],
@@ -40,7 +40,7 @@ export const WithUnorderedListPlugin: React.FC = () => {
 };
 
 export const WithCustomisedUnorderedListPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'ul',
       children: [{ text: 'List item 1' }],

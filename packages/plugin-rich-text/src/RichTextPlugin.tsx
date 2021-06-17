@@ -6,7 +6,7 @@ import {
   SlashPlugin,
   SlashPluginFactory,
   MarkShortcut,
-  DeserializeElementValue,
+  MarkedText,
   DeserializeMarkValue,
 } from '@sheets-editor/core';
 import onDOMBeforeInputRichText from './onDOMBeforeInputRichText';
@@ -112,7 +112,7 @@ const createRichTextPlugin = (
   return (editor: SlashEditor): SlashPlugin => {
     function isRichTextFormatActive(format: RichTextFormat): boolean {
       const marks = Editor.marks(editor);
-      return marks ? marks[MARKS[format]] === true : false;
+      return marks ? (marks as MarkedText)[MARKS[format]] === true : false;
     }
 
     function addRichTextFormat(format: RichTextFormat): void {

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import CodePlugin from './CodePlugin';
 import ElementCode, { ElementCodeProps } from './ElementCode';
+import { CodeElement } from './CodePlugin.types';
 
 export default { title: 'Plugins/Code' };
+
+type CodeDescendant = Descendant | CodeElement;
 
 const Code = CodePlugin({
   defaultLanguage: 'typescript',
@@ -13,7 +16,7 @@ const Code = CodePlugin({
 });
 
 export const CodeBlock: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<CodeDescendant[]>([
     {
       type: 'code',
       language: 'javascript',
@@ -46,7 +49,7 @@ const CustomCode = CodePlugin({
 });
 
 export const CodeBlockWithCustomComponent: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<CodeDescendant[]>([
     {
       type: 'code',
       language: 'javascript',
@@ -67,28 +70,28 @@ export const CodeBlockWithCustomComponent: React.FC = () => {
   );
 };
 
-export const InlineCode: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
-    {
-      type: 'paragraph',
-      children: [
-        { text: 'You can type inline code such as ' },
-        { code: true, text: 'foo = 3' },
-        { text: ' by surounding text with `.' },
-      ],
-    },
-  ]);
+// export const InlineCode: React.FC = () => {
+//   const [value, setValue] = useState<CodeDescendant[]>([
+//     {
+//       type: 'paragraph',
+//       children: [
+//         { text: 'You can type inline code such as ' },
+//         { code: true, text: 'foo = 3' },
+//         { text: ' by surounding text with `.' },
+//       ],
+//     },
+//   ]);
 
-  console.log(value);
+//   console.log(value);
 
-  return (
-    <Editor
-      components={components}
-      value={value}
-      plugins={[Code]}
-      onChange={(newValue): void => {
-        setValue(newValue);
-      }}
-    />
-  );
-};
+//   return (
+//     <Editor
+//       components={components}
+//       value={value}
+//       plugins={[Code]}
+//       onChange={(newValue): void => {
+//         setValue(newValue);
+//       }}
+//     />
+//   );
+// };

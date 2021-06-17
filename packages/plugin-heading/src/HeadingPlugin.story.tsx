@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import { Editor } from '@sheets-editor/core';
 import components from '@sheets-editor/material-ui';
 import HeadingPlugin from './HeadingPlugin';
@@ -9,7 +9,7 @@ export default { title: 'Plugins/Heading' };
 const Heading = HeadingPlugin();
 
 export const Default: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'h1',
       children: [{ text: 'Heading 1' }],
@@ -37,7 +37,7 @@ export const Default: React.FC = () => {
 };
 
 export const Placeholders: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'h1',
       children: [{ text: '' }],

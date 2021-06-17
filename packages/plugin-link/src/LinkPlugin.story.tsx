@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import LinkPlugin from './LinkPlugin';
-import { useEditor } from 'slate-react';
+import { useSlateStatic } from 'slate-react';
 import { EditorWithLinkPlugin } from './LinkPlugin.types';
 
 export default { title: 'Plugins/Link' };
@@ -11,6 +11,7 @@ export default { title: 'Plugins/Link' };
 const Link = LinkPlugin();
 const initialValue = [
   {
+    type: 'paragraph',
     children: [
       {
         text: 'In addition to block nodes, you can create inline nodes, like ',
@@ -26,6 +27,7 @@ const initialValue = [
     ],
   },
   {
+    type: 'paragraph',
     children: [
       {
         text:
@@ -36,7 +38,7 @@ const initialValue = [
 ];
 
 const Toolbar: React.FC = () => {
-  const editor = useEditor() as EditorWithLinkPlugin;
+  const editor = useSlateStatic() as EditorWithLinkPlugin;
 
   return (
     <div>
@@ -56,7 +58,7 @@ const Toolbar: React.FC = () => {
 };
 
 export const WithLinkPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>(initialValue);
+  const [value, setValue] = useState<Descendant[]>(initialValue);
 
   return (
     <Editor

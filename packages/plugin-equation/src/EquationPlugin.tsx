@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   SlashPluginFactory,
   SlashPlugin,
@@ -6,11 +7,15 @@ import {
   TurnInto,
   Insert,
 } from '@sheets-editor/core';
-import { Transforms, Element, Node } from 'slate';
+import { Transforms, Node } from 'slate';
 import 'katex/dist/katex.min.css';
 import 'katex/dist/contrib/mhchem.js';
 import InlineEquationPlaceholder from './ElementEquationInline';
 import BlockEquation from './ElementEquationBlock';
+import {
+  BlockEquationElement,
+  InlineEquationElement,
+} from './EquationPlugin.types';
 
 export interface SlashEditorWithEquation extends SlashEditor {
   insertInlineEquation: Insert;
@@ -46,7 +51,7 @@ const EquationPlugin = (
         type: inlineType,
         tex: tex,
         children: [{ text: '' }],
-      },
+      } as InlineEquationElement,
       options,
     );
   };
@@ -66,7 +71,7 @@ const EquationPlugin = (
         type: inlineType,
         tex,
         children: [{ text: '' }],
-      },
+      } as InlineEquationElement,
       { split: true, ...options },
     );
   };
@@ -78,7 +83,7 @@ const EquationPlugin = (
         type: blockType,
         tex: '',
         children: [{ text: '' }],
-      },
+      } as BlockEquationElement,
       options,
     );
   };
@@ -90,7 +95,7 @@ const EquationPlugin = (
         type: blockType,
         tex: Node.string(element),
         children: [{ text: '' }],
-      },
+      } as BlockEquationElement,
       options,
     );
   };
@@ -104,7 +109,12 @@ const EquationPlugin = (
     elements: [
       {
         isVoid: true,
-        component: BlockEquation,
+        component: (props) => (
+          <BlockEquation
+            {...props}
+            element={props.element as BlockEquationElement}
+          />
+        ),
         type: blockType,
         shortcuts: ['$$$ '],
         insert: insertBlockEquation,
@@ -114,7 +124,12 @@ const EquationPlugin = (
       {
         isVoid: true,
         isInline: true,
-        component: InlineEquationPlaceholder,
+        component: (props) => (
+          <InlineEquationPlaceholder
+            {...props}
+            element={props.element as InlineEquationElement}
+          />
+        ),
         type: inlineType,
         hotkeys: ['mod+Shift+e'],
         insert: insertInlineEquation,

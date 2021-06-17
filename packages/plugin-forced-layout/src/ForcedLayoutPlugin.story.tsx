@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import createHeadingPlugin from '@sheets-editor/plugin-heading';
@@ -22,7 +22,7 @@ const ForcedLayout = ForcedLayoutPlugin({
 });
 
 export const WithForcedLayoutPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'h1',
       children: [{ text: 'I use the forced layout plugin.' }],
@@ -62,8 +62,8 @@ const MaxElementsForcedLayout = ForcedLayoutPlugin({
   maxRootElements: 2,
 });
 
-export const MaxNodes: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+export const MaxDescendants: React.FC = () => {
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
       children: [{ text: 'I use the forced layout plugin.' }],
@@ -93,7 +93,7 @@ const TrailingElementsForcedLayout = ForcedLayoutPlugin({
 });
 
 export const TrailingElements: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
       children: [

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
 import RichTextPlugin, { EditorWithRichTextPlugin } from './RichTextPlugin';
-import { Editor } from '@sheets-editor/core';
+import { Editor, Element, MarkedText } from '@sheets-editor/core';
 import * as components from '@sheets-editor/material-ui';
-import { useEditor } from 'slate-react';
+import { useSlateStatic } from 'slate-react';
 
 export default { title: 'Plugins/RichText' };
+
+interface ElementWithRichText extends Element {
+  children: MarkedText[];
+}
 
 const withRichText = RichTextPlugin();
 const withPartialRichText = RichTextPlugin({ formats: ['bold'] });
@@ -40,7 +43,7 @@ const withCustomRichText = RichTextPlugin({
 });
 
 const Toolbar: React.FC = () => {
-  const editor = useEditor() as EditorWithRichTextPlugin;
+  const editor = useSlateStatic() as EditorWithRichTextPlugin;
 
   return (
     <div>
@@ -89,7 +92,7 @@ const Toolbar: React.FC = () => {
 };
 
 export const Default: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<ElementWithRichText[]>([
     {
       type: 'text',
       children: [
@@ -129,7 +132,7 @@ export const Default: React.FC = () => {
       value={value}
       plugins={[withRichText]}
       onChange={(newValue): void => {
-        setValue(newValue);
+        setValue(newValue as ElementWithRichText[]);
       }}
     >
       {<Toolbar />}
@@ -138,7 +141,7 @@ export const Default: React.FC = () => {
 };
 
 export const Custom: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<ElementWithRichText[]>([
     {
       type: 'text',
       children: [
@@ -204,14 +207,14 @@ export const Custom: React.FC = () => {
       value={value}
       plugins={[withCustomRichText]}
       onChange={(newValue): void => {
-        setValue(newValue);
+        setValue(newValue as ElementWithRichText[]);
       }}
     />
   );
 };
 
 export const Partial: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<ElementWithRichText[]>([
     {
       type: 'text',
       children: [
@@ -253,7 +256,7 @@ export const Partial: React.FC = () => {
       value={value}
       plugins={[withPartialRichText]}
       onChange={(newValue): void => {
-        setValue(newValue);
+        setValue(newValue as ElementWithRichText[]);
       }}
     />
   );

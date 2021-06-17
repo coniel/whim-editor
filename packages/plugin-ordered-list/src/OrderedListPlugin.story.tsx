@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import OrderedListPlugin from './OrderedListPlugin';
+import { OrderedListElement } from './OrderedListPlugin.types';
 
 export default { title: 'Plugins/OrderedList' };
+
+type OrderedListDescendant = Descendant | OrderedListElement;
 
 const OrderedList = OrderedListPlugin();
 const CustomOrderedList = OrderedListPlugin({});
 
 export const WithOrderedListPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<OrderedListDescendant[]>([
     {
       type: 'ol',
       number: 1,
@@ -41,7 +44,7 @@ export const WithOrderedListPlugin: React.FC = () => {
 };
 
 export const WithCustomisedOrderedListPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<OrderedListDescendant[]>([
     {
       type: 'ol',
       number: 1,

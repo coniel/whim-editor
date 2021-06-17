@@ -1,12 +1,11 @@
 import React, { useRef, useState, useCallback } from 'react';
 import { RenderElementProps, useUI } from '@sheets-editor/core';
 import { DropdownIcon } from './DropdownIcon';
+import { CodeElement } from '../CodePlugin.types';
 
 export interface ElementCodeProps extends RenderElementProps {
-  onSetLanguage: (
-    element: RenderElementProps['element'],
-    language: string,
-  ) => void;
+  onSetLanguage: (element: CodeElement, language: string) => void;
+  element: CodeElement;
 }
 
 interface Language {

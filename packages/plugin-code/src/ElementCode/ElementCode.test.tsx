@@ -11,7 +11,7 @@ const defaultProps: ElementCodeProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, children: [{ text: TEXT }] },
+  element: { type: TYPE, language: 'javascript', children: [{ text: TEXT }] },
   children: <div>{TEXT}</div>,
   onSetLanguage: jest.fn(),
 };

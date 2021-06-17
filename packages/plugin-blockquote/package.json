@@ -18,7 +18,7 @@
     "slate-react": "^0.65.2"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "0.6.0"
+    "@sheets-editor/material-ui": "0.23.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

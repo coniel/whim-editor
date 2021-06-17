@@ -59,13 +59,10 @@ import 'prismjs/components/prism-visual-basic';
 import 'prismjs/components/prism-wasm';
 import 'prismjs/components/prism-xml-doc';
 import 'prismjs/components/prism-yaml';
-import { Text, Range, Node, Element, Path } from 'slate';
+import { Text, Range, Node, Path } from 'slate';
 import { getBlockAbove, SlashEditor, isNodeType } from '@sheets-editor/core';
 import 'prismjs/themes/prism.css';
-
-interface CodeNode extends Element {
-  language: string;
-}
+import { CodeElement, CodeRange } from './CodePlugin.types';
 
 const getLength = (token: string | Token): number => {
   if (typeof token === 'string') {
@@ -85,7 +82,7 @@ export const createDecorator = (editor: SlashEditor, type: string) => ([
   node,
   path,
 ]: [Node, Path]): Range[] => {
-  const ranges: Range[] = [];
+  const ranges: CodeRange[] = [];
   if (!Text.isText(node)) {
     return ranges;
   }
@@ -96,7 +93,8 @@ export const createDecorator = (editor: SlashEditor, type: string) => ([
     return ranges;
   }
 
-  const language = parent[0].language as string;
+  const codeElement = parent[0] as CodeElement;
+  const language = codeElement.language;
 
   const tokens = Prism.tokenize(node.text, Prism.languages[language]);
   let start = 0;

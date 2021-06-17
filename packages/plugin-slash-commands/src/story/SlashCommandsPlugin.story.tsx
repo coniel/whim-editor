@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node } from 'slate';
+import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import createHeadingPlugin from '@sheets-editor/plugin-heading';
@@ -131,7 +131,7 @@ const menuItems: MenuItem[] = [
 const SlashCommands = SlashCommandsPlugin({ menuItems });
 
 export const WithSlashCommandsPlugin: React.FC = () => {
-  const [value, setValue] = useState<Node[]>([
+  const [value, setValue] = useState<Descendant[]>([
     { type: 'paragraph', children: [{ text: '' }] },
   ]); // JSON.parse(content));
 

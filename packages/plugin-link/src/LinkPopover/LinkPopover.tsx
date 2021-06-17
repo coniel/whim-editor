@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import isUrl from 'is-url';
-import { useSlate, ReactEditor, useEditor } from 'slate-react';
-import { Node, NodeEntry, Path, Range } from 'slate';
+import { useSlate, ReactEditor } from 'slate-react';
+import { Element, Node, NodeEntry, Path, Range } from 'slate';
 import {
   useUI,
   Transforms,
-  getBlockAbove,
   isNodeType,
   useEditorState,
 } from '@sheets-editor/core';
-import { EditorWithLinkPlugin } from '../LinkPlugin.types';
+import { EditorWithLinkPlugin, LinkElement } from '../LinkPlugin.types';
 
 function getNodeLinks(node: Node, from: Path, to: Path): NodeEntry[] {
   const descendants = Node.elements(node, {
@@ -32,7 +31,6 @@ export const LinkPopover: React.FC = () => {
     top: number;
     left: number;
   }>({ top: 0, left: 0 });
-  const reactEditor = useEditor();
   const editor = useSlate() as EditorWithLinkPlugin;
   const open = toggle('link-popover');
 
@@ -58,7 +56,8 @@ export const LinkPopover: React.FC = () => {
     );
 
     if (links.length) {
-      setValue(links[0][0].url as string);
+      const linkElement = links[0][0] as LinkElement;
+      setValue(linkElement.url as string);
     } else {
       setValue('');
     }
@@ -107,7 +106,7 @@ export const LinkPopover: React.FC = () => {
         type: 'link',
         url,
         children: [],
-      },
+      } as LinkElement,
       { at: selection, split: true },
     );
     close();
@@ -121,7 +120,7 @@ export const LinkPopover: React.FC = () => {
     // Node normalizer will remove links without a URL
     // so we don't need to worry about removing the nodes
     Transforms.unsetNodes(editor, 'url', {
-      match: (n) => n.type === 'link',
+      match: (n) => Element.isElement(n) && n.type === 'link',
       split: true,
       at: selection,
     });
