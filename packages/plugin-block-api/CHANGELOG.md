@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.1](https://github.com/coniel/slash/compare/v0.24.0...v0.24.1) (2021-06-19)
+
+
+### Bug Fixes
+
+* **plugin-block-api:** fixed inlines triggering onCreateBlock ([45813be](https://github.com/coniel/slash/commit/45813bec5c2d2861da004ecff226cad47d5ab710))
+
+
+
+
+
 # [0.24.0](https://github.com/coniel/slash/compare/v0.23.0...v0.24.0) (2021-06-17)
 
 
