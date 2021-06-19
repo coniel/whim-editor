@@ -6,6 +6,7 @@ import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
 import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
 import createEquationPlugin from '@sheets-editor/plugin-equation';
 import createBlockPlugin from '@sheets-editor/plugin-block';
+import createSlashCommandsPlugin from '@sheets-editor/plugin-slash-commands';
 import BlockApiPlugin, { BlockEntry } from './BlockApiPlugin';
 
 export default { title: 'Plugins/BlockApi' };
@@ -20,6 +21,91 @@ const BlockIdPlugin = createBlockIdPlugin({ ignoreTypes: ['equation-inline'] });
 const EquationPlugin = createEquationPlugin();
 const ParagraphPlugin = createParagraphPlugin();
 const BlockPlugin = createBlockPlugin();
+const SlashCommandsPlugin = createSlashCommandsPlugin({
+  menuItems: [
+    {
+      id: 'paragraph',
+      group: 'Basic Blocks',
+      title: 'Text',
+      subtitle: 'Just start writing with plain text.',
+      keywords: 'text,paragraph,plain',
+      index: 0,
+    },
+    {
+      id: 'h1',
+      group: 'Basic Blocks',
+      title: 'Heading 1',
+      subtitle: 'Big section heading.',
+      keywords: 'h1,one',
+      index: 1,
+    },
+    {
+      id: 'h2',
+      group: 'Basic Blocks',
+      title: 'Heading 2',
+      subtitle: 'Medium section heading.',
+      keywords: 'h2,two',
+      index: 2,
+    },
+    {
+      id: 'h3',
+      group: 'Basic Blocks',
+      title: 'Heading 3',
+      subtitle: 'Small section heading.',
+      keywords: 'h3,three',
+      index: 3,
+    },
+    {
+      id: 'ul',
+      group: 'Basic Blocks',
+      title: 'Bulleted list',
+      subtitle: 'Create a simple bulleted list.',
+      keywords: 'ul',
+      index: 4,
+    },
+    {
+      id: 'ol',
+      group: 'Basic Blocks',
+      title: 'Numbered list',
+      subtitle: 'Create a list with numbering.',
+      keywords: 'ul',
+      index: 5,
+    },
+    {
+      id: 'blockquote',
+      group: 'Basic Blocks',
+      title: 'Quote',
+      subtitle: 'Capture a quote.',
+      keywords: 'quote',
+      index: 6,
+    },
+    {
+      id: 'equation',
+      group: 'Basic Blocks',
+      title: 'Block equation',
+      subtitle: 'Display a standalone math equation.',
+      keywords: 'equation,tex,math',
+      index: 7,
+    },
+    {
+      id: 'equation-inline',
+      group: 'Basic Blocks',
+      title: 'Inline equation',
+      subtitle: 'Insert mathematical symbols in text',
+      keywords: 'equation,tex,math,inline,number',
+      index: 8,
+      inline: true,
+    },
+    {
+      id: 'code',
+      group: 'Basic Blocks',
+      title: 'Code',
+      subtitle: 'Capture a code snippet.',
+      keywords: 'code',
+      index: 9,
+    },
+  ],
+});
 
 interface Block {
   id: string;
@@ -270,6 +356,7 @@ export const RootBlocks: React.FC = () => {
           BlockIdPlugin,
           ParagraphPlugin,
           EquationPlugin,
+          SlashCommandsPlugin,
           BlockPlugin,
         ]}
         onChange={(newValue): void => {

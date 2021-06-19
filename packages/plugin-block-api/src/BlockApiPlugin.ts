@@ -33,17 +33,18 @@ const BlockApiPlugin = ({
   const { apply } = editor;
 
   editor.apply = (operation): void => {
-    // console.log('op', operation);
-
     if (operation.type === 'move_node' && onUpdateBlock) {
       setTimeout(() => {
-        console.log('Moved block', operation);
         if (onMoveBlock) {
           const block =
             Node.has(editor, operation.newPath) &&
             Node.get(editor, operation.newPath);
 
-          if (block) {
+          if (
+            block &&
+            SlateElement.isElement(block) &&
+            !editor.isInline(block)
+          ) {
             const fromParent = getBlockAbove(editor, {
               at: operation.path,
             }) as BlockEntry;
@@ -81,7 +82,6 @@ const BlockApiPlugin = ({
       (operation.properties as ElementWithId).type
     ) {
       setTimeout(() => {
-        console.log(operation);
         if (onUpdateBlock) {
           const mergedIntoPath = Path.previous(operation.path);
           const mergedIntoBlock = Node.get(
@@ -132,7 +132,6 @@ const BlockApiPlugin = ({
       (operation.properties as ElementWithId).type
     ) {
       apply(operation);
-      console.log('split', operation);
 
       setTimeout(() => {
         const updatedBlock = Node.get(editor, operation.path) as ElementWithId;
@@ -155,8 +154,9 @@ const BlockApiPlugin = ({
     if (operation.type === 'insert_node') {
       apply(operation);
       if (
-        SlateElement.isElement(operation.node) &&
-        (editor.isInline(operation.node) || !operation.node.type)
+        !SlateElement.isElement(operation.node) ||
+        editor.isInline(operation.node) ||
+        !operation.node.type
       ) {
         if (onUpdateBlock) {
           setTimeout(() => {
