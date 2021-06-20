@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.3](https://github.com/coniel/slash/compare/v0.24.2...v0.24.3) (2021-06-20)
+
+**Note:** Version bump only for package @sheets-editor/plugin-block-api
+
+
+
+
+
 ## [0.24.2](https://github.com/coniel/slash/compare/v0.24.1...v0.24.2) (2021-06-20)
 
 

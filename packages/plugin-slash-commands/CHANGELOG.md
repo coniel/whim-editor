@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.3](https://github.com/coniel/slash/compare/v0.24.2...v0.24.3) (2021-06-20)
+
+
+### Bug Fixes
+
+* **plugin-slash-commands:** fix crash when submitting selection ([b0cc4c4](https://github.com/coniel/slash/commit/b0cc4c4252cb7b843ad4f27cd8cc5836e80d3553))
+
+
+
+
+
 # [0.24.0](https://github.com/coniel/slash/compare/v0.23.0...v0.24.0) (2021-06-17)
 
 

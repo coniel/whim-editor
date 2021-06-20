@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.3](http://test/compare/v0.24.2...v0.24.3) (2021-06-20)
+
+
+### Bug Fixes
+
+* **plugin-slash-commands:** fix crash when submitting selection ([b0cc4c4](http://test/commits/b0cc4c4252cb7b843ad4f27cd8cc5836e80d3553))
+
+
+
+
+
 ## [0.24.2](http://test/compare/v0.24.1...v0.24.2) (2021-06-20)
 
 

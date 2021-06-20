@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-slash-commands",
-  "version": "0.24.0",
+  "version": "0.24.3",
   "description": "Adds support for slash commands",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
