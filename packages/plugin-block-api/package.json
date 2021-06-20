@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-block-api",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "description": "Adds ability to create a block level API.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
