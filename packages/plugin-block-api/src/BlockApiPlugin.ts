@@ -81,6 +81,9 @@ const BlockApiPlugin = ({
       !editor.isInline(operation.properties as ElementWithId) &&
       (operation.properties as ElementWithId).type
     ) {
+      const parent = getBlockAbove(editor, {
+        at: operation.path,
+      }) as BlockEntry;
       setTimeout(() => {
         if (onUpdateBlock) {
           const mergedIntoPath = Path.previous(operation.path);
@@ -97,9 +100,6 @@ const BlockApiPlugin = ({
           typeof (operation.properties as ElementWithId).id === 'string' &&
           !editor.isInline(operation.properties as ElementWithId)
         ) {
-          const parent = getBlockAbove(editor, {
-            at: operation.path,
-          }) as BlockEntry;
           onDeleteBlock(
             (operation.properties as ElementWithId).id as string,
             parent,
@@ -113,15 +113,16 @@ const BlockApiPlugin = ({
       !editor.isInline(operation.node) &&
       operation.node.type
     ) {
+      const parent = getBlockAbove(editor, {
+        at: operation.path,
+      }) as BlockEntry;
+
       setTimeout(() => {
         if (
           onDeleteBlock &&
           SlateElement.isElement(operation.node) &&
           typeof operation.node.id === 'string'
         ) {
-          const parent = getBlockAbove(editor, {
-            at: operation.path,
-          }) as BlockEntry;
           onDeleteBlock(operation.node.id, parent);
         }
       });
