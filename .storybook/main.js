@@ -15,7 +15,7 @@ if (packages.length !== 0) {
   packages.forEach((packageName) => {
     const packagePath = getPackagePath(`@sheets-editor/${packageName}`);
     if (packagePath) {
-      stories.push(path.join(packagePath, 'src/*.story.tsx'));
+      stories.push(path.join(packagePath, 'src/**/*.story.tsx'));
     } else {
       process.stdout.write(
         chalk.yellow(`Warning: Unable to resolve ${packageName}, skipping\n`),

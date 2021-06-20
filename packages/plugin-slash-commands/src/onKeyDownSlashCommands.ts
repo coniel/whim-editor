@@ -7,6 +7,7 @@ function onKeyDownSlashCommands(
   event: KeyboardEvent,
 ): void | true {
   if (isHotkey('/', event)) {
+    console.log('///');
     let parent: Ancestor | null = null;
     const hasParent =
       editor.selection && Node.has(editor, editor.selection.focus.path);

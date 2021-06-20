@@ -10,12 +10,11 @@ import {
   RenderElementProps,
   useUI,
   useSearch,
-  isBlockAboveEmpty,
   SlashEditor,
   getBlockAbove,
 } from '@sheets-editor/core';
 import { Node, Transforms } from 'slate';
-import { ReactEditor, useEditor, useSelected } from 'slate-react';
+import { ReactEditor, useSlateStatic, useSelected } from 'slate-react';
 import isHotkey from 'is-hotkey';
 import { MenuItem } from '../SlashCommandsPlugin.types';
 
@@ -30,7 +29,7 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
   menuItems,
 }) => {
   const { search, result } = useSearch<MenuItem>(menuItems);
-  const editor = useEditor() as SlashEditor;
+  const editor = useSlateStatic() as SlashEditor;
   const selected = useSelected();
   const [activeIndex, setActiveIndexState] = useState(0);
   const activeItemRef = useRef(menuItems[0]);
@@ -56,39 +55,43 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
   }, []);
 
   const handleSubmit = useCallback(() => {
-    const blockAbove = getBlockAbove(editor);
-    if (activeItemRef.current.inline) {
-      Transforms.select(
-        editor,
-        ReactEditor.findPath(editor, elementRef.current),
-      );
-      editor.insertElement(activeItemRef.current.id);
-    } else if (Node.string(blockAbove[0]) === textRef.current) {
-      Transforms.select(editor, blockAbove[1]);
-      Transforms.delete(editor);
-      editor.turnIntoElement(activeItemRef.current.id, {
-        ...elementRef.current,
-        children: [{ text: '' }],
-      });
-      setTimeout(() => {
+    try {
+      const blockAbove = getBlockAbove(editor);
+      if (activeItemRef.current.inline) {
+        Transforms.select(
+          editor,
+          ReactEditor.findPath(editor, elementRef.current),
+        );
+        editor.insertElement(activeItemRef.current.id);
+      } else if (Node.string(blockAbove[0]) === textRef.current) {
+        Transforms.select(editor, blockAbove[1]);
+        Transforms.delete(editor);
         editor.turnIntoElement(activeItemRef.current.id, {
           ...elementRef.current,
           children: [{ text: '' }],
         });
         setTimeout(() => {
-          ReactEditor.focus(editor);
-          Transforms.select(editor, blockAbove[1]);
+          editor.turnIntoElement(activeItemRef.current.id, {
+            ...elementRef.current,
+            children: [{ text: '' }],
+          });
+          setTimeout(() => {
+            ReactEditor.focus(editor);
+            Transforms.select(editor, blockAbove[1]);
+          });
         });
-      });
-    } else {
-      Transforms.select(
-        editor,
-        ReactEditor.findPath(editor, elementRef.current),
-      );
-      Transforms.delete(editor);
-      setTimeout(() => {
-        editor.insertElement(activeItemRef.current.id);
-      });
+      } else {
+        Transforms.select(
+          editor,
+          ReactEditor.findPath(editor, elementRef.current),
+        );
+        Transforms.delete(editor);
+        setTimeout(() => {
+          editor.insertElement(activeItemRef.current.id);
+        });
+      }
+    } catch (err) {
+      console.error(err);
     }
     close();
   }, []);
@@ -169,9 +172,14 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
 
   useEffect(() => {
     if (!open) {
-      // TODO: remove 0 width space
       const path = ReactEditor.findPath(editor, element);
-      Transforms.unwrapNodes(editor, { at: path });
+
+      if (Node.has(editor, path)) {
+        const node = Node.get(editor, path);
+        const text = Node.string(node).replace('​', ''); // Replace 0 width space with empty string
+        Transforms.removeNodes(editor, { at: path });
+        Transforms.insertNodes(editor, [{ text }], { at: path, select: true });
+      }
     }
   }, [open]);
 
