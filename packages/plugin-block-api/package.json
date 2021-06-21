@@ -1,6 +1,6 @@
 {
   "name": "@sheets-editor/plugin-block-api",
-  "version": "0.24.3",
+  "version": "0.25.0",
   "description": "Adds ability to create a block level API.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,11 +10,11 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.24.0",
-    "@sheets-editor/plugin-block-id": "^0.24.0",
-    "@sheets-editor/plugin-equation": "^0.24.0",
-    "@sheets-editor/plugin-paragraph": "^0.24.0",
-    "@sheets-editor/plugin-slash-commands": "^0.24.3",
+    "@sheets-editor/core": "^0.25.0",
+    "@sheets-editor/plugin-block-id": "^0.25.0",
+    "@sheets-editor/plugin-equation": "^0.25.0",
+    "@sheets-editor/plugin-paragraph": "^0.25.0",
+    "@sheets-editor/plugin-slash-commands": "^0.25.0",
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
@@ -23,8 +23,8 @@
     "slate-react": "^0.65.2"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.24.0",
-    "@sheets-editor/plugin-block": "^0.24.0"
+    "@sheets-editor/material-ui": "^0.25.0",
+    "@sheets-editor/plugin-block": "^0.25.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
