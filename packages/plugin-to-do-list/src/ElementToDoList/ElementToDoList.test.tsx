@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ElementToDoList, { ElementToDoListProps } from './ElementToDoList';
+import { ElementToDoList, ElementToDoListProps } from './ElementToDoList';
 
 const TYPE = 'foo';
 const TEXT = 'Some text';

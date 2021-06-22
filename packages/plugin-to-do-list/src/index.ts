@@ -1,3 +1,3 @@
-export { default } from './ToDoListPlugin';
-export { default as ElementToDoList } from './ElementToDoList';
+export * from './ToDoListPlugin';
 export * from './ElementToDoList';
+export * from './ToDoListPlugin.types';

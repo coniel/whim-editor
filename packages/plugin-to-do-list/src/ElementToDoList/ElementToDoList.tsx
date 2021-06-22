@@ -9,7 +9,7 @@ export interface ElementToDoListProps extends RenderElementProps {
   onClickCheckbox: (element: ToDoListElement) => void;
 }
 
-const ElementToDoList: React.FC<ElementToDoListProps> = ({
+export const ElementToDoList: React.FC<ElementToDoListProps> = ({
   attributes,
   children,
   element,
@@ -132,5 +132,3 @@ const ElementToDoList: React.FC<ElementToDoListProps> = ({
     </div>
   );
 };
-
-export default ElementToDoList;

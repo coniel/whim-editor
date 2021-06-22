@@ -6,8 +6,7 @@ import {
 } from '@sheets-editor/core';
 import { ReactEditor } from 'slate-react';
 import { Transforms } from 'slate';
-
-import ElementToDoList from './ElementToDoList';
+import { ElementToDoList } from './ElementToDoList';
 import { ToDoListElement } from './ToDoListPlugin.types';
 
 export interface ToDoListPluginOptions {
@@ -16,7 +15,7 @@ export interface ToDoListPluginOptions {
   onToggleChecked?: (element: ToDoListElement, checked: boolean) => void;
 }
 
-const ToDoListPlugin = (
+export const createToDoListPlugin = (
   options: ToDoListPluginOptions = {},
 ): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
   function toggleDone(element: ToDoListElement) {
@@ -52,5 +51,3 @@ const ToDoListPlugin = (
     ],
   };
 };
-
-export default ToDoListPlugin;

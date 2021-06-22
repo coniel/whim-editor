@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import ToDoListPlugin from './ToDoListPlugin';
+import { createToDoListPlugin } from './ToDoListPlugin';
 import { ToDoListElement } from './ToDoListPlugin.types';
 
 type ToDoListDescendant = Descendant | ToDoListElement;
 
 export default { title: 'Plugins/ToDoList' };
 
-const ToDoList = ToDoListPlugin({
+const ToDoList = createToDoListPlugin({
   onToggleChecked: (element, checked) => console.log(element, checked),
 });
 
