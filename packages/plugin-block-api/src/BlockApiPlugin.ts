@@ -7,30 +7,37 @@ import {
 import { Path, NodeEntry, Node, Element as SlateElement } from 'slate';
 import { ElementWithId } from '@sheets-editor/plugin-block-id';
 
-export type BlockEntry = NodeEntry<ElementWithId>;
+export type BlockEntry<
+  BlockType extends ElementWithId = ElementWithId
+> = NodeEntry<BlockType>;
 
-export interface BlockApiPluginOptions {
-  onUpdateBlock?: (block: BlockEntry) => void;
-  onDeleteBlock?: (id: string, parent: BlockEntry) => void;
-  onCreateBlock?: (block: BlockEntry, parent: BlockEntry) => void;
+export interface BlockApiPluginOptions<BlockType extends ElementWithId> {
+  onUpdateBlock?: (block: BlockEntry<BlockType>) => void;
+  onDeleteBlock?: (id: string, parent: BlockEntry<BlockType>) => void;
+  onCreateBlock?: (
+    block: BlockEntry<BlockType>,
+    parent: BlockEntry<BlockType>,
+  ) => void;
   onMoveBlock?: (
     fromPath: Path,
     toPath: Path,
-    block: BlockEntry,
-    fromParent: BlockEntry,
-    toParent: BlockEntry,
+    block: BlockEntry<BlockType>,
+    fromParent: BlockEntry<BlockType>,
+    toParent: BlockEntry<BlockType>,
   ) => void;
 }
 
-const BlockApiPlugin = ({
+const BlockApiPlugin = <BlockType extends ElementWithId = ElementWithId>({
   onCreateBlock,
   onUpdateBlock,
   onDeleteBlock,
   onMoveBlock,
-}: BlockApiPluginOptions): SlashPluginFactory => (
+}: BlockApiPluginOptions<BlockType>): SlashPluginFactory => (
   editor: BraindropEditor,
 ): SlashPlugin => {
   const { apply } = editor;
+
+  type Entry = BlockEntry<BlockType>;
 
   editor.apply = (operation): void => {
     if (operation.type === 'move_node' && onUpdateBlock) {
@@ -47,27 +54,31 @@ const BlockApiPlugin = ({
           ) {
             const fromParent = getBlockAbove(editor, {
               at: operation.path,
-            }) as BlockEntry;
+            });
             const toParent = getBlockAbove(editor, {
               at: operation.newPath,
-            }) as BlockEntry;
+            });
             onMoveBlock(
               operation.path,
               operation.newPath,
-              [block as ElementWithId, operation.newPath],
-              fromParent,
-              toParent,
+              [block as BlockType, operation.newPath],
+              fromParent as Entry,
+              toParent as Entry,
             );
           }
         }
       });
     }
 
-    if (['insert_text', 'set_node', 'remove_text'].includes(operation.type)) {
+    if (
+      operation.type === 'insert_text' ||
+      operation.type === 'set_node' ||
+      operation.type === 'remove_text'
+    ) {
       apply(operation);
       if (onUpdateBlock) {
+        const block = getBlockAbove(editor, { at: operation.path }) as Entry;
         setTimeout(() => {
-          const block = getBlockAbove(editor) as BlockEntry;
           if (block) {
             onUpdateBlock(block);
           }
@@ -78,30 +89,27 @@ const BlockApiPlugin = ({
     }
     if (
       operation.type === 'merge_node' &&
-      !editor.isInline(operation.properties as ElementWithId) &&
-      (operation.properties as ElementWithId).type
+      !editor.isInline(operation.properties as BlockType) &&
+      (operation.properties as BlockType).type
     ) {
       const parent = getBlockAbove(editor, {
         at: operation.path,
-      }) as BlockEntry;
+      }) as Entry;
       setTimeout(() => {
         if (onUpdateBlock) {
           const mergedIntoPath = Path.previous(operation.path);
-          const mergedIntoBlock = Node.get(
-            editor,
-            mergedIntoPath,
-          ) as ElementWithId;
+          const mergedIntoBlock = Node.get(editor, mergedIntoPath) as BlockType;
           if (mergedIntoBlock && !editor.isInline(mergedIntoBlock)) {
             onUpdateBlock([mergedIntoBlock, mergedIntoPath]);
           }
         }
         if (
           onDeleteBlock &&
-          typeof (operation.properties as ElementWithId).id === 'string' &&
-          !editor.isInline(operation.properties as ElementWithId)
+          typeof (operation.properties as BlockType).id === 'string' &&
+          !editor.isInline(operation.properties as BlockType)
         ) {
           onDeleteBlock(
-            (operation.properties as ElementWithId).id as string,
+            (operation.properties as BlockType).id as string,
             parent,
           );
         }
@@ -115,7 +123,7 @@ const BlockApiPlugin = ({
     ) {
       const parent = getBlockAbove(editor, {
         at: operation.path,
-      }) as BlockEntry;
+      }) as Entry;
 
       setTimeout(() => {
         if (
@@ -129,23 +137,23 @@ const BlockApiPlugin = ({
     }
     if (
       operation.type === 'split_node' &&
-      !editor.isInline(operation.properties as ElementWithId) &&
-      (operation.properties as ElementWithId).type
+      !editor.isInline(operation.properties as BlockType) &&
+      (operation.properties as BlockType).type
     ) {
       apply(operation);
 
       setTimeout(() => {
-        const updatedBlock = Node.get(editor, operation.path) as ElementWithId;
+        const updatedBlock = Node.get(editor, operation.path) as BlockType;
         if (onUpdateBlock && updatedBlock) {
           onUpdateBlock([updatedBlock, operation.path]);
         }
 
         const newBlockPath = Path.next(operation.path);
-        const newBlock = Node.get(editor, newBlockPath) as ElementWithId;
+        const newBlock = Node.get(editor, newBlockPath) as BlockType;
         if (onCreateBlock && newBlock) {
           const parent = getBlockAbove(editor, {
             at: operation.path,
-          }) as BlockEntry;
+          }) as Entry;
           onCreateBlock([newBlock, newBlockPath], parent);
         }
       });
@@ -161,7 +169,7 @@ const BlockApiPlugin = ({
       ) {
         if (onUpdateBlock) {
           setTimeout(() => {
-            const block = getBlockAbove(editor) as BlockEntry;
+            const block = getBlockAbove(editor) as Entry;
             if (block) {
               onUpdateBlock(block);
             }
@@ -174,21 +182,20 @@ const BlockApiPlugin = ({
             const block = Node.get(
               editor,
               operation.path.slice(0, -1),
-            ) as ElementWithId;
+            ) as BlockType;
             if (block) {
               onUpdateBlock([block, operation.path.slice(0, -1)]);
             }
           }
           const parent = getBlockAbove(editor, {
             at: operation.path,
-          }) as BlockEntry;
-          onCreateBlock(
-            [operation.node as ElementWithId, operation.path],
-            parent,
-          );
+          }) as Entry;
+          onCreateBlock([operation.node as BlockType, operation.path], parent);
         });
         return;
       }
+
+      return;
     }
 
     apply(operation);

@@ -14,6 +14,7 @@
     "@sheets-editor/plugin-block-id": "^0.25.0",
     "@sheets-editor/plugin-equation": "^0.25.0",
     "@sheets-editor/plugin-paragraph": "^0.25.0",
+    "@sheets-editor/plugin-to-do-list": "^0.25.0",
     "@sheets-editor/plugin-slash-commands": "^0.25.0",
     "uuid": "^8.3.0"
   },

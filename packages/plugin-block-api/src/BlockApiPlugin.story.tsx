@@ -6,6 +6,7 @@ import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
 import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
 import createEquationPlugin from '@sheets-editor/plugin-equation';
 import createBlockPlugin from '@sheets-editor/plugin-block';
+import { createToDoListPlugin } from '@sheets-editor/plugin-to-do-list';
 import createSlashCommandsPlugin from '@sheets-editor/plugin-slash-commands';
 import BlockApiPlugin, { BlockEntry } from './BlockApiPlugin';
 
@@ -19,6 +20,7 @@ const BlockApi = BlockApiPlugin({
 });
 const BlockIdPlugin = createBlockIdPlugin({ ignoreTypes: ['equation-inline'] });
 const EquationPlugin = createEquationPlugin();
+const ToDoListPlugin = createToDoListPlugin();
 const ParagraphPlugin = createParagraphPlugin();
 const BlockPlugin = createBlockPlugin();
 const SlashCommandsPlugin = createSlashCommandsPlugin({
@@ -356,6 +358,7 @@ export const RootBlocks: React.FC = () => {
           BlockIdPlugin,
           ParagraphPlugin,
           EquationPlugin,
+          ToDoListPlugin,
           SlashCommandsPlugin,
           BlockPlugin,
         ]}
