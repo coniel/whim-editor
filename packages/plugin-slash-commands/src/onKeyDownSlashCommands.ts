@@ -7,7 +7,6 @@ function onKeyDownSlashCommands(
   event: KeyboardEvent,
 ): void | true {
   if (isHotkey('/', event)) {
-    console.log('///');
     let parent: Ancestor | null = null;
     const hasParent =
       editor.selection && Node.has(editor, editor.selection.focus.path);
@@ -21,11 +20,6 @@ function onKeyDownSlashCommands(
       Element.isElement(parent) &&
       parent.type !== 'slash-query'
     ) {
-      console.log(
-        'Node.get(editor, editor.selection.focus.path)',
-        Node.get(editor, editor.selection.focus.path),
-      );
-
       event.preventDefault();
       Transforms.insertText(editor, '/​'); // <- NOTE: there is a 0 width space after the /
       Transforms.select(editor, {

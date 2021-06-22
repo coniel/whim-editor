@@ -62,7 +62,11 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
           editor,
           ReactEditor.findPath(editor, elementRef.current),
         );
-        editor.insertElement(activeItemRef.current.id);
+        Transforms.delete(editor);
+
+        setTimeout(() => {
+          editor.insertElement(activeItemRef.current.id);
+        });
       } else if (Node.string(blockAbove[0]) === textRef.current) {
         Transforms.select(editor, blockAbove[1]);
         Transforms.delete(editor);
