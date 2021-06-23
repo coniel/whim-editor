@@ -1,7 +1,7 @@
 import {
   BraindropEditorPluginFactory,
   BraindropEditorPlugin,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { ElementParagraph } from './ElementParagraph';
 
 export interface ParagraphPluginOptions {

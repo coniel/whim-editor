@@ -1,4 +1,4 @@
-declare module '@sheets-editor/test-utils' {
+declare module '@braindrop-editor/test-utils' {
   function fixtures(dirname: string, fn: string, options: object): void;
   function fixtures(
     dirname: string,

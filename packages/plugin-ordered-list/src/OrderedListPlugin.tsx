@@ -3,7 +3,7 @@ import {
   BraindropEditorPluginElementDescriptor,
   BraindropEditor,
   DeserializeElementValue,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { Element, Transforms, Node, Path } from 'slate';
 import { ElementOrderedList } from './ElementOrderedList';
 import { OrderedListElement } from './OrderedListPlugin.types';

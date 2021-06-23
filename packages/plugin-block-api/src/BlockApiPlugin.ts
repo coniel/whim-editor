@@ -3,9 +3,9 @@ import {
   BraindropEditorPlugin,
   BraindropEditor,
   getBlockAbove,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { Path, NodeEntry, Node, Element as SlateElement } from 'slate';
-import { ElementWithId } from '@sheets-editor/plugin-block-id';
+import { ElementWithId } from '@braindrop-editor/plugin-block-id';
 
 export type BlockEntry<
   BlockType extends ElementWithId = ElementWithId

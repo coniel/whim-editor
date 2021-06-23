@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps } from '@sheets-editor/core';
+import { RenderElementProps } from '@braindrop-editor/core';
 
 export type ElementParagraphProps = RenderElementProps;
 

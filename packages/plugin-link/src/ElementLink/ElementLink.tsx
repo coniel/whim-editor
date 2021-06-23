@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps } from '@sheets-editor/core';
+import { RenderElementProps } from '@braindrop-editor/core';
 import { LinkElement } from '../LinkPlugin.types';
 
 export interface ElementLinkProps extends RenderElementProps {

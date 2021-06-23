@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BraindropEditorPluginFactory,
   BraindropEditor,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { ReactEditor } from 'slate-react';
 import { Transforms } from 'slate';
 import { ElementToDoList } from './ElementToDoList';

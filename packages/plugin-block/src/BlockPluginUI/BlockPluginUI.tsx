@@ -1,6 +1,6 @@
 import React from 'react';
 import { Range, Element, Text, Transforms, Path } from 'slate';
-import { useUI } from '@sheets-editor/core';
+import { useUI } from '@braindrop-editor/core';
 import { useBlockPlugin } from '../BlockPluginProvider';
 import { useSlateStatic } from 'slate-react';
 

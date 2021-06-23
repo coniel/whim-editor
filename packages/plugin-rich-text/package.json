@@ -1,5 +1,5 @@
 {
-  "name": "@sheets-editor/plugin-rich-text",
+  "name": "@braindrop-editor/plugin-rich-text",
   "version": "0.25.0",
   "description": "Adds basic rich-text functionality",
   "main": "./dist/index.js",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.25.0"
+    "@braindrop-editor/core": "^0.25.0"
   },
   "peerDependencies": {
     "react": "^16.9.0",
@@ -25,7 +25,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.25.0"
+    "@braindrop-editor/material-ui": "^0.25.0"
   },
   "publishConfig": {
     "access": "public"

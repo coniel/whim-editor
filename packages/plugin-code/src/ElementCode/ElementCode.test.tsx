@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { UIProvider, components } from '@sheets-editor/core';
+import { UIProvider, components } from '@braindrop-editor/core';
 import { ElementCodeProps, ElementCode } from './ElementCode';
 
 const TYPE = 'foo';

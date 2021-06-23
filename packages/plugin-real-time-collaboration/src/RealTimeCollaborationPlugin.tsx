@@ -4,7 +4,7 @@ import {
   BraindropEditorPluginFactory,
   BraindropEditorPlugin,
   BraindropEditor,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 
 export interface RealTimeCollaborationPluginOptions {
   apiKey: string;

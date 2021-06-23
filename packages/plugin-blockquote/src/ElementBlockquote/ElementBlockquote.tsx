@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@braindrop-editor/core';
 import { BlockquoteElement } from '../BlockquotePlugin.types';
 
 export type ElementBlockquoteProps = RenderElementProps<BlockquoteElement>;

@@ -1,7 +1,7 @@
 ---
 to: packages/<%= package %>/src/<%= name %>Plugin.ts
 ---
-import { SlashPluginFactory, SlashPlugin, SlashEditor } from '@sheets-editor/core';
+import { BraindropEditorPluginFactory, BraindropEditorPlugin, BraindropEditor } from '@braindrop-editor/core';
 <% if(implements.leaves || implements.renderLeaf){ -%>
 import renderLeaf<%= name %> from './renderLeaf<%= name %>';
 <% } -%>
@@ -19,9 +19,9 @@ export interface <%= name %>PluginOptions {
   foo?: string;
 }
 
-const <%= name %>Plugin = (options: <%= name %>PluginOptions = {}): SlashPluginFactory => (
-  editor: SlashEditor,
-): SlashPlugin => ({
+const <%= name %>Plugin = (options: <%= name %>PluginOptions = {}): BraindropEditorPluginFactory => (
+  editor: BraindropEditor,
+): BraindropEditorPlugin => ({
 <% if(implements.leaves || implements.renderLeaf){ -%>
   renderLeaf: (props): JSX.Element => renderLeaf<%= name %>(props),
 <% } -%>

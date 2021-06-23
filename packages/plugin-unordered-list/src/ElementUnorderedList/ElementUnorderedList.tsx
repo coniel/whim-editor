@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@braindrop-editor/core';
 
 export type ElementUnorderedListProps = RenderElementProps;
 

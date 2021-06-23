@@ -6,7 +6,11 @@ import {
   ReactEditor,
 } from 'slate-react';
 import { Transforms } from 'slate';
-import { useUI, useHardReturn, RenderElementProps } from '@sheets-editor/core';
+import {
+  useUI,
+  useHardReturn,
+  RenderElementProps,
+} from '@braindrop-editor/core';
 import { EquationTextarea } from '../EquationTextarea';
 import { useTex } from '../utils/useTex';
 import { EquationIcon, EnterIcon } from '../icons';

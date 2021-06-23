@@ -3,21 +3,21 @@ import {
   Editor as BraindropEditor,
   EditorProps as BraindropEditorProps,
   BraindropEditorPluginFactory,
-} from '@sheets-editor/core';
-import { createRichTextPlugin } from '@sheets-editor/plugin-rich-text';
-import { createHeadingPlugin } from '@sheets-editor/plugin-heading';
-import { createOrderedListPlugin } from '@sheets-editor/plugin-ordered-list';
-import { createUnorderedListPlugin } from '@sheets-editor/plugin-unordered-list';
-import { createLinkPlugin } from '@sheets-editor/plugin-link';
-import { createCodePlugin } from '@sheets-editor/plugin-code';
-import { createEquationPlugin } from '@sheets-editor/plugin-equation';
-import { createBlockquotePlugin } from '@sheets-editor/plugin-blockquote';
-import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
-import { createBlockPlugin } from '@sheets-editor/plugin-block';
-import { createBlockIdPlugin } from '@sheets-editor/plugin-block-id';
-import { createSlashCommandsPlugin } from '@sheets-editor/plugin-slash-commands';
+} from '@braindrop-editor/core';
+import { createRichTextPlugin } from '@braindrop-editor/plugin-rich-text';
+import { createHeadingPlugin } from '@braindrop-editor/plugin-heading';
+import { createOrderedListPlugin } from '@braindrop-editor/plugin-ordered-list';
+import { createUnorderedListPlugin } from '@braindrop-editor/plugin-unordered-list';
+import { createLinkPlugin } from '@braindrop-editor/plugin-link';
+import { createCodePlugin } from '@braindrop-editor/plugin-code';
+import { createEquationPlugin } from '@braindrop-editor/plugin-equation';
+import { createBlockquotePlugin } from '@braindrop-editor/plugin-blockquote';
+import { createParagraphPlugin } from '@braindrop-editor/plugin-paragraph';
+import { createBlockPlugin } from '@braindrop-editor/plugin-block';
+import { createBlockIdPlugin } from '@braindrop-editor/plugin-block-id';
+import { createSlashCommandsPlugin } from '@braindrop-editor/plugin-slash-commands';
 import { Node as SlateNode } from 'slate';
-import { components } from '@sheets-editor/material-ui';
+import { components } from '@braindrop-editor/material-ui';
 import { HoveringToolbar } from './HoveringToolbar';
 
 export type Node = SlateNode;

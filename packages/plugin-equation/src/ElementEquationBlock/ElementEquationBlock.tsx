@@ -6,7 +6,7 @@ import {
   useHardReturn,
   RenderElementProps,
   BraindropEditor,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { EquationError } from '../EquationError';
 import { useTex } from '../utils/useTex';
 import { EnterIcon, TexIcon } from '../icons';

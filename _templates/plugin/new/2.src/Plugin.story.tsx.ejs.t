@@ -3,8 +3,8 @@ to: packages/<%= package %>/src/<%= name %>Plugin.story.tsx
 ---
 import React, { useState } from 'react';
 import { Node } from 'slate';
-import components from '@sheets-editor/material-ui';
-import { Editor } from '@sheets-editor/core';
+import components from '@braindrop-editor/material-ui';
+import { Editor } from '@braindrop-editor/core';
 import <%= name %>Plugin from './<%= name %>Plugin';
 
 export default { title: 'Plugins|<%= name %>' };

@@ -1,9 +1,9 @@
 ---
 to: "<%= implements.onKeyDown ? `packages/${package}/src/onKeyDown${name}.ts` : null %>"
 ---
-import { SlashEditor } from '@sheets-editor/core';
+import { BraindropEditor } from '@braindrop-editor/core';
 
-function onKeyDown<%= name %>(editor: SlashEditor, event: KeyboardEvent): void {
+function onKeyDown<%= name %>(editor: BraindropEditor, event: KeyboardEvent): void {
   if (event.key === 'somekey') {
     event.preventDefault();
     // Do something

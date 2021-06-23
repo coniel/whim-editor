@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import { components } from '@sheets-editor/material-ui';
-import { Editor } from '@sheets-editor/core';
+import { components } from '@braindrop-editor/material-ui';
+import { Editor } from '@braindrop-editor/core';
 import { createLinkPlugin } from './LinkPlugin';
 import { useSlateStatic } from 'slate-react';
 import { EditorWithLinkPlugin } from './LinkPlugin.types';

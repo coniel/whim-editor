@@ -1,4 +1,4 @@
-import { Element, BraindropEditor } from '@sheets-editor/core';
+import { Element, BraindropEditor } from '@braindrop-editor/core';
 
 export interface LinkElementProperties {
   url: string;

@@ -20,7 +20,7 @@ module.exports = async ({ config }) => {
     ...packages.reduce(
       (acc, name) => ({
         ...acc,
-        [`@sheets-editor/${name}`]: path.join(basePath, name, 'src'),
+        [`@braindrop-editor/${name}`]: path.join(basePath, name, 'src'),
       }),
       {},
     ),

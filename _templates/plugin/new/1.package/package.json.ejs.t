@@ -2,7 +2,7 @@
 to: packages/<%= package %>/package.json
 ---
 {
-  "name": "@sheets-editor/<%= package %>",
+  "name": "@braindrop-editor/<%= package %>",
   "version": "0.0.1",
   "description": "<%= description %>",
   "main": "./dist/index.js",
@@ -13,7 +13,7 @@ to: packages/<%= package %>/package.json
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.20.0"
+    "@braindrop-editor/core": "^0.20.0"
   },
   "peerDependencies": {
     "react": "^16.9.0",
@@ -21,7 +21,7 @@ to: packages/<%= package %>/package.json
     "slate-react": "^0.65.2"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "0.6.0"
+    "@braindrop-editor/material-ui": "0.6.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

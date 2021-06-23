@@ -1,6 +1,6 @@
 import React from 'react';
 import { Node, Element, Range } from 'slate';
-import { PlaceholderTextProps } from '@sheets-editor/core';
+import { PlaceholderTextProps } from '@braindrop-editor/core';
 import { useEditor, useSelected } from 'slate-react';
 
 export const PlaceholderText: React.FC<PlaceholderTextProps> = ({

@@ -7,7 +7,7 @@ import {
   Transforms,
   isNodeType,
   useEditorState,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { EditorWithLinkPlugin, LinkElement } from '../LinkPlugin.types';
 
 function getNodeLinks(node: Node, from: Path, to: Path): NodeEntry[] {

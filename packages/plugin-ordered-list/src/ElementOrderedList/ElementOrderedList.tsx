@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@braindrop-editor/core';
 import { OrderedListElement } from '../OrderedListPlugin.types';
 
 export interface ElementOrderedListProps extends RenderElementProps {

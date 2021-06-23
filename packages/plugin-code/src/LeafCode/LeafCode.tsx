@@ -1,5 +1,5 @@
 import React from 'react';
-import { RenderLeafProps } from '@sheets-editor/core';
+import { RenderLeafProps } from '@braindrop-editor/core';
 
 export type LeafCodeProps = RenderLeafProps;
 

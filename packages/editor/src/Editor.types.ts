@@ -1,7 +1,7 @@
-import { BraindropEditor } from '@sheets-editor/core';
-import { EditorWithRichTextPlugin } from '@sheets-editor/plugin-rich-text';
-import { EditorWithLinkPlugin } from '@sheets-editor/plugin-link';
-import { EditorWithHeadingPlugin } from '@sheets-editor/plugin-heading';
+import { BraindropEditor } from '@braindrop-editor/core';
+import { EditorWithRichTextPlugin } from '@braindrop-editor/plugin-rich-text';
+import { EditorWithLinkPlugin } from '@braindrop-editor/plugin-link';
+import { EditorWithHeadingPlugin } from '@braindrop-editor/plugin-heading';
 
 export interface EditorWithPlugins
   extends BraindropEditor,

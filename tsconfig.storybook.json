@@ -12,7 +12,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@sheets-editor/*": ["packages/*/src"],
+      "@braindrop-editor/*": ["packages/*/src"],
       "*": ["node_modules", "packages"]
     }
   },

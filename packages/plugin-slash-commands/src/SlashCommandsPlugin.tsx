@@ -3,7 +3,7 @@ import {
   BraindropEditorPluginFactory,
   BraindropEditorPlugin,
   BraindropEditor,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { onKeyDownSlashCommands } from './onKeyDownSlashCommands';
 import { ElementSlashQuery } from './ElementSlashQuery';
 import { MenuItem } from './SlashCommandsPlugin.types';

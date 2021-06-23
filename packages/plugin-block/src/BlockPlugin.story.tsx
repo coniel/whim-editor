@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import { Editor } from '@sheets-editor/core';
+import { Editor } from '@braindrop-editor/core';
 import { LoremIpsum } from 'lorem-ipsum';
 import { v4 } from 'uuid';
-import { components } from '@sheets-editor/material-ui';
-import { createBlockIdPlugin } from '@sheets-editor/plugin-block-id';
-import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
+import { components } from '@braindrop-editor/material-ui';
+import { createBlockIdPlugin } from '@braindrop-editor/plugin-block-id';
+import { createParagraphPlugin } from '@braindrop-editor/plugin-paragraph';
 import { createBlockPlugin } from './BlockPlugin';
 
 const lorem = new LoremIpsum({

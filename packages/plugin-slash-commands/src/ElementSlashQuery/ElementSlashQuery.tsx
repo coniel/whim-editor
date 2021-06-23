@@ -12,7 +12,7 @@ import {
   useSearch,
   BraindropEditor,
   getBlockAbove,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { Node, Transforms } from 'slate';
 import { ReactEditor, useSlateStatic, useSelected } from 'slate-react';
 import isHotkey from 'is-hotkey';

@@ -1,5 +1,5 @@
 {
-  "name": "@sheets-editor/material-ui",
+  "name": "@braindrop-editor/material-ui",
   "version": "0.25.0",
   "description": "Material UI components for Braindrop editor",
   "main": "./dist/index.js",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.25.0",
+    "@braindrop-editor/core": "^0.25.0",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2"
   },

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
 import { Editor, Element } from 'slate';
-import { HoveringToolbar as HoveringToolbarPlugin } from '@sheets-editor/plugin-hovering-toolbar';
+import { HoveringToolbar as HoveringToolbarPlugin } from '@braindrop-editor/plugin-hovering-toolbar';
 import { HoveringToolbarButton as Button } from '../HoveringToolbarButton';
-import { useUI } from '@sheets-editor/core';
+import { useUI } from '@braindrop-editor/core';
 import { EditorWithPlugins } from '../Editor.types';
 
 const isBlockActive = (editor: EditorWithPlugins, format: string): boolean => {

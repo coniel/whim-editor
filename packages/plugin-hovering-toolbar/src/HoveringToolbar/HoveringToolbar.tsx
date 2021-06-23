@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSlate, ReactEditor } from 'slate-react';
 import { Range, Editor } from 'slate';
-import { useEditorState, useUI } from '@sheets-editor/core';
+import { useEditorState, useUI } from '@braindrop-editor/core';
 
 export type HoveringToolbarProps = React.HTMLProps<HTMLDivElement>;
 

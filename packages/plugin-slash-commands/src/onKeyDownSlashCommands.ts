@@ -1,6 +1,6 @@
 import isHotkey from 'is-hotkey';
 import { Ancestor, Element, Node } from 'slate';
-import { BraindropEditor, Transforms } from '@sheets-editor/core';
+import { BraindropEditor, Transforms } from '@braindrop-editor/core';
 
 export function onKeyDownSlashCommands(
   editor: BraindropEditor,

@@ -3,7 +3,7 @@ import {
   BraindropEditor,
   TurnInto,
   Insert,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { Transforms, Node } from 'slate';
 import 'katex/dist/katex.min.css';
 import 'katex/dist/contrib/mhchem.js';

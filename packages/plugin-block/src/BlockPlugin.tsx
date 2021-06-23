@@ -3,7 +3,7 @@ import {
   BraindropEditorPluginFactory,
   BraindropEditorPlugin,
   BraindropEditor,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { BlockPluginProvider } from './BlockPluginProvider';
 import { BlockPluginUI } from './BlockPluginUI';
 import { ElementBlock } from './ElementBlock';

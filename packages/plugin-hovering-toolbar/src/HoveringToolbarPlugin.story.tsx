@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import { ReactEditor, useSlateStatic } from 'slate-react';
-import { components } from '@sheets-editor/material-ui';
-import { Editor } from '@sheets-editor/core';
+import { components } from '@braindrop-editor/material-ui';
+import { Editor } from '@braindrop-editor/core';
 import {
   createRichTextPlugin,
   EditorWithRichTextPlugin,
-} from '@sheets-editor/plugin-rich-text';
+} from '@braindrop-editor/plugin-rich-text';
 import {
   createLinkPlugin,
   EditorWithLinkPlugin,
-} from '@sheets-editor/plugin-link';
+} from '@braindrop-editor/plugin-link';
 import { HoveringToolbar } from './HoveringToolbar';
 
 interface EditorWithPlugins

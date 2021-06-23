@@ -64,7 +64,7 @@ import {
   getBlockAbove,
   BraindropEditor,
   isNodeType,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import 'prismjs/themes/prism.css';
 import { CodeElement, CodeRange } from './CodePlugin.types';
 

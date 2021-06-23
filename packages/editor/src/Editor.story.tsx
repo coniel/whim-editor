@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Element } from '@sheets-editor/core';
+import { Element } from '@braindrop-editor/core';
 import { Editor } from './Editor';
 
 export default {

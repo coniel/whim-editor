@@ -5,7 +5,7 @@ import {
   DeserializeElementValue,
   BraindropEditorPluginElementDescriptor,
   ElementComponent,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { ElementHeadingOne } from './ElementHeadingOne';
 import { ElementHeadingTwo } from './ElementHeadingTwo';
 import { ElementHeadingThree } from './ElementHeadingThree';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import { Editor } from '@sheets-editor/core';
-import { components } from '@sheets-editor/material-ui';
+import { Editor } from '@braindrop-editor/core';
+import { components } from '@braindrop-editor/material-ui';
 import { createHeadingPlugin } from './HeadingPlugin';
 
 export default { title: 'Plugins/Heading' };

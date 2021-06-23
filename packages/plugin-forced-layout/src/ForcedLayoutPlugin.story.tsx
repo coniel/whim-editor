@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import { components } from '@sheets-editor/material-ui';
-import { Editor } from '@sheets-editor/core';
-import { createHeadingPlugin } from '@sheets-editor/plugin-heading';
-import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
-import { createUnorderedListPlugin } from '@sheets-editor/plugin-unordered-list';
-import { createEquationPlugin } from '@sheets-editor/plugin-equation';
+import { components } from '@braindrop-editor/material-ui';
+import { Editor } from '@braindrop-editor/core';
+import { createHeadingPlugin } from '@braindrop-editor/plugin-heading';
+import { createParagraphPlugin } from '@braindrop-editor/plugin-paragraph';
+import { createUnorderedListPlugin } from '@braindrop-editor/plugin-unordered-list';
+import { createEquationPlugin } from '@braindrop-editor/plugin-equation';
 import { createForcedLayoutPlugin } from './ForcedLayoutPlugin';
 
 export default { title: 'Plugins/ForcedLayout' };

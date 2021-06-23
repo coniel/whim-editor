@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Descendant, Node, Range, Element } from 'slate';
-import { Editor } from '@sheets-editor/core';
+import { Editor } from '@braindrop-editor/core';
 import { action } from '@storybook/addon-actions';
 import { useSlateStatic } from 'slate-react';
-import * as components from '@sheets-editor/material-ui';
+import * as components from '@braindrop-editor/material-ui';
 import {
   createEquationPlugin,
   BraindropEditorWithEquation,

@@ -6,7 +6,7 @@ import {
   Element,
   RenderElementProps as CoreRenderElementProps,
   BraindropEditor,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ElementWithId<Type = string, Properties = { id: string }> = Element<

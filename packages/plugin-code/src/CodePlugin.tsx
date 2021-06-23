@@ -4,7 +4,7 @@ import {
   getBlockAbove,
   Transforms,
   BraindropEditorPluginLeafDescriptor,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { Element } from 'slate';
 import isHotkey from 'is-hotkey';
 import { ReactEditor } from 'slate-react';

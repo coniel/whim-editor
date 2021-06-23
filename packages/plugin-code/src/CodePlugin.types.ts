@@ -1,4 +1,4 @@
-import { BraindropEditor, Element, Range, Text } from '@sheets-editor/core';
+import { BraindropEditor, Element, Range, Text } from '@braindrop-editor/core';
 
 export interface CodeElementProperties {
   language: string;

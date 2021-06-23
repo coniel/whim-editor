@@ -8,7 +8,7 @@ import {
   MarkShortcut,
   MarkedText,
   DeserializeMarkValue,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { onDOMBeforeInputRichText } from './onDOMBeforeInputRichText';
 import { RichTextStrikeThrough } from './RichTextStrikeThrough';
 

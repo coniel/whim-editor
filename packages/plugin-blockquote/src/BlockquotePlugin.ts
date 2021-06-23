@@ -1,7 +1,7 @@
 import {
   BraindropEditorPluginFactory,
   ElementComponent,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { ElementBlockquote } from './ElementBlockquote';
 import { BlockquoteElement } from './BlockquotePlugin.types';
 

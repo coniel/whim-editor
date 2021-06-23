@@ -3,8 +3,8 @@ import {
   createRichTextPlugin,
   EditorWithRichTextPlugin,
 } from './RichTextPlugin';
-import { Editor, Element, MarkedText } from '@sheets-editor/core';
-import { components } from '@sheets-editor/material-ui';
+import { Editor, Element, MarkedText } from '@braindrop-editor/core';
+import { components } from '@braindrop-editor/material-ui';
 import { useSlateStatic } from 'slate-react';
 
 export default { title: 'Plugins/RichText' };

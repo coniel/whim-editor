@@ -1,4 +1,4 @@
-import { BraindropEditorPluginFactory } from '@sheets-editor/core';
+import { BraindropEditorPluginFactory } from '@braindrop-editor/core';
 
 export interface HoveringToolbarPluginOptions {
   foo?: string;

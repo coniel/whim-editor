@@ -2,7 +2,7 @@
 to: "<%= implements.elements || implements.renderElement ? `packages/${package}/src/Element${name}/Element${name}.tsx` : null %>"
 ---
 import React from 'react';
-import { RenderElementProps } from '@sheets-editor/core';
+import { RenderElementProps } from '@braindrop-editor/core';
 
 export interface Element<%= name %>Props extends RenderElementProps {
   foo?: string;

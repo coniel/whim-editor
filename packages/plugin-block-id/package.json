@@ -1,5 +1,5 @@
 {
-  "name": "@sheets-editor/plugin-block-id",
+  "name": "@braindrop-editor/plugin-block-id",
   "version": "0.25.0",
   "description": "Add a UUID to each block element.",
   "main": "./dist/index.js",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@sheets-editor/core": "^0.25.0",
+    "@braindrop-editor/core": "^0.25.0",
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
@@ -19,7 +19,7 @@
     "slate-react": "^0.65.2"
   },
   "devDependencies": {
-    "@sheets-editor/material-ui": "^0.25.0"
+    "@braindrop-editor/material-ui": "^0.25.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

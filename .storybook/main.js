@@ -13,7 +13,7 @@ if (packages.length !== 0) {
   stories = [];
 
   packages.forEach((packageName) => {
-    const packagePath = getPackagePath(`@sheets-editor/${packageName}`);
+    const packagePath = getPackagePath(`@braindrop-editor/${packageName}`);
     if (packagePath) {
       stories.push(path.join(packagePath, 'src/**/*.story.tsx'));
     } else {

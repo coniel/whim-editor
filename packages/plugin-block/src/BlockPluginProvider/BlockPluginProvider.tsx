@@ -9,8 +9,12 @@ import {
 } from 'slate';
 import { v4 as uuid } from 'uuid';
 import isHotkey from 'is-hotkey';
-import { Element, BraindropEditor, createContext } from '@sheets-editor/core';
-import { ElementWithId } from '@sheets-editor/plugin-block-id';
+import {
+  Element,
+  BraindropEditor,
+  createContext,
+} from '@braindrop-editor/core';
+import { ElementWithId } from '@braindrop-editor/plugin-block-id';
 import { ReactEditor, useSlate } from 'slate-react';
 
 export interface Coordinates {

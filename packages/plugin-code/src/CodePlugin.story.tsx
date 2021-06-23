@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import { components } from '@sheets-editor/material-ui';
-import { Editor } from '@sheets-editor/core';
+import { components } from '@braindrop-editor/material-ui';
+import { Editor } from '@braindrop-editor/core';
 import { createCodePlugin } from './CodePlugin';
 import { ElementCode, ElementCodeProps } from './ElementCode';
 import { CodeElement, CodeLeaf } from './CodePlugin.types';

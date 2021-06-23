@@ -1,4 +1,4 @@
-import { UIComponents } from '@sheets-editor/core';
+import { UIComponents } from '@braindrop-editor/core';
 import { InlinePlaceholder } from './InlinePlaceholder';
 import { BlockPlaceholder } from './BlockPlaceholder';
 import { VoidBlock } from './VoidBlock';

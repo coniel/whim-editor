@@ -6,7 +6,7 @@ import {
   BraindropEditor,
   Transforms,
   isNodeType,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { ElementLink } from './ElementLink';
 import isHotkey from 'is-hotkey';
 import { EditorWithLinkPlugin, LinkElement } from './LinkPlugin.types';

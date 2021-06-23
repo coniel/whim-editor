@@ -4,7 +4,7 @@ import {
   BraindropEditor,
   Transforms,
   Element,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { Node, Element as SlateElement } from 'slate';
 
 type TypeOption = 'any' | 'non-void' | 'void' | string;

@@ -2,7 +2,7 @@ import {
   BraindropEditorPluginFactory,
   BraindropEditorPluginElementDescriptor,
   DeserializeElementValue,
-} from '@sheets-editor/core';
+} from '@braindrop-editor/core';
 import { ElementUnorderedList } from './ElementUnorderedList';
 import { UnorderedListElement } from './UnorderedListPlugin.types';
 

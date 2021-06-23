@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@braindrop-editor/core';
 import { ToDoListElement } from '../ToDoListPlugin.types';
 
 export interface ElementToDoListProps extends RenderElementProps {

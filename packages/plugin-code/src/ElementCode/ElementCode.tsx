@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { RenderElementProps, useUI } from '@braindrop-editor/core';
 import { DropdownIcon } from './DropdownIcon';
 import { CodeElement } from '../CodePlugin.types';
 

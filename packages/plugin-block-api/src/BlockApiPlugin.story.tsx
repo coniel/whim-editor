@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
 import React, { useState, useReducer, useMemo } from 'react';
 import { Descendant, Path } from 'slate';
-import { components } from '@sheets-editor/material-ui';
-import { Editor } from '@sheets-editor/core';
-import { createBlockIdPlugin } from '@sheets-editor/plugin-block-id';
-import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
-import { createEquationPlugin } from '@sheets-editor/plugin-equation';
-import { createBlockPlugin } from '@sheets-editor/plugin-block';
-import { createToDoListPlugin } from '@sheets-editor/plugin-to-do-list';
-import { createSlashCommandsPlugin } from '@sheets-editor/plugin-slash-commands';
+import { components } from '@braindrop-editor/material-ui';
+import { Editor } from '@braindrop-editor/core';
+import { createBlockIdPlugin } from '@braindrop-editor/plugin-block-id';
+import { createParagraphPlugin } from '@braindrop-editor/plugin-paragraph';
+import { createEquationPlugin } from '@braindrop-editor/plugin-equation';
+import { createBlockPlugin } from '@braindrop-editor/plugin-block';
+import { createToDoListPlugin } from '@braindrop-editor/plugin-to-do-list';
+import { createSlashCommandsPlugin } from '@braindrop-editor/plugin-slash-commands';
 import { createBlockApiPlugin, BlockEntry } from './BlockApiPlugin';
 
 export default { title: 'Plugins/BlockApi' };
