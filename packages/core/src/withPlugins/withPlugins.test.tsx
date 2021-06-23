@@ -4,12 +4,11 @@ import { withReact, RenderLeafProps } from 'slate-react';
 import { createEditor, Node, Range, Element as SlateElement } from 'slate';
 import {
   withPlugins,
-  BraindropEditor,
   BraindropEditorPluginFactory,
   RenderElementProps,
   MarkedText,
 } from './withPlugins';
-import { Element } from '../types';
+import { Element, BraindropEditor } from '../types';
 
 const createElement = (type: string): Element => ({
   type,

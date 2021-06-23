@@ -11,7 +11,12 @@ const defaultProps: ElementToDoListProps = {
     ref: React.createRef(),
   },
   onClickCheckbox: jest.fn(),
-  element: { type: TYPE, done: false, children: [{ text: TEXT }] },
+  element: {
+    type: TYPE,
+    id: '1',
+    properties: { done: false },
+    children: [{ text: TEXT }],
+  },
   children: <div>{TEXT}</div>,
 };
 
