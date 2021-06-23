@@ -60,7 +60,11 @@ import 'prismjs/components/prism-wasm';
 import 'prismjs/components/prism-xml-doc';
 import 'prismjs/components/prism-yaml';
 import { Text, Range, Node, Path } from 'slate';
-import { getBlockAbove, SlashEditor, isNodeType } from '@sheets-editor/core';
+import {
+  getBlockAbove,
+  BraindropEditor,
+  isNodeType,
+} from '@sheets-editor/core';
 import 'prismjs/themes/prism.css';
 import { CodeElement, CodeRange } from './CodePlugin.types';
 
@@ -78,7 +82,7 @@ const getLength = (token: string | Token): number => {
 };
 
 // decorate function depends on the language selected
-export const createDecorator = (editor: SlashEditor, type: string) => ([
+export const createDecorator = (editor: BraindropEditor, type: string) => ([
   node,
   path,
 ]: [Node, Path]): Range[] => {

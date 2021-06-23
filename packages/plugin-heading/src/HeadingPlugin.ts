@@ -1,9 +1,9 @@
 import {
-  SlashPluginFactory,
-  SlashPlugin,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
+  BraindropEditor,
   DeserializeElementValue,
-  SlashPluginElementDescriptor,
+  BraindropEditorPluginElementDescriptor,
   ElementComponent,
 } from '@sheets-editor/core';
 import { ElementHeadingOne } from './ElementHeadingOne';
@@ -17,7 +17,7 @@ const HEADING_3 = 'heading-3';
 
 export type HeadingType = 'heading-1' | 'heading-2' | 'heading-3';
 
-export type EditorWithHeadingPlugin = SlashEditor;
+export type EditorWithHeadingPlugin = BraindropEditor;
 
 export type HeadingHotkeys = {
   [key in HeadingType]: string | false;
@@ -45,7 +45,7 @@ export interface HeadingPluginOptions {
 
 export const createHeadingPlugin = (
   config: HeadingPluginOptions = {},
-): SlashPluginFactory => {
+): BraindropEditorPluginFactory => {
   const hotkeys = config.hotkeys || {};
   const shortcuts = config.shortcuts || {};
   const types = config.types || {};
@@ -78,10 +78,10 @@ export const createHeadingPlugin = (
     [HEADING_3]: components[HEADING_3] || ElementHeadingThree,
   };
 
-  return (): SlashPlugin => {
+  return (): BraindropEditorPlugin => {
     return {
       elements: ENABLED.map(
-        (heading): SlashPluginElementDescriptor<HeadingElement> => ({
+        (heading): BraindropEditorPluginElementDescriptor<HeadingElement> => ({
           type: TYPES[heading],
           shortcuts: SHORTCUTS[heading] ? [SHORTCUTS[heading] as string] : [],
           component: COMPONENTS[heading],

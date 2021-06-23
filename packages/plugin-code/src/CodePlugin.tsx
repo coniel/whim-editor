@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  SlashPluginFactory,
+  BraindropEditorPluginFactory,
   getBlockAbove,
   Transforms,
-  SlashPluginLeafDescriptor,
+  BraindropEditorPluginLeafDescriptor,
 } from '@sheets-editor/core';
 import { Element } from 'slate';
 import isHotkey from 'is-hotkey';
@@ -21,13 +21,13 @@ interface BlockOptions {
 
 export interface CodePluginOptions {
   block?: BlockOptions;
-  mark?: Partial<SlashPluginLeafDescriptor>;
+  mark?: Partial<BraindropEditorPluginLeafDescriptor>;
   defaultLanguage?: string;
 }
 
 export const createCodePlugin = (
   options: CodePluginOptions = {},
-): SlashPluginFactory<CodeElement> => (editor) => {
+): BraindropEditorPluginFactory<CodeElement> => (editor) => {
   const defaultLanguage = options.defaultLanguage || 'javascript';
   const blockType = (options.block && options.block.type) || 'code';
   const BlockComponent =

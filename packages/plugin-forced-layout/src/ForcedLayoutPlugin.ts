@@ -1,7 +1,7 @@
 import {
-  SlashPluginFactory,
-  SlashPlugin,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
+  BraindropEditor,
   Transforms,
   Element,
 } from '@sheets-editor/core';
@@ -20,7 +20,9 @@ export interface ForcedLayoutPluginOptions {
 
 export const createForcedLayoutPlugin = (
   options: ForcedLayoutPluginOptions,
-): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
+): BraindropEditorPluginFactory => (
+  editor: BraindropEditor,
+): BraindropEditorPlugin => {
   const {
     layout,
     trailingElement,

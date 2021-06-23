@@ -1,11 +1,11 @@
 import fs from 'fs';
 import { basename, extname, resolve } from 'path';
-import { SlashEditor } from '../withPlugins';
+import { BraindropEditor } from '../types';
 
 interface TestModule {
-  input: SlashEditor;
-  output: SlashEditor;
-  run: (editor: SlashEditor) => void;
+  input: BraindropEditor;
+  output: BraindropEditor;
+  run: (editor: BraindropEditor) => void;
 }
 
 interface TestFunctionArguments {

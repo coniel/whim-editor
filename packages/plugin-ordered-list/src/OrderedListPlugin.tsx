@@ -1,7 +1,7 @@
 import {
-  SlashPluginFactory,
-  SlashPluginElementDescriptor,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditorPluginElementDescriptor,
+  BraindropEditor,
   DeserializeElementValue,
 } from '@sheets-editor/core';
 import { Element, Transforms, Node, Path } from 'slate';
@@ -10,7 +10,7 @@ import { OrderedListElement } from './OrderedListPlugin.types';
 
 export type OrderedListPluginOptions = Partial<
   Pick<
-    SlashPluginElementDescriptor<OrderedListElement>,
+    BraindropEditorPluginElementDescriptor<OrderedListElement>,
     | 'type'
     | 'shortcuts'
     | 'component'
@@ -22,7 +22,7 @@ export type OrderedListPluginOptions = Partial<
 >;
 
 function normalizeNumberedListNode(
-  editor: SlashEditor,
+  editor: BraindropEditor,
   node: OrderedListElement,
   path: Path,
   type: string,
@@ -54,7 +54,7 @@ function normalizeNumberedListNode(
 }
 
 function normalizeNumberedList(
-  editor: SlashEditor,
+  editor: BraindropEditor,
   node: Node,
   path: Path,
   type: string,
@@ -95,7 +95,7 @@ function normalizeNumberedList(
 
 export const createOrderedListPlugin = (
   options: OrderedListPluginOptions = {},
-): SlashPluginFactory<OrderedListElement> => (editor) => {
+): BraindropEditorPluginFactory<OrderedListElement> => (editor) => {
   const type = options.type || 'ol';
   const { normalizeNode } = editor;
   editor.normalizeNode = (entry): void => {

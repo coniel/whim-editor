@@ -1,17 +1,17 @@
 import React from 'react';
 import {
-  SlashPluginFactory,
-  SlashPlugin,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
+  BraindropEditor,
 } from '@sheets-editor/core';
 import { BlockPluginProvider } from './BlockPluginProvider';
 import { BlockPluginUI } from './BlockPluginUI';
 import { ElementBlock } from './ElementBlock';
 import { Transforms } from 'slate';
 
-export const createBlockPlugin = (): SlashPluginFactory => (
-  editor: SlashEditor,
-): SlashPlugin => {
+export const createBlockPlugin = (): BraindropEditorPluginFactory => (
+  editor: BraindropEditor,
+): BraindropEditorPlugin => {
   const { renderEditable, insertData } = editor;
 
   editor.renderEditable = (props): JSX.Element => {

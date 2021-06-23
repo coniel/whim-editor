@@ -8,7 +8,7 @@ const value = [
     type: 'text',
     id: '1',
     properties: {},
-    children: [{ text: 'Hello Slash' }],
+    children: [{ text: 'Hello world' }],
   },
 ];
 const onChange = jest.fn();
@@ -24,7 +24,7 @@ describe('Editor', () => {
     // Both renderElement and renderLeaf
     // are called to render the content.
     // So this tests both.
-    getByText('Hello Slash');
+    getByText('Hello world');
   });
 
   it('should render the placeholder', () => {
@@ -33,11 +33,11 @@ describe('Editor', () => {
         components={components}
         value={value}
         onChange={onChange}
-        placeholder="Hello Slash"
+        placeholder="Hello world"
       />,
     );
 
-    getByText('Hello Slash');
+    getByText('Hello world');
   });
 
   it('should render its children', () => {

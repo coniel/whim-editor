@@ -1,11 +1,11 @@
-import { SlashEditor, SlashPluginElementDescriptor } from './withPlugins';
+import { BraindropEditorPluginElementDescriptor } from './withPlugins';
 import { Range, Transforms, Editor } from 'slate';
-import { Element } from '../types';
+import { Element, BraindropEditor } from '../types';
 
 export interface BlockShortcut {
   trigger: string;
   type: string;
-  turnInto?: SlashPluginElementDescriptor<Element>['turnInto'];
+  turnInto?: BraindropEditorPluginElementDescriptor<Element>['turnInto'];
 }
 
 export interface BlockShortcutMap {
@@ -13,9 +13,9 @@ export interface BlockShortcutMap {
 }
 
 export const withBlockShortcuts = (
-  editor: SlashEditor,
+  editor: BraindropEditor,
   shortcuts: BlockShortcut[],
-): SlashEditor => {
+): BraindropEditor => {
   const { insertText } = editor;
   const triggers = shortcuts.reduce((current, shortcut) => {
     const trigger = shortcut.trigger.substr(-1);

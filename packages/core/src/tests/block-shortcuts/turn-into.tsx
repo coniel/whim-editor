@@ -1,9 +1,9 @@
 /** @jsx jsx */
 
 import { jsx } from '../../test-utils';
-import { SlashEditor } from '../../withPlugins';
+import { BraindropEditor } from '../../types';
 
-export const run = (editor: SlashEditor): void => {
+export const run = (editor: BraindropEditor): void => {
   editor.insertText(' ');
 };
 

@@ -1,6 +1,6 @@
 import {
-  SlashPluginFactory,
-  SlashPluginElementDescriptor,
+  BraindropEditorPluginFactory,
+  BraindropEditorPluginElementDescriptor,
   DeserializeElementValue,
 } from '@sheets-editor/core';
 import { ElementUnorderedList } from './ElementUnorderedList';
@@ -8,7 +8,7 @@ import { UnorderedListElement } from './UnorderedListPlugin.types';
 
 export type UnorderedListPluginOptions = Partial<
   Pick<
-    SlashPluginElementDescriptor<UnorderedListElement>,
+    BraindropEditorPluginElementDescriptor<UnorderedListElement>,
     | 'type'
     | 'shortcuts'
     | 'component'
@@ -21,7 +21,7 @@ export type UnorderedListPluginOptions = Partial<
 
 export const createUnorderedListPlugin = (
   options: UnorderedListPluginOptions = {},
-): SlashPluginFactory<UnorderedListElement> => () => ({
+): BraindropEditorPluginFactory<UnorderedListElement> => () => ({
   elementDeserializers: {
     LI: (el, children, parent): DeserializeElementValue | void => {
       // All LIs besides those inside OLs are considered UL items

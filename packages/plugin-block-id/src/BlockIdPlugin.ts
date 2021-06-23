@@ -1,8 +1,8 @@
 import { v4 as uuid } from 'uuid';
 import { Element as SlateElement, Text } from 'slate';
 import {
-  SlashPluginFactory,
-  SlashPlugin,
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
   Element,
   RenderElementProps as CoreRenderElementProps,
   BraindropEditor,
@@ -41,7 +41,9 @@ export interface BlockIdPluginOptions {
 
 export const createBlockIdPlugin = (
   options: BlockIdPluginOptions = {},
-): SlashPluginFactory => (baseEditor: BraindropEditor): SlashPlugin => {
+): BraindropEditorPluginFactory => (
+  baseEditor: BraindropEditor,
+): BraindropEditorPlugin => {
   const editor = (baseEditor as unknown) as EditorWithBlockIdPlugin;
   const generateId = options.idGenerator || uuid;
 

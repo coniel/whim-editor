@@ -1,9 +1,9 @@
 import Pusher from 'pusher-js';
 import { v4 as uuid } from 'uuid';
 import {
-  SlashPluginFactory,
-  SlashPlugin,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
+  BraindropEditor,
 } from '@sheets-editor/core';
 
 export interface RealTimeCollaborationPluginOptions {
@@ -18,9 +18,9 @@ export const createRealTimeCollaborationPlugin = ({
   cluster,
   authEndpoint,
   channel: channelName,
-}: RealTimeCollaborationPluginOptions): SlashPluginFactory => (
-  editor: SlashEditor,
-): SlashPlugin => {
+}: RealTimeCollaborationPluginOptions): BraindropEditorPluginFactory => (
+  editor: BraindropEditor,
+): BraindropEditorPlugin => {
   const session = uuid();
   const pusher = new Pusher(apiKey, {
     cluster,

@@ -10,7 +10,7 @@ import {
   RenderElementProps,
   useUI,
   useSearch,
-  SlashEditor,
+  BraindropEditor,
   getBlockAbove,
 } from '@sheets-editor/core';
 import { Node, Transforms } from 'slate';
@@ -29,7 +29,7 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
   menuItems,
 }) => {
   const { search, result } = useSearch<MenuItem>(menuItems);
-  const editor = useSlateStatic() as SlashEditor;
+  const editor = useSlateStatic() as BraindropEditor;
   const selected = useSelected();
   const [activeIndex, setActiveIndexState] = useState(0);
   const activeItemRef = useRef(menuItems[0]);

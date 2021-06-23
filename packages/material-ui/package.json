@@ -1,7 +1,7 @@
 {
   "name": "@sheets-editor/material-ui",
   "version": "0.25.0",
-  "description": "Material UI components for the Slash editor",
+  "description": "Material UI components for Braindrop editor",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",

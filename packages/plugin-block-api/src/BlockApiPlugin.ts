@@ -1,6 +1,6 @@
 import {
-  SlashPluginFactory,
-  SlashPlugin,
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
   BraindropEditor,
   getBlockAbove,
 } from '@sheets-editor/core';
@@ -34,9 +34,9 @@ export const createBlockApiPlugin = <
   onUpdateBlock,
   onDeleteBlock,
   onMoveBlock,
-}: BlockApiPluginOptions<BlockType>): SlashPluginFactory => (
+}: BlockApiPluginOptions<BlockType>): BraindropEditorPluginFactory => (
   editor: BraindropEditor,
-): SlashPlugin => {
+): BraindropEditorPlugin => {
   const { apply } = editor;
 
   type Entry = BlockEntry<BlockType>;

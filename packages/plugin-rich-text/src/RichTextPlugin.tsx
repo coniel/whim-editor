@@ -2,9 +2,9 @@ import React from 'react';
 import { Editor } from 'slate';
 import { RenderLeafProps } from 'slate-react';
 import {
-  SlashEditor,
-  SlashPlugin,
-  SlashPluginFactory,
+  BraindropEditor,
+  BraindropEditorPlugin,
+  BraindropEditorPluginFactory,
   MarkShortcut,
   MarkedText,
   DeserializeMarkValue,
@@ -14,7 +14,7 @@ import { RichTextStrikeThrough } from './RichTextStrikeThrough';
 
 export type RichTextFormat = 'bold' | 'italic' | 'underline' | 'strike-through';
 
-export interface EditorWithRichTextPlugin extends SlashEditor {
+export interface EditorWithRichTextPlugin extends BraindropEditor {
   addRichTextFormat: (mark: RichTextFormat) => void;
   removeRichTextFormat: (mark: RichTextFormat) => void;
   toggleRichTextFormat: (mark: RichTextFormat) => void;
@@ -49,7 +49,7 @@ export interface RichTextPluginConfig {
 
 export const createRichTextPlugin = (
   config: RichTextPluginConfig = {},
-): SlashPluginFactory => {
+): BraindropEditorPluginFactory => {
   const hotkeys = config.hotkeys || {};
   const shortcuts = config.shortcuts || {};
   const marks = config.marks || {};
@@ -109,7 +109,7 @@ export const createRichTextPlugin = (
     'strike-through': components['strike-through'] || RichTextStrikeThrough,
   };
 
-  return (editor: SlashEditor): SlashPlugin => {
+  return (editor: BraindropEditor): BraindropEditorPlugin => {
     function isRichTextFormatActive(format: RichTextFormat): boolean {
       const marks = Editor.marks(editor);
       return marks ? (marks as MarkedText)[MARKS[format]] === true : false;

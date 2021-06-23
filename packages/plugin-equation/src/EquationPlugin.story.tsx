@@ -6,7 +6,7 @@ import { useSlateStatic } from 'slate-react';
 import * as components from '@sheets-editor/material-ui';
 import {
   createEquationPlugin,
-  SlashEditorWithEquation,
+  BraindropEditorWithEquation,
 } from './EquationPlugin';
 import {
   BlockEquationElement,
@@ -20,7 +20,7 @@ const Equation = createEquationPlugin();
 type EquationDescendant = Descendant | BlockEquationElement;
 
 const Toolbar: React.FC = () => {
-  const editor = useSlateStatic() as SlashEditorWithEquation;
+  const editor = useSlateStatic() as BraindropEditorWithEquation;
 
   return (
     <div>

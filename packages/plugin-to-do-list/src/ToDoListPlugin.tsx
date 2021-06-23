@@ -1,5 +1,8 @@
 import React from 'react';
-import { SlashPluginFactory, SlashEditor } from '@sheets-editor/core';
+import {
+  BraindropEditorPluginFactory,
+  BraindropEditor,
+} from '@sheets-editor/core';
 import { ReactEditor } from 'slate-react';
 import { Transforms } from 'slate';
 import { ElementToDoList } from './ElementToDoList';
@@ -13,7 +16,9 @@ export interface ToDoListPluginOptions {
 
 export const createToDoListPlugin = (
   options: ToDoListPluginOptions = {},
-): SlashPluginFactory<ToDoListElement> => (editor: SlashEditor) => {
+): BraindropEditorPluginFactory<ToDoListElement> => (
+  editor: BraindropEditor,
+) => {
   function toggleDone(element: ToDoListElement) {
     const path = ReactEditor.findPath(editor, element);
 

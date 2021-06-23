@@ -1,4 +1,7 @@
-import { SlashPluginFactory, ElementComponent } from '@sheets-editor/core';
+import {
+  BraindropEditorPluginFactory,
+  ElementComponent,
+} from '@sheets-editor/core';
 import { ElementBlockquote } from './ElementBlockquote';
 import { BlockquoteElement } from './BlockquotePlugin.types';
 
@@ -11,7 +14,7 @@ export interface BlockquotePluginOptions {
 
 export const createBlockquotePlugin = (
   options: BlockquotePluginOptions = {},
-): SlashPluginFactory<BlockquoteElement> => () => ({
+): BraindropEditorPluginFactory<BlockquoteElement> => () => ({
   elements: [
     {
       type: 'blockquote',

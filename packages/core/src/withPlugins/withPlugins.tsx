@@ -72,8 +72,6 @@ interface TurnIntoOptions {
   at?: Path;
 }
 
-export type SlashEditor = Editor;
-
 export type Insert = (editor: BraindropEditor, options?: InsertOptions) => void;
 export type TurnInto = (
   editor: BraindropEditor,
@@ -90,7 +88,7 @@ export type ElementComponent<Elem> = React.ComponentType<
   RenderElementProps<Elem>
 >;
 
-export interface SlashPluginElementDescriptor<Elem> {
+export interface BraindropEditorPluginElementDescriptor<Elem> {
   component: ElementComponent<Elem>;
   type: string;
   shortcuts?: string[];
@@ -103,14 +101,14 @@ export interface SlashPluginElementDescriptor<Elem> {
   backspaceOutBehaviour?: 'delete' | 'turn-into-default' | 'do-nothing';
 }
 
-export interface SlashPluginLeafDescriptor {
+export interface BraindropEditorPluginLeafDescriptor {
   component: React.ComponentType<RenderLeafProps> | string;
   mark: string;
   shortcuts?: MarkShortcut[];
   hotkeys?: string[];
 }
 
-export interface SlashPlugin<ElementType = Element> {
+export interface BraindropEditorPlugin<ElementType = Element> {
   decorate?: (entry: NodeEntry<Node>) => BaseRange[] | undefined;
   elementDeserializers?: ElementDeserializers;
   markDeserializers?: MarkDeserializers;
@@ -120,15 +118,15 @@ export interface SlashPlugin<ElementType = Element> {
   onDOMBeforeInput?: (event: Event) => void;
   isVoid?: (element: Node) => boolean;
   isInline?: (element: Node) => boolean;
-  elements?: SlashPluginElementDescriptor<ElementType>[];
-  leaves?: SlashPluginLeafDescriptor[];
+  elements?: BraindropEditorPluginElementDescriptor<ElementType>[];
+  leaves?: BraindropEditorPluginLeafDescriptor[];
   insertData?: (data: DataTransfer) => void | boolean;
   insertText?: (text: string) => void;
 }
 
-export type SlashPluginFactory<ElementType = Element> = (
+export type BraindropEditorPluginFactory<ElementType = Element> = (
   editor: BraindropEditor,
-) => SlashPlugin<ElementType>;
+) => BraindropEditorPlugin<ElementType>;
 
 type InsertEmptyNode = (
   editor: BraindropEditor,
@@ -224,12 +222,12 @@ function toggleMark(editor: BraindropEditor, mark: string): ToggleMark {
 
 export const withPlugins = (
   editor: BraindropEditor,
-  pluginFactories: SlashPluginFactory[],
+  pluginFactories: BraindropEditorPluginFactory[],
   blockIdGenerator: () => string = uuid,
 ): BraindropEditor => {
   const insertMap: Record<string, Insert | InsertEmptyNode> = {};
   const turnIntoMap: Record<string, TurnInto | TurnIntoNode> = {};
-  const plugins: SlashPlugin[] = [];
+  const plugins: BraindropEditorPlugin[] = [];
   editor.generateBlockId = blockIdGenerator;
   editor.onKeyDown = (): void => undefined;
   editor.renderElement = (props: RenderElementProps): JSX.Element =>

@@ -2,8 +2,8 @@ import React from 'react';
 import isUrl from 'is-url';
 import { Editor, Range, Node, Element } from 'slate';
 import {
-  SlashPluginFactory,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditor,
   Transforms,
   isNodeType,
 } from '@sheets-editor/core';
@@ -16,21 +16,21 @@ export interface LinkPluginOptions {
   hotkey?: string;
 }
 
-const unwrapLink = (editor: SlashEditor): void => {
+const unwrapLink = (editor: BraindropEditor): void => {
   Transforms.unwrapNodes(editor, {
     match: (n) => Element.isElement(n) && n.type === 'link',
     split: true,
   });
 };
 
-const isLinkActive = (editor: SlashEditor): boolean => {
+const isLinkActive = (editor: BraindropEditor): boolean => {
   const [link] = Editor.nodes(editor, {
     match: (n) => Element.isElement(n) && n.type === 'link',
   });
   return !!link;
 };
 
-const wrapLink = (editor: SlashEditor, url: string): void => {
+const wrapLink = (editor: BraindropEditor, url: string): void => {
   if (isLinkActive(editor)) {
     unwrapLink(editor);
   }
@@ -55,7 +55,9 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
 
 export const createLinkPlugin = (
   options: LinkPluginOptions = {},
-): SlashPluginFactory<LinkElement> => (baseEditor: SlashEditor) => {
+): BraindropEditorPluginFactory<LinkElement> => (
+  baseEditor: BraindropEditor,
+) => {
   const editor = baseEditor as EditorWithLinkPlugin;
   const { normalizeNode, renderEditable } = editor;
 

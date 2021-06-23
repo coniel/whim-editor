@@ -1,10 +1,11 @@
-import { SlashEditor, MarkShortcutActions, MarkedText } from './withPlugins';
 import { Range, Transforms, Editor, Text } from 'slate';
+import { MarkShortcutActions, MarkedText } from './withPlugins';
+import { BraindropEditor } from '../types';
 
 export const withMarkShortcuts = (
-  editor: SlashEditor,
+  editor: BraindropEditor,
   shortcuts: MarkShortcutActions,
-): SlashEditor => {
+): BraindropEditor => {
   const { insertText } = editor;
 
   editor.insertText = (text): void => {

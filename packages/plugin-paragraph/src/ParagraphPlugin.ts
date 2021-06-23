@@ -1,4 +1,7 @@
-import { SlashPluginFactory, SlashPlugin } from '@sheets-editor/core';
+import {
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
+} from '@sheets-editor/core';
 import { ElementParagraph } from './ElementParagraph';
 
 export interface ParagraphPluginOptions {
@@ -7,7 +10,7 @@ export interface ParagraphPluginOptions {
 
 export const createParagraphPlugin = (
   options: ParagraphPluginOptions = {},
-): SlashPluginFactory => (): SlashPlugin => ({
+): BraindropEditorPluginFactory => (): BraindropEditorPlugin => ({
   elementDeserializers: {
     P: () => {
       return { type: options.type || 'paragraph' };

@@ -5,7 +5,7 @@ import {
   useUI,
   useHardReturn,
   RenderElementProps,
-  SlashEditor,
+  BraindropEditor,
 } from '@sheets-editor/core';
 import { EquationError } from '../EquationError';
 import { useTex } from '../utils/useTex';
@@ -32,7 +32,7 @@ export const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
       displayMode: true,
     },
   );
-  const editor = useEditor() as SlashEditor;
+  const editor = useEditor() as BraindropEditor;
 
   useEffect(() => {
     if (

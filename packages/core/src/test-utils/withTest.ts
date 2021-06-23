@@ -1,9 +1,10 @@
-import { withPlugins, SlashEditor, SlashPluginFactory } from '../withPlugins';
+import { withPlugins, BraindropEditorPluginFactory } from '../withPlugins';
+import { BraindropEditor } from '../types';
 
 export const withTest = (
-  basicEditor: SlashEditor,
-  plugins: SlashPluginFactory[] = [],
-): SlashEditor => {
+  basicEditor: BraindropEditor,
+  plugins: BraindropEditorPluginFactory[] = [],
+): BraindropEditor => {
   const editor = withPlugins(basicEditor, plugins);
   const { isInline, isVoid } = editor;
 

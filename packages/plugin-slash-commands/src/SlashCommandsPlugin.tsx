@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  SlashPluginFactory,
-  SlashPlugin,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditorPlugin,
+  BraindropEditor,
 } from '@sheets-editor/core';
 import { onKeyDownSlashCommands } from './onKeyDownSlashCommands';
 import { ElementSlashQuery } from './ElementSlashQuery';
@@ -14,7 +14,9 @@ export interface SlashCommandsPluginOptions {
 
 export const createSlashCommandsPlugin = (
   options: SlashCommandsPluginOptions,
-): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => ({
+): BraindropEditorPluginFactory => (
+  editor: BraindropEditor,
+): BraindropEditorPlugin => ({
   onKeyDown: (event) =>
     onKeyDownSlashCommands(editor, (event as unknown) as KeyboardEvent),
   elements: [

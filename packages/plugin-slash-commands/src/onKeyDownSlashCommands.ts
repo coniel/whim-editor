@@ -1,9 +1,9 @@
 import isHotkey from 'is-hotkey';
 import { Ancestor, Element, Node } from 'slate';
-import { SlashEditor, Transforms } from '@sheets-editor/core';
+import { BraindropEditor, Transforms } from '@sheets-editor/core';
 
 export function onKeyDownSlashCommands(
-  editor: SlashEditor,
+  editor: BraindropEditor,
   event: KeyboardEvent,
 ): void | true {
   if (isHotkey('/', event)) {

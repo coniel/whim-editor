@@ -1,10 +1,10 @@
 import React from 'react';
 import assert from 'assert';
 import { fixtures, withTest } from '../test-utils';
-import { SlashPluginFactory } from '../withPlugins';
+import { BraindropEditorPluginFactory } from '../withPlugins';
 import { Transforms } from 'slate';
 
-const Plugin: SlashPluginFactory = (editor) => ({
+const Plugin: BraindropEditorPluginFactory = (editor) => ({
   leaves: [
     {
       mark: 'b',

@@ -1,6 +1,6 @@
 import {
-  SlashPluginFactory,
-  SlashEditor,
+  BraindropEditorPluginFactory,
+  BraindropEditor,
   TurnInto,
   Insert,
 } from '@sheets-editor/core';
@@ -14,7 +14,7 @@ import {
   InlineEquationElement,
 } from './EquationPlugin.types';
 
-export interface SlashEditorWithEquation extends SlashEditor {
+export interface BraindropEditorWithEquation extends BraindropEditor {
   insertInlineEquation: Insert;
   insertBlockEquation: Insert;
   turnIntoInlineEquation: TurnInto;
@@ -34,10 +34,10 @@ export interface EquationPluginOptions {
 
 export const createEquationPlugin = (
   options: EquationPluginOptions = {},
-): SlashPluginFactory<BlockEquationElement | InlineEquationElement> => (
-  editor: SlashEditor,
-) => {
-  const equationEditor = editor as SlashEditorWithEquation;
+): BraindropEditorPluginFactory<
+  BlockEquationElement | InlineEquationElement
+> => (editor: BraindropEditor) => {
+  const equationEditor = editor as BraindropEditorWithEquation;
   const blockType = (options.block || {}).type || 'equation';
   const inlineType = (options.inline || {}).type || 'equation-inline';
 

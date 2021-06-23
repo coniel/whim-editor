@@ -1,4 +1,4 @@
-import { Element, SlashEditor } from '@sheets-editor/core';
+import { Element, BraindropEditor } from '@sheets-editor/core';
 
 export interface LinkElementProperties {
   url: string;
@@ -6,7 +6,7 @@ export interface LinkElementProperties {
 
 export type LinkElement = Element<string, LinkElementProperties>;
 
-export interface EditorWithLinkPlugin extends SlashEditor {
+export interface EditorWithLinkPlugin extends BraindropEditor {
   insertLink: (url: string) => void;
   removeLink: () => void;
   openLinkPopover: () => void;

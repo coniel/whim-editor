@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  Editor as SheetsEditor,
-  EditorProps as SheetsEditorProps,
-  SlashPluginFactory,
+  Editor as BraindropEditor,
+  EditorProps as BraindropEditorProps,
+  BraindropEditorPluginFactory,
 } from '@sheets-editor/core';
 import { createRichTextPlugin } from '@sheets-editor/plugin-rich-text';
 import { createHeadingPlugin } from '@sheets-editor/plugin-heading';
@@ -21,7 +21,7 @@ import { components } from '@sheets-editor/material-ui';
 import { HoveringToolbar } from './HoveringToolbar';
 
 export type Node = SlateNode;
-export type EditorProps = Pick<SheetsEditorProps, 'onChange' | 'value'>;
+export type EditorProps = Pick<BraindropEditorProps, 'onChange' | 'value'>;
 
 const RichTextPlugin = createRichTextPlugin({
   marks: {
@@ -142,7 +142,7 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
   ],
 });
 
-const createHeightPlugin = (): SlashPluginFactory => (editor) => {
+const createHeightPlugin = (): BraindropEditorPluginFactory => (editor) => {
   const { renderEditable } = editor;
 
   editor.renderEditable = (props): JSX.Element =>
@@ -162,7 +162,7 @@ export const Editor: React.FC<EditorProps> = ({
   value,
 }) => {
   return (
-    <SheetsEditor
+    <BraindropEditor
       components={components}
       plugins={[
         HeightPlugin,
@@ -185,6 +185,6 @@ export const Editor: React.FC<EditorProps> = ({
     >
       <HoveringToolbar />
       {children}
-    </SheetsEditor>
+    </BraindropEditor>
   );
 };

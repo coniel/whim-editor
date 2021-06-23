@@ -4,8 +4,8 @@ import { withReact, RenderLeafProps } from 'slate-react';
 import { createEditor, Node, Range, Element as SlateElement } from 'slate';
 import {
   withPlugins,
-  SlashEditor,
-  SlashPluginFactory,
+  BraindropEditor,
+  BraindropEditorPluginFactory,
   RenderElementProps,
   MarkedText,
 } from './withPlugins';
@@ -26,7 +26,7 @@ const onDOMBeforeInputFn2 = jest.fn();
 const range1 = {} as Range;
 const range2 = {} as Range;
 
-const testPlugin1: SlashPluginFactory = () => ({
+const testPlugin1: BraindropEditorPluginFactory = () => ({
   renderElement: ({
     element,
     attributes,
@@ -85,7 +85,7 @@ const testPlugin1: SlashPluginFactory = () => ({
   },
 });
 
-const testPlugin2: SlashPluginFactory = () => ({
+const testPlugin2: BraindropEditorPluginFactory = () => ({
   elements: [
     {
       component: ({
@@ -162,10 +162,10 @@ const testPlugin2: SlashPluginFactory = () => ({
 // A plugin which does nothing in order to
 // test the alternate code branches for when
 // a plugin does not define a certain callback
-const testPlugin3: SlashPluginFactory = () => ({});
+const testPlugin3: BraindropEditorPluginFactory = () => ({});
 
 describe('Editor', () => {
-  let editor: SlashEditor;
+  let editor: BraindropEditor;
 
   beforeAll(() => {
     editor = withPlugins(baseEditor, [testPlugin1, testPlugin2, testPlugin3]);
