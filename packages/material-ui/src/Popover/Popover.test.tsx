@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Popover from './Popover';
+import { Popover } from './Popover';
 
 const defaultProps = {
   open: true,

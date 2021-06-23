@@ -1,5 +1,5 @@
 import React from 'react';
-import BlockPlaceholder from './BlockPlaceholder';
+import { BlockPlaceholder } from './BlockPlaceholder';
 
 export default {
   title: 'UI/BlockPlaceholder',

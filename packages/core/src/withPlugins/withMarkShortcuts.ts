@@ -1,7 +1,7 @@
 import { SlashEditor, MarkShortcutActions, MarkedText } from './withPlugins';
 import { Range, Transforms, Editor, Text } from 'slate';
 
-const withMarkShortcuts = (
+export const withMarkShortcuts = (
   editor: SlashEditor,
   shortcuts: MarkShortcutActions,
 ): SlashEditor => {
@@ -197,5 +197,3 @@ const withMarkShortcuts = (
 
   return editor;
 };
-
-export default withMarkShortcuts;

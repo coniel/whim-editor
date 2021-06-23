@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import VoidBlock from './VoidBlock';
+import { VoidBlock } from './VoidBlock';
 
 describe('EquationError', () => {
   it('should render children', () => {

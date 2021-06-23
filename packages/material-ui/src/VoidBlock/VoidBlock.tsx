@@ -21,7 +21,7 @@ export interface VoidBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   onClick?: (event: React.MouseEvent) => void;
 }
 
-const VoidBlock: React.FC<VoidBlockProps> = ({ children, ...other }) => {
+export const VoidBlock: React.FC<VoidBlockProps> = ({ children, ...other }) => {
   const classes = userStyles();
 
   return (
@@ -30,5 +30,3 @@ const VoidBlock: React.FC<VoidBlockProps> = ({ children, ...other }) => {
     </div>
   );
 };
-
-export default VoidBlock;

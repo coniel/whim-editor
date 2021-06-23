@@ -9,7 +9,7 @@ export type UseHardReturn = (
   onHardReturn: (event: Event) => void,
 ) => (event: Event) => void;
 
-const useHardReturn: UseHardReturn = (onHardReturn) => {
+export const useHardReturn: UseHardReturn = (onHardReturn) => {
   return (event: Event): void => {
     const { key } = event;
     if (
@@ -21,5 +21,3 @@ const useHardReturn: UseHardReturn = (onHardReturn) => {
     }
   };
 };
-
-export default useHardReturn;

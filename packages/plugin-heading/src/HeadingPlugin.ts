@@ -6,9 +6,9 @@ import {
   SlashPluginElementDescriptor,
   ElementComponent,
 } from '@sheets-editor/core';
-import ElementHeadingOne from './ElementHeadingOne';
-import ElementHeadingTwo from './ElementHeadingTwo';
-import ElementHeadingThree from './ElementHeadingThree';
+import { ElementHeadingOne } from './ElementHeadingOne';
+import { ElementHeadingTwo } from './ElementHeadingTwo';
+import { ElementHeadingThree } from './ElementHeadingThree';
 import { HeadingElement } from './HeadingPlugin.types';
 
 const HEADING_1 = 'heading-1';
@@ -43,7 +43,7 @@ export interface HeadingPluginOptions {
   enabled?: HeadingType[];
 }
 
-const createHeadingPlugin = (
+export const createHeadingPlugin = (
   config: HeadingPluginOptions = {},
 ): SlashPluginFactory => {
   const hotkeys = config.hotkeys || {};
@@ -99,5 +99,3 @@ const createHeadingPlugin = (
     };
   };
 };
-
-export default createHeadingPlugin;

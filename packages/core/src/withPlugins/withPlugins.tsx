@@ -19,10 +19,10 @@ import {
   BaseText,
 } from 'slate';
 import { getBlockAbove, isNodeType, isBlockAboveEmpty } from '../queries';
-import deserializeHtml from '../deserializeHtml';
+import { deserializeHtml } from '../deserializeHtml';
 import { withBlockId } from './withBlockId';
-import withMarkShortcuts from './withMarkShortcuts';
-import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
+import { withMarkShortcuts } from './withMarkShortcuts';
+import { withBlockShortcuts, BlockShortcut } from './withBlockShortcuts';
 import { BraindropEditor, EditableProps } from '../types/Slate.types';
 
 interface Element extends SlateElement {
@@ -222,7 +222,7 @@ function toggleMark(editor: BraindropEditor, mark: string): ToggleMark {
   };
 }
 
-const withPlugins = (
+export const withPlugins = (
   editor: BraindropEditor,
   pluginFactories: SlashPluginFactory[],
   blockIdGenerator: () => string = uuid,
@@ -700,5 +700,3 @@ const withPlugins = (
 
   return Editor;
 };
-
-export default withPlugins;

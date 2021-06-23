@@ -4,20 +4,20 @@ import {
   EditorProps as SheetsEditorProps,
   SlashPluginFactory,
 } from '@sheets-editor/core';
-import createRichTextPlugin from '@sheets-editor/plugin-rich-text';
-import createHeadingPlugin from '@sheets-editor/plugin-heading';
+import { createRichTextPlugin } from '@sheets-editor/plugin-rich-text';
+import { createHeadingPlugin } from '@sheets-editor/plugin-heading';
 import { createOrderedListPlugin } from '@sheets-editor/plugin-ordered-list';
 import { createUnorderedListPlugin } from '@sheets-editor/plugin-unordered-list';
-import createLinkPlugin from '@sheets-editor/plugin-link';
+import { createLinkPlugin } from '@sheets-editor/plugin-link';
 import { createCodePlugin } from '@sheets-editor/plugin-code';
-import createEquationPlugin from '@sheets-editor/plugin-equation';
+import { createEquationPlugin } from '@sheets-editor/plugin-equation';
 import { createBlockquotePlugin } from '@sheets-editor/plugin-blockquote';
-import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
-import createBlockPlugin from '@sheets-editor/plugin-block';
-import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
-import createSlashCommandsPlugin from '@sheets-editor/plugin-slash-commands';
+import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
+import { createBlockPlugin } from '@sheets-editor/plugin-block';
+import { createBlockIdPlugin } from '@sheets-editor/plugin-block-id';
+import { createSlashCommandsPlugin } from '@sheets-editor/plugin-slash-commands';
 import { Node as SlateNode } from 'slate';
-import muiComponents from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { HoveringToolbar } from './HoveringToolbar';
 
 export type Node = SlateNode;
@@ -163,7 +163,7 @@ export const Editor: React.FC<EditorProps> = ({
 }) => {
   return (
     <SheetsEditor
-      components={muiComponents}
+      components={components}
       plugins={[
         HeightPlugin,
         RichTextPlugin,

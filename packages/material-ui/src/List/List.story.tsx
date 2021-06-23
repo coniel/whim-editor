@@ -1,6 +1,6 @@
 import React from 'react';
-import List from './List';
-import MenuItem from '../MenuItem';
+import { List } from './List';
+import { MenuItem } from '../MenuItem';
 
 export default {
   title: 'material-ui/List',

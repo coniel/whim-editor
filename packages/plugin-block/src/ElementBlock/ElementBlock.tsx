@@ -30,7 +30,7 @@ const Overlay: React.FC = () => {
   );
 };
 
-const ElementBlock: React.FC<ElementBlockProps> = ({ children, id }) => {
+export const ElementBlock: React.FC<ElementBlockProps> = ({ children, id }) => {
   const { selectedBlocks, isDragging } = useBlockPlugin();
   return (
     <div>
@@ -41,5 +41,3 @@ const ElementBlock: React.FC<ElementBlockProps> = ({ children, id }) => {
     </div>
   );
 };
-
-export default ElementBlock;

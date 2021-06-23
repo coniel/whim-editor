@@ -20,7 +20,7 @@ interface FixtureOptions {
   skip: boolean;
 }
 
-function fixtures(
+export function fixtures(
   root: string,
   directory: string,
   fn: TestFunction,
@@ -78,5 +78,3 @@ fixtures.skip = (
 ): void => {
   fixtures(path, directory, callback, { skip: true });
 };
-
-export default fixtures;

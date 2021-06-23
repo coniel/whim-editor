@@ -9,7 +9,7 @@ export type UseSoftReturn = (
   onSoftReturn: (event: Event) => void,
 ) => (event: Event) => void;
 
-const useSoftReturn: UseSoftReturn = (onSoftReturn) => {
+export const useSoftReturn: UseSoftReturn = (onSoftReturn) => {
   return (event: Event): void => {
     if (isHotkey('shift+Enter', (event as unknown) as HotKeyOptions)) {
       event.preventDefault();
@@ -17,5 +17,3 @@ const useSoftReturn: UseSoftReturn = (onSoftReturn) => {
     }
   };
 };
-
-export default useSoftReturn;

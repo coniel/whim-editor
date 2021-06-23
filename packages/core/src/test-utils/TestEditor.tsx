@@ -1,6 +1,6 @@
 import React from 'react';
 import { Descendant } from 'slate';
-import Editor from '../Editor';
+import { Editor } from '../Editor';
 import { components } from '../test-utils';
 
 export interface TestEditorProps {

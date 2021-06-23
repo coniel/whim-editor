@@ -7,7 +7,7 @@ import {
   Transforms,
   isNodeType,
 } from '@sheets-editor/core';
-import ElementLink from './ElementLink';
+import { ElementLink } from './ElementLink';
 import isHotkey from 'is-hotkey';
 import { EditorWithLinkPlugin, LinkElement } from './LinkPlugin.types';
 import { LinkPopover } from './LinkPopover';
@@ -53,7 +53,7 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
   }
 };
 
-const LinkPlugin = (
+export const createLinkPlugin = (
   options: LinkPluginOptions = {},
 ): SlashPluginFactory<LinkElement> => (baseEditor: SlashEditor) => {
   const editor = baseEditor as EditorWithLinkPlugin;
@@ -153,5 +153,3 @@ const LinkPlugin = (
     },
   };
 };
-
-export default LinkPlugin;

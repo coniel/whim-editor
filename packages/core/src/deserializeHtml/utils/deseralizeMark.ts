@@ -8,11 +8,11 @@ export interface DeserializeMarksProps {
   children: (Node | null)[];
 }
 
-export default ({
+export function deseralizeMark({
   deserializers,
   el,
   children,
-}: DeserializeMarksProps): Text[] | undefined => {
+}: DeserializeMarksProps): Text[] | undefined {
   const type = el.getAttribute('data-slate-type') || el.nodeName;
 
   if (deserializers[type]) {
@@ -58,4 +58,4 @@ export default ({
       return arr;
     }, []);
   }
-};
+}

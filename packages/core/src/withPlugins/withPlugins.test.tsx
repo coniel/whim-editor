@@ -2,16 +2,19 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { withReact, RenderLeafProps } from 'slate-react';
 import { createEditor, Node, Range, Element as SlateElement } from 'slate';
-import withPlugins, {
-  Element,
+import {
+  withPlugins,
   SlashEditor,
   SlashPluginFactory,
   RenderElementProps,
   MarkedText,
 } from './withPlugins';
+import { Element } from '../types';
 
 const createElement = (type: string): Element => ({
   type,
+  id: '1',
+  properties: {},
   children: [{ text: '' }],
 });
 
@@ -174,6 +177,7 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: {
             'data-slate-node': 'element',
+            'data-block-id': '1',
             ref: React.createRef(),
           },
           children: 'Element',
@@ -193,6 +197,7 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: {
             'data-slate-node': 'element',
+            'data-block-id': '1',
             ref: React.createRef(),
           },
           children: 'CHILDREN_1',
@@ -211,6 +216,7 @@ describe('Editor', () => {
         editor.renderElement({
           attributes: {
             'data-slate-node': 'element',
+            'data-block-id': '1',
             ref: React.createRef(),
           },
           children: 'CHILDREN_2',

@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import { Slate, withReact } from 'slate-react';
 import { createEditor, Descendant, Range } from 'slate';
 import { withHistory } from 'slate-history';
-import withPlugins from '../withPlugins';
+import { withPlugins } from '../withPlugins';
 import { SlashPluginFactory } from '../withPlugins/withPlugins';
-import UIProvider, { UIComponents } from '../UIProvider';
+import { UIProvider, UIComponents } from '../UIProvider';
 import { EditorStateProvider } from '../EditorStateProvider';
 
 export interface EditorProps {
@@ -21,7 +21,7 @@ export interface EditorProps {
   blockIdGenerator?: () => string;
 }
 
-const Editor: React.FC<EditorProps> = ({
+export const Editor: React.FC<EditorProps> = ({
   children,
   className,
   placeholder,
@@ -80,5 +80,3 @@ const Editor: React.FC<EditorProps> = ({
     </Slate>
   );
 };
-
-export default Editor;

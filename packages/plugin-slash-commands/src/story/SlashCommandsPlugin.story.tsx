@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import components from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import createHeadingPlugin from '@sheets-editor/plugin-heading';
-import createRichTextPlugin from '@sheets-editor/plugin-rich-text';
-import createLinkPlugin from '@sheets-editor/plugin-link';
+import { createHeadingPlugin } from '@sheets-editor/plugin-heading';
+import { createRichTextPlugin } from '@sheets-editor/plugin-rich-text';
+import { createLinkPlugin } from '@sheets-editor/plugin-link';
 import { createBlockquotePlugin } from '@sheets-editor/plugin-blockquote';
 import { createOrderedListPlugin } from '@sheets-editor/plugin-ordered-list';
 import { createUnorderedListPlugin } from '@sheets-editor/plugin-unordered-list';
 import { createCodePlugin } from '@sheets-editor/plugin-code';
-import createEquationPlugin from '@sheets-editor/plugin-equation';
-import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
-import createBlockPlugin from '@sheets-editor/plugin-block';
-import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
-import SlashCommandsPlugin from '../SlashCommandsPlugin';
+import { createEquationPlugin } from '@sheets-editor/plugin-equation';
+import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
+import { createBlockPlugin } from '@sheets-editor/plugin-block';
+import { createBlockIdPlugin } from '@sheets-editor/plugin-block-id';
+import { createSlashCommandsPlugin } from '../SlashCommandsPlugin';
 import { MenuItem } from '../SlashCommandsPlugin.types';
 
 export default { title: 'Plugins/SlashCommands' };
@@ -125,7 +125,7 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-const SlashCommands = SlashCommandsPlugin({ menuItems });
+const SlashCommands = createSlashCommandsPlugin({ menuItems });
 
 export const WithSlashCommandsPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([

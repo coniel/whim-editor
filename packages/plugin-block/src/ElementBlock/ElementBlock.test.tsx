@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { BlockPluginContextValue } from '../BlockPluginProvider';
-import ElementBlock, { ElementBlockProps } from './ElementBlock';
+import { ElementBlock, ElementBlockProps } from './ElementBlock';
 
 jest.mock('../BlockPluginProvider', () => ({
   useBlockPlugin: (): Partial<BlockPluginContextValue> => ({
@@ -9,6 +9,7 @@ jest.mock('../BlockPluginProvider', () => ({
       {
         id: 'block-id',
         type: 'text',
+        properties: {},
         children: [{ text: '' }],
         path: [0, 0],
         rect: {

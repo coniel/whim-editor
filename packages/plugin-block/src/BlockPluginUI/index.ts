@@ -1,1 +1,1 @@
-export { default } from './BlockPluginUI';
+export * from './BlockPluginUI';

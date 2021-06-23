@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { UIProvider, components } from '@sheets-editor/core';
-import ElementHeadingTwo, { ElementHeadingTwoProps } from './ElementHeadingTwo';
+import { ElementHeadingTwo, ElementHeadingTwoProps } from './ElementHeadingTwo';
 
 const TYPE = 'foo';
 const TEXT = 'Some text';
@@ -11,7 +11,7 @@ const defaultProps: ElementHeadingTwoProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, children: [{ text: TEXT }] },
+  element: { type: TYPE, id: '1', properties: {}, children: [{ text: TEXT }] },
   children: <div>{TEXT}</div>,
 };
 

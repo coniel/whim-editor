@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import { ReactEditor, useSlateStatic } from 'slate-react';
-import components from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import createRichTextPlugin, {
+import {
+  createRichTextPlugin,
   EditorWithRichTextPlugin,
 } from '@sheets-editor/plugin-rich-text';
-import createLinkPlugin, {
+import {
+  createLinkPlugin,
   EditorWithLinkPlugin,
 } from '@sheets-editor/plugin-link';
 import { HoveringToolbar } from './HoveringToolbar';

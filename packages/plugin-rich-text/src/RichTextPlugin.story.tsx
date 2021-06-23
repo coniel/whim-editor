@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import RichTextPlugin, { EditorWithRichTextPlugin } from './RichTextPlugin';
+import {
+  createRichTextPlugin,
+  EditorWithRichTextPlugin,
+} from './RichTextPlugin';
 import { Editor, Element, MarkedText } from '@sheets-editor/core';
-import * as components from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { useSlateStatic } from 'slate-react';
 
 export default { title: 'Plugins/RichText' };
@@ -10,9 +13,9 @@ interface ElementWithRichText extends Element {
   children: MarkedText[];
 }
 
-const withRichText = RichTextPlugin();
-const withPartialRichText = RichTextPlugin({ formats: ['bold'] });
-const withCustomRichText = RichTextPlugin({
+const withRichText = createRichTextPlugin();
+const withPartialRichText = createRichTextPlugin({ formats: ['bold'] });
+const withCustomRichText = createRichTextPlugin({
   hotkeys: {
     bold: false,
     italic: 'mod+Shift+i',

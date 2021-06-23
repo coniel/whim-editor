@@ -4,7 +4,10 @@ import { Editor } from '@sheets-editor/core';
 import { action } from '@storybook/addon-actions';
 import { useSlateStatic } from 'slate-react';
 import * as components from '@sheets-editor/material-ui';
-import EquationPlugin, { SlashEditorWithEquation } from './EquationPlugin';
+import {
+  createEquationPlugin,
+  SlashEditorWithEquation,
+} from './EquationPlugin';
 import {
   BlockEquationElement,
   InlineEquationElement,
@@ -12,7 +15,7 @@ import {
 
 export default { title: 'Plugins/Equation' };
 
-const Equation = EquationPlugin();
+const Equation = createEquationPlugin();
 
 type EquationDescendant = Descendant | BlockEquationElement;
 

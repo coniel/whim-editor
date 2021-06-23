@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import { Editor } from '@sheets-editor/core';
-import components from '@sheets-editor/material-ui';
-import HeadingPlugin from './HeadingPlugin';
+import { components } from '@sheets-editor/material-ui';
+import { createHeadingPlugin } from './HeadingPlugin';
 
 export default { title: 'Plugins/Heading' };
 
-const Heading = HeadingPlugin();
+const Heading = createHeadingPlugin();
 
 export const Default: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([

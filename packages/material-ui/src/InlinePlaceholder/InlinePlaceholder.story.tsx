@@ -1,5 +1,5 @@
 import React from 'react';
-import InlinePlaceholder from './InlinePlaceholder';
+import { InlinePlaceholder } from './InlinePlaceholder';
 
 export default {
   title: 'UI/InlinePlaceholder',

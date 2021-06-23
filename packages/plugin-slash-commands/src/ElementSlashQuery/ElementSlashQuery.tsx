@@ -95,6 +95,7 @@ export const ElementSlashQuery: React.FC<ElementSlashQueryProps> = ({
         });
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
     }
     close();

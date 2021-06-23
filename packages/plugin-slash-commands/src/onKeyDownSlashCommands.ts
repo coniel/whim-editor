@@ -2,7 +2,7 @@ import isHotkey from 'is-hotkey';
 import { Ancestor, Element, Node } from 'slate';
 import { SlashEditor, Transforms } from '@sheets-editor/core';
 
-function onKeyDownSlashCommands(
+export function onKeyDownSlashCommands(
   editor: SlashEditor,
   event: KeyboardEvent,
 ): void | true {
@@ -63,5 +63,3 @@ function onKeyDownSlashCommands(
     }
   }
 }
-
-export default onKeyDownSlashCommands;

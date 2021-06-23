@@ -1,15 +1,11 @@
-import {
-  SlashPluginFactory,
-  SlashPlugin,
-  DeserializeElementValue,
-} from '@sheets-editor/core';
-import ElementParagraph from './ElementParagraph';
+import { SlashPluginFactory, SlashPlugin } from '@sheets-editor/core';
+import { ElementParagraph } from './ElementParagraph';
 
 export interface ParagraphPluginOptions {
   type?: string;
 }
 
-const ParagraphPlugin = (
+export const createParagraphPlugin = (
   options: ParagraphPluginOptions = {},
 ): SlashPluginFactory => (): SlashPlugin => ({
   elementDeserializers: {
@@ -30,5 +26,3 @@ const ParagraphPlugin = (
     },
   ],
 });
-
-export default ParagraphPlugin;

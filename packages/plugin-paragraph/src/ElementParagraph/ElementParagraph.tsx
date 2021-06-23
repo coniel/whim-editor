@@ -1,14 +1,11 @@
 import React from 'react';
 import { RenderElementProps } from '@sheets-editor/core';
 
-export interface ElementParagraphProps extends RenderElementProps {
-  foo?: string;
-}
+export type ElementParagraphProps = RenderElementProps;
 
-const ElementParagraph: React.FC<ElementParagraphProps> = ({
+export const ElementParagraph: React.FC<ElementParagraphProps> = ({
   attributes,
   children,
-  element,
 }) => {
   return (
     <div
@@ -25,5 +22,3 @@ const ElementParagraph: React.FC<ElementParagraphProps> = ({
     </div>
   );
 };
-
-export default ElementParagraph;

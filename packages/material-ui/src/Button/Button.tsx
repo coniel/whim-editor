@@ -19,7 +19,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, onClick, startIcon, endIcon, style, type }, ref) => {
     const classes = useStyles();
 
@@ -42,5 +42,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-
-export default Button;

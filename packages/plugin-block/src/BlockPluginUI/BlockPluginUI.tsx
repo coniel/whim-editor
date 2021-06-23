@@ -4,7 +4,7 @@ import { useUI } from '@sheets-editor/core';
 import { useBlockPlugin } from '../BlockPluginProvider';
 import { useSlateStatic } from 'slate-react';
 
-const BlockPluginUI: React.FC = () => {
+export const BlockPluginUI: React.FC = () => {
   const editor = useSlateStatic();
   const { Popover, List, MenuItem, MenuDivider, TextField } = useUI();
   const {
@@ -178,5 +178,3 @@ const BlockPluginUI: React.FC = () => {
     </div>
   );
 };
-
-export default BlockPluginUI;

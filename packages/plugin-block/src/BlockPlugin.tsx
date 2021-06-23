@@ -4,12 +4,12 @@ import {
   SlashPlugin,
   SlashEditor,
 } from '@sheets-editor/core';
-import BlockPluginProvider from './BlockPluginProvider';
-import BlockPluginUI from './BlockPluginUI';
-import ElementBlock from './ElementBlock';
+import { BlockPluginProvider } from './BlockPluginProvider';
+import { BlockPluginUI } from './BlockPluginUI';
+import { ElementBlock } from './ElementBlock';
 import { Transforms } from 'slate';
 
-const BlockPlugin = (): SlashPluginFactory => (
+export const createBlockPlugin = (): SlashPluginFactory => (
   editor: SlashEditor,
 ): SlashPlugin => {
   const { renderEditable, insertData } = editor;
@@ -57,5 +57,3 @@ const BlockPlugin = (): SlashPluginFactory => (
 
   return {};
 };
-
-export default BlockPlugin;

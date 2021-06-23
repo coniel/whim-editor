@@ -39,7 +39,7 @@ export interface BlockIdPluginOptions {
   ignoreTypes?: string[];
 }
 
-const BlockIdPlugin = (
+export const createBlockIdPlugin = (
   options: BlockIdPluginOptions = {},
 ): SlashPluginFactory => (baseEditor: BraindropEditor): SlashPlugin => {
   const editor = (baseEditor as unknown) as EditorWithBlockIdPlugin;
@@ -105,5 +105,3 @@ const BlockIdPlugin = (
 
   return {};
 };
-
-export default BlockIdPlugin;

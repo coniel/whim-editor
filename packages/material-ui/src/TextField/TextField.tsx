@@ -1,5 +1,5 @@
 import React from 'react';
-import InputBase, { InputBaseProps } from '@material-ui/core/InputBase';
+import InputBase from '@material-ui/core/InputBase';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const userStyles = makeStyles(() =>
@@ -23,12 +23,10 @@ const userStyles = makeStyles(() =>
 
 export type TextFieldProps = React.HTMLProps<HTMLInputElement>;
 
-const TextField: React.FC<TextFieldProps> = (props) => {
+export const TextField: React.FC<TextFieldProps> = (props) => {
   const classes = userStyles();
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return <InputBase classes={classes} {...props} />;
 };
-
-export default TextField;

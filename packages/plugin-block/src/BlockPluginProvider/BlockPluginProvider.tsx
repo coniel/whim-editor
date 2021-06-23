@@ -152,7 +152,7 @@ function blocksToRange(blocks: Block[]): Range {
 
 const [hook, Provider] = createContext<BlockPluginContextValue>();
 
-const BlockPluginProvider: React.FC = ({ children }) => {
+export const BlockPluginProvider: React.FC = ({ children }) => {
   const editor = useSlate();
 
   const ref = React.useRef<HTMLDivElement>(null);
@@ -800,5 +800,4 @@ const BlockPluginProvider: React.FC = ({ children }) => {
   );
 };
 
-export default BlockPluginProvider;
 export const useBlockPlugin = hook;

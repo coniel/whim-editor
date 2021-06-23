@@ -1,1 +1,1 @@
-export { default, InlinePlaceholderProps } from './InlinePlaceholder';
+export * from './InlinePlaceholder';

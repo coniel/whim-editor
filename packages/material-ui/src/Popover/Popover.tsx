@@ -27,7 +27,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const Popover: React.FC<PopoverProps> = ({
+export const Popover: React.FC<PopoverProps> = ({
   children,
   disableBackdrop,
   ...other
@@ -58,5 +58,3 @@ const Popover: React.FC<PopoverProps> = ({
     </MuiPopover>
   );
 };
-
-export default Popover;

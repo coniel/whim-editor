@@ -1,1 +1,1 @@
-export { default } from './useHardReturn';
+export * from './useHardReturn';

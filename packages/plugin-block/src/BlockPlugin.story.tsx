@@ -4,10 +4,10 @@ import { Descendant } from 'slate';
 import { Editor } from '@sheets-editor/core';
 import { LoremIpsum } from 'lorem-ipsum';
 import { v4 } from 'uuid';
-import * as components from '@sheets-editor/material-ui';
-import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
-import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
-import BlockPlugin from './BlockPlugin';
+import { components } from '@sheets-editor/material-ui';
+import { createBlockIdPlugin } from '@sheets-editor/plugin-block-id';
+import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
+import { createBlockPlugin } from './BlockPlugin';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -45,7 +45,7 @@ export default { title: 'Plugins/Block' };
 
 const BlockIdPlugin = createBlockIdPlugin();
 const ParagraphPlugin = createParagraphPlugin();
-const Block = BlockPlugin();
+const Block = createBlockPlugin();
 
 export const WithBlockPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([

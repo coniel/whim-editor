@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Popover from './Popover';
+import { Popover } from './Popover';
 
 export default { title: 'UI/Popover', component: Popover };
 

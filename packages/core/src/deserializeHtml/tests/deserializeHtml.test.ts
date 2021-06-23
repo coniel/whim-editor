@@ -1,4 +1,4 @@
-import deserialize from '../createHtmlDeserializer';
+import { deserializeHtml } from '../deserializeHtml';
 import richText from './html-samples/rich-text';
 import elements from './html-samples/elements';
 import richTextElements from './html-samples/rich-text-elements';
@@ -20,7 +20,7 @@ describe('deserializeHtml', () => {
   it('should deserialize text nodes', () => {
     const parsed = new DOMParser().parseFromString(richText, 'text/html');
 
-    const fragment = deserialize(parsed.body, null, [{}], {});
+    const fragment = deserializeHtml(parsed.body, null, [{}], {});
 
     expect(fragment[0].text).toBe(
       'Bold text, Italic text, Strikethorugh text, Combined bold and italic text',
@@ -30,7 +30,7 @@ describe('deserializeHtml', () => {
   it('should deserialize elements', () => {
     const parsed = new DOMParser().parseFromString(elements, 'text/html');
 
-    const fragment = deserialize(
+    const fragment = deserializeHtml(
       parsed.body,
       null,
       [
@@ -59,7 +59,7 @@ describe('deserializeHtml', () => {
   it('should deserialize marks', () => {
     const parsed = new DOMParser().parseFromString(richText, 'text/html');
 
-    const fragment = deserialize(parsed.body, null, [{}], {
+    const fragment = deserializeHtml(parsed.body, null, [{}], {
       STRONG: [(): Mark => ({ bold: true })],
       EM: [(): Mark => ({ italic: true })],
       SPAN: [
@@ -85,7 +85,7 @@ describe('deserializeHtml', () => {
       'text/html',
     );
 
-    const fragment = deserialize(
+    const fragment = deserializeHtml(
       parsed.body,
       null,
       [

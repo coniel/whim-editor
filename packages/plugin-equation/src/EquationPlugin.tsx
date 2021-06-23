@@ -32,7 +32,7 @@ export interface EquationPluginOptions {
   };
 }
 
-const EquationPlugin = (
+export const createEquationPlugin = (
   options: EquationPluginOptions = {},
 ): SlashPluginFactory<BlockEquationElement | InlineEquationElement> => (
   editor: SlashEditor,
@@ -134,5 +134,3 @@ const EquationPlugin = (
     ],
   };
 };
-
-export default EquationPlugin;

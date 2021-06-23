@@ -3,7 +3,7 @@ import { RenderElementProps, useUI } from '@sheets-editor/core';
 
 export type ElementHeadingOneProps = RenderElementProps;
 
-const ElementHeadingOne: React.FC<RenderElementProps> = ({
+export const ElementHeadingOne: React.FC<RenderElementProps> = ({
   attributes,
   children,
   element,
@@ -33,5 +33,3 @@ const ElementHeadingOne: React.FC<RenderElementProps> = ({
     </div>
   );
 };
-
-export default ElementHeadingOne;

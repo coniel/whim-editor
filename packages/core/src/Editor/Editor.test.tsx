@@ -1,9 +1,16 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { components } from '../test-utils';
-import Editor from './Editor';
+import { Editor } from './Editor';
 
-const value = [{ type: 'text', children: [{ text: 'Hello Slash' }] }];
+const value = [
+  {
+    type: 'text',
+    id: '1',
+    properties: {},
+    children: [{ text: 'Hello Slash' }],
+  },
+];
 const onChange = jest.fn();
 
 describe('Editor', () => {

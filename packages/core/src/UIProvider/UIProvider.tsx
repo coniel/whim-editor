@@ -137,9 +137,11 @@ export type UIContextValue = UIComponents;
 
 const [hook, Provider] = createContext<UIContextValue>();
 
-const UIProvider: React.FC<UIProviderProps> = ({ children, components }) => {
+export const UIProvider: React.FC<UIProviderProps> = ({
+  children,
+  components,
+}) => {
   return <Provider value={{ ...components }}>{children}</Provider>;
 };
 
 export const useUI = hook;
-export default UIProvider;

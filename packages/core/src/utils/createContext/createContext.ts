@@ -1,6 +1,6 @@
 import React from 'react';
 
-function createContext<ContextType>(): [
+export function createContext<ContextType>(): [
   () => ContextType,
   React.Provider<ContextType | undefined>,
   React.Consumer<ContextType>,
@@ -18,5 +18,3 @@ function createContext<ContextType>(): [
     context.Consumer as React.Consumer<ContextType>,
   ];
 }
-
-export default createContext;

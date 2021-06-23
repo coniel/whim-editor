@@ -13,7 +13,7 @@ export interface RealTimeCollaborationPluginOptions {
   channel: string;
 }
 
-const RealTimeCollaborationPlugin = ({
+export const createRealTimeCollaborationPlugin = ({
   apiKey,
   cluster,
   authEndpoint,
@@ -50,5 +50,3 @@ const RealTimeCollaborationPlugin = ({
 
   return {};
 };
-
-export default RealTimeCollaborationPlugin;

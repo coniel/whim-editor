@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import ElementLink, { ElementLinkProps } from './ElementLink';
+import { ElementLink, ElementLinkProps } from './ElementLink';
 
 const TYPE = 'foo';
 const TEXT = 'Some text';
@@ -10,7 +10,12 @@ const defaultProps: ElementLinkProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, children: [{ text: TEXT }] },
+  element: {
+    type: TYPE,
+    id: '1',
+    properties: { url: 'https://ibguides.com' },
+    children: [{ text: TEXT }],
+  },
   children: <div>{TEXT}</div>,
 };
 

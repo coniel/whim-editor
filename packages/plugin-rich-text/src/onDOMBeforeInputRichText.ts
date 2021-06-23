@@ -1,6 +1,6 @@
 import { EditorWithRichTextPlugin } from './RichTextPlugin';
 
-function onDOMBeforeInputRichText(
+export function onDOMBeforeInputRichText(
   editor: EditorWithRichTextPlugin,
   event: Event,
 ): void {
@@ -13,5 +13,3 @@ function onDOMBeforeInputRichText(
       return editor.toggleRichTextFormat('underline');
   }
 }
-
-export default onDOMBeforeInputRichText;

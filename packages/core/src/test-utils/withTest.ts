@@ -1,6 +1,6 @@
-import withPlugins, { SlashEditor, SlashPluginFactory } from '../withPlugins';
+import { withPlugins, SlashEditor, SlashPluginFactory } from '../withPlugins';
 
-const withTest = (
+export const withTest = (
   basicEditor: SlashEditor,
   plugins: SlashPluginFactory[] = [],
 ): SlashEditor => {
@@ -17,5 +17,3 @@ const withTest = (
 
   return editor;
 };
-
-export default withTest;

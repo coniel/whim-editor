@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import InlinePlaceholder from './InlinePlaceholder';
+import { InlinePlaceholder } from './InlinePlaceholder';
 
 describe('EquationError', () => {
   it('should render the label', () => {

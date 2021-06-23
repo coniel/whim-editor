@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import components from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
 import { createToDoListPlugin } from './ToDoListPlugin';
 import { ToDoListElement } from './ToDoListPlugin.types';

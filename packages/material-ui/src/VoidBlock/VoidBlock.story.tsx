@@ -1,5 +1,5 @@
 import React from 'react';
-import VoidBlock from './VoidBlock';
+import { VoidBlock } from './VoidBlock';
 import { action } from '@storybook/addon-actions';
 
 export default {

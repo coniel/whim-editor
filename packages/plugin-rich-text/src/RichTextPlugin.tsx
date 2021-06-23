@@ -9,8 +9,8 @@ import {
   MarkedText,
   DeserializeMarkValue,
 } from '@sheets-editor/core';
-import onDOMBeforeInputRichText from './onDOMBeforeInputRichText';
-import StrikeThrough from './RichTextStrikeThrough';
+import { onDOMBeforeInputRichText } from './onDOMBeforeInputRichText';
+import { RichTextStrikeThrough } from './RichTextStrikeThrough';
 
 export type RichTextFormat = 'bold' | 'italic' | 'underline' | 'strike-through';
 
@@ -47,7 +47,7 @@ export interface RichTextPluginConfig {
   formats?: RichTextFormat[];
 }
 
-const createRichTextPlugin = (
+export const createRichTextPlugin = (
   config: RichTextPluginConfig = {},
 ): SlashPluginFactory => {
   const hotkeys = config.hotkeys || {};
@@ -106,7 +106,7 @@ const createRichTextPlugin = (
     bold: components.bold || 'strong',
     italic: components.italic || 'em',
     underline: components.underline || 'u',
-    'strike-through': components['strike-through'] || StrikeThrough,
+    'strike-through': components['strike-through'] || RichTextStrikeThrough,
   };
 
   return (editor: SlashEditor): SlashPlugin => {
@@ -215,5 +215,3 @@ const createRichTextPlugin = (
     };
   };
 };
-
-export default createRichTextPlugin;

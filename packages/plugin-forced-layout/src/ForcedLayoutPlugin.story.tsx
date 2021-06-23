@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import components from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import createHeadingPlugin from '@sheets-editor/plugin-heading';
-import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
+import { createHeadingPlugin } from '@sheets-editor/plugin-heading';
+import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
 import { createUnorderedListPlugin } from '@sheets-editor/plugin-unordered-list';
-import createEquationPlugin from '@sheets-editor/plugin-equation';
-import ForcedLayoutPlugin from './ForcedLayoutPlugin';
+import { createEquationPlugin } from '@sheets-editor/plugin-equation';
+import { createForcedLayoutPlugin } from './ForcedLayoutPlugin';
 
 export default { title: 'Plugins/ForcedLayout' };
 
@@ -15,7 +15,7 @@ const HeadingPlugin = createHeadingPlugin();
 const ParagraphPlugin = createParagraphPlugin();
 const UnorderedListPlugin = createUnorderedListPlugin();
 const EquationPlugin = createEquationPlugin();
-const ForcedLayout = ForcedLayoutPlugin({
+const ForcedLayout = createForcedLayoutPlugin({
   layout: ['h1', 'non-void'],
   defaultNonVoidType: 'ul',
   defaultVoidType: 'equation',
@@ -63,7 +63,7 @@ export const WithForcedLayoutPlugin: React.FC = () => {
   );
 };
 
-const MaxElementsForcedLayout = ForcedLayoutPlugin({
+const MaxElementsForcedLayout = createForcedLayoutPlugin({
   maxRootElements: 2,
 });
 
@@ -97,7 +97,7 @@ export const MaxDescendants: React.FC = () => {
   );
 };
 
-const TrailingElementsForcedLayout = ForcedLayoutPlugin({
+const TrailingElementsForcedLayout = createForcedLayoutPlugin({
   trailingElement: 'paragraph',
 });
 

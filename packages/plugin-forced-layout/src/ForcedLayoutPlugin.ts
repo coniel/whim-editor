@@ -18,7 +18,7 @@ export interface ForcedLayoutPluginOptions {
   maxRootElements?: number;
 }
 
-const ForcedLayoutPlugin = (
+export const createForcedLayoutPlugin = (
   options: ForcedLayoutPluginOptions,
 ): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
   const {
@@ -118,5 +118,3 @@ const ForcedLayoutPlugin = (
 
   return {};
 };
-
-export default ForcedLayoutPlugin;

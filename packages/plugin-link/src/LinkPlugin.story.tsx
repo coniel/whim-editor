@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
-import components from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import LinkPlugin from './LinkPlugin';
+import { createLinkPlugin } from './LinkPlugin';
 import { useSlateStatic } from 'slate-react';
 import { EditorWithLinkPlugin } from './LinkPlugin.types';
 
 export default { title: 'Plugins/Link' };
 
-const Link = LinkPlugin();
+const Link = createLinkPlugin();
 const initialValue = [
   {
     type: 'paragraph',

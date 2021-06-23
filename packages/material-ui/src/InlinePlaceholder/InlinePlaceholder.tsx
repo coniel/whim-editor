@@ -27,7 +27,7 @@ export interface InlinePlaceholderProps
   icon?: React.ReactNode;
 }
 
-const InlinePlaceholder: React.FC<InlinePlaceholderProps> = ({
+export const InlinePlaceholder: React.FC<InlinePlaceholderProps> = ({
   icon,
   label,
 }) => {
@@ -39,5 +39,3 @@ const InlinePlaceholder: React.FC<InlinePlaceholderProps> = ({
     </span>
   );
 };
-
-export default InlinePlaceholder;

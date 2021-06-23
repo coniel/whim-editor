@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import BlockPlaceholder from './BlockPlaceholder';
+import { BlockPlaceholder } from './BlockPlaceholder';
 
 describe('EquationError', () => {
   it('should render the label', () => {

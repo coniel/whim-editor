@@ -1,19 +1,19 @@
 /* eslint-disable no-console */
 import React, { useState, useReducer, useMemo } from 'react';
 import { Descendant, Path } from 'slate';
-import components from '@sheets-editor/material-ui';
+import { components } from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
-import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
-import createEquationPlugin from '@sheets-editor/plugin-equation';
-import createBlockPlugin from '@sheets-editor/plugin-block';
+import { createBlockIdPlugin } from '@sheets-editor/plugin-block-id';
+import { createParagraphPlugin } from '@sheets-editor/plugin-paragraph';
+import { createEquationPlugin } from '@sheets-editor/plugin-equation';
+import { createBlockPlugin } from '@sheets-editor/plugin-block';
 import { createToDoListPlugin } from '@sheets-editor/plugin-to-do-list';
-import createSlashCommandsPlugin from '@sheets-editor/plugin-slash-commands';
-import BlockApiPlugin, { BlockEntry } from './BlockApiPlugin';
+import { createSlashCommandsPlugin } from '@sheets-editor/plugin-slash-commands';
+import { createBlockApiPlugin, BlockEntry } from './BlockApiPlugin';
 
 export default { title: 'Plugins/BlockApi' };
 
-const BlockApi = BlockApiPlugin({
+const BlockApi = createBlockApiPlugin({
   onUpdateBlock: (block) => console.log('updated block', block),
   onCreateBlock: (block) => console.log('created block', block),
   onDeleteBlock: (block) => console.log('deleted block', block),
@@ -346,7 +346,7 @@ export const RootBlocks: React.FC = () => {
 
   const BlockApi2 = useMemo(
     () =>
-      BlockApiPlugin({
+      createBlockApiPlugin({
         onUpdateBlock: (block) => dispatch({ type: 'UPDATE_BLOCK', block }),
         onCreateBlock: handleCreateBlock,
         onDeleteBlock: handleDeleteBlock,

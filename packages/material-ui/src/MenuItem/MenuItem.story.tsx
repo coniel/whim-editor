@@ -7,7 +7,7 @@ import {
   CommentOutlined,
   SwapHorizOutlined,
 } from '@material-ui/icons';
-import MenuItem from './MenuItem';
+import { MenuItem } from './MenuItem';
 
 export default {
   title: 'UI/material-ui/MenuItem',

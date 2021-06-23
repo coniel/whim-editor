@@ -12,7 +12,7 @@ export interface BlockShortcutMap {
   [key: string]: Pick<BlockShortcut, 'type' | 'turnInto'>;
 }
 
-const withBlockShortcuts = (
+export const withBlockShortcuts = (
   editor: SlashEditor,
   shortcuts: BlockShortcut[],
 ): SlashEditor => {
@@ -75,5 +75,3 @@ const withBlockShortcuts = (
 
   return editor;
 };
-
-export default withBlockShortcuts;

@@ -6,7 +6,7 @@ export interface ElementLinkProps extends RenderElementProps {
   element: LinkElement;
 }
 
-const ElementLink: React.FC<ElementLinkProps> = ({
+export const ElementLink: React.FC<ElementLinkProps> = ({
   attributes,
   children,
   element,
@@ -34,5 +34,3 @@ const ElementLink: React.FC<ElementLinkProps> = ({
     </a>
   );
 };
-
-export default ElementLink;

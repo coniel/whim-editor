@@ -67,7 +67,6 @@ export const HoveringToolbar: React.FC<HoveringToolbarProps> = ({
     }
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
-    console.log(rect);
 
     setAnchorPosition({
       top: rect.top - 8,

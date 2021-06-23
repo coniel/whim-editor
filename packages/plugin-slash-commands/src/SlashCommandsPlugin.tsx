@@ -4,7 +4,7 @@ import {
   SlashPlugin,
   SlashEditor,
 } from '@sheets-editor/core';
-import onKeyDownSlashCommands from './onKeyDownSlashCommands';
+import { onKeyDownSlashCommands } from './onKeyDownSlashCommands';
 import { ElementSlashQuery } from './ElementSlashQuery';
 import { MenuItem } from './SlashCommandsPlugin.types';
 
@@ -12,7 +12,7 @@ export interface SlashCommandsPluginOptions {
   menuItems: MenuItem[];
 }
 
-const SlashCommandsPlugin = (
+export const createSlashCommandsPlugin = (
   options: SlashCommandsPluginOptions,
 ): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => ({
   onKeyDown: (event) =>
@@ -29,5 +29,3 @@ const SlashCommandsPlugin = (
     },
   ],
 });
-
-export default SlashCommandsPlugin;

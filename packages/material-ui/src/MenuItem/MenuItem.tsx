@@ -1,11 +1,10 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { ChevronRight } from '@material-ui/icons';
 import clsx from 'clsx';
 import {
   MenuItem as MuiMenuItem,
   ListItemText,
   ListItemIcon,
-  ListItemSecondaryAction,
   ListItemAvatar,
   Avatar,
 } from '@material-ui/core';
@@ -89,7 +88,7 @@ const userStyles = makeStyles((theme) =>
   }),
 );
 
-const MenuItem: React.FC<MenuItemProps> = ({
+export const MenuItem: React.FC<MenuItemProps> = ({
   onClick,
   children,
   icon,
@@ -181,5 +180,3 @@ const MenuItem: React.FC<MenuItemProps> = ({
 
   return menuItem;
 };
-
-export default MenuItem;

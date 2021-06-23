@@ -31,9 +31,9 @@ export function deserialize(
   return null;
 }
 
-export default (
+export function deserializeElement(
   data: DeserializeElementData,
-): Element | Element[] | undefined => {
+): Element | Element[] | undefined {
   const { elementDeserializers, el } = data;
   const type = el.getAttribute('data-slate-type') || el.nodeName;
 
@@ -66,4 +66,4 @@ export default (
   if (element) {
     return element;
   }
-};
+}

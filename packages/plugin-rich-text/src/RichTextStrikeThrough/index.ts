@@ -1,1 +1,1 @@
-export { default } from './RichTextStrikeThrough';
+export * from './RichTextStrikeThrough';

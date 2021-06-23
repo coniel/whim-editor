@@ -27,7 +27,9 @@ export interface BlockApiPluginOptions<BlockType extends ElementWithId> {
   ) => void;
 }
 
-const BlockApiPlugin = <BlockType extends ElementWithId = ElementWithId>({
+export const createBlockApiPlugin = <
+  BlockType extends ElementWithId = ElementWithId
+>({
   onCreateBlock,
   onUpdateBlock,
   onDeleteBlock,
@@ -203,5 +205,3 @@ const BlockApiPlugin = <BlockType extends ElementWithId = ElementWithId>({
 
   return {};
 };
-
-export default BlockApiPlugin;

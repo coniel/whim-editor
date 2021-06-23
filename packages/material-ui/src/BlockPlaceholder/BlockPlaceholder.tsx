@@ -46,7 +46,7 @@ export interface BlockPlaceholderProps
   onClickDelete?: (event: React.MouseEvent) => void;
 }
 
-const BlockPlaceholder: React.FC<BlockPlaceholderProps> = ({
+export const BlockPlaceholder: React.FC<BlockPlaceholderProps> = ({
   icon,
   label,
   className,
@@ -73,5 +73,3 @@ const BlockPlaceholder: React.FC<BlockPlaceholderProps> = ({
     </div>
   );
 };
-
-export default BlockPlaceholder;

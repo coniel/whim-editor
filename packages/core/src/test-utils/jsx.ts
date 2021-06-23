@@ -18,11 +18,9 @@ declare global {
   }
 }
 
-const jsx = createHyperscript({
+export const jsx = createHyperscript({
   elements: {
     block: {},
     inline: { inline: true },
   },
 });
-
-export default jsx;

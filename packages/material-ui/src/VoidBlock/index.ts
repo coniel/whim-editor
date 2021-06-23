@@ -1,1 +1,1 @@
-export { default, VoidBlockProps } from './VoidBlock';
+export * from './VoidBlock';

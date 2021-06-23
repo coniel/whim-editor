@@ -1,16 +1,14 @@
-import { jsx } from 'slate-hyperscript';
-import { Text } from 'slate';
-import deserializeTextNode from './utils/deserializeTextNode';
-import deserializeBreak from './utils/deserializeBreak';
-import deserializeFragment from './utils/deserializeFragment';
-import deserializeElement from './utils/deserializeElement';
-import deserializeMark from './utils/deseralizeMark';
+import { deserializeTextNode } from './utils/deserializeTextNode';
+import { deserializeBreak } from './utils/deserializeBreak';
+import { deserializeFragment } from './utils/deserializeFragment';
+import { deserializeElement } from './utils/deserializeElement';
+import { deseralizeMark } from './utils/deseralizeMark';
 import {
   ElementDeserializers,
   CombinedMarkDeserializers,
 } from '../withPlugins';
 
-const deserializeHtml = (
+export const deserializeHtml = (
   node: HTMLElement | ChildNode,
   parent: HTMLElement | ChildNode | null,
   elementDeserializers: ElementDeserializers[],
@@ -51,7 +49,7 @@ const deserializeHtml = (
 
   // mark
   if (parent && parent.nodeName !== 'BODY') {
-    const texts = deserializeMark({
+    const texts = deseralizeMark({
       deserializers: markDeserializers,
       el,
       children,
@@ -73,5 +71,3 @@ const deserializeHtml = (
 
   return children;
 };
-
-export default deserializeHtml;

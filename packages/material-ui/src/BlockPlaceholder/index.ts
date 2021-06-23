@@ -1,1 +1,1 @@
-export { default, BlockPlaceholderProps } from './BlockPlaceholder';
+export * from './BlockPlaceholder';
