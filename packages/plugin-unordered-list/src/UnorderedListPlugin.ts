@@ -1,14 +1,14 @@
 import {
   SlashPluginFactory,
-  SlashPlugin,
   SlashPluginElementDescriptor,
   DeserializeElementValue,
 } from '@sheets-editor/core';
-import ElementUnorderedList from './ElementUnorderedList';
+import { ElementUnorderedList } from './ElementUnorderedList';
+import { UnorderedListElement } from './UnorderedListPlugin.types';
 
 export type UnorderedListPluginOptions = Partial<
   Pick<
-    SlashPluginElementDescriptor,
+    SlashPluginElementDescriptor<UnorderedListElement>,
     | 'type'
     | 'shortcuts'
     | 'component'
@@ -19,9 +19,9 @@ export type UnorderedListPluginOptions = Partial<
   >
 >;
 
-const UnorderedListPlugin = (
+export const createUnorderedListPlugin = (
   options: UnorderedListPluginOptions = {},
-): SlashPluginFactory => (): SlashPlugin => ({
+): SlashPluginFactory<UnorderedListElement> => () => ({
   elementDeserializers: {
     LI: (el, children, parent): DeserializeElementValue | void => {
       // All LIs besides those inside OLs are considered UL items
@@ -46,5 +46,3 @@ const UnorderedListPlugin = (
     },
   ],
 });
-
-export default UnorderedListPlugin;

@@ -1,16 +1,17 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import CodePlugin from './CodePlugin';
-import ElementCode, { ElementCodeProps } from './ElementCode';
-import { CodeElement } from './CodePlugin.types';
+import { createCodePlugin } from './CodePlugin';
+import { ElementCode, ElementCodeProps } from './ElementCode';
+import { CodeElement, CodeLeaf } from './CodePlugin.types';
 
 export default { title: 'Plugins/Code' };
 
-type CodeDescendant = Descendant | CodeElement;
+type CodeDescendant = CodeLeaf | Descendant | CodeElement;
 
-const Code = CodePlugin({
+const CodePlugin = createCodePlugin({
   defaultLanguage: 'typescript',
   block: { hotkeys: ['mod+alt+6'] },
 });
@@ -19,7 +20,8 @@ export const CodeBlock: React.FC = () => {
   const [value, setValue] = useState<CodeDescendant[]>([
     {
       type: 'code',
-      language: 'javascript',
+      id: '1',
+      properties: { language: 'javascript' },
       children: [{ text: 'function foo() {\n  alert("foo");\n}' }],
     },
   ]);
@@ -29,7 +31,7 @@ export const CodeBlock: React.FC = () => {
     <Editor
       components={components}
       value={value}
-      plugins={[Code]}
+      plugins={[CodePlugin]}
       onChange={(newValue): void => {
         setValue(newValue);
       }}
@@ -43,7 +45,7 @@ const CustomBlock: React.FC<ElementCodeProps> = ({ children, ...other }) => (
   </div>
 );
 
-const CustomCode = CodePlugin({
+const CustomCodePlugin = createCodePlugin({
   defaultLanguage: 'typescript',
   block: { hotkeys: ['mod+alt+6'], component: CustomBlock },
 });
@@ -52,7 +54,8 @@ export const CodeBlockWithCustomComponent: React.FC = () => {
   const [value, setValue] = useState<CodeDescendant[]>([
     {
       type: 'code',
-      language: 'javascript',
+      id: '1',
+      properties: { language: 'javascript' },
       children: [{ text: 'function foo() {\n  alert("foo");\n}' }],
     },
   ]);
@@ -62,7 +65,7 @@ export const CodeBlockWithCustomComponent: React.FC = () => {
     <Editor
       components={components}
       value={value}
-      plugins={[CustomCode]}
+      plugins={[CustomCodePlugin]}
       onChange={(newValue): void => {
         setValue(newValue);
       }}
@@ -70,28 +73,30 @@ export const CodeBlockWithCustomComponent: React.FC = () => {
   );
 };
 
-// export const InlineCode: React.FC = () => {
-//   const [value, setValue] = useState<CodeDescendant[]>([
-//     {
-//       type: 'paragraph',
-//       children: [
-//         { text: 'You can type inline code such as ' },
-//         { code: true, text: 'foo = 3' },
-//         { text: ' by surounding text with `.' },
-//       ],
-//     },
-//   ]);
+export const InlineCode: React.FC = () => {
+  const [value, setValue] = useState<CodeDescendant[]>([
+    {
+      type: 'paragraph',
+      children: [
+        { text: 'You can type inline code such as ' },
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        { code: true, text: 'foo = 3' },
+        { text: ' by surounding text with `.' },
+      ],
+    },
+  ]);
 
-//   console.log(value);
+  console.log(value);
 
-//   return (
-//     <Editor
-//       components={components}
-//       value={value}
-//       plugins={[Code]}
-//       onChange={(newValue): void => {
-//         setValue(newValue);
-//       }}
-//     />
-//   );
-// };
+  return (
+    <Editor
+      components={components}
+      value={value}
+      plugins={[CodePlugin]}
+      onChange={(newValue): void => {
+        setValue(newValue);
+      }}
+    />
+  );
+};

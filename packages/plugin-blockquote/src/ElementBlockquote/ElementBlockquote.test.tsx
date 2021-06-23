@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { UIProvider, components } from '@sheets-editor/core';
-import ElementBlockquote, { ElementBlockquoteProps } from './ElementBlockquote';
+import { ElementBlockquote, ElementBlockquoteProps } from './ElementBlockquote';
 
 const TYPE = 'blockquote';
 const TEXT = 'Some text';
@@ -11,7 +11,7 @@ const defaultProps: ElementBlockquoteProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, children: [{ text: TEXT }] },
+  element: { type: TYPE, id: 'id', children: [{ text: TEXT }], properties: {} },
   children: <div>{TEXT}</div>,
 };
 

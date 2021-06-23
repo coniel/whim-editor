@@ -12,13 +12,16 @@ const Link = LinkPlugin();
 const initialValue = [
   {
     type: 'paragraph',
+    id: '1',
+    properties: {},
     children: [
       {
         text: 'In addition to block nodes, you can create inline nodes, like ',
       },
       {
         type: 'link',
-        url: 'https://en.wikipedia.org/wiki/Hypertext',
+        id: 'link-1',
+        properties: { url: 'https://en.wikipedia.org/wiki/Hypertext' },
         children: [{ text: 'hyperlinks' }],
       },
       {
@@ -28,6 +31,8 @@ const initialValue = [
   },
   {
     type: 'paragraph',
+    id: '2',
+    properties: {},
     children: [
       {
         text:

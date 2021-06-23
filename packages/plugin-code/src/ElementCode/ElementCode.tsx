@@ -79,7 +79,7 @@ const languages: Language[] = [
   { value: 'yaml', label: 'YAML' },
 ];
 
-const ElementCode: React.FC<ElementCodeProps> = ({
+export const ElementCode: React.FC<ElementCodeProps> = ({
   attributes,
   children,
   element,
@@ -89,7 +89,7 @@ const ElementCode: React.FC<ElementCodeProps> = ({
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState('');
   const [selectOpen, setSelectOpen] = useState(false);
-  const [language, setLanguage] = useState(element.language);
+  const [language, setLanguage] = useState(element.properties.language);
   const selectedLanguage = languages.find(({ value }) => value === language);
 
   let label = 'Unknown';
@@ -207,5 +207,3 @@ const ElementCode: React.FC<ElementCodeProps> = ({
     </div>
   );
 };
-
-export default ElementCode;

@@ -32,6 +32,8 @@ function onKeyDownSlashCommands(
       Transforms.wrapNodes(
         editor,
         {
+          id: 'slash-query',
+          properties: {},
           type: 'slash-query',
           children: [],
         },
@@ -58,7 +60,6 @@ function onKeyDownSlashCommands(
     ) {
       event.preventDefault();
       return true;
-      console.log('called slash Enter');
     }
   }
 }

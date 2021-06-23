@@ -1,5 +1,7 @@
 import { Element } from '@sheets-editor/core';
 
-export interface OrderedListElement extends Element {
+export interface OrderedListElementProperties {
   number: number;
 }
+
+export type OrderedListElement = Element<string, OrderedListElementProperties>;

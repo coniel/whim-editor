@@ -36,7 +36,7 @@ export type RichTextMarks = {
 };
 
 export type RichTextComponents = {
-  [key in RichTextFormat]: React.ReactType<RenderLeafProps>;
+  [key in RichTextFormat]: React.ComponentType<RenderLeafProps> | string;
 };
 
 export interface RichTextPluginConfig {

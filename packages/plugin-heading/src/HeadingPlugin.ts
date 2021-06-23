@@ -4,11 +4,12 @@ import {
   SlashEditor,
   DeserializeElementValue,
   SlashPluginElementDescriptor,
-  RenderElementProps,
+  ElementComponent,
 } from '@sheets-editor/core';
 import ElementHeadingOne from './ElementHeadingOne';
 import ElementHeadingTwo from './ElementHeadingTwo';
 import ElementHeadingThree from './ElementHeadingThree';
+import { HeadingElement } from './HeadingPlugin.types';
 
 const HEADING_1 = 'heading-1';
 const HEADING_2 = 'heading-2';
@@ -31,7 +32,7 @@ export type HeadingTypes = {
 };
 
 export type HeadingComponents = {
-  [key in HeadingType]: React.ReactType<RenderElementProps>;
+  [key in HeadingType]: ElementComponent<HeadingElement>;
 };
 
 export interface HeadingPluginOptions {
@@ -80,7 +81,7 @@ const createHeadingPlugin = (
   return (): SlashPlugin => {
     return {
       elements: ENABLED.map(
-        (heading): SlashPluginElementDescriptor => ({
+        (heading): SlashPluginElementDescriptor<HeadingElement> => ({
           type: TYPES[heading],
           shortcuts: SHORTCUTS[heading] ? [SHORTCUTS[heading] as string] : [],
           component: COMPONENTS[heading],

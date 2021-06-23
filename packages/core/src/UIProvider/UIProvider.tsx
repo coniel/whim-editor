@@ -1,6 +1,6 @@
 import React from 'react';
-import { Node } from 'slate';
 import { createContext } from '../utils';
+import { Element } from '../types';
 
 export interface BlockPlaceholderProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -107,7 +107,7 @@ export type Tooltip = React.FC<TooltipProps>;
 
 export interface PlaceholderTextProps
   extends React.HtmlHTMLAttributes<HTMLSpanElement> {
-  element: Node;
+  element: Element;
   text: string;
   onlyWhenFocused?: boolean;
 }

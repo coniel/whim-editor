@@ -1,8 +1,10 @@
 import { Element, SlashEditor } from '@sheets-editor/core';
 
-export interface LinkElement extends Element {
-  url?: string;
+export interface LinkElementProperties {
+  url: string;
 }
+
+export type LinkElement = Element<string, LinkElementProperties>;
 
 export interface EditorWithLinkPlugin extends SlashEditor {
   insertLink: (url: string) => void;

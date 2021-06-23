@@ -1,25 +1,23 @@
-import {
-  SlashPluginFactory,
-  SlashPlugin,
-  SlashPluginElementDescriptor,
-} from '@sheets-editor/core';
-import ElementBlockquote from './ElementBlockquote';
+import { SlashPluginFactory, ElementComponent } from '@sheets-editor/core';
+import { ElementBlockquote } from './ElementBlockquote';
+import { BlockquoteElement } from './BlockquotePlugin.types';
 
 export interface BlockquotePluginOptions {
-  blockquote?: Partial<SlashPluginElementDescriptor>;
+  type?: string;
+  shortcuts?: string[];
+  hotkeys?: string[];
+  component?: ElementComponent<BlockquoteElement>;
 }
 
-const BlockquotePlugin = (
+export const createBlockquotePlugin = (
   options: BlockquotePluginOptions = {},
-): SlashPluginFactory => (): SlashPlugin => ({
+): SlashPluginFactory<BlockquoteElement> => () => ({
   elements: [
     {
       type: 'blockquote',
       component: ElementBlockquote,
       shortcuts: ['" '],
-      ...(options.blockquote || {}),
+      ...options,
     },
   ],
 });
-
-export default BlockquotePlugin;

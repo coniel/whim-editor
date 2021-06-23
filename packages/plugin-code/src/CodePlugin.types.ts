@@ -1,15 +1,16 @@
-import { BraindropEditor, Element, MarkedText } from '@sheets-editor/core';
-import { BaseRange, BaseText } from 'slate';
+import { BraindropEditor, Element, Range, Text } from '@sheets-editor/core';
 
-export interface CodeElement extends Element {
+export interface CodeElementProperties {
   language: string;
 }
 
-export interface CodeLeaf extends MarkedText {
+export type CodeElement = Element<string, CodeElementProperties>;
+
+export interface CodeLeaf extends Text {
   code: boolean;
 }
 
-export interface CodeText extends BaseText {
+export interface CodeText extends Text {
   decorateCode: boolean;
   token: string;
 }
@@ -20,7 +21,7 @@ export interface EditorWithCodePlugin extends BraindropEditor {
   children: CodeChildren;
 }
 
-export interface CodeRange extends BaseRange {
+export interface CodeRange extends Range {
   decorateCode: boolean;
   token: string;
 }

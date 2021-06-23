@@ -5,7 +5,6 @@ import { withHistory } from 'slate-history';
 import withPlugins from '../withPlugins';
 import { SlashPluginFactory } from '../withPlugins/withPlugins';
 import UIProvider, { UIComponents } from '../UIProvider';
-import { EditableProps } from 'slate-react/dist/components/editable';
 import { EditorStateProvider } from '../EditorStateProvider';
 
 export interface EditorProps {
@@ -14,11 +13,12 @@ export interface EditorProps {
   onChange: (value: Descendant[]) => void;
   onSelectionChange?: (selection: Range | null) => void;
   value: Descendant[];
-  plugins?: SlashPluginFactory[];
+  plugins?: SlashPluginFactory<any>[];
   components: UIComponents;
   autoFocus?: boolean;
   spellCheck?: boolean;
   readOnly?: boolean;
+  blockIdGenerator?: () => string;
 }
 
 const Editor: React.FC<EditorProps> = ({
@@ -28,6 +28,7 @@ const Editor: React.FC<EditorProps> = ({
   value,
   onChange,
   onSelectionChange,
+  blockIdGenerator,
   plugins = [],
   components,
   spellCheck = true,
@@ -35,7 +36,12 @@ const Editor: React.FC<EditorProps> = ({
   readOnly = false,
 }) => {
   const editor = useMemo(
-    () => withPlugins(withHistory(withReact(createEditor())), plugins),
+    () =>
+      withPlugins(
+        withHistory(withReact(createEditor())),
+        plugins,
+        blockIdGenerator,
+      ),
     [],
   );
   const editable = useMemo(
@@ -51,7 +57,7 @@ const Editor: React.FC<EditorProps> = ({
         renderLeaf: editor.renderLeaf,
         decorate: editor.decorate,
         onDOMBeforeInput: editor.onDOMBeforeInput,
-      } as EditableProps),
+      }),
     [editor],
   );
 

@@ -57,7 +57,7 @@ export const LinkPopover: React.FC = () => {
 
     if (links.length) {
       const linkElement = links[0][0] as LinkElement;
-      setValue(linkElement.url as string);
+      setValue(linkElement.properties.url as string);
     } else {
       setValue('');
     }
@@ -104,7 +104,8 @@ export const LinkPopover: React.FC = () => {
       editor,
       {
         type: 'link',
-        url,
+        id: editor.generateBlockId(),
+        properties: { url },
         children: [],
       } as LinkElement,
       { at: selection, split: true },

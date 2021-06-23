@@ -86,18 +86,26 @@ export const WithHoveringToolbarPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [{ text: 'I use the HoveringToolbarPlugin.' }],
     },
     {
       type: 'text',
+      id: '2',
+      properties: {},
       children: [{ text: 'I use the HoveringToolbarPlugin.' }],
     },
     {
       type: 'text',
+      id: '3',
+      properties: {},
       children: [{ text: 'I use the HoveringToolbarPlugin.' }],
     },
     {
       type: 'text',
+      id: '4',
+      properties: {},
       children: [{ text: 'I use the HoveringToolbarPlugin.' }],
     },
   ]);

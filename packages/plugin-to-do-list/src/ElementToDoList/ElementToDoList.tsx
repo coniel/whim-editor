@@ -18,7 +18,7 @@ export const ElementToDoList: React.FC<ElementToDoListProps> = ({
   uncheckedColor = 'rgb(55, 53, 47)',
 }) => {
   const { PlaceholderText } = useUI();
-  const { done } = element;
+  const { done } = element.properties;
 
   const handleClick = useCallback(() => onClickCheckbox(element), [
     element,

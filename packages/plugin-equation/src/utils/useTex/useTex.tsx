@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import parseTex, { ParseTexOptions } from '../parseTex';
+import { parseTex, ParseTexOptions } from '../parseTex';
 
 export interface UseTexHook {
   html: string;
@@ -8,7 +8,7 @@ export interface UseTexHook {
   onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-function useTex(
+export function useTex(
   defaultValue: string,
   options: ParseTexOptions = {},
 ): UseTexHook {
@@ -37,5 +37,3 @@ function useTex(
 
   return { html, error, value, onChange };
 }
-
-export default useTex;

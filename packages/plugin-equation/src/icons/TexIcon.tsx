@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TexIcon: React.FC = () => (
+export const TexIcon: React.FC = () => (
   <svg
     viewBox="0 0 32 21"
     style={{
@@ -41,5 +41,3 @@ const TexIcon: React.FC = () => (
     </g>
   </svg>
 );
-
-export default TexIcon;

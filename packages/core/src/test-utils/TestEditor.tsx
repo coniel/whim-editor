@@ -9,6 +9,13 @@ export interface TestEditorProps {
 }
 
 export const TestEdtior: React.FC<TestEditorProps> = ({
-  value = [{ type: 'text', id: 'first-element', children: [{ text: '' }] }],
+  value = [
+    {
+      type: 'text',
+      id: 'first-element',
+      properties: {},
+      children: [{ text: '' }],
+    },
+  ],
   onChange = () => null,
 }) => <Editor components={components} value={value} onChange={onChange} />;

@@ -3,7 +3,6 @@ import isUrl from 'is-url';
 import { Editor, Range, Node, Element } from 'slate';
 import {
   SlashPluginFactory,
-  SlashPlugin,
   SlashEditor,
   Transforms,
   isNodeType,
@@ -40,6 +39,8 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
   const isCollapsed = selection && Range.isCollapsed(selection);
   const link = {
     type: 'link',
+    id: editor.generateBlockId(),
+    properties: {},
     url,
     children: isCollapsed ? [{ text: url }] : [],
   };
@@ -52,9 +53,9 @@ const wrapLink = (editor: SlashEditor, url: string): void => {
   }
 };
 
-const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
-  baseEditor: SlashEditor,
-): SlashPlugin => {
+const LinkPlugin = (
+  options: LinkPluginOptions = {},
+): SlashPluginFactory<LinkElement> => (baseEditor: SlashEditor) => {
   const editor = baseEditor as EditorWithLinkPlugin;
   const { normalizeNode, renderEditable } = editor;
 
@@ -83,7 +84,7 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
 
     if (isNodeType(entry, { allow: ['link'] })) {
       // Don't allow links without a URL
-      if (!node.url) {
+      if (!node.properties.url) {
         Transforms.unwrapNodes(editor, {
           match: (n) => Element.isElement(n) && n.type === 'link',
           split: true,
@@ -141,9 +142,10 @@ const LinkPlugin = (options: LinkPluginOptions = {}): SlashPluginFactory => (
         } else {
           Transforms.insertNodes(editor, {
             type: 'link',
-            url: text,
+            properties: { url: text },
+            id: editor.generateBlockId(),
             children: [{ text }],
-          } as LinkElement);
+          });
         }
 
         return true;

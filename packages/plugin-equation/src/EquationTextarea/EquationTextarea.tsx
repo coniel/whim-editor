@@ -3,7 +3,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 
 export type EquationTextareaProps = React.HTMLAttributes<HTMLTextAreaElement>;
 
-const EquationTextarea: React.FC<EquationTextareaProps> = (props) => {
+export const EquationTextarea: React.FC<EquationTextareaProps> = (props) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   function handleFocus(): void {
@@ -41,5 +41,3 @@ const EquationTextarea: React.FC<EquationTextareaProps> = (props) => {
     />
   );
 };
-
-export default EquationTextarea;

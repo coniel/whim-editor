@@ -3,7 +3,7 @@ import { RenderLeafProps } from '@sheets-editor/core';
 
 export type LeafCodeProps = RenderLeafProps;
 
-const LeafCode: React.FC<LeafCodeProps> = ({ attributes, children }) => {
+export const LeafCode: React.FC<LeafCodeProps> = ({ attributes, children }) => {
   return (
     <code
       style={{
@@ -19,5 +19,3 @@ const LeafCode: React.FC<LeafCodeProps> = ({ attributes, children }) => {
     </code>
   );
 };
-
-export default LeafCode;

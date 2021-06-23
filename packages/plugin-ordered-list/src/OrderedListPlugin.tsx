@@ -1,18 +1,16 @@
-import React from 'react';
 import {
   SlashPluginFactory,
-  SlashPlugin,
   SlashPluginElementDescriptor,
   SlashEditor,
   DeserializeElementValue,
 } from '@sheets-editor/core';
 import { Element, Transforms, Node, Path } from 'slate';
-import ElementOrderedList from './ElementOrderedList';
+import { ElementOrderedList } from './ElementOrderedList';
 import { OrderedListElement } from './OrderedListPlugin.types';
 
 export type OrderedListPluginOptions = Partial<
   Pick<
-    SlashPluginElementDescriptor,
+    SlashPluginElementDescriptor<OrderedListElement>,
     | 'type'
     | 'shortcuts'
     | 'component'
@@ -42,12 +40,13 @@ function normalizeNumberedListNode(
       const previousNode = Node.get(editor, previousNodePath);
       if (Element.isElement(previousNode) && previousNode.type === type) {
         number =
-          (((previousNode as OrderedListElement).number as number) || 1) + 1;
+          (((previousNode as OrderedListElement).properties.number as number) ||
+            1) + 1;
       }
     }
   }
 
-  if (node.number !== number) {
+  if (node.properties.number !== number) {
     Transforms.setNodes(editor, { number } as Partial<OrderedListElement>, {
       at: path,
     });
@@ -94,9 +93,9 @@ function normalizeNumberedList(
   }
 }
 
-const OrderedListPlugin = (
+export const createOrderedListPlugin = (
   options: OrderedListPluginOptions = {},
-): SlashPluginFactory => (editor): SlashPlugin => {
+): SlashPluginFactory<OrderedListElement> => (editor) => {
   const type = options.type || 'ol';
   const { normalizeNode } = editor;
   editor.normalizeNode = (entry): void => {
@@ -132,17 +131,10 @@ const OrderedListPlugin = (
       {
         type,
         shortcuts: ['1) ', '1. '],
-        component: (props): React.ReactElement => (
-          <ElementOrderedList
-            {...props}
-            element={props.element as OrderedListElement}
-          />
-        ),
+        component: ElementOrderedList,
         returnBehaviour: 'same-type',
         ...options,
       },
     ],
   };
 };
-
-export default OrderedListPlugin;

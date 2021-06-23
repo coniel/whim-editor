@@ -7,24 +7,26 @@ import {
 } from 'slate-react';
 import { Transforms } from 'slate';
 import { useUI, useHardReturn, RenderElementProps } from '@sheets-editor/core';
-import EquationTextarea from '../EquationTextarea';
-import useTex from '../utils/useTex';
+import { EquationTextarea } from '../EquationTextarea';
+import { useTex } from '../utils/useTex';
 import { EquationIcon, EnterIcon } from '../icons';
-import EquationError from '../EquationError';
+import { EquationError } from '../EquationError';
 import { InlineEquationElement } from '../EquationPlugin.types';
 
 export interface ElementEquationInlineProps extends RenderElementProps {
   element: InlineEquationElement;
 }
 
-const ElementEquationInline: React.FC<ElementEquationInlineProps> = ({
+export const ElementEquationInline: React.FC<ElementEquationInlineProps> = ({
   attributes,
   children,
   element,
 }) => {
   const { Popover, InlinePlaceholder, Button } = useUI();
-  const [open, setOpen] = useState(!element.tex);
-  const { html, error, onChange, value } = useTex(element.tex as string);
+  const [open, setOpen] = useState(!element.properties.expression);
+  const { html, error, onChange, value } = useTex(
+    element.properties.expression as string,
+  );
   const spanRef = useRef<HTMLSpanElement>(null);
   const focused = useFocused();
   const selected = useSelected();
@@ -186,5 +188,3 @@ const ElementEquationInline: React.FC<ElementEquationInlineProps> = ({
     </Fragment>
   );
 };
-
-export default ElementEquationInline;

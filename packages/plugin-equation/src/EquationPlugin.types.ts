@@ -1,9 +1,9 @@
 import { Element } from '@sheets-editor/core';
 
-export interface InlineEquationElement extends Element {
-  tex: string;
+export interface EquationElementProperties {
+  expression: string;
 }
 
-export interface BlockEquationElement extends Element {
-  tex: string;
-}
+export type InlineEquationElement = Element<string, EquationElementProperties>;
+
+export type BlockEquationElement = Element<string, EquationElementProperties>;

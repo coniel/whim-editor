@@ -7,17 +7,17 @@ import {
   RenderElementProps,
   SlashEditor,
 } from '@sheets-editor/core';
-import EquationError from '../EquationError';
-import useTex from '../utils/useTex';
+import { EquationError } from '../EquationError';
+import { useTex } from '../utils/useTex';
 import { EnterIcon, TexIcon } from '../icons';
-import EquationTextarea from '../EquationTextarea';
+import { EquationTextarea } from '../EquationTextarea';
 import { BlockEquationElement } from '../EquationPlugin.types';
 
 export interface ElementEquationBlockProps extends RenderElementProps {
   element: BlockEquationElement;
 }
 
-const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
+export const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
   attributes,
   children,
   element,
@@ -26,21 +26,24 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
   const selected = useSelected();
   const [open, setOpen] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
-  const { html, error, onChange, value } = useTex(element.tex as string, {
-    displayMode: true,
-  });
+  const { html, error, onChange, value } = useTex(
+    element.properties.expression as string,
+    {
+      displayMode: true,
+    },
+  );
   const editor = useEditor() as SlashEditor;
 
   useEffect(() => {
     if (
-      !element.tex &&
+      !element.properties.expression &&
       editor.selection &&
       selected &&
       Range.isCollapsed(editor.selection)
     ) {
       setOpen(true);
     }
-  }, [selected, editor.selection, element.tex]);
+  }, [selected, editor.selection, element.properties.expression]);
 
   useEffect(() => {
     Transforms.setNodes(
@@ -144,5 +147,3 @@ const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
     </div>
   );
 };
-
-export default ElementEquationBlock;

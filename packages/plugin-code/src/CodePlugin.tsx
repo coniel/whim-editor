@@ -4,38 +4,34 @@ import {
   getBlockAbove,
   Transforms,
   SlashPluginLeafDescriptor,
-  SlashPluginElementDescriptor,
 } from '@sheets-editor/core';
 import { Element } from 'slate';
 import isHotkey from 'is-hotkey';
 import { ReactEditor } from 'slate-react';
 import { createDecorator } from './createDecorator';
-import ElementCode, { ElementCodeProps } from './ElementCode';
-import LeafCode from './LeafCode';
+import { ElementCode, ElementCodeProps } from './ElementCode';
+import { LeafCode } from './LeafCode';
 import { CodeElement, CodeText } from './CodePlugin.types';
 
-interface BlockOptions extends Omit<SlashPluginElementDescriptor, 'component'> {
-  component: React.FC<ElementCodeProps>;
+interface BlockOptions {
+  type?: string;
+  component?: React.ComponentType<ElementCodeProps>;
+  hotkeys?: string[];
 }
 
 export interface CodePluginOptions {
-  block?: Partial<BlockOptions>;
+  block?: BlockOptions;
   mark?: Partial<SlashPluginLeafDescriptor>;
   defaultLanguage?: string;
 }
 
-const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
-  editor,
-) => {
-  let blockType = 'code';
-  let BlockComponent: BlockOptions['component'] = ElementCode;
-  if (options.block && options.block.component) {
-    BlockComponent = options.block.component;
-  }
-
-  if (options.block && options.block.type) {
-    blockType = options.block.type;
-  }
+export const createCodePlugin = (
+  options: CodePluginOptions = {},
+): SlashPluginFactory<CodeElement> => (editor) => {
+  const defaultLanguage = options.defaultLanguage || 'javascript';
+  const blockType = (options.block && options.block.type) || 'code';
+  const BlockComponent =
+    (options.block && options.block.component) || ElementCode;
 
   function setBlockLanguage(element: CodeElement, language: string): void {
     const path = ReactEditor.findPath(editor, element);
@@ -77,7 +73,7 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
             editor,
             {
               type: blockType,
-              language: options.defaultLanguage || 'javascript',
+              language: defaultLanguage,
             } as Partial<CodeElement>,
             turnIntoOptions,
           );
@@ -87,19 +83,15 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
             editor,
             {
               type: blockType,
-              language: options.defaultLanguage || 'javascript',
+              properties: { language: defaultLanguage },
               children: [{ text: '' }],
             } as CodeElement,
             insertOptions,
           );
         },
         ...(options.block || {}),
-        component: (props): React.ReactElement => (
-          <BlockComponent
-            {...props}
-            element={props.element as CodeElement}
-            onSetLanguage={setBlockLanguage}
-          />
+        component: (props) => (
+          <BlockComponent {...props} onSetLanguage={setBlockLanguage} />
         ),
       },
     ],
@@ -112,5 +104,3 @@ const CodePlugin = (options: CodePluginOptions = {}): SlashPluginFactory => (
     ],
   };
 };
-
-export default CodePlugin;

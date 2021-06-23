@@ -2,7 +2,7 @@ import katex, { KatexOptions } from 'katex';
 
 export type ParseTexOptions = KatexOptions;
 
-function parseTex(
+export function parseTex(
   value: string,
   options: ParseTexOptions,
 ): { html: string; error: string } {
@@ -19,5 +19,3 @@ function parseTex(
 
   return { html, error };
 }
-
-export default parseTex;

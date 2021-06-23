@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
-import { Descendant } from 'slate';
+import { Element } from '@sheets-editor/core';
 import { Editor } from './Editor';
 
 export default {
@@ -7,13 +8,12 @@ export default {
   component: Editor,
 };
 
-console.log('EDITOR STORY');
-
 export const Default: React.FC = () => {
-  const [value, setValue] = useState<Descendant[]>([
+  const [value, setValue] = useState<Element[]>([
     {
       type: 'paragraph',
       id: '4',
+      properties: {},
       children: [
         {
           text:
@@ -34,7 +34,10 @@ export const Default: React.FC = () => {
         marginRight: 'auto',
       }}
     >
-      <Editor onChange={(newValue): void => setValue(newValue)} value={value} />
+      <Editor
+        onChange={(newValue): void => setValue(newValue as Element[])}
+        value={value}
+      />
     </div>
   );
 };

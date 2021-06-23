@@ -1,26 +1,33 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { Descendant } from 'slate';
 import components from '@sheets-editor/material-ui';
 import { Editor } from '@sheets-editor/core';
-import UnorderedListPlugin from './UnorderedListPlugin';
+import { createUnorderedListPlugin } from './UnorderedListPlugin';
 
 export default { title: 'Plugins/UnorderedList' };
 
-const UnorderedList = UnorderedListPlugin();
-const CustomUnorderedList = UnorderedListPlugin({});
+const UnorderedList = createUnorderedListPlugin();
+const CustomUnorderedList = createUnorderedListPlugin({});
 
 export const WithUnorderedListPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([
     {
       type: 'ul',
+      id: '1',
+      properties: {},
       children: [{ text: 'List item 1' }],
     },
     {
       type: 'ul',
+      id: '1',
+      properties: {},
       children: [{ text: 'List item 2' }],
     },
     {
       type: 'ul',
+      id: '1',
+      properties: {},
       children: [{ text: 'List item 3' }],
     },
   ]);
@@ -43,14 +50,20 @@ export const WithCustomisedUnorderedListPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([
     {
       type: 'ul',
+      id: '1',
+      properties: {},
       children: [{ text: 'List item 1' }],
     },
     {
       type: 'ul',
+      id: '1',
+      properties: {},
       children: [{ text: 'List item 2' }],
     },
     {
       type: 'ul',
+      id: '1',
+      properties: {},
       children: [{ text: 'List item 3' }],
     },
   ]);

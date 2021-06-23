@@ -95,6 +95,8 @@ export const Default: React.FC = () => {
   const [value, setValue] = useState<ElementWithRichText[]>([
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           text: 'I have the ',
@@ -144,6 +146,8 @@ export const Custom: React.FC = () => {
   const [value, setValue] = useState<ElementWithRichText[]>([
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           text:
@@ -153,6 +157,8 @@ export const Custom: React.FC = () => {
     },
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           bold: true,
@@ -165,6 +171,8 @@ export const Custom: React.FC = () => {
     },
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           italic: true,
@@ -177,6 +185,8 @@ export const Custom: React.FC = () => {
     },
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           underline: true,
@@ -189,6 +199,8 @@ export const Custom: React.FC = () => {
     },
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           'strike-through': true,
@@ -217,6 +229,8 @@ export const Partial: React.FC = () => {
   const [value, setValue] = useState<ElementWithRichText[]>([
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           text: 'This editor uses only part of the rich-text plugin.',
@@ -225,6 +239,8 @@ export const Partial: React.FC = () => {
     },
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           text: 'Only ',
@@ -240,6 +256,8 @@ export const Partial: React.FC = () => {
     },
     {
       type: 'text',
+      id: '1',
+      properties: {},
       children: [
         {
           i: true,

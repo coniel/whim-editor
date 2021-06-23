@@ -1,10 +1,11 @@
 import { SlashEditor, SlashPluginElementDescriptor } from './withPlugins';
-import { Range, Transforms, Editor, Element } from 'slate';
+import { Range, Transforms, Editor } from 'slate';
+import { Element } from '../types';
 
 export interface BlockShortcut {
   trigger: string;
   type: string;
-  turnInto?: SlashPluginElementDescriptor['turnInto'];
+  turnInto?: SlashPluginElementDescriptor<Element>['turnInto'];
 }
 
 export interface BlockShortcutMap {

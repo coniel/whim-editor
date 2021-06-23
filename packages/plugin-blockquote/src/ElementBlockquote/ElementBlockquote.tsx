@@ -1,10 +1,10 @@
 import React from 'react';
-import { Node } from 'slate';
 import { RenderElementProps, useUI } from '@sheets-editor/core';
+import { BlockquoteElement } from '../BlockquotePlugin.types';
 
-export type ElementBlockquoteProps = RenderElementProps;
+export type ElementBlockquoteProps = RenderElementProps<BlockquoteElement>;
 
-const ElementBlockquote: React.FC<ElementBlockquoteProps> = ({
+export const ElementBlockquote: React.FC<ElementBlockquoteProps> = ({
   attributes,
   children,
   element,
@@ -35,5 +35,3 @@ const ElementBlockquote: React.FC<ElementBlockquoteProps> = ({
     </blockquote>
   );
 };
-
-export default ElementBlockquote;

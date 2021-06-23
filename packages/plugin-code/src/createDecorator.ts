@@ -94,7 +94,7 @@ export const createDecorator = (editor: SlashEditor, type: string) => ([
   }
 
   const codeElement = parent[0] as CodeElement;
-  const language = codeElement.language;
+  const { language } = codeElement.properties;
 
   const tokens = Prism.tokenize(node.text, Prism.languages[language]);
   let start = 0;

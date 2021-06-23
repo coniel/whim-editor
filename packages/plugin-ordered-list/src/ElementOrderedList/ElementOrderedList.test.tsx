@@ -9,7 +9,12 @@ const defaultProps: ElementOrderedListProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, number: 1, children: [{ text: TEXT }] },
+  element: {
+    type: TYPE,
+    properties: { number: 1 },
+    id: '1',
+    children: [{ text: TEXT }],
+  },
   children: <div>{TEXT}</div>,
 };
 

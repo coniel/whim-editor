@@ -13,6 +13,8 @@ export const WithParagraphPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
+      id: '1',
+      properties: {},
       children: [{ text: 'I use the ParagraphPlugin.' }],
     },
   ]);
@@ -33,6 +35,8 @@ export const WithCustomisedParagraphPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([
     {
       type: 'paragraph',
+      id: '2',
+      properties: {},
       children: [{ text: 'I use the ParagraphPlugin with custom options.' }],
     },
   ]);

@@ -4,10 +4,6 @@ import {
   SlashPlugin,
   SlashEditor,
 } from '@sheets-editor/core';
-import {
-  EditorWithBlockIdPlugin,
-  RenderElement,
-} from '@sheets-editor/plugin-block-id';
 import BlockPluginProvider from './BlockPluginProvider';
 import BlockPluginUI from './BlockPluginUI';
 import ElementBlock from './ElementBlock';
@@ -45,11 +41,10 @@ const BlockPlugin = (): SlashPluginFactory => (
     insertData(data);
   };
 
-  // const blockEditor = editor as EditorWithBlockIdPlugin;
-  const { renderElement } = editor as EditorWithBlockIdPlugin;
+  const { renderElement } = editor;
 
   // Wraps all Elements in ElementBlock
-  (editor as EditorWithBlockIdPlugin).renderElement = (props) => {
+  editor.renderElement = (props) => {
     return renderElement({
       ...props,
       children: editor.isInline(props.element) ? (

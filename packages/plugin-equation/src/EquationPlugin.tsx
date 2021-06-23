@@ -1,17 +1,14 @@
-import React from 'react';
 import {
   SlashPluginFactory,
-  SlashPlugin,
   SlashEditor,
-  SlashPluginElementDescriptor,
   TurnInto,
   Insert,
 } from '@sheets-editor/core';
 import { Transforms, Node } from 'slate';
 import 'katex/dist/katex.min.css';
 import 'katex/dist/contrib/mhchem.js';
-import InlineEquationPlaceholder from './ElementEquationInline';
-import BlockEquation from './ElementEquationBlock';
+import { ElementEquationInline } from './ElementEquationInline';
+import { ElementEquationBlock } from './ElementEquationBlock';
 import {
   BlockEquationElement,
   InlineEquationElement,
@@ -25,31 +22,39 @@ export interface SlashEditorWithEquation extends SlashEditor {
 }
 
 export interface EquationPluginOptions {
-  block?: Partial<SlashPluginElementDescriptor>;
-  inline?: Partial<SlashPluginElementDescriptor>;
+  block?: {
+    type?: string;
+    hotkeys?: string[];
+  };
+  inline?: {
+    type?: string;
+    hotkeys?: string[];
+  };
 }
 
 const EquationPlugin = (
   options: EquationPluginOptions = {},
-): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
+): SlashPluginFactory<BlockEquationElement | InlineEquationElement> => (
+  editor: SlashEditor,
+) => {
   const equationEditor = editor as SlashEditorWithEquation;
   const blockType = (options.block || {}).type || 'equation';
   const inlineType = (options.inline || {}).type || 'equation-inline';
 
   const insertInlineEquation: Insert = (editor, options) => {
-    let tex = '';
+    let expression = '';
 
     if (editor.selection) {
       const selection = window.getSelection();
       if (selection) {
-        tex = selection.toString();
+        expression = selection.toString();
       }
     }
     Transforms.insertNodes(
       editor,
       {
         type: inlineType,
-        tex: tex,
+        properties: { expression },
         children: [{ text: '' }],
       } as InlineEquationElement,
       options,
@@ -57,11 +62,11 @@ const EquationPlugin = (
   };
 
   const turnIntoInlineEquation: TurnInto = (editor, options) => {
-    let tex = '';
+    let expression = '';
     if (editor.selection) {
       const selection = window.getSelection();
       if (selection) {
-        tex = selection.toString();
+        expression = selection.toString();
       }
     }
 
@@ -69,7 +74,7 @@ const EquationPlugin = (
       editor,
       {
         type: inlineType,
-        tex,
+        properties: { expression },
         children: [{ text: '' }],
       } as InlineEquationElement,
       { split: true, ...options },
@@ -81,7 +86,7 @@ const EquationPlugin = (
       editor,
       {
         type: blockType,
-        tex: '',
+        properties: { expression: '' },
         children: [{ text: '' }],
       } as BlockEquationElement,
       options,
@@ -93,7 +98,7 @@ const EquationPlugin = (
       editor,
       {
         type: blockType,
-        tex: Node.string(element),
+        properties: { expression: Node.string(element) },
         children: [{ text: '' }],
       } as BlockEquationElement,
       options,
@@ -109,12 +114,7 @@ const EquationPlugin = (
     elements: [
       {
         isVoid: true,
-        component: (props) => (
-          <BlockEquation
-            {...props}
-            element={props.element as BlockEquationElement}
-          />
-        ),
+        component: ElementEquationBlock,
         type: blockType,
         shortcuts: ['$$$ '],
         insert: insertBlockEquation,
@@ -124,12 +124,7 @@ const EquationPlugin = (
       {
         isVoid: true,
         isInline: true,
-        component: (props) => (
-          <InlineEquationPlaceholder
-            {...props}
-            element={props.element as InlineEquationElement}
-          />
-        ),
+        component: ElementEquationInline,
         type: inlineType,
         hotkeys: ['mod+Shift+e'],
         insert: insertInlineEquation,

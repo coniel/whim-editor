@@ -3,14 +3,16 @@ import { Element as SlateElement, Text } from 'slate';
 import {
   SlashPluginFactory,
   SlashPlugin,
-  SlashEditor,
   Element,
   RenderElementProps as CoreRenderElementProps,
+  BraindropEditor,
 } from '@sheets-editor/core';
 
-export interface ElementWithId extends Element {
-  id: string;
-}
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type ElementWithId<Type = string, Properties = { id: string }> = Element<
+  Type,
+  Properties
+>;
 
 export interface RenderElementProps extends CoreRenderElementProps {
   attributes: {
@@ -27,7 +29,7 @@ export interface RenderElementProps extends CoreRenderElementProps {
 export type RenderElement = (props: RenderElementProps) => JSX.Element;
 
 export interface EditorWithBlockIdPlugin
-  extends Omit<SlashEditor, 'renderElement'> {
+  extends Omit<BraindropEditor, 'renderElement' | 'children'> {
   renderElement: RenderElement;
   children: ElementWithId[];
 }
@@ -39,7 +41,8 @@ export interface BlockIdPluginOptions {
 
 const BlockIdPlugin = (
   options: BlockIdPluginOptions = {},
-): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
+): SlashPluginFactory => (baseEditor: BraindropEditor): SlashPlugin => {
+  const editor = (baseEditor as unknown) as EditorWithBlockIdPlugin;
   const generateId = options.idGenerator || uuid;
 
   const { apply } = editor;
@@ -58,7 +61,10 @@ const BlockIdPlugin = (
         ...operation,
         properties: {
           ...operation.properties,
-          id: generateId(),
+          properties: {
+            ...(operation.properties || {}),
+            id: generateId(),
+          },
         },
       });
     }
@@ -74,7 +80,9 @@ const BlockIdPlugin = (
           ...operation,
           node: {
             ...node,
-            id: generateId(),
+            properties: {
+              id: generateId(),
+            },
           },
         });
       }
@@ -83,14 +91,14 @@ const BlockIdPlugin = (
     apply(operation);
   };
 
-  const { renderElement } = editor as EditorWithBlockIdPlugin;
+  const { renderElement } = editor;
 
-  (editor as EditorWithBlockIdPlugin).renderElement = (props): JSX.Element => {
+  editor.renderElement = (props: RenderElementProps): JSX.Element => {
     return renderElement({
       ...props,
       attributes: {
         ...props.attributes,
-        'data-block-id': props.element.id,
+        'data-block-id': props.element.properties.id,
       },
     });
   };

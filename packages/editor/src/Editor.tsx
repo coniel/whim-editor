@@ -1,20 +1,17 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   Editor as SheetsEditor,
   EditorProps as SheetsEditorProps,
   SlashPluginFactory,
-  SlashEditor,
-  SlashPlugin,
-  BraindropEditor,
 } from '@sheets-editor/core';
 import createRichTextPlugin from '@sheets-editor/plugin-rich-text';
 import createHeadingPlugin from '@sheets-editor/plugin-heading';
-import createOLPlugin from '@sheets-editor/plugin-ordered-list';
-import createULPlugin from '@sheets-editor/plugin-unordered-list';
+import { createOrderedListPlugin } from '@sheets-editor/plugin-ordered-list';
+import { createUnorderedListPlugin } from '@sheets-editor/plugin-unordered-list';
 import createLinkPlugin from '@sheets-editor/plugin-link';
-import createCodePlugin from '@sheets-editor/plugin-code';
+import { createCodePlugin } from '@sheets-editor/plugin-code';
 import createEquationPlugin from '@sheets-editor/plugin-equation';
-import createBlockquotePlugin from '@sheets-editor/plugin-blockquote';
+import { createBlockquotePlugin } from '@sheets-editor/plugin-blockquote';
 import createParagraphPlugin from '@sheets-editor/plugin-paragraph';
 import createBlockPlugin from '@sheets-editor/plugin-block';
 import createBlockIdPlugin from '@sheets-editor/plugin-block-id';
@@ -49,15 +46,15 @@ const HeadingPlugin = createHeadingPlugin({
 const BlockPlugin = createBlockPlugin();
 const BlockPluginId = createBlockIdPlugin();
 const LinkPlugin = createLinkPlugin();
-const OLPlugin = createOLPlugin({ hotkeys: ['mod+alt+5'] });
-const ULPlugin = createULPlugin({ hotkeys: ['mod+alt+4'] });
+const OLPlugin = createOrderedListPlugin({ hotkeys: ['mod+alt+5'] });
+const ULPlugin = createUnorderedListPlugin({ hotkeys: ['mod+alt+4'] });
 const CodePlugin = createCodePlugin({ block: { hotkeys: ['mod+alt+9'] } });
 const EquationPlugin = createEquationPlugin({
   block: { hotkeys: ['mod+alt+0'] },
 });
 const ParagraphPlugin = createParagraphPlugin();
 const BlockquotePlugin = createBlockquotePlugin({
-  blockquote: { hotkeys: ['mod+alt+3'] },
+  hotkeys: ['mod+alt+3'],
 });
 const SlashCommandsPlugin = createSlashCommandsPlugin({
   menuItems: [

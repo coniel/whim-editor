@@ -4,7 +4,7 @@ export interface EquationErrorProps {
   error: string;
 }
 
-const EquationError: React.FC<EquationErrorProps> = ({ error }) => {
+export const EquationError: React.FC<EquationErrorProps> = ({ error }) => {
   return (
     <div
       style={{
@@ -18,5 +18,3 @@ const EquationError: React.FC<EquationErrorProps> = ({ error }) => {
     </div>
   );
 };
-
-export default EquationError;

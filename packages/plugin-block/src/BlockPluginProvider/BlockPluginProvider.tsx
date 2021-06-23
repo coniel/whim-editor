@@ -9,7 +9,7 @@ import {
 } from 'slate';
 import { v4 as uuid } from 'uuid';
 import isHotkey from 'is-hotkey';
-import { Element, createContext, BraindropEditor } from '@sheets-editor/core';
+import { Element, BraindropEditor, createContext } from '@sheets-editor/core';
 import { ElementWithId } from '@sheets-editor/plugin-block-id';
 import { ReactEditor, useSlate } from 'slate-react';
 
@@ -110,6 +110,7 @@ function getPreviousBlock(blocks: Block[], block: Block): Block | null {
 function childrenToBlocks(editor: BraindropEditor): Block[] {
   return editor.children.map((child, index) => ({
     ...(child as ElementWithId),
+    id: child.id,
     index,
     path: ReactEditor.findPath(editor, child),
     rect: ReactEditor.toDOMNode(editor, child).getBoundingClientRect(),
@@ -732,7 +733,12 @@ const BlockPluginProvider: React.FC = ({ children }) => {
       path = Path.next(path);
       Transforms.insertNodes(
         editor,
-        { type: 'paragraph', id: uuid(), children: [{ text: '' }] },
+        {
+          type: 'paragraph',
+          id: uuid(),
+          properties: {},
+          children: [{ text: '' }],
+        },
         { at: path, select: true },
       );
       setTimeout(() => {

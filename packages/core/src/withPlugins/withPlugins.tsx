@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import React from 'react';
 import isHotkey from 'is-hotkey';
 import { v4 as uuid } from 'uuid';
 import {
   Editable,
   ReactEditor,
-  RenderElementProps as SlateReactRenderElementProps,
+  RenderElementProps as BaseRenderElementProps,
   RenderLeafProps as SlateRenderLeafProps,
 } from 'slate-react';
 import {
@@ -17,22 +18,20 @@ import {
   Path,
   BaseText,
 } from 'slate';
-import { EditableProps } from 'slate-react/dist/components/editable';
 import { getBlockAbove, isNodeType, isBlockAboveEmpty } from '../queries';
 import deserializeHtml from '../deserializeHtml';
+import { withBlockId } from './withBlockId';
 import withMarkShortcuts from './withMarkShortcuts';
 import withBlockShortcuts, { BlockShortcut } from './withBlockShortcuts';
-import { BraindropEditor } from '../types/Slate';
+import { BraindropEditor, EditableProps } from '../types/Slate.types';
 
-export interface Element extends SlateElement {
+interface Element extends SlateElement {
   type: string;
 }
 
-export interface RenderElementProps extends SlateReactRenderElementProps {
-  element: Element;
-}
-
 export type RenderLeafProps = SlateRenderLeafProps;
+export type Text = BaseText;
+export type Range = BaseRange;
 
 export interface Mark {
   [key: string]: boolean;
@@ -65,11 +64,11 @@ export interface MarkShortcut {
   end: string;
 }
 
-export interface InsertOptions {
+interface InsertOptions {
   at?: Path;
 }
 
-export interface TurnIntoOptions {
+interface TurnIntoOptions {
   at?: Path;
 }
 
@@ -82,8 +81,17 @@ export type TurnInto = (
   options?: TurnIntoOptions,
 ) => void;
 
-export interface SlashPluginElementDescriptor {
-  component: React.ReactType<RenderElementProps>;
+export interface RenderElementProps<Elem = Element>
+  extends Omit<BaseRenderElementProps, 'element'> {
+  element: Elem;
+}
+
+export type ElementComponent<Elem> = React.ComponentType<
+  RenderElementProps<Elem>
+>;
+
+export interface SlashPluginElementDescriptor<Elem> {
+  component: ElementComponent<Elem>;
   type: string;
   shortcuts?: string[];
   hotkeys?: string[];
@@ -96,13 +104,13 @@ export interface SlashPluginElementDescriptor {
 }
 
 export interface SlashPluginLeafDescriptor {
-  component: React.ReactType<RenderLeafProps>;
+  component: React.ComponentType<RenderLeafProps> | string;
   mark: string;
   shortcuts?: MarkShortcut[];
   hotkeys?: string[];
 }
 
-export interface SlashPlugin {
+export interface SlashPlugin<ElementType = Element> {
   decorate?: (entry: NodeEntry<Node>) => BaseRange[] | undefined;
   elementDeserializers?: ElementDeserializers;
   markDeserializers?: MarkDeserializers;
@@ -112,13 +120,15 @@ export interface SlashPlugin {
   onDOMBeforeInput?: (event: Event) => void;
   isVoid?: (element: Node) => boolean;
   isInline?: (element: Node) => boolean;
-  elements?: SlashPluginElementDescriptor[];
+  elements?: SlashPluginElementDescriptor<ElementType>[];
   leaves?: SlashPluginLeafDescriptor[];
   insertData?: (data: DataTransfer) => void | boolean;
   insertText?: (text: string) => void;
 }
 
-export type SlashPluginFactory = (editor: BraindropEditor) => SlashPlugin;
+export type SlashPluginFactory<ElementType = Element> = (
+  editor: BraindropEditor,
+) => SlashPlugin<ElementType>;
 
 type InsertEmptyNode = (
   editor: BraindropEditor,
@@ -135,8 +145,8 @@ interface HotkeyAction {
     | TurnIntoNode
     | InsertEmptyNode
     | ToggleMark
-    | SlashPluginElementDescriptor['turnInto']
-    | SlashPluginElementDescriptor['insert'];
+    | TurnInto
+    | Insert;
   type: string;
 }
 
@@ -154,10 +164,9 @@ export type MarkShortcutActions = {
   [key: string]: MarkShortcutAction[];
 };
 
-export const Element: React.FC<RenderElementProps> = ({
-  attributes,
-  children,
-}) => <div {...attributes}>{children}</div>;
+const Element: React.FC<RenderElementProps> = ({ attributes, children }) => (
+  <div {...attributes}>{children}</div>
+);
 
 export const Leaf: React.FC<RenderLeafProps> = ({ attributes, children }) => (
   <span {...attributes}>{children}</span>
@@ -171,14 +180,15 @@ function renderLeaf(props: RenderLeafProps): JSX.Element {
   return <Leaf {...props} />;
 }
 
-function insertEmptyNode(type: string): InsertEmptyNode {
+function insertEmptyNode(type: string, id: string): InsertEmptyNode {
   return (editor, options): void =>
     Transforms.insertNodes(
       editor,
       {
         type,
-        id: uuid(),
+        id,
         children: [{ text: '' }],
+        properties: {},
       },
       options,
     );
@@ -215,10 +225,12 @@ function toggleMark(editor: BraindropEditor, mark: string): ToggleMark {
 const withPlugins = (
   editor: BraindropEditor,
   pluginFactories: SlashPluginFactory[],
+  blockIdGenerator: () => string = uuid,
 ): BraindropEditor => {
   const insertMap: Record<string, Insert | InsertEmptyNode> = {};
   const turnIntoMap: Record<string, TurnInto | TurnIntoNode> = {};
   const plugins: SlashPlugin[] = [];
+  editor.generateBlockId = blockIdGenerator;
   editor.onKeyDown = (): void => undefined;
   editor.renderElement = (props: RenderElementProps): JSX.Element =>
     renderElement(props);
@@ -226,6 +238,9 @@ const withPlugins = (
     renderLeaf(props);
   editor.decorate = (): BaseRange[] => [];
   editor.renderEditable = (props: EditableProps): React.ReactElement => (
+    // TODO: solve this
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     <Editable {...props} />
   );
 
@@ -322,7 +337,8 @@ const withPlugins = (
             returnBehaviour,
             backspaceOutBehaviour = 'turn-into-default',
           }) => {
-            insertMap[type] = insert || insertEmptyNode(type);
+            insertMap[type] =
+              insert || insertEmptyNode(type, blockIdGenerator());
             turnIntoMap[type] = turnInto || turnIntoNode(type);
             if (hotkeys) {
               hotkeys.forEach((hotkey) => {
@@ -330,7 +346,7 @@ const withPlugins = (
                   turnInto || turnIntoNode(type);
 
                 if (isInline || isVoid) {
-                  action = insert || insertEmptyNode(type);
+                  action = insert || insertEmptyNode(type, blockIdGenerator());
                 }
 
                 hotkeyActions[hotkey] = {
@@ -421,7 +437,7 @@ const withPlugins = (
       const { renderElement } = Editor;
 
       Editor.renderElement = (props): JSX.Element => {
-        let element: JSX.Element | undefined;
+        let element: JSX.Element | null | undefined;
 
         if (plugin.renderElement) {
           element = plugin.renderElement(props);
@@ -432,7 +448,9 @@ const withPlugins = (
             if (props.element.type === elementDescriptor.type) {
               const Element = elementDescriptor.component;
 
-              element = <Element {...props} />;
+              if (Element) {
+                element = <Element {...props} />;
+              }
             }
           });
         }
@@ -552,7 +570,7 @@ const withPlugins = (
         })
       ) {
         event.preventDefault();
-        insertEmptyNode('paragraph')(Editor);
+        insertEmptyNode('paragraph', blockIdGenerator())(Editor);
       } else if (
         // Soft break
         isNodeType(entry, {
@@ -623,8 +641,9 @@ const withPlugins = (
         .split('\n\n')
         .map((text) => ({
           type: 'paragraph',
-          id: uuid(),
+          id: blockIdGenerator(),
           children: [{ text }],
+          properties: {},
         }));
       Transforms.insertFragment(Editor, fragment);
     }
@@ -675,6 +694,7 @@ const withPlugins = (
     }
   });
 
+  Editor = withBlockId(Editor, blockIdGenerator);
   Editor = withMarkShortcuts(Editor, markShortcuts);
   Editor = withBlockShortcuts(Editor, blockShortcuts);
 

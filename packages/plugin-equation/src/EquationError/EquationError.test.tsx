@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import EquationError from './EquationError';
+import { EquationError } from './EquationError';
 
 describe('EquationError', () => {
   it('should render the error text', () => {

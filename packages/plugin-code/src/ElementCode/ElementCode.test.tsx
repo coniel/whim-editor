@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { UIProvider, components } from '@sheets-editor/core';
-import ElementCode, { ElementCodeProps } from './ElementCode';
+import { ElementCodeProps, ElementCode } from './ElementCode';
 
 const TYPE = 'foo';
 const TEXT = 'Some text';
@@ -11,7 +11,12 @@ const defaultProps: ElementCodeProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, language: 'javascript', children: [{ text: TEXT }] },
+  element: {
+    type: TYPE,
+    id: '1',
+    properties: { language: 'javascript' },
+    children: [{ text: TEXT }],
+  },
   children: <div>{TEXT}</div>,
   onSetLanguage: jest.fn(),
 };

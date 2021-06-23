@@ -6,7 +6,7 @@ export interface ElementOrderedListProps extends RenderElementProps {
   element: OrderedListElement;
 }
 
-const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
+export const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
   attributes,
   children,
   element,
@@ -42,7 +42,7 @@ const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
           paddingRight: 2,
         }}
       >
-        {element.number}.
+        {element.properties.number}.
       </div>
       <div
         style={{
@@ -60,5 +60,3 @@ const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
     </div>
   );
 };
-
-export default ElementOrderedList;

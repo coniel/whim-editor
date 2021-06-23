@@ -3,7 +3,7 @@ import { RenderElementProps, useUI } from '@sheets-editor/core';
 
 export type ElementUnorderedListProps = RenderElementProps;
 
-const ElementUnorderedList: React.FC<ElementUnorderedListProps> = ({
+export const ElementUnorderedList: React.FC<ElementUnorderedListProps> = ({
   attributes,
   children,
   element,
@@ -64,5 +64,3 @@ const ElementUnorderedList: React.FC<ElementUnorderedListProps> = ({
     </div>
   );
 };
-
-export default ElementUnorderedList;

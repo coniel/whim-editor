@@ -18,21 +18,26 @@ export const WithToDoListPlugin: React.FC = () => {
   const [value, setValue] = useState<ToDoListDescendant[]>([
     {
       type: 'text',
+      id: '1',
       children: [{ text: 'To-do:' }],
+      properties: {},
     },
     {
       type: 'to-do',
-      done: true,
+      id: '2',
+      properties: { done: true },
       children: [{ text: 'Test features' }],
     },
     {
       type: 'to-do',
-      done: false,
+      id: '3',
+      properties: { done: false },
       children: [{ text: 'Fix bugs' }],
     },
     {
       type: 'to-do',
-      done: false,
+      id: '4',
+      properties: { done: false },
       children: [{ text: 'Launch' }],
     },
   ]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import LeafCode, { LeafCodeProps } from './LeafCode';
+import { LeafCode, LeafCodeProps } from './LeafCode';
 import { CodeLeaf } from '../CodePlugin.types';
 
 const TEXT = 'foo = 3';

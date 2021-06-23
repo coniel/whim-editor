@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  SlashPluginFactory,
-  SlashPlugin,
-  SlashEditor,
-} from '@sheets-editor/core';
+import { SlashPluginFactory, SlashEditor } from '@sheets-editor/core';
 import { ReactEditor } from 'slate-react';
 import { Transforms } from 'slate';
 import { ElementToDoList } from './ElementToDoList';
@@ -17,19 +13,20 @@ export interface ToDoListPluginOptions {
 
 export const createToDoListPlugin = (
   options: ToDoListPluginOptions = {},
-): SlashPluginFactory => (editor: SlashEditor): SlashPlugin => {
+): SlashPluginFactory<ToDoListElement> => (editor: SlashEditor) => {
   function toggleDone(element: ToDoListElement) {
     const path = ReactEditor.findPath(editor, element);
+
     Transforms.setNodes(
       editor,
-      { done: !element.done } as Partial<ToDoListElement>,
+      { done: !element.properties.done } as Partial<ToDoListElement>,
       {
         at: path,
       },
     );
 
     if (typeof options.onToggleChecked === 'function') {
-      options.onToggleChecked(element, element.done);
+      options.onToggleChecked(element, element.properties.done);
     }
   }
 
@@ -43,7 +40,6 @@ export const createToDoListPlugin = (
             checkedColor={options.checkedColor}
             uncheckedColor={options.uncheckedColor}
             onClickCheckbox={toggleDone}
-            element={props.element as ToDoListElement}
           />
         ),
         shortcuts: ['[]'],
