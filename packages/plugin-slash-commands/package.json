@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-slash-commands",
-  "version": "0.25.0",
+  "version": "0.25.1",
   "description": "Adds support for slash commands",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.25.0"
+    "@braindrop-editor/core": "^0.25.1"
   },
   "peerDependencies": {
     "is-hotkey": "^0.1.6",
@@ -19,18 +19,18 @@
     "slate-react": "^0.65.2"
   },
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.25.0",
-    "@braindrop-editor/plugin-block": "^0.25.0",
-    "@braindrop-editor/plugin-block-id": "^0.25.0",
-    "@braindrop-editor/plugin-blockquote": "^0.25.0",
-    "@braindrop-editor/plugin-code": "^0.25.0",
-    "@braindrop-editor/plugin-equation": "^0.25.0",
-    "@braindrop-editor/plugin-heading": "^0.25.0",
-    "@braindrop-editor/plugin-link": "^0.25.0",
-    "@braindrop-editor/plugin-ordered-list": "^0.25.0",
-    "@braindrop-editor/plugin-paragraph": "^0.25.0",
-    "@braindrop-editor/plugin-rich-text": "^0.25.0",
-    "@braindrop-editor/plugin-unordered-list": "^0.25.0"
+    "@braindrop-editor/material-ui": "^0.25.1",
+    "@braindrop-editor/plugin-block": "^0.25.1",
+    "@braindrop-editor/plugin-block-id": "^0.25.1",
+    "@braindrop-editor/plugin-blockquote": "^0.25.1",
+    "@braindrop-editor/plugin-code": "^0.25.1",
+    "@braindrop-editor/plugin-equation": "^0.25.1",
+    "@braindrop-editor/plugin-heading": "^0.25.1",
+    "@braindrop-editor/plugin-link": "^0.25.1",
+    "@braindrop-editor/plugin-ordered-list": "^0.25.1",
+    "@braindrop-editor/plugin-paragraph": "^0.25.1",
+    "@braindrop-editor/plugin-rich-text": "^0.25.1",
+    "@braindrop-editor/plugin-unordered-list": "^0.25.1"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

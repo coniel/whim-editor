@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/coniel/slash/compare/v0.25.0...v0.25.1) (2021-06-23)
+
+
+### Bug Fixes
+
+* fix broken imports ([faa0696](https://github.com/coniel/slash/commit/faa0696a2bae3cfde200caf65ce69a2df29436a1))
+* **plugin-to-do-list:** fix exports ([42d6a2e](https://github.com/coniel/slash/commit/42d6a2e8b7f73070a2e31e056da242185ea2325b))
+
+
+
+
+
 # [0.25.0](https://github.com/coniel/slash/compare/v0.24.3...v0.25.0) (2021-06-21)
 
 

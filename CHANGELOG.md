@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](http://test/compare/v0.25.0...v0.25.1) (2021-06-23)
+
+
+### Bug Fixes
+
+* fix broken imports ([faa0696](http://test/commits/faa0696a2bae3cfde200caf65ce69a2df29436a1))
+* **plugin-block-api:** fix insert inline block issue ([df746bf](http://test/commits/df746bfbf0903c76768d3970222daa6587745476))
+* **plugin-slash-commands:** fix inline elements not being inserted ([7f4b9ad](http://test/commits/7f4b9ade86ba802979147feff5db3f637000cc33))
+* **plugin-to-do-list:** fix exports ([42d6a2e](http://test/commits/42d6a2e8b7f73070a2e31e056da242185ea2325b))
+
+
+
+
+
 # [0.25.0](http://test/compare/v0.24.3...v0.25.0) (2021-06-21)
 
 

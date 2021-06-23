@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/coniel/slash/compare/v0.25.0...v0.25.1) (2021-06-23)
+
+
+### Bug Fixes
+
+* **plugin-block-api:** fix insert inline block issue ([df746bf](https://github.com/coniel/slash/commit/df746bfbf0903c76768d3970222daa6587745476))
+
+
+
+
+
 # [0.25.0](https://github.com/coniel/slash/compare/v0.24.3...v0.25.0) (2021-06-21)
 
 **Note:** Version bump only for package @sheets-editor/plugin-block-api
