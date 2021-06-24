@@ -72,11 +72,7 @@ export const createBlockApiPlugin = <
       });
     }
 
-    if (
-      operation.type === 'insert_text' ||
-      operation.type === 'set_node' ||
-      operation.type === 'remove_text'
-    ) {
+    if (operation.type === 'insert_text' || operation.type === 'remove_text') {
       apply(operation);
       if (onUpdateBlock) {
         const block = getBlockAbove(editor, { at: operation.path }) as Entry;
@@ -89,6 +85,32 @@ export const createBlockApiPlugin = <
 
       return;
     }
+
+    if (operation.type === 'set_node') {
+      apply(operation);
+      if (onUpdateBlock) {
+        const node = Node.get(editor, operation.path) as BlockType;
+        if (editor.isInline(node)) {
+          setTimeout(() => {
+            const parent = getBlockAbove(editor, {
+              at: operation.path,
+            }) as Entry;
+            if (parent) {
+              onUpdateBlock(parent);
+            }
+          });
+        } else {
+          setTimeout(() => {
+            if (parent) {
+              onUpdateBlock([node, operation.path]);
+            }
+          });
+        }
+      }
+
+      return;
+    }
+
     if (
       operation.type === 'merge_node' &&
       !editor.isInline(operation.properties as BlockType) &&
@@ -170,8 +192,10 @@ export const createBlockApiPlugin = <
         !operation.node.type
       ) {
         if (onUpdateBlock) {
+          const block = getBlockAbove(editor, {
+            at: operation.path,
+          }) as Entry;
           setTimeout(() => {
-            const block = getBlockAbove(editor) as Entry;
             if (block) {
               onUpdateBlock(block);
             }
