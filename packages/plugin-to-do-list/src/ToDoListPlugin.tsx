@@ -41,6 +41,7 @@ export const createToDoListPlugin = (
     elements: [
       {
         type: 'to-do',
+        returnBehaviour: 'same-type',
         component: (props) => (
           <ElementToDoList
             {...props}
