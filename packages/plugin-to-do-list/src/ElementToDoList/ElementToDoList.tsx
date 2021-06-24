@@ -122,7 +122,8 @@ export const ElementToDoList: React.FC<ElementToDoListProps> = ({
           display: 'flex',
           flexDirection: 'column',
           opacity: done ? 0.5 : 1,
-          textDecoration: done ? 'line-through rgba(0, 0, 0, 0.3)' : 'none',
+          textDecorationColor: 'rgba(0, 0, 0, 0.3)',
+          textDecoration: done ? 'line-through' : 'none',
         }}
       >
         <div style={{ padding: '3px 0' }}>
