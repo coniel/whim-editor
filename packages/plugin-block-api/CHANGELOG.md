@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.4](https://github.com/coniel/slash/compare/v0.25.3...v0.25.4) (2021-06-24)
+
+
+### Bug Fixes
+
+* **plugin-block-api:** move story dependencies to devDependencies ([a19687c](https://github.com/coniel/slash/commit/a19687c419e915c11f0898ab98733167f746eb48))
+
+
+
+
+
 ## [0.25.3](https://github.com/coniel/slash/compare/v0.25.2...v0.25.3) (2021-06-24)
 
 **Note:** Version bump only for package @braindrop-editor/plugin-block-api

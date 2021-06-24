@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.4](http://test/compare/v0.25.3...v0.25.4) (2021-06-24)
+
+
+### Bug Fixes
+
+* **plugin-block-api:** move story dependencies to devDependencies ([a19687c](http://test/commits/a19687c419e915c11f0898ab98733167f746eb48))
+* **plugin-to-do-list:** change return behaviour to 'same-type' ([796f3d5](http://test/commits/796f3d58e024801d00401db27197a4548e413f91))
+* **plugin-to-do-list:** remove checkbox button outline ([1193735](http://test/commits/119373501880e3872ae7d2e2d87a7be2ff10b978))
+
+
+
+
+
 ## [0.25.3](http://test/compare/v0.25.2...v0.25.3) (2021-06-24)
 
 
