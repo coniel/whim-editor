@@ -81,6 +81,7 @@ export const ElementToDoList: React.FC<ElementToDoListProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              outline: 'none',
               width: '100%',
             }}
           >
