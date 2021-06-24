@@ -578,6 +578,11 @@ export const withPlugins = (
       ) {
         event.preventDefault();
         Editor.insertText('\n');
+      } else {
+        if (SlateElement.isElement(entry[0])) {
+          event.preventDefault();
+          insertMap[entry[0].type](editor);
+        }
       }
     }
 
