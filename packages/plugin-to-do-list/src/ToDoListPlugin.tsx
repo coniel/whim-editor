@@ -24,7 +24,9 @@ export const createToDoListPlugin = (
 
     Transforms.setNodes(
       editor,
-      { done: !element.properties.done } as Partial<ToDoListElement>,
+      { properties: { done: !element.properties.done } } as Partial<
+        ToDoListElement
+      >,
       {
         at: path,
       },
