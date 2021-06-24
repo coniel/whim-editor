@@ -10,7 +10,8 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.25.1"
+    "@braindrop-editor/core": "^0.25.1",
+    "is-hotkey": "^0.1.6"
   },
   "peerDependencies": {
     "react": "^16.9.0",
