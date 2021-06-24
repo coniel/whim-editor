@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-forced-layout",
-  "version": "0.25.1",
+  "version": "0.25.2",
   "description": "Adds support for focred layouts.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@braindrop-editor/material-ui": "^0.25.1",
-    "@braindrop-editor/plugin-equation": "^0.25.1",
+    "@braindrop-editor/plugin-equation": "^0.25.2",
     "@braindrop-editor/plugin-heading": "^0.25.1",
     "@braindrop-editor/plugin-paragraph": "^0.25.1",
     "@braindrop-editor/plugin-unordered-list": "^0.25.1"

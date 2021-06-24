@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.2](http://test/compare/v0.25.1...v0.25.2) (2021-06-24)
+
+
+### Bug Fixes
+
+* **plugin-block-api:** handle set_node properly for block elements ([1d35b72](http://test/commits/1d35b7258611eeb75337a9cc840b18444edea2dd))
+* **plugin-equation:** set value to properties.expression on change ([ced48cd](http://test/commits/ced48cd9ae994be6da2e7d72f351c521c6d8b41a))
+
+
+
+
+
 ## [0.25.1](http://test/compare/v0.25.0...v0.25.1) (2021-06-23)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-equation",
-  "version": "0.25.1",
+  "version": "0.25.2",
   "description": "Adds TeX support",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
