@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.3](http://test/compare/v0.25.2...v0.25.3) (2021-06-24)
+
+
+### Bug Fixes
+
+* **plugin-to-do-list:** fix toggling done state not working ([38193f7](http://test/commits/38193f70c292d43bc15cf949e0427d19197f9668))
+
+
+
+
+
 ## [0.25.2](http://test/compare/v0.25.1...v0.25.2) (2021-06-24)
 
 

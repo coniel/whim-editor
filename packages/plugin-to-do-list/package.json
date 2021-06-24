@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-to-do-list",
-  "version": "0.25.1",
+  "version": "0.25.3",
   "description": "Adds a to-do block type.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
