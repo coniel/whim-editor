@@ -49,7 +49,7 @@ export const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
     Transforms.setNodes(
       editor,
       {
-        tex: value,
+        properties: { expression: value },
       } as Partial<BlockEquationElement>,
       { at: ReactEditor.findPath(editor, element) },
     );

@@ -62,7 +62,7 @@ export const ElementEquationInline: React.FC<ElementEquationInlineProps> = ({
     Transforms.setNodes(
       editor,
       {
-        tex: value,
+        properties: { expression: value },
       } as Partial<InlineEquationElement>,
       { at: ReactEditor.findPath(editor, element) },
     );
