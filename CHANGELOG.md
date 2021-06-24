@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.5](http://test/compare/v0.25.4...v0.25.5) (2021-06-24)
+
+
+### Bug Fixes
+
+* **core:** use insert method when handling same-type Enter action ([612629c](http://test/commits/612629c05e20d4f0432d80e8bf32a6a5c308a4be))
+* **plugin-to-do-list:** allow toggling checkbox using keyboard ([6186448](http://test/commits/61864484ca9715a5bfd13938795f932d0ae6daf5))
+* **plugin-to-do-list:** fix line-through color style ([d0d4431](http://test/commits/d0d443142acaa17beee1190064cf29a7a4909316))
+
+
+
+
+
 ## [0.25.4](http://test/compare/v0.25.3...v0.25.4) (2021-06-24)
 
 

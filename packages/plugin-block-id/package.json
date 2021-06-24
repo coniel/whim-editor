@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-block-id",
-  "version": "0.25.1",
+  "version": "0.25.5",
   "description": "Add a UUID to each block element.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.25.1",
+    "@braindrop-editor/core": "^0.25.5",
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
@@ -19,7 +19,7 @@
     "slate-react": "^0.65.2"
   },
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.25.1"
+    "@braindrop-editor/material-ui": "^0.25.5"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

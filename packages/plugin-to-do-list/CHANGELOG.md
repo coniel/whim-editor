@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.5](https://github.com/coniel/slash/compare/v0.25.4...v0.25.5) (2021-06-24)
+
+
+### Bug Fixes
+
+* **plugin-to-do-list:** allow toggling checkbox using keyboard ([6186448](https://github.com/coniel/slash/commit/61864484ca9715a5bfd13938795f932d0ae6daf5))
+* **plugin-to-do-list:** fix line-through color style ([d0d4431](https://github.com/coniel/slash/commit/d0d443142acaa17beee1190064cf29a7a4909316))
+
+
+
+
+
 ## [0.25.4](https://github.com/coniel/slash/compare/v0.25.3...v0.25.4) (2021-06-24)
 
 

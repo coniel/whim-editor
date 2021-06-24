@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.5](https://github.com/coniel/slash/compare/v0.25.4...v0.25.5) (2021-06-24)
+
+
+### Bug Fixes
+
+* **core:** use insert method when handling same-type Enter action ([612629c](https://github.com/coniel/slash/commit/612629c05e20d4f0432d80e8bf32a6a5c308a4be))
+
+
+
+
+
 ## [0.25.1](https://github.com/coniel/slash/compare/v0.25.0...v0.25.1) (2021-06-23)
 
 
