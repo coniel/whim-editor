@@ -12,10 +12,6 @@
   "dependencies": {
     "@braindrop-editor/core": "^0.25.1",
     "@braindrop-editor/plugin-block-id": "^0.25.1",
-    "@braindrop-editor/plugin-equation": "^0.25.2",
-    "@braindrop-editor/plugin-paragraph": "^0.25.1",
-    "@braindrop-editor/plugin-slash-commands": "^0.25.2",
-    "@braindrop-editor/plugin-to-do-list": "^0.25.3",
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
@@ -25,7 +21,11 @@
   },
   "devDependencies": {
     "@braindrop-editor/material-ui": "^0.25.1",
-    "@braindrop-editor/plugin-block": "^0.25.1"
+    "@braindrop-editor/plugin-block": "^0.25.1",
+    "@braindrop-editor/plugin-equation": "^0.25.2",
+    "@braindrop-editor/plugin-paragraph": "^0.25.1",
+    "@braindrop-editor/plugin-slash-commands": "^0.25.2",
+    "@braindrop-editor/plugin-to-do-list": "^0.25.3"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
