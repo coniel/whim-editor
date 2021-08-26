@@ -74,7 +74,7 @@
     "fs-extra": "^9.1.0",
     "inquirer": "^7.1.0",
     "jest": "^26.4.2",
-    "lerna": "^3.21.0",
+    "lerna": "^4.0.0",
     "loader-utils": "^2.0.0",
     "moment": "^2.29.0",
     "npm-run-all": "^4.1.3",
