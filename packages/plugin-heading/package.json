@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-heading",
-  "version": "0.25.5",
+  "version": "0.26.0",
   "description": "Adds support for various heading sizes",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.25.5"
+    "@braindrop-editor/core": "^0.26.0"
   },
   "peerDependencies": {
     "react": "^16.9.0",
@@ -25,7 +25,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.25.5"
+    "@braindrop-editor/material-ui": "^0.26.0"
   },
   "publishConfig": {
     "access": "public"

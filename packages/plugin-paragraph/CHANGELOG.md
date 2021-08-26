@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/coniel/slash/compare/v0.25.5...v0.26.0) (2021-08-26)
+
+
+### Features
+
+* upgrade slate ([2d07933](https://github.com/coniel/slash/commit/2d079337a020f9b82db5c82bf2ed39d4f49d712d))
+
+
+
+
+
 ## [0.25.5](https://github.com/coniel/slash/compare/v0.25.4...v0.25.5) (2021-06-24)
 
 **Note:** Version bump only for package @braindrop-editor/plugin-paragraph
