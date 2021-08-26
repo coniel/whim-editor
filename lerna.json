@@ -1,24 +1,18 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "0.26.5",
   "useWorkspaces": true,
   "npmClient": "yarn",
   "command": {
     "publish": {
-      "conventionalCommits": true,
-      "createRelease": "github",
       "access": "public",
-      "npmClient": "yarn",
-      "allowBranch": [
-        "master",
-        "feature/*"
-      ]
+      "allowBranch": ["master", "feature/*"]
     },
     "version": {
       "conventionalCommits": true,
-      "createRelease": "github"
+      "createRelease": "github",
+      "allowBranch": ["master", "feature/*"],
+      "exact": true
     }
   }
 }
