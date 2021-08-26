@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/core",
-  "version": "0.26.7",
+  "version": "0.26.8",
   "description": "The base editor",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
