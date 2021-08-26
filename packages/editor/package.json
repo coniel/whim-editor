@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/editor",
-  "version": "0.26.1",
+  "version": "0.26.2",
   "description": "Full editor including all plugins",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,26 +10,26 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.26.1",
-    "@braindrop-editor/plugin-block": "^0.26.1",
-    "@braindrop-editor/plugin-block-id": "^0.26.1",
-    "@braindrop-editor/plugin-blockquote": "^0.26.1",
-    "@braindrop-editor/plugin-code": "^0.26.1",
-    "@braindrop-editor/plugin-equation": "^0.26.1",
-    "@braindrop-editor/plugin-heading": "^0.26.1",
-    "@braindrop-editor/plugin-hovering-toolbar": "^0.26.1",
-    "@braindrop-editor/plugin-link": "^0.26.1",
-    "@braindrop-editor/plugin-ordered-list": "^0.26.1",
-    "@braindrop-editor/plugin-paragraph": "^0.26.1",
-    "@braindrop-editor/plugin-rich-text": "^0.26.1",
-    "@braindrop-editor/plugin-slash-commands": "^0.26.1",
-    "@braindrop-editor/plugin-unordered-list": "^0.26.1"
+    "@braindrop-editor/core": "^0.26.2",
+    "@braindrop-editor/plugin-block": "^0.26.2",
+    "@braindrop-editor/plugin-block-id": "^0.26.2",
+    "@braindrop-editor/plugin-blockquote": "^0.26.2",
+    "@braindrop-editor/plugin-code": "^0.26.2",
+    "@braindrop-editor/plugin-equation": "^0.26.2",
+    "@braindrop-editor/plugin-heading": "^0.26.2",
+    "@braindrop-editor/plugin-hovering-toolbar": "^0.26.2",
+    "@braindrop-editor/plugin-link": "^0.26.2",
+    "@braindrop-editor/plugin-ordered-list": "^0.26.2",
+    "@braindrop-editor/plugin-paragraph": "^0.26.2",
+    "@braindrop-editor/plugin-rich-text": "^0.26.2",
+    "@braindrop-editor/plugin-slash-commands": "^0.26.2",
+    "@braindrop-editor/plugin-unordered-list": "^0.26.2"
   },
   "peerDependencies": {
     "react": "^16.9.0"
   },
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.26.1"
+    "@braindrop-editor/material-ui": "^0.26.2"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
