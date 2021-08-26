@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-hovering-toolbar",
-  "version": "0.26.4",
+  "version": "0.26.5",
   "description": "Adds support for a hovering toolbar.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.26.4"
+    "@braindrop-editor/core": "^0.26.5"
   },
   "peerDependencies": {
     "react": "^16.9.0",
@@ -18,9 +18,9 @@
     "slate-react": "^0.65.3"
   },
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.26.4",
-    "@braindrop-editor/plugin-link": "^0.26.4",
-    "@braindrop-editor/plugin-rich-text": "^0.26.4"
+    "@braindrop-editor/material-ui": "^0.26.5",
+    "@braindrop-editor/plugin-link": "^0.26.5",
+    "@braindrop-editor/plugin-rich-text": "^0.26.5"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",

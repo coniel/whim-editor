@@ -1,6 +1,8 @@
 {
-  "packages": ["packages/*"],
-  "version": "0.26.4",
+  "packages": [
+    "packages/*"
+  ],
+  "version": "0.26.5",
   "useWorkspaces": true,
   "npmClient": "yarn",
   "command": {
@@ -9,7 +11,10 @@
       "createRelease": "github",
       "access": "public",
       "npmClient": "yarn",
-      "allowBranch": ["master", "feature/*"]
+      "allowBranch": [
+        "master",
+        "feature/*"
+      ]
     },
     "version": {
       "conventionalCommits": true,

@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-block-api",
-  "version": "0.26.4",
+  "version": "0.26.5",
   "description": "Adds ability to create a block level API.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,8 +10,8 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.26.4",
-    "@braindrop-editor/plugin-block-id": "^0.26.4",
+    "@braindrop-editor/core": "^0.26.5",
+    "@braindrop-editor/plugin-block-id": "^0.26.5",
     "uuid": "^8.3.0"
   },
   "peerDependencies": {
@@ -20,12 +20,12 @@
     "slate-react": "^0.65.3"
   },
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.26.4",
-    "@braindrop-editor/plugin-block": "^0.26.4",
-    "@braindrop-editor/plugin-equation": "^0.26.4",
-    "@braindrop-editor/plugin-paragraph": "^0.26.4",
-    "@braindrop-editor/plugin-slash-commands": "^0.26.4",
-    "@braindrop-editor/plugin-to-do-list": "^0.26.4"
+    "@braindrop-editor/material-ui": "^0.26.5",
+    "@braindrop-editor/plugin-block": "^0.26.5",
+    "@braindrop-editor/plugin-equation": "^0.26.5",
+    "@braindrop-editor/plugin-paragraph": "^0.26.5",
+    "@braindrop-editor/plugin-slash-commands": "^0.26.5",
+    "@braindrop-editor/plugin-to-do-list": "^0.26.5"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
