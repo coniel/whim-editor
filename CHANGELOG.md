@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.4](/compare/v0.26.3...v0.26.4) (2021-08-26)
+
+
+### Bug Fixes
+
+* github token test 4 982838a
+
+
+
+
+
 ## [0.26.3](/compare/v0.26.2...v0.26.3) (2021-08-26)
 
 
