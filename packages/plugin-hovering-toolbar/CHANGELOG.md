@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.12](https://github.com/coniel/slash/compare/v0.26.11...v0.26.12) (2021-08-26)
+
+**Note:** Version bump only for package @braindrop-editor/plugin-hovering-toolbar
+
+
+
+
+
 ## [0.26.10](https://github.com/coniel/slash/compare/v0.26.9...v0.26.10) (2021-08-26)
 
 **Note:** Version bump only for package @braindrop-editor/plugin-hovering-toolbar
