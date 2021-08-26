@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.3](/compare/v0.26.2...v0.26.3) (2021-08-26)
+
+
+### Bug Fixes
+
+* github token test 3 e00aefc
+* upgrade lerna 362e4df
+
+
+
+
+
 ## [0.26.2](http://test/compare/v0.26.1...v0.26.2) (2021-08-26)
 
 

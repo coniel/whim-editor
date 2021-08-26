@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.3](https://github.com/coniel/slash/compare/v0.26.2...v0.26.3) (2021-08-26)
+
+
+### Bug Fixes
+
+* github token test 3 ([e00aefc](https://github.com/coniel/slash/commit/e00aefc2a5b03be87431c0310bd98d56d9c3d988))
+
+
+
+
+
 ## [0.26.2](https://github.com/coniel/slash/compare/v0.26.1...v0.26.2) (2021-08-26)
 
 

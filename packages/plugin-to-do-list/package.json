@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-to-do-list",
-  "version": "0.26.2",
+  "version": "0.26.3",
   "description": "Adds a to-do block type.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.26.2",
+    "@braindrop-editor/core": "^0.26.3",
     "is-hotkey": "^0.1.6"
   },
   "peerDependencies": {
@@ -19,7 +19,7 @@
     "slate-react": "^0.65.3"
   },
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.26.2"
+    "@braindrop-editor/material-ui": "^0.26.3"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
