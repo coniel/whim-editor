@@ -7,4 +7,3 @@ export * from './queries';
 export * from './UIProvider';
 export * from './EditorStateProvider';
 export { components } from './test-utils/components';
-// test
