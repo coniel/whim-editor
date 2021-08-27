@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-forced-layout",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "description": "Adds support for focred layouts.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
     "url": "git+https://github.com/coniel/slash.git"
   },
   "dependencies": {
-    "@braindrop-editor/core": "^0.27.0"
+    "@braindrop-editor/core": "^0.28.0"
   },
   "peerDependencies": {
     "react": "^16.9.0",
@@ -18,11 +18,11 @@
     "slate-react": "^0.65.3"
   },
   "devDependencies": {
-    "@braindrop-editor/material-ui": "^0.27.0",
-    "@braindrop-editor/plugin-equation": "^0.27.0",
-    "@braindrop-editor/plugin-heading": "^0.27.0",
-    "@braindrop-editor/plugin-paragraph": "^0.27.0",
-    "@braindrop-editor/plugin-unordered-list": "^0.27.0"
+    "@braindrop-editor/material-ui": "^0.28.0",
+    "@braindrop-editor/plugin-equation": "^0.28.0",
+    "@braindrop-editor/plugin-heading": "^0.28.0",
+    "@braindrop-editor/plugin-paragraph": "^0.28.0",
+    "@braindrop-editor/plugin-unordered-list": "^0.28.0"
   },
   "scripts": {
     "build:declaration": "tsc --project tsconfig.build.json",
