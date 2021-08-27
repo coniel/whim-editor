@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-block-api",
-  "version": "0.28.0",
+  "version": "0.28.1",
   "description": "Adds ability to create a block level API.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -24,7 +24,7 @@
     "@braindrop-editor/plugin-block": "^0.28.0",
     "@braindrop-editor/plugin-equation": "^0.28.0",
     "@braindrop-editor/plugin-paragraph": "^0.28.0",
-    "@braindrop-editor/plugin-slash-commands": "^0.28.0",
+    "@braindrop-editor/plugin-slash-commands": "^0.28.1",
     "@braindrop-editor/plugin-to-do-list": "^0.28.0"
   },
   "scripts": {

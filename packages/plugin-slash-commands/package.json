@@ -1,6 +1,6 @@
 {
   "name": "@braindrop-editor/plugin-slash-commands",
-  "version": "0.28.0",
+  "version": "0.28.1",
   "description": "Adds support for slash commands",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,7 +23,7 @@
     "@braindrop-editor/plugin-block": "^0.28.0",
     "@braindrop-editor/plugin-block-id": "^0.28.0",
     "@braindrop-editor/plugin-blockquote": "^0.28.0",
-    "@braindrop-editor/plugin-code": "^0.28.0",
+    "@braindrop-editor/plugin-code": "^0.28.1",
     "@braindrop-editor/plugin-equation": "^0.28.0",
     "@braindrop-editor/plugin-heading": "^0.28.0",
     "@braindrop-editor/plugin-link": "^0.28.0",
