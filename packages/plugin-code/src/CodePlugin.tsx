@@ -4,6 +4,9 @@ import {
   getBlockAbove,
   Transforms,
   BraindropEditorPluginLeafDescriptor,
+  BraindropEditor,
+  TurnIntoOptions,
+  InsertOptions,
 } from '@braindrop-editor/core';
 import { Element } from 'slate';
 import isHotkey from 'is-hotkey';
@@ -11,7 +14,11 @@ import { ReactEditor } from 'slate-react';
 import { createDecorator } from './createDecorator';
 import { ElementCode, ElementCodeProps } from './ElementCode';
 import { LeafCode } from './LeafCode';
-import { CodeElement, CodeText } from './CodePlugin.types';
+import {
+  CodeElement,
+  CodeText,
+  EditorWithCodePlugin,
+} from './CodePlugin.types';
 
 interface BlockOptions {
   type?: string;
@@ -27,7 +34,8 @@ export interface CodePluginOptions {
 
 export const createCodePlugin = (
   options: CodePluginOptions = {},
-): BraindropEditorPluginFactory<CodeElement> => (editor) => {
+): BraindropEditorPluginFactory<CodeElement> => (baseEditor) => {
+  const editor = baseEditor as EditorWithCodePlugin;
   const defaultLanguage = options.defaultLanguage || 'javascript';
   const blockType = (options.block && options.block.type) || 'code';
   const BlockComponent =
@@ -39,6 +47,37 @@ export const createCodePlugin = (
       at: path,
     });
   }
+
+  function turnIntoCodeElement(
+    editor: BraindropEditor,
+    element: Element,
+    options?: TurnIntoOptions,
+  ) {
+    Transforms.setNodes(
+      editor,
+      {
+        type: blockType,
+        language: defaultLanguage,
+      } as Partial<CodeElement>,
+      options,
+    );
+  }
+
+  function insertCodeElement(
+    editor: BraindropEditor,
+    insertOptions?: InsertOptions,
+  ) {
+    Transforms.insertNodes(
+      editor,
+      editor.generateElement(blockType, { language: defaultLanguage }),
+      insertOptions,
+    );
+  }
+
+  editor.turnIntoCodeElement = (element: Element, options?: InsertOptions) =>
+    turnIntoCodeElement(editor, element, options);
+  editor.insertCodeElement = (options?: InsertOptions) =>
+    insertCodeElement(editor, options);
 
   return {
     onKeyDown: (event): void => {
@@ -68,23 +107,8 @@ export const createCodePlugin = (
         type: blockType,
         shortcuts: ['``` '],
         returnBehaviour: 'soft-break',
-        turnInto: (editor, element, turnIntoOptions): void => {
-          Transforms.setNodes(
-            editor,
-            {
-              type: blockType,
-              language: defaultLanguage,
-            } as Partial<CodeElement>,
-            turnIntoOptions,
-          );
-        },
-        insert: (editor, insertOptions): void => {
-          Transforms.insertNodes(
-            editor,
-            editor.generateElement(blockType, { language: defaultLanguage }),
-            insertOptions,
-          );
-        },
+        turnInto: turnIntoCodeElement,
+        insert: insertCodeElement,
         ...(options.block || {}),
         component: (props) => (
           <BlockComponent {...props} onSetLanguage={setBlockLanguage} />
