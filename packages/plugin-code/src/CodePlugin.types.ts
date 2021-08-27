@@ -1,4 +1,11 @@
-import { BraindropEditor, Element, Range, Text } from '@braindrop-editor/core';
+import {
+  BraindropEditor,
+  Element,
+  InsertOptions,
+  Range,
+  Text,
+  TurnIntoOptions,
+} from '@braindrop-editor/core';
 
 export interface CodeElementProperties {
   language: string;
@@ -15,10 +22,9 @@ export interface CodeText extends Text {
   token: string;
 }
 
-type CodeChildren = BraindropEditor['children'] & CodeElement;
-
 export interface EditorWithCodePlugin extends BraindropEditor {
-  children: CodeChildren;
+  insertCodeElement: (options?: InsertOptions) => void;
+  turnIntoCodeElement: (element: Element, options?: TurnIntoOptions) => void;
 }
 
 export interface CodeRange extends Range {
