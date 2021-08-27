@@ -14,7 +14,7 @@ const defaultProps: ElementToDoListProps = {
   element: {
     type: TYPE,
     id: '1',
-    properties: { done: false },
+    done: false,
     children: [{ text: TEXT }],
   },
   children: <div>{TEXT}</div>,

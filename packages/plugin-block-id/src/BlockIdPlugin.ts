@@ -57,9 +57,7 @@ export const createBlockIdPlugin = (
         ...operation,
         properties: {
           ...operation.properties,
-          properties: {
-            id: generateId(),
-          },
+          id: generateId(),
         },
       });
     }

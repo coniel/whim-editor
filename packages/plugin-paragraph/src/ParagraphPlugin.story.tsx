@@ -14,7 +14,6 @@ export const WithParagraphPlugin: React.FC = () => {
     {
       type: 'paragraph',
       id: '1',
-      properties: {},
       children: [{ text: 'I use the ParagraphPlugin.' }],
     },
   ]);
@@ -36,7 +35,6 @@ export const WithCustomisedParagraphPlugin: React.FC = () => {
     {
       type: 'paragraph',
       id: '2',
-      properties: {},
       children: [{ text: 'I use the ParagraphPlugin with custom options.' }],
     },
   ]);

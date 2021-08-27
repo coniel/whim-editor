@@ -185,7 +185,6 @@ function insertEmptyNode(type: string, id: string): InsertEmptyNode {
         type,
         id,
         children: [{ text: '' }],
-        properties: {},
       },
       options,
     );
@@ -649,7 +648,6 @@ export const withPlugins = (
           type: 'paragraph',
           id: blockIdGenerator(),
           children: [{ text }],
-          properties: {},
         }));
       Transforms.insertFragment(Editor, fragment);
     }

@@ -13,7 +13,6 @@ export const Default: React.FC = () => {
     {
       type: 'paragraph',
       id: '4',
-      properties: {},
       children: [
         {
           text:

@@ -52,31 +52,15 @@ export const createEquationPlugin = (
     }
     Transforms.insertNodes(
       editor,
-      {
-        type: inlineType,
-        properties: { expression },
-        children: [{ text: '' }],
-      } as InlineEquationElement,
+      editor.generateElement(inlineType, { expression }),
       options,
     );
   };
 
-  const turnIntoInlineEquation: TurnInto = (editor, options) => {
-    let expression = '';
-    if (editor.selection) {
-      const selection = window.getSelection();
-      if (selection) {
-        expression = selection.toString();
-      }
-    }
-
+  const turnIntoInlineEquation: TurnInto = (editor, element, options) => {
     Transforms.wrapNodes(
       editor,
-      {
-        type: inlineType,
-        properties: { expression },
-        children: [{ text: '' }],
-      } as InlineEquationElement,
+      editor.generateElement(inlineType, { expression: Node.string(element) }),
       { split: true, ...options },
     );
   };
@@ -84,11 +68,7 @@ export const createEquationPlugin = (
   const insertBlockEquation: Insert = (editor, options) => {
     Transforms.insertNodes(
       editor,
-      {
-        type: blockType,
-        properties: { expression: '' },
-        children: [{ text: '' }],
-      } as BlockEquationElement,
+      editor.generateElement(inlineType, { expression: '' }),
       options,
     );
   };
@@ -96,11 +76,7 @@ export const createEquationPlugin = (
   const turnIntoBlockEquation: TurnInto = (editor, element, options): void => {
     Transforms.setNodes(
       editor,
-      {
-        type: blockType,
-        properties: { expression: Node.string(element) },
-        children: [{ text: '' }],
-      } as BlockEquationElement,
+      editor.generateElement(inlineType, { expression: Node.string(element) }),
       options,
     );
   };

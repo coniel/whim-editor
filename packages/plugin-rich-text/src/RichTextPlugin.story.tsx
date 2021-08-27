@@ -3,13 +3,13 @@ import {
   createRichTextPlugin,
   EditorWithRichTextPlugin,
 } from './RichTextPlugin';
-import { Editor, BasicElement, MarkedText } from '@braindrop-editor/core';
+import { Editor, Element, MarkedText } from '@braindrop-editor/core';
 import { components } from '@braindrop-editor/material-ui';
 import { useSlateStatic } from 'slate-react';
 
 export default { title: 'Plugins/RichText' };
 
-interface ElementWithRichText extends BasicElement {
+interface ElementWithRichText extends Element {
   children: MarkedText[];
 }
 

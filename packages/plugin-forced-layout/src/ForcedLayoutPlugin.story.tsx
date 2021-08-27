@@ -27,13 +27,11 @@ export const WithForcedLayoutPlugin: React.FC = () => {
     {
       type: 'h1',
       id: '1',
-      properties: {},
       children: [{ text: 'I use the forced layout plugin.' }],
     },
     {
       type: 'paragraph',
       id: '2',
-      properties: {},
       children: [
         {
           text:
@@ -72,13 +70,11 @@ export const MaxDescendants: React.FC = () => {
     {
       type: 'paragraph',
       id: '1',
-      properties: {},
       children: [{ text: 'I use the forced layout plugin.' }],
     },
     {
       type: 'paragraph',
       id: '2',
-      properties: {},
       children: [{ text: 'I can only contain a maximum of 2 elements.' }],
     },
   ]);
@@ -106,7 +102,6 @@ export const TrailingElements: React.FC = () => {
     {
       type: 'paragraph',
       id: '1',
-      properties: {},
       children: [
         {
           text:
@@ -117,25 +112,21 @@ export const TrailingElements: React.FC = () => {
     {
       type: 'ul',
       id: '2',
-      properties: {},
       children: [{ text: 'Item 1' }],
     },
     {
       type: 'ul',
       id: '3',
-      properties: {},
       children: [{ text: 'Item 2' }],
     },
     {
       type: 'ul',
       id: '4',
-      properties: {},
       children: [{ text: 'Item 3' }],
     },
     {
       type: 'paragraph',
       id: '5',
-      properties: {},
       children: [{ text: '' }],
     },
   ]);

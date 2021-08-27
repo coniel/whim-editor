@@ -13,7 +13,6 @@ const initialValue = [
   {
     type: 'paragraph',
     id: '1',
-    properties: {},
     children: [
       {
         text: 'In addition to block nodes, you can create inline nodes, like ',
@@ -21,7 +20,7 @@ const initialValue = [
       {
         type: 'link',
         id: 'link-1',
-        properties: { url: 'https://en.wikipedia.org/wiki/Hypertext' },
+        url: 'https://en.wikipedia.org/wiki/Hypertext',
         children: [{ text: 'hyperlinks' }],
       },
       {
@@ -32,7 +31,6 @@ const initialValue = [
   {
     type: 'paragraph',
     id: '2',
-    properties: {},
     children: [
       {
         text:

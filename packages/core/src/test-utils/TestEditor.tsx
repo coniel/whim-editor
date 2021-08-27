@@ -13,7 +13,6 @@ export const TestEdtior: React.FC<TestEditorProps> = ({
     {
       type: 'text',
       id: 'first-element',
-      properties: {},
       children: [{ text: '' }],
     },
   ],

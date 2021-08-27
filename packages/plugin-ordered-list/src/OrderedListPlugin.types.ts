@@ -1,10 +1,7 @@
-import { ElementWithProperties } from '@braindrop-editor/core';
+import { Element } from '@braindrop-editor/core';
 
 export interface OrderedListElementProperties {
   number: number;
 }
 
-export type OrderedListElement = ElementWithProperties<
-  string,
-  OrderedListElementProperties
->;
+export type OrderedListElement = Element & OrderedListElementProperties;

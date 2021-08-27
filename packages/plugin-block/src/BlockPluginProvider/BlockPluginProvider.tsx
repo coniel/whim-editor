@@ -11,7 +11,6 @@ import { v4 as uuid } from 'uuid';
 import isHotkey from 'is-hotkey';
 import {
   Element,
-  BasicElement,
   BraindropEditor,
   createContext,
 } from '@braindrop-editor/core';
@@ -22,8 +21,7 @@ export interface Coordinates {
   y: number;
 }
 
-export interface Block extends BasicElement {
-  id: string;
+export interface Block extends Element {
   rect: DOMRect;
   path: Path;
 }
@@ -740,7 +738,6 @@ export const BlockPluginProvider: React.FC = ({ children }) => {
         {
           type: 'paragraph',
           id: uuid(),
-          properties: {},
           children: [{ text: '' }],
         },
         { at: path, select: true },

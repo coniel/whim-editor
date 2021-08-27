@@ -13,7 +13,7 @@ const defaultProps: ElementLinkProps = {
   element: {
     type: TYPE,
     id: '1',
-    properties: { url: 'https://ibguides.com' },
+    url: 'https://ibguides.com',
     children: [{ text: TEXT }],
   },
   children: <div>{TEXT}</div>,

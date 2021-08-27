@@ -1,19 +1,16 @@
-import { Element, ElementWithProperties } from '../../types';
+import { Element } from '../../types';
 
-export function generateElement(
+export function generateElement<P = Record<string, unknown>>(
   type: string,
   id: string,
-  properties?: Record<string, unknown>,
-): Element | ElementWithProperties {
+  properties: P,
+): Element {
   const element: Element = {
     type,
     id,
     children: [{ text: '' }],
+    ...properties,
   };
-
-  if (properties) {
-    (element as ElementWithProperties).properties = properties;
-  }
 
   return element;
 }

@@ -27,10 +27,8 @@ export const ElementEquationInline: React.FC<ElementEquationInlineProps> = ({
   element,
 }) => {
   const { Popover, InlinePlaceholder, Button } = useUI();
-  const [open, setOpen] = useState(!element.properties.expression);
-  const { html, error, onChange, value } = useTex(
-    element.properties.expression as string,
-  );
+  const [open, setOpen] = useState(!element.expression);
+  const { html, error, onChange, value } = useTex(element.expression);
   const spanRef = useRef<HTMLSpanElement>(null);
   const focused = useFocused();
   const selected = useSelected();
@@ -62,7 +60,7 @@ export const ElementEquationInline: React.FC<ElementEquationInlineProps> = ({
     Transforms.setNodes(
       editor,
       {
-        properties: { expression: value },
+        expression: value,
       } as Partial<InlineEquationElement>,
       { at: ReactEditor.findPath(editor, element) },
     );

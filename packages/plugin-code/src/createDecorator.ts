@@ -98,7 +98,7 @@ export const createDecorator = (editor: BraindropEditor, type: string) => ([
   }
 
   const codeElement = parent[0] as CodeElement;
-  const { language } = codeElement.properties;
+  const { language } = codeElement;
 
   const tokens = Prism.tokenize(node.text, Prism.languages[language]);
   let start = 0;

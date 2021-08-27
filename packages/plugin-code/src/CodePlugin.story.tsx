@@ -21,7 +21,7 @@ export const CodeBlock: React.FC = () => {
     {
       type: 'code',
       id: '1',
-      properties: { language: 'javascript' },
+      language: 'javascript',
       children: [{ text: 'function foo() {\n  alert("foo");\n}' }],
     },
   ]);
@@ -55,7 +55,7 @@ export const CodeBlockWithCustomComponent: React.FC = () => {
     {
       type: 'code',
       id: '1',
-      properties: { language: 'javascript' },
+      language: 'javascript',
       children: [{ text: 'function foo() {\n  alert("foo");\n}' }],
     },
   ]);

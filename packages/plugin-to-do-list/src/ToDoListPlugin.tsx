@@ -29,16 +29,14 @@ export const createToDoListPlugin = (
 
     Transforms.setNodes(
       editor,
-      { properties: { done: !element.properties.done } } as Partial<
-        ToDoListElement
-      >,
+      { done: !element.done } as Partial<ToDoListElement>,
       {
         at: path,
       },
     );
 
     if (typeof options.onToggleChecked === 'function') {
-      options.onToggleChecked(element, element.properties.done);
+      options.onToggleChecked(element, element.done);
     }
   }
 

@@ -129,7 +129,7 @@ const SlashCommands = createSlashCommandsPlugin({ menuItems });
 
 export const WithSlashCommandsPlugin: React.FC = () => {
   const [value, setValue] = useState<Descendant[]>([
-    { type: 'paragraph', id: '1', properties: {}, children: [{ text: '' }] },
+    { type: 'paragraph', id: '1', children: [{ text: '' }] },
   ]);
 
   return (

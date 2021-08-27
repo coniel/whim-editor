@@ -20,24 +20,23 @@ export const WithToDoListPlugin: React.FC = () => {
       type: 'text',
       id: '1',
       children: [{ text: 'To-do:' }],
-      properties: {},
     },
     {
       type: 'to-do',
       id: '2',
-      properties: { done: true },
+      done: true,
       children: [{ text: 'Test features' }],
     },
     {
       type: 'to-do',
       id: '3',
-      properties: { done: false },
+      done: false,
       children: [{ text: 'Fix bugs' }],
     },
     {
       type: 'to-do',
       id: '4',
-      properties: { done: false },
+      done: false,
       children: [{ text: 'Launch' }],
     },
   ]);

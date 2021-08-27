@@ -10,7 +10,12 @@ import {
 } from '@braindrop-editor/core';
 import { EditorWithLinkPlugin, LinkElement } from '../LinkPlugin.types';
 
-function getNodeLinks(node: Node, from: Path, to: Path): NodeEntry[] {
+function getNodeLinks(
+  elementType: string,
+  node: Node,
+  from: Path,
+  to: Path,
+): NodeEntry[] {
   const descendants = Node.elements(node, {
     from,
     to,
@@ -18,11 +23,15 @@ function getNodeLinks(node: Node, from: Path, to: Path): NodeEntry[] {
   });
 
   return Array.from(descendants).filter((desc) =>
-    isNodeType(desc, { allow: ['link'] }),
+    isNodeType(desc, { allow: [elementType] }),
   );
 }
 
-export const LinkPopover: React.FC = () => {
+interface LinkPopoverProps {
+  elementType: string;
+}
+
+export const LinkPopover: React.FC<LinkPopoverProps> = ({ elementType }) => {
   const { Popover, TextField, Button } = useUI();
   const { toggle, turnOff, turnOn } = useEditorState();
   const [value, setValue] = useState('');
@@ -50,6 +59,7 @@ export const LinkPopover: React.FC = () => {
 
     setSelection(selection);
     const links = getNodeLinks(
+      elementType,
       editor,
       selection.anchor.path,
       selection.focus.path,
@@ -57,7 +67,7 @@ export const LinkPopover: React.FC = () => {
 
     if (links.length) {
       const linkElement = links[0][0] as LinkElement;
-      setValue(linkElement.properties.url as string);
+      setValue(linkElement.url as string);
     } else {
       setValue('');
     }
@@ -103,9 +113,9 @@ export const LinkPopover: React.FC = () => {
     Transforms.wrapNodes(
       editor,
       {
-        type: 'link',
+        type: elementType,
         id: editor.generateBlockId(),
-        properties: { url },
+        url,
         children: [],
       } as LinkElement,
       { at: selection, split: true },
@@ -121,7 +131,7 @@ export const LinkPopover: React.FC = () => {
     // Node normalizer will remove links without a URL
     // so we don't need to worry about removing the nodes
     Transforms.unsetNodes(editor, 'url', {
-      match: (n) => Element.isElement(n) && n.type === 'link',
+      match: (n) => Element.isElement(n) && n.type === elementType,
       split: true,
       at: selection,
     });

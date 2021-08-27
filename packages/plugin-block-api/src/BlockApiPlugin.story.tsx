@@ -229,30 +229,25 @@ export const NestedBlocks: React.FC = () => {
     {
       type: 'paragraph',
       id: '1',
-      properties: {},
       children: [
         {
           type: 'paragraph',
           id: '1.1',
-          properties: {},
           children: [{ text: 'Paragraph 1.1' }],
         },
         {
           type: 'paragraph',
           id: '1.2',
-          properties: {},
           children: [{ text: 'Paragraph 1.2' }],
         },
         {
           type: 'paragraph',
           id: '1.3',
-          properties: {},
           children: [{ text: 'Paragraph 1.3' }],
         },
         {
           type: 'paragraph',
           id: '1.4',
-          properties: {},
           children: [{ text: 'Paragraph 1.4' }],
         },
       ],
@@ -300,7 +295,6 @@ export const RootBlocks: React.FC = () => {
     {
       type: 'paragraph',
       id: 'initial-block-id',
-      properties: {},
       children: [{ text: 'I use the BlockApiPlugin' }],
     },
   ]);

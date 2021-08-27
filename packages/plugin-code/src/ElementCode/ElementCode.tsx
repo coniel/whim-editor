@@ -89,7 +89,7 @@ export const ElementCode: React.FC<ElementCodeProps> = ({
   const buttonContainerRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState('');
   const [selectOpen, setSelectOpen] = useState(false);
-  const [language, setLanguage] = useState(element.properties.language);
+  const [language, setLanguage] = useState(element.language);
   const selectedLanguage = languages.find(({ value }) => value === language);
 
   let label = 'Unknown';

@@ -28,7 +28,6 @@ function generateBlocks(count: number): Descendant[] {
     blocks.push({
       type: 'paragraph',
       id: v4(),
-      properties: {},
       children: [
         {
           text: `_${count - remainingCount}_ ${lorem.generateSentences(3)}`,
@@ -52,19 +51,16 @@ export const WithBlockPlugin: React.FC = () => {
     {
       type: 'paragraph',
       id: v4(),
-      properties: {},
       children: generateBlocks(5),
     },
     {
       type: 'paragraph',
       id: v4(),
-      properties: {},
       children: generateBlocks(3),
     },
     {
       type: 'paragraph',
       id: v4(),
-      properties: {},
       children: generateBlocks(2),
     },
   ]);

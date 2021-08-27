@@ -13,13 +13,11 @@ export const ElementLink: React.FC<ElementLinkProps> = ({
 }) => {
   return (
     <a
-      href={element.properties.url}
+      href={element.url}
       {...attributes}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={(): Window | null =>
-        window.open(element.properties.url, '_blank')
-      }
+      onClick={(): Window | null => window.open(element.url, '_blank')}
       style={{ cursor: 'pointer', color: 'inherit', textDecoration: 'inherit' }}
     >
       <span

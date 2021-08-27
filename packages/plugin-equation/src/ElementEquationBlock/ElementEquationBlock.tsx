@@ -27,7 +27,7 @@ export const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
   const [open, setOpen] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const { html, error, onChange, value } = useTex(
-    element.properties.expression as string,
+    element.expression as string,
     {
       displayMode: true,
     },
@@ -36,20 +36,20 @@ export const ElementEquationBlock: React.FC<ElementEquationBlockProps> = ({
 
   useEffect(() => {
     if (
-      !element.properties.expression &&
+      !element.expression &&
       editor.selection &&
       selected &&
       Range.isCollapsed(editor.selection)
     ) {
       setOpen(true);
     }
-  }, [selected, editor.selection, element.properties.expression]);
+  }, [selected, editor.selection, element.expression]);
 
   useEffect(() => {
     Transforms.setNodes(
       editor,
       {
-        properties: { expression: value },
+        expression: value,
       } as Partial<BlockEquationElement>,
       { at: ReactEditor.findPath(editor, element) },
     );

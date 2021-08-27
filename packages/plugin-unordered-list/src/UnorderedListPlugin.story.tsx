@@ -15,19 +15,16 @@ export const WithUnorderedListPlugin: React.FC = () => {
     {
       type: 'ul',
       id: '1',
-      properties: {},
       children: [{ text: 'List item 1' }],
     },
     {
       type: 'ul',
       id: '1',
-      properties: {},
       children: [{ text: 'List item 2' }],
     },
     {
       type: 'ul',
       id: '1',
-      properties: {},
       children: [{ text: 'List item 3' }],
     },
   ]);
@@ -51,19 +48,16 @@ export const WithCustomisedUnorderedListPlugin: React.FC = () => {
     {
       type: 'ul',
       id: '1',
-      properties: {},
       children: [{ text: 'List item 1' }],
     },
     {
       type: 'ul',
       id: '1',
-      properties: {},
       children: [{ text: 'List item 2' }],
     },
     {
       type: 'ul',
       id: '1',
-      properties: {},
       children: [{ text: 'List item 3' }],
     },
   ]);

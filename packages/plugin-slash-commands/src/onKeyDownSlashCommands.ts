@@ -33,7 +33,6 @@ export function onKeyDownSlashCommands(
         editor,
         {
           id: 'slash-query',
-          properties: {},
           type: 'slash-query',
           children: [],
         },

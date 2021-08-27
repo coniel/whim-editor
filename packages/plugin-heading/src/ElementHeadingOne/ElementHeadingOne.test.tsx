@@ -11,7 +11,7 @@ const defaultProps: ElementHeadingOneProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, id: '1', properties: {}, children: [{ text: TEXT }] },
+  element: { type: TYPE, id: '1', children: [{ text: TEXT }] },
   children: <div>{TEXT}</div>,
 };
 

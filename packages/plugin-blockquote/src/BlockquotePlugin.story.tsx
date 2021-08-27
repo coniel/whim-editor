@@ -13,7 +13,6 @@ export const WithBlockquotePlugin: React.FC = () => {
     {
       type: 'blockquote',
       id: '1',
-      properties: {},
       children: [
         {
           text:

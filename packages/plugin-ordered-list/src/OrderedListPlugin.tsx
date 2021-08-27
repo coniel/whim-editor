@@ -40,13 +40,12 @@ function normalizeNumberedListNode(
       const previousNode = Node.get(editor, previousNodePath);
       if (Element.isElement(previousNode) && previousNode.type === type) {
         number =
-          (((previousNode as OrderedListElement).properties.number as number) ||
-            1) + 1;
+          (((previousNode as OrderedListElement).number as number) || 1) + 1;
       }
     }
   }
 
-  if (node.properties.number !== number) {
+  if (node.number !== number) {
     Transforms.setNodes(editor, { number } as Partial<OrderedListElement>, {
       at: path,
     });

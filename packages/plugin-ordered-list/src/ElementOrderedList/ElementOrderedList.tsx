@@ -42,7 +42,7 @@ export const ElementOrderedList: React.FC<ElementOrderedListProps> = ({
           paddingRight: 2,
         }}
       >
-        {element.properties.number}.
+        {element.number}.
       </div>
       <div
         style={{

@@ -14,33 +14,33 @@ import { LinkPopover } from './LinkPopover';
 
 export interface LinkPluginOptions {
   hotkey?: string;
+  type?: string;
 }
 
-const unwrapLink = (editor: BraindropEditor): void => {
+const unwrapLink = (editor: BraindropEditor, type: string): void => {
   Transforms.unwrapNodes(editor, {
-    match: (n) => Element.isElement(n) && n.type === 'link',
+    match: (n) => Element.isElement(n) && n.type === type,
     split: true,
   });
 };
 
-const isLinkActive = (editor: BraindropEditor): boolean => {
+const isLinkActive = (editor: BraindropEditor, type: string): boolean => {
   const [link] = Editor.nodes(editor, {
-    match: (n) => Element.isElement(n) && n.type === 'link',
+    match: (n) => Element.isElement(n) && n.type === type,
   });
   return !!link;
 };
 
-const wrapLink = (editor: BraindropEditor, url: string): void => {
-  if (isLinkActive(editor)) {
-    unwrapLink(editor);
+const wrapLink = (editor: BraindropEditor, url: string, type: string): void => {
+  if (isLinkActive(editor, type)) {
+    unwrapLink(editor, type);
   }
 
   const { selection } = editor;
   const isCollapsed = selection && Range.isCollapsed(selection);
   const link = {
-    type: 'link',
+    type,
     id: editor.generateBlockId(),
-    properties: {},
     url,
     children: isCollapsed ? [{ text: url }] : [],
   };
@@ -58,25 +58,26 @@ export const createLinkPlugin = (
 ): BraindropEditorPluginFactory<LinkElement> => (
   baseEditor: BraindropEditor,
 ) => {
+  const type = options.type || 'link';
   const editor = baseEditor as EditorWithLinkPlugin;
   const { normalizeNode, renderEditable } = editor;
 
   editor.renderEditable = (props): JSX.Element => (
     <>
       {renderEditable(props)}
-      <LinkPopover />
+      <LinkPopover elementType={type} />
     </>
   );
 
   editor.insertLink = (url: string): void => {
     if (editor.selection) {
-      wrapLink(editor, url);
+      wrapLink(editor, url, type);
     }
   };
 
   editor.removeLink = (): void => {
     if (editor.selection) {
-      unwrapLink(editor);
+      unwrapLink(editor, type);
     }
   };
 
@@ -84,11 +85,11 @@ export const createLinkPlugin = (
     const [baseNode, path] = entry;
     const node = baseNode as LinkElement;
 
-    if (isNodeType(entry, { allow: ['link'] })) {
+    if (isNodeType(entry, { allow: [type] })) {
       // Don't allow links without a URL
-      if (!node.properties.url) {
+      if (!node.url) {
         Transforms.unwrapNodes(editor, {
-          match: (n) => Element.isElement(n) && n.type === 'link',
+          match: (n) => Element.isElement(n) && n.type === type,
           split: true,
           at: path,
         });
@@ -97,12 +98,12 @@ export const createLinkPlugin = (
       // Don't allow nested links
       const descendants = Node.descendants(node);
       const links = Array.from(descendants).filter((descEntry) =>
-        isNodeType(descEntry, { allow: ['link'] }),
+        isNodeType(descEntry, { allow: [type] }),
       );
 
       links.forEach((link) => {
         Transforms.unwrapNodes(editor, {
-          match: (n) => Element.isElement(n) && n.type === 'link',
+          match: (n) => Element.isElement(n) && n.type === type,
           split: true,
           at: link[1],
         });
@@ -117,7 +118,7 @@ export const createLinkPlugin = (
       A: (el) => {
         const a = el as HTMLAnchorElement;
         if (a.href) {
-          return { type: 'link', url: a.href };
+          return { type, url: a.href };
         }
       },
     },
@@ -130,7 +131,7 @@ export const createLinkPlugin = (
     },
     elements: [
       {
-        type: 'link',
+        type,
         component: ElementLink,
         isInline: true,
       },
@@ -140,14 +141,16 @@ export const createLinkPlugin = (
 
       if (text && isUrl(text)) {
         if (editor.selection) {
-          wrapLink(editor, text);
+          wrapLink(editor, text, type);
         } else {
-          Transforms.insertNodes(editor, {
-            type: 'link',
-            properties: { url: text },
-            id: editor.generateBlockId(),
+          const element: LinkElement = {
+            type,
+            url: text,
             children: [{ text }],
-          });
+            id: editor.generateBlockId(),
+          };
+
+          Transforms.insertNodes(editor, element);
         }
 
         return true;

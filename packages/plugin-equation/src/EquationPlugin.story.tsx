@@ -60,12 +60,11 @@ export const WithEquationPlugin: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         { text: 'I use the EquationPlugin: ' },
         {
           type: 'equation-inline',
-          properties: { expression: 'E=mc^2' },
+          expression: 'E=mc^2',
           children: [{ text: '' }],
         } as InlineEquationElement,
         { text: '.' },
@@ -75,13 +74,11 @@ export const WithEquationPlugin: React.FC = () => {
       type: 'equation',
       id: '2',
       children: [{ text: '' }],
-      properties: {
-        expression: `\\begin{aligned}
+      expression: `\\begin{aligned}
   x&=3+5+2 \\\\
   &=8+2 \\\\
   &=10
 \\end{aligned}`,
-      },
     },
   ]);
 

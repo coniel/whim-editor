@@ -14,7 +14,7 @@ const defaultProps: ElementCodeProps = {
   element: {
     type: TYPE,
     id: '1',
-    properties: { language: 'javascript' },
+    language: 'javascript',
     children: [{ text: TEXT }],
   },
   children: <div>{TEXT}</div>,

@@ -11,7 +11,7 @@ const defaultProps: ElementOrderedListProps = {
   },
   element: {
     type: TYPE,
-    properties: { number: 1 },
+    number: 1,
     id: '1',
     children: [{ text: TEXT }],
   },

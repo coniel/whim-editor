@@ -13,7 +13,6 @@ import { Element, BraindropEditor } from '../types';
 const createElement = (type: string): Element => ({
   type,
   id: '1',
-  properties: {},
   children: [{ text: '' }],
 });
 

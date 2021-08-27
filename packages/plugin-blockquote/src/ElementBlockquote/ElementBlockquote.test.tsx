@@ -11,7 +11,7 @@ const defaultProps: ElementBlockquoteProps = {
     'data-slate-node': 'element',
     ref: React.createRef(),
   },
-  element: { type: TYPE, id: 'id', children: [{ text: TEXT }], properties: {} },
+  element: { type: TYPE, id: 'id', children: [{ text: TEXT }] },
   children: <div>{TEXT}</div>,
 };
 

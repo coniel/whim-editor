@@ -17,19 +17,19 @@ export const WithOrderedListPlugin: React.FC = () => {
     {
       type: 'ol',
       id: '1',
-      properties: { number: 1 },
+      number: 1,
       children: [{ text: 'List item 1' }],
     },
     {
       type: 'ol',
       id: '2',
-      properties: { number: 2 },
+      number: 2,
       children: [{ text: 'List item 2' }],
     },
     {
       type: 'ol',
       id: '3',
-      properties: { number: 3 },
+      number: 3,
       children: [{ text: 'List item 3' }],
     },
   ]);
@@ -51,19 +51,19 @@ export const WithCustomisedOrderedListPlugin: React.FC = () => {
     {
       type: 'ol',
       id: '1',
-      properties: { number: 1 },
+      number: 1,
       children: [{ text: 'List item 1' }],
     },
     {
       type: 'ol',
       id: '2',
-      properties: { number: 2 },
+      number: 2,
       children: [{ text: 'List item 2' }],
     },
     {
       type: 'ol',
       id: '3',
-      properties: { number: 3 },
+      number: 3,
       children: [{ text: 'List item 3' }],
     },
   ]);

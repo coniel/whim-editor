@@ -7,7 +7,6 @@ const value = [
   {
     type: 'text',
     id: '1',
-    properties: {},
     children: [{ text: 'Hello world' }],
   },
 ];
