@@ -35,9 +35,13 @@ export const createCodePlugin = (
 
   function setBlockLanguage(element: CodeElement, language: string): void {
     const path = ReactEditor.findPath(editor, element);
-    Transforms.setNodes(editor, { language } as Partial<CodeElement>, {
-      at: path,
-    });
+    Transforms.setNodes(
+      editor,
+      { properties: { language } },
+      {
+        at: path,
+      },
+    );
   }
 
   return {
@@ -73,19 +77,17 @@ export const createCodePlugin = (
             editor,
             {
               type: blockType,
-              language: defaultLanguage,
-            } as Partial<CodeElement>,
+              properties: {
+                language: defaultLanguage,
+              },
+            },
             turnIntoOptions,
           );
         },
         insert: (editor, insertOptions): void => {
           Transforms.insertNodes(
             editor,
-            {
-              type: blockType,
-              properties: { language: defaultLanguage },
-              children: [{ text: '' }],
-            } as CodeElement,
+            editor.generateElement(blockType, { language: defaultLanguage }),
             insertOptions,
           );
         },

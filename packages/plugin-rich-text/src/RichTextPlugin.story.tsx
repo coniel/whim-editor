@@ -3,13 +3,13 @@ import {
   createRichTextPlugin,
   EditorWithRichTextPlugin,
 } from './RichTextPlugin';
-import { Editor, Element, MarkedText } from '@braindrop-editor/core';
+import { Editor, BasicElement, MarkedText } from '@braindrop-editor/core';
 import { components } from '@braindrop-editor/material-ui';
 import { useSlateStatic } from 'slate-react';
 
 export default { title: 'Plugins/RichText' };
 
-interface ElementWithRichText extends Element {
+interface ElementWithRichText extends BasicElement {
   children: MarkedText[];
 }
 
@@ -99,7 +99,6 @@ export const Default: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           text: 'I have the ',
@@ -150,7 +149,6 @@ export const Custom: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           text:
@@ -161,7 +159,6 @@ export const Custom: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           bold: true,
@@ -175,7 +172,6 @@ export const Custom: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           italic: true,
@@ -189,7 +185,6 @@ export const Custom: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           underline: true,
@@ -203,7 +198,6 @@ export const Custom: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           'strike-through': true,
@@ -233,7 +227,6 @@ export const Partial: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           text: 'This editor uses only part of the rich-text plugin.',
@@ -243,7 +236,6 @@ export const Partial: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           text: 'Only ',
@@ -260,7 +252,6 @@ export const Partial: React.FC = () => {
     {
       type: 'text',
       id: '1',
-      properties: {},
       children: [
         {
           i: true,

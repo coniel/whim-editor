@@ -9,7 +9,6 @@ jest.mock('../BlockPluginProvider', () => ({
       {
         id: 'block-id',
         type: 'text',
-        properties: {},
         children: [{ text: '' }],
         path: [0, 0],
         rect: {

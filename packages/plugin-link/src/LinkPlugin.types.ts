@@ -1,10 +1,10 @@
-import { Element, BraindropEditor } from '@braindrop-editor/core';
+import { ElementWithProperties, BraindropEditor } from '@braindrop-editor/core';
 
 export interface LinkElementProperties {
   url: string;
 }
 
-export type LinkElement = Element<string, LinkElementProperties>;
+export type LinkElement = ElementWithProperties<string, LinkElementProperties>;
 
 export interface EditorWithLinkPlugin extends BraindropEditor {
   insertLink: (url: string) => void;

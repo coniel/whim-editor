@@ -11,10 +11,10 @@ import { v4 as uuid } from 'uuid';
 import isHotkey from 'is-hotkey';
 import {
   Element,
+  BasicElement,
   BraindropEditor,
   createContext,
 } from '@braindrop-editor/core';
-import { ElementWithId } from '@braindrop-editor/plugin-block-id';
 import { ReactEditor, useSlate } from 'slate-react';
 
 export interface Coordinates {
@@ -22,7 +22,7 @@ export interface Coordinates {
   y: number;
 }
 
-export interface Block extends Element {
+export interface Block extends BasicElement {
   id: string;
   rect: DOMRect;
   path: Path;
@@ -113,7 +113,7 @@ function getPreviousBlock(blocks: Block[], block: Block): Block | null {
 
 function childrenToBlocks(editor: BraindropEditor): Block[] {
   return editor.children.map((child, index) => ({
-    ...(child as ElementWithId),
+    ...(child as Element),
     id: child.id,
     index,
     path: ReactEditor.findPath(editor, child),

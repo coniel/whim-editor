@@ -8,12 +8,6 @@ import {
   BraindropEditor,
 } from '@braindrop-editor/core';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type ElementWithId<Type = string, Properties = { id: string }> = Element<
-  Type,
-  Properties
->;
-
 export interface RenderElementProps extends CoreRenderElementProps {
   attributes: {
     'data-slate-node': 'element';
@@ -23,7 +17,7 @@ export interface RenderElementProps extends CoreRenderElementProps {
     dir?: 'rtl';
     ref: any;
   };
-  element: ElementWithId;
+  element: Element;
 }
 
 export type RenderElement = (props: RenderElementProps) => JSX.Element;
@@ -31,7 +25,7 @@ export type RenderElement = (props: RenderElementProps) => JSX.Element;
 export interface EditorWithBlockIdPlugin
   extends Omit<BraindropEditor, 'renderElement' | 'children'> {
   renderElement: RenderElement;
-  children: ElementWithId[];
+  children: Element[];
 }
 
 export interface BlockIdPluginOptions {
@@ -64,7 +58,6 @@ export const createBlockIdPlugin = (
         properties: {
           ...operation.properties,
           properties: {
-            ...(operation.properties || {}),
             id: generateId(),
           },
         },
@@ -82,9 +75,7 @@ export const createBlockIdPlugin = (
           ...operation,
           node: {
             ...node,
-            properties: {
-              id: generateId(),
-            },
+            id: generateId(),
           },
         });
       }
@@ -100,7 +91,7 @@ export const createBlockIdPlugin = (
       ...props,
       attributes: {
         ...props.attributes,
-        'data-block-id': props.element.properties.id,
+        'data-block-id': props.element.id,
       },
     });
   };

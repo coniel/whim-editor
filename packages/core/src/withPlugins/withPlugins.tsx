@@ -24,10 +24,9 @@ import { withBlockId } from './withBlockId';
 import { withMarkShortcuts } from './withMarkShortcuts';
 import { withBlockShortcuts, BlockShortcut } from './withBlockShortcuts';
 import { BraindropEditor, EditableProps } from '../types/Slate.types';
+import { generateElement } from '../utils';
 
-interface Element extends SlateElement {
-  type: string;
-}
+type Element = SlateElement;
 
 export type RenderLeafProps = SlateRenderLeafProps;
 export type Text = BaseText;
@@ -116,7 +115,7 @@ export interface BraindropEditorPlugin<ElementType = Element> {
   renderLeaf?: (props: RenderLeafProps) => JSX.Element;
   onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void | true;
   onDOMBeforeInput?: (event: Event) => void;
-  isVoid?: (element: Node) => boolean;
+  isVoid?: (element: Node | Element) => boolean;
   isInline?: (element: Node) => boolean;
   elements?: BraindropEditorPluginElementDescriptor<ElementType>[];
   leaves?: BraindropEditorPluginLeafDescriptor[];
@@ -229,6 +228,10 @@ export const withPlugins = (
   const turnIntoMap: Record<string, TurnInto | TurnIntoNode> = {};
   const plugins: BraindropEditorPlugin[] = [];
   editor.generateBlockId = blockIdGenerator;
+  editor.generateElement = (
+    type: string,
+    properties?: Record<string, unknown>,
+  ) => generateElement(type, blockIdGenerator(), properties);
   editor.onKeyDown = (): void => undefined;
   editor.renderElement = (props: RenderElementProps): JSX.Element =>
     renderElement(props);

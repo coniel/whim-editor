@@ -6,10 +6,7 @@ import {
 } from 'slate-react';
 import { HistoryEditor } from 'slate-history';
 import { EditableProps as BaseEditableProps } from 'slate-react/dist/components/editable';
-import { Element as BaseElement } from './Element.types';
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-type Element = BaseElement<string, {}>;
+import { Element } from './Element.types';
 
 type RenderElementAttributes = SlateReactRenderElementProps['attributes'] & {
   'data-block-id': string;
@@ -39,6 +36,10 @@ export interface BraindropEditor
     HistoryEditor {
   children: Element[];
   generateBlockId: () => string;
+  generateElement: (
+    type: string,
+    properties?: Record<string, unknown>,
+  ) => Element;
   renderEditable: (props: EditableProps) => JSX.Element;
   renderElement: (props: RenderElementProps) => JSX.Element;
   renderLeaf: (props: RenderLeafProps) => JSX.Element;

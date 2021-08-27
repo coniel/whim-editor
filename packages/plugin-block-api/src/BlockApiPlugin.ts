@@ -3,15 +3,15 @@ import {
   BraindropEditorPlugin,
   BraindropEditor,
   getBlockAbove,
+  Element,
 } from '@braindrop-editor/core';
 import { Path, NodeEntry, Node, Element as SlateElement } from 'slate';
-import { ElementWithId } from '@braindrop-editor/plugin-block-id';
 
-export type BlockEntry<
-  BlockType extends ElementWithId = ElementWithId
-> = NodeEntry<BlockType>;
+export type BlockEntry<BlockType extends Element = Element> = NodeEntry<
+  BlockType
+>;
 
-export interface BlockApiPluginOptions<BlockType extends ElementWithId> {
+export interface BlockApiPluginOptions<BlockType extends Element> {
   onUpdateBlock?: (block: BlockEntry<BlockType>) => void;
   onDeleteBlock?: (id: string, parent: BlockEntry<BlockType>) => void;
   onCreateBlock?: (
@@ -27,9 +27,7 @@ export interface BlockApiPluginOptions<BlockType extends ElementWithId> {
   ) => void;
 }
 
-export const createBlockApiPlugin = <
-  BlockType extends ElementWithId = ElementWithId
->({
+export const createBlockApiPlugin = <BlockType extends Element = Element>({
   onCreateBlock,
   onUpdateBlock,
   onDeleteBlock,

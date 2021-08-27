@@ -1,25 +1,12 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "0.26.12",
   "useWorkspaces": true,
   "npmClient": "yarn",
   "command": {
     "publish": {
       "access": "public",
-      "allowBranch": [
-        "master",
-        "feature/*"
-      ]
-    },
-    "version": {
-      "conventionalCommits": true,
-      "createRelease": "github",
-      "allowBranch": [
-        "master",
-        "feature/*"
-      ]
+      "allowBranch": ["master", "feature/*"]
     }
   }
 }

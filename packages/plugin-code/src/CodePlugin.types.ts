@@ -1,10 +1,15 @@
-import { BraindropEditor, Element, Range, Text } from '@braindrop-editor/core';
+import {
+  BraindropEditor,
+  ElementWithProperties,
+  Range,
+  Text,
+} from '@braindrop-editor/core';
 
 export interface CodeElementProperties {
   language: string;
 }
 
-export type CodeElement = Element<string, CodeElementProperties>;
+export type CodeElement = ElementWithProperties<string, CodeElementProperties>;
 
 export interface CodeLeaf extends Text {
   code: boolean;
