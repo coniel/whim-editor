@@ -23,6 +23,7 @@
     "@braindrop-editor/plugin-paragraph": "^0.28.0",
     "@braindrop-editor/plugin-rich-text": "^0.28.0",
     "@braindrop-editor/plugin-slash-commands": "^0.28.2",
+    "@braindrop-editor/plugin-to-do-list": "^0.28.0",
     "@braindrop-editor/plugin-unordered-list": "^0.28.0"
   },
   "peerDependencies": {

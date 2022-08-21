@@ -16,6 +16,7 @@ import { createParagraphPlugin } from '@braindrop-editor/plugin-paragraph';
 import { createBlockPlugin } from '@braindrop-editor/plugin-block';
 import { createBlockIdPlugin } from '@braindrop-editor/plugin-block-id';
 import { createSlashCommandsPlugin } from '@braindrop-editor/plugin-slash-commands';
+import { createToDoListPlugin } from '@braindrop-editor/plugin-to-do-list';
 import { Node as SlateNode } from 'slate';
 import { components } from '@braindrop-editor/material-ui';
 import { HoveringToolbar } from './HoveringToolbar';
@@ -56,6 +57,7 @@ const ParagraphPlugin = createParagraphPlugin();
 const BlockquotePlugin = createBlockquotePlugin({
   hotkeys: ['mod+alt+3'],
 });
+const ToDoListPlugin = createToDoListPlugin();
 const SlashCommandsPlugin = createSlashCommandsPlugin({
   menuItems: [
     {
@@ -63,8 +65,11 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
       group: 'Basic Blocks',
       title: 'Text',
       subtitle: 'Just start writing with plain text.',
-      keywords: 'text,paragraph,plain',
+      tooltip: 'Just start writing with plain text.',
+      keywords: 'paragraph,plain',
       index: 0,
+      image: require('./images/text.png'),
+      tooltipImage: require('./images/text-tooltip.png'),
     },
     {
       id: 'h1',
@@ -73,6 +78,8 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
       subtitle: 'Big section heading.',
       keywords: 'h1,one',
       index: 1,
+      image: require('./images/heading-1.png'),
+      tooltipImage: require('./images/heading-1-tooltip.png'),
     },
     {
       id: 'h2',
@@ -81,6 +88,8 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
       subtitle: 'Medium section heading.',
       keywords: 'h2,two',
       index: 2,
+      image: require('./images/heading-2.png'),
+      tooltipImage: require('./images/heading-2-tooltip.png'),
     },
     {
       id: 'h3',
@@ -89,6 +98,8 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
       subtitle: 'Small section heading.',
       keywords: 'h3,three',
       index: 3,
+      image: require('./images/heading-3.png'),
+      tooltipImage: require('./images/heading-3-tooltip.png'),
     },
     {
       id: 'ul',
@@ -97,6 +108,8 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
       subtitle: 'Create a simple bulleted list.',
       keywords: 'ul',
       index: 4,
+      image: require('./images/list-bulleted.png'),
+      tooltipImage: require('./images/buletted-list-tooltip.png'),
     },
     {
       id: 'ol',
@@ -105,39 +118,39 @@ const SlashCommandsPlugin = createSlashCommandsPlugin({
       subtitle: 'Create a list with numbering.',
       keywords: 'ul',
       index: 5,
-    },
-    {
-      id: 'blockquote',
-      group: 'Basic Blocks',
-      title: 'Quote',
-      subtitle: 'Capture a quote.',
-      keywords: 'quote',
-      index: 6,
+      image: require('./images/list-numbered.png'),
+      tooltipImage: require('./images/numbered-list-tooltip.png'),
     },
     {
       id: 'equation',
-      group: 'Basic Blocks',
+      group: 'Advanced Blocks',
       title: 'Block equation',
       subtitle: 'Display a standalone math equation.',
-      keywords: 'equation,tex,math',
-      index: 7,
-    },
-    {
-      id: 'equation-inline',
-      group: 'Basic Blocks',
-      title: 'Inline equation',
-      subtitle: 'Insert mathematical symbols in text',
-      keywords: 'equation,tex,math,inline,number',
-      index: 8,
-      inline: true,
+      keywords: 'equation',
+      index: 6,
+      image: require('./images/equation-block.png'),
+      tooltipImage: require('./images/equation-block-tooltip.png'),
     },
     {
       id: 'code',
-      group: 'Basic Blocks',
+      group: 'Advanced Blocks',
       title: 'Code',
       subtitle: 'Capture a code snippet.',
       keywords: 'code',
-      index: 9,
+      index: 7,
+      image: require('./images/code.png'),
+      tooltipImage: require('./images/code-tooltip.png'),
+    },
+    {
+      id: 'equation-inline',
+      group: 'Inline',
+      title: 'Inline equation',
+      subtitle: 'Insert mathematical symbols in text',
+      keywords: 'equation,tex,math',
+      index: 8,
+      inline: true,
+      image: require('./images/equation-inline.png'),
+      tooltipImage: require('./images/equation-inline-tooltip.png'),
     },
   ],
 });
@@ -175,6 +188,7 @@ export const Editor: React.FC<EditorProps> = ({
         CodePlugin,
         EquationPlugin,
         BlockquotePlugin,
+        ToDoListPlugin,
         EquationPlugin,
         SlashCommandsPlugin,
         BlockPlugin,
